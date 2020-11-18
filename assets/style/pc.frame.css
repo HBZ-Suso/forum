@@ -92,19 +92,20 @@
     top: 80px;
     left: 0px;
     background-color: rgb(16, 87, 63);
-    height: 100%;
+    height: auto;
+    border-bottom-right-radius: 5px;
     overflow: hidden;
 }
 
 .main-menu-entry {
     display: inline-block;
-    width: 95%;
-    font-size: 3vw;
+    width: 100%;
+    font-size: 2vw;
     color: black;
     text-decoration: none;
     padding-left: 5%;
 }
 
 .main-menu-entry:hover {
-    background-color: rgb(6, 58, 40);
+    background-color: rgb(31, 151, 111);
 }

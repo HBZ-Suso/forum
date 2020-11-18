@@ -198,8 +198,13 @@ class Data
 
     public function search_articles ($phrase, $max=100) 
     {
-        $query = "SELECT * FROM articles WHERE articleName='%" . $phrase . "%' LIMIT " . $max;
-        $result = $this->connId->query($query);
+        $query = "SELECT * FROM articles WHERE articleTitle LIKE ? LIMIT " . $max;
+        $query_phrase = "%" . $phrase . "%";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $query_phrase);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         $return = array();
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -210,6 +215,72 @@ class Data
             return array();
         }
         return array();
+    }
+
+
+    public function search_users ($phrase, $max=100) 
+    {
+        $query = "SELECT * FROM users WHERE userName LIKE ? LIMIT " . $max;
+        $query_phrase = "%" . $phrase . "%";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $query_phrase);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = array();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+            return $return;
+        } else {
+            return array();
+        }
+        return array();
+    }
+
+
+    public function get_username_by_id ($code) 
+    {
+        $query = "SELECT userName FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $code);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = array();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return $row["userName"];
+            }
+        } else {
+            return array();
+        }
+        return array();
+    }
+
+
+    public function get_article_views_by_article_id ($id) 
+    {
+        $query = "SELECT viewId FROM views WHERE articleId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows;
+    }
+
+
+    public function get_article_views_by_user_id ($id) 
+    {
+        $query = "SELECT viewId FROM views WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows;
     }
 
 
