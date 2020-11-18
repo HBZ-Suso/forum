@@ -12,8 +12,10 @@ if ($info->mobile === true) {
 } else {
     if (isset($_SESSION["user"])) {
         $account = $text->get("frame-menu-account");
+        $logout = '<a class="main-menu-entry" href="/forum/assets/site/login.php?logout=true">' . $text->get("frame-menu-logout") . '</a><br>';
     } else {
         $account = $text->get("frame-menu-login");
+        $logout = "";
     }
 
     echo '
@@ -24,13 +26,13 @@ if ($info->mobile === true) {
         <h1 class="main-heading-text">' . $text->get("frame-pc-heading") . '</h1>
 
         <form action="/forum/" method="get" class="main-heading-search">
-            <input type="text" name="search" placeholder="' . $text->get("frame-pc-heading-search") .'"  class="main-heading-search-text">
+            <input type="text" name="search" autocomplete="off" placeholder="' . $text->get("frame-pc-heading-search") .'"  class="main-heading-search-text">
             <input type="submit" class="main-heading-search-submit" value="->">
         </form>
     </div>
     <div class="main-menu">
         <a class="main-menu-entry" href="/forum/?show=account">' . $account . '</a><br>
-        <a class="main-menu-entry" href="/forum/?show=about">' . $text->get("frame-menu-about") . '</a><br>
+        <a class="main-menu-entry" href="/forum/?show=about">' . $text->get("frame-menu-about") . '</a><br>' . $logout . '
     </div>
 
     <script>

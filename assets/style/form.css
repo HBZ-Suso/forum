@@ -1,0 +1,99 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    background-color: gray;
+}
+
+
+form {
+    background-color: white;
+    position: absolute;
+    margin: auto;
+    top: 10%;
+    left: 5%;
+    width: 80%;
+    padding: 5%;
+    border-radius: 25px;
+}
+
+
+.sender {
+    display: block;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    margin-left: 25%;
+    width: 50%;
+    border: 2px solid aqua;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 2.5vh;
+    padding: 10px;
+    font-size: 2.2vh;
+    background-color: gray;
+    transition: all 0.4s;
+}
+
+.sender:hover {
+    background-color: rgb(88, 88, 88);
+    color: white;
+}
+
+
+form > input {
+    display: block;
+    width: 75%;
+    height: 5vh;
+    margin-left: 12.5%;
+    border: 2px solid antiquewhite;
+    border-radius: 5px;
+    margin-bottom: 1.1vh;
+    text-align: center;
+    padding: 0.5vh;
+    font-size: 2.2vh;
+    background-color: gray;
+    transition: all 0.25s;
+}
+
+form > textarea {
+    display: block;
+    width: 75%;
+    height: 9vh;
+    margin-left: 12.5%;
+    border: 2px solid antiquewhite;
+    border-radius: 5px;
+    margin-bottom: 1.5vh;
+    text-align: center;
+    padding: 10px;
+    font-size: 2.2vh;
+    background-color: gray;
+    transition: all 0.25s;
+}
+
+form > input:hover {
+    background-color: rgb(88, 88, 88);
+    color: white;
+}
+
+form > textarea:hover {
+    background-color: rgb(88, 88, 88);
+    color: white;
+}
+
+.submit {
+    cursor: pointer;
+}
+
+
+
+
+.home {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: white;
+    font-size: 3vh;
+    border-bottom-right-radius: 0.8vh;
+    padding: 10px;
+    cursor: pointer;
+}

@@ -5,6 +5,7 @@
         "frame-mobile-heading": "Forum",
         "frame-menu-account": "Account",
         "frame-menu-login": "Login",
+        "frame-menu-logout": "Logout",
         "frame-menu-about": "About"
     },
     "deutsch": {
@@ -13,6 +14,7 @@
         "frame-mobile-heading": "Forum",
         "frame-menu-account": "Profil",
         "frame-menu-login": "Anmelden",
+        "frame-menu-logout": "Abmelden",
         "frame-menu-about": "Über Uns"
     }
 }

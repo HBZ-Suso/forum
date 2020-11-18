@@ -5,12 +5,12 @@ class Data
     /*
     URL of config file
     */
-    public $configFile;
+    public static $configFile = "/forum/assets/data/credentials.json";
 
     /*
     URL of error file
     */
-    public $errorFile;
+    public static $errorFile = "/forum/assets/data/sql_error.json";
 
 
     public $connId;
@@ -20,17 +20,16 @@ class Data
     */
     public function __construct()
     {
-        $this->errorFile = $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/data/sql_error.json";
         $this->connect();
     }
 
     private function create_error ($er)
     {
-        @$ef = file_get_contents($this->errorFile);
+        @$ef = file_get_contents($_SERVER["DOCUMENT_ROOT"] . self::$errorFile);
         if ($ef) {
             $ef = json_decode($ef, true);
             array_push($ef, $er);
-            file_put_contents($this->errorFile, json_encode($ef));
+            file_put_contents(self::$errorFile, json_encode($ef));
         }
     }
 
@@ -47,7 +46,8 @@ class Data
 
         
         /* Verbindung aufnehmen */
-        $con = $this->connId = mysqli_connect("localhost","forum", "forum", "forum");
+        $credentials = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . self::$configFile), true);
+        $con = $this->connId = mysqli_connect($credentials["address"], $credentials["user"], $credentials["password"], "forum");
 
         
         if ($con->connect_errno) {
@@ -74,8 +74,12 @@ class Data
 
 
     public function check_entry_exists ($tableName, $columnName, $entry) {
-        $query = "SELECT " . $columnName . " FROM " . $tableName . " WHERE " . $columnName . "='" . $entry . "'";
-        $result = $this->connId->query($query);
+        $query = "SELECT " . $columnName . " FROM " . $tableName . " WHERE " . $columnName . "=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $entry);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         if ($result->num_rows > 0) {
             return true;
         } else {
@@ -84,15 +88,15 @@ class Data
     }
 
 
-    public function create_user ($username, $password, $age, $employment, $description, $mail, $phone, $settings)
+    public function create_user ($username, $password, $age, $employment, $description, $mail, $phone, $settings, $type)
     {
         if ($this->check_entry_exists("users", "userName", $username)) {
             return false;
         }
 
-        $query = "INSERT INTO users (userName, userPassword, userAge, userEmployment, userDescription, userMail, userPhone, userSettings) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO users (userName, userPassword, userAge, userEmployment, userDescription, userMail, userPhone, userSettings, userType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ssisssss", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, json_encode($settings));
+        $stmt->bind_param("ssissssss", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, json_encode($settings), $type);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -209,5 +213,34 @@ class Data
     }
 
 
+    public function use_code ($code) 
+    {
+        if (!$this->check_entry_exists("codes", "codeName", $code)) {
+            return false;
+        }
+
+
+        $query = "SELECT codeType FROM codes WHERE codeName=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $code);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $type = $row["codeType"];
+            }
+        } else {
+            return false;
+        }
+        
+
+        $query = "DELETE FROM codes WHERE codeName=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $code);
+        $stmt->execute();
+        $stmt->close();
+        return $type;
+    }
 
 }

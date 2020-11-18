@@ -12,6 +12,7 @@ forum:
         userMail (TEXT)
         userPhone (TEXT)
         userSettings (JSON)
+        codeType (TINYTEXT, administrator / user, comes from code)
 
     articles:
         articleId (number, ticking up, MEDIUMINT, unsigned)
@@ -36,6 +37,12 @@ forum:
     codes:
         codeId (number, ticking up, MEDIUMINT, unsigned)
         codeName (string, TEXT)
+        codeType (TINYTEXT, administrator / user)
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
+
+
+
+Administrator:
+    Password: forum_admin
