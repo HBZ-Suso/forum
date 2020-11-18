@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* HEADING */
 .main-heading-container {
+    font-family: 'Roboto', sans-serif;
     width: 100%;
-    height: 11%;
+    height: 150px;
     top: 0px;
     left: 0px;
     position: fixed;
@@ -14,6 +18,8 @@
     display: inline-flex;
     position: relative;
     height: 100%;
+    z-index: 2;
+    cursor: pointer;
 }
 
 .main-heading-text {
@@ -34,7 +40,7 @@
 }
 
 .main-heading-search-text {
-    font-size: 200%;
+    font-size: 2vw;
     width: auto;
     border-radius: 7vh;
     border: 0px;
@@ -46,7 +52,7 @@
 }
 
 .main-heading-search-submit {
-    font-size: 200%;
+    font-size: 2vw;
     width: 8vw;
     border-radius: 7vh;
     border: 0px;
@@ -63,4 +69,42 @@
 .main-heading-search-submit:hover {
     background-color: rgb(54, 226, 169);
     cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* MENU */
+
+.main-menu {
+    font-family: 'Roboto', sans-serif;
+    z-index: 1;
+    display: none;
+    width: 30%;
+    position: fixed;
+    top: 150px;
+    left: 0px;
+    background-color: rgb(16, 87, 63);
+    height: 100%;
+    overflow: hidden;
+}
+
+.main-menu-entry {
+    display: inline-block;
+    width: 95%;
+    font-size: 5vw;
+    color: black;
+    text-decoration: none;
+    padding-left: 5%;
+}
+
+.main-menu-entry:hover {
+    background-color: rgb(6, 58, 40);
 }

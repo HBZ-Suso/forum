@@ -1,10 +1,18 @@
 {
     "english": {
         "frame-pc-heading": "HBZ-Forum",
-        "frame-pc-heading-search": "Search user or article"
+        "frame-pc-heading-search": "Search user or article",
+        "frame-mobile-heading": "Forum",
+        "frame-menu-account": "Account",
+        "frame-menu-login": "Login",
+        "frame-menu-about": "About"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ Forum",
-        "frame-pc-heading-search": "Suche Benutzer oder Artikel"
+        "frame-pc-heading-search": "Suche Benutzer oder Artikel",
+        "frame-mobile-heading": "Forum",
+        "frame-menu-account": "Profil",
+        "frame-menu-login": "Anmelden",
+        "frame-menu-about": "Über Uns"
     }
 }
