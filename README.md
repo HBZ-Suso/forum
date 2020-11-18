@@ -36,3 +36,6 @@ forum:
     codes:
         codeId (number, ticking up, MEDIUMINT, unsigned)
         codeName (string, TEXT)
+
+Icons:
+    <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>

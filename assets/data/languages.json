@@ -1,5 +1,10 @@
 {
     "english": {
-        ""
+        "frame-pc-heading": "HBZ-Forum",
+        "frame-pc-heading-search": "Search user or article"
+    },
+    "deutsch": {
+        "frame-pc-heading": "HBZ Forum",
+        "frame-pc-heading-search": "Suche Benutzer oder Artikel"
     }
 }
