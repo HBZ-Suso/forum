@@ -196,47 +196,57 @@ class Data
     }
 
 
-    public function search_articles ($phrase, $max=100) 
+    public function search_articles ($phrase, $max=100, $mode = ["articleTitle", "articleTags", "articleText"]) 
     {
-        $query = "SELECT * FROM articles WHERE articleTitle LIKE ? LIMIT " . $max;
-        $query_phrase = "%" . $phrase . "%";
-        $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("s", $query_phrase);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
         $return = array();
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                array_push($return, $row);
+        foreach($mode as $value) {
+            $query = "SELECT * FROM articles WHERE " . $value . " LIKE ? LIMIT " . $max;
+            $query_phrase = "%" . $phrase . "%";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("s", $query_phrase);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    if (!in_array($row, $return)) {
+                        array_push($return, $row);
+                    }
+                }
             }
+        }
+        if (count($return) >= 1) {
             return $return;
         } else {
-            return array();
+            return false;
         }
-        return array();
     }
 
 
-    public function search_users ($phrase, $max=100) 
-    {
-        $query = "SELECT * FROM users WHERE userName LIKE ? LIMIT " . $max;
-        $query_phrase = "%" . $phrase . "%";
-        $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("s", $query_phrase);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
+    public function search_users ($phrase, $max=100, $mode = ["userName", "userDescription", "userMail", "userPhone", "userEmployment"]) 
+    {   
         $return = array();
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                array_push($return, $row);
+        foreach($mode as $value) {
+            $query = "SELECT * FROM users WHERE " . $value . " LIKE ? LIMIT " . $max;
+            $query_phrase = "%" . $phrase . "%";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("s", $query_phrase);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    if (!in_array($row, $return)) {
+                        array_push($return, $row);
+                    }
+                }
             }
+        }
+        if (count($return) >= 1) {
             return $return;
         } else {
-            return array();
+            return false;
         }
-        return array();
     }
 
 
