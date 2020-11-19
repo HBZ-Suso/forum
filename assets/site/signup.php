@@ -1,6 +1,8 @@
 <?php
 session_start();
+
 $hide_frame = true;
+$require_purifier = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 
@@ -58,7 +60,7 @@ if (!isset($_GET["form"])) {
         exit("Passworderror");
     }
 
-    if ($data->create_user($_POST["username"], $_POST["password"], $_POST["age"], $_POST["employment"], $_POST["description"], $_POST["mail"], $_POST["phone"], array("public" => true), $code_query["type"], $code_query["intended"])) {
+    if ($data->create_user($filter->purify($_POST["username"], 25), $_POST["password"], $filter->purify($_POST["age"], 12), $filter->purify($_POST["employment"], 25), $filter->purify($_POST["description"], 50), $filter->purify($_POST["mail"], 25), $filter->purify($_POST["phone"], 15), array("public" => true), $code_query["type"], $code_query["intended"])) {
         header("LOCATION:/forum/");
         exit("Successfully created account...");
     } else {
