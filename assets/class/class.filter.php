@@ -7,15 +7,15 @@ class Filter
 
 	public function __construct()
 	{
-		$this->purifierpath = $_SERVER["DOCUMENT_ROOT"] . self::$purifier_url;
-		require_once $this->purifierpath;
+		require_once $_SERVER["DOCUMENT_ROOT"] . self::$purifier_url;
 		$this->purifier_config = HTMLPurifier_Config::createDefault();
 		$this->purifier = new HTMLPurifier($this->purifier_config);
 	}
-	
+
 
 	public function purify($text, $times)
 	{
+		echo "xD";
 		$to_return = $text;
 		for ($i = 0; $i < $times; $i++) {
 			$to_return = $this->purifier->purify($to_return);

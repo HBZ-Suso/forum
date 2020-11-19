@@ -13,7 +13,7 @@ if (isset($_GET["logout"])) {
 if (!isset($_GET["form"])) {
     echo '
     <link rel="stylesheet" href="/forum/assets/style/form.css">
-    <form action="/forum/assets/site/login.php?form=true" method="post">
+    <form action="/forum/assets/site/login.php?form=true" method="post" class="main-form">
         <a class="sender" href="/forum/assets/site/signup.php">Signup</a><br>
         <input type="text" name="username" placeholder="Your username" class="username">
         <input type="password" name="password" placeholder="Your Password" class="password">

@@ -12,7 +12,7 @@ if ($info->mobile === true) {
 } else {
     if (isset($_SESSION["user"])) {
         $account = $text->get("frame-menu-account");
-        $logout = '<a class="main-menu-entry" href="/forum/assets/site/login.php?logout=true">' . $text->get("frame-menu-logout") . '</a><br>';
+        $logout = '<a class="main-menu-entry" href="/forum/assets/site/create_article.php">' . $text->get("frame-menu-create") . '</a><a class="main-menu-entry" href="/forum/assets/site/login.php?logout=true">' . $text->get("frame-menu-logout") . '</a><br>';
     } else {
         $account = $text->get("frame-menu-login");
         $logout = "";

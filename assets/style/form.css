@@ -8,7 +8,7 @@
 }
 
 
-form {
+.main-form {
     background-color: white;
     position: absolute;
     margin: auto;
@@ -43,7 +43,7 @@ form {
 }
 
 
-form > input {
+.main-form > input {
     display: block;
     width: 75%;
     height: 5vh;
@@ -58,7 +58,7 @@ form > input {
     transition: all 0.25s;
 }
 
-form > textarea {
+.main-form > textarea {
     display: block;
     width: 75%;
     height: 9vh;
@@ -71,20 +71,22 @@ form > textarea {
     font-size: 2.2vh;
     background-color: gray;
     transition: all 0.25s;
+    resize: none;
 }
 
-form > input:hover {
+.main-form > input:hover {
     background-color: rgb(88, 88, 88);
     color: white;
 }
 
-form > textarea:hover {
+.main-form > textarea:hover {
     background-color: rgb(88, 88, 88);
     color: white;
 }
 
-.submit {
+.submixt {
     cursor: pointer;
+    background-color: rgb(90, 90, 90)!important;
 }
 
 

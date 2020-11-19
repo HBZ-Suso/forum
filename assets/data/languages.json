@@ -6,6 +6,7 @@
         "frame-menu-account": "Account",
         "frame-menu-login": "Login",
         "frame-menu-logout": "Logout",
+        "frame-menu-create": "Write Article",
         "frame-menu-about": "About"
     },
     "deutsch": {
@@ -15,6 +16,7 @@
         "frame-menu-account": "Profil",
         "frame-menu-login": "Anmelden",
         "frame-menu-logout": "Abmelden",
+        "frame-menu-create": "Schreibe Artikel",
         "frame-menu-about": "Über Uns"
     }
 }

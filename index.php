@@ -107,7 +107,10 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
     }
 
     $user_data = $data->get_user_by_id($userId);
-
+    if ($user_data === false) {
+        header("LOCATION:/forum/?error=notexistentuser");
+        die("This user does not exist");
+    }
 
     echo '
     <link rel="stylesheet" href="/forum/assets/style/pc.user.css">
@@ -137,7 +140,10 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
     }
 
     $article_data = $data->get_article_by_id($articleId);
-
+    if ($article_data === false) {
+        header("LOCATION:/forum/?error=notexistentarticle");
+        die("This article does not exist");
+    }
 
     echo '
     <link rel="stylesheet" href="/forum/assets/style/pc.article.css">
