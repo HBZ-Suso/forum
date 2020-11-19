@@ -23,6 +23,71 @@ if (isset($_GET["show"])) {
 
 if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) && !isset($_GET["userName"]) && !isset($_GET["articleId"]) && !isset($_GET["articleTitle"]))) {
     if ($info->mobile === false) {
+
+        if (isset($_GET["search"]) || isset($_GET["rsearch"])) {
+            $args = ["title", "text", "author", "name", "mail", "description", "phone", "employment"];
+            $set = [];
+            foreach($args as $value) {
+                if (isset($_GET[$value])) {
+                    $set[$value] = "checked";
+                } else {
+                    $set[$value] = "";
+                }
+            }
+
+
+            echo '
+                <form action="/forum/?rsearch=true" method="get" class="refined-search">
+                    <input type="text" name="rsearch" autocomplete="off" placeholder="Search"  class="refined-search-text">
+                    <input type="submit" class="refined-search-submit" value="->"><br>
+
+                    <table class="refined-search-table">
+                        <tr>
+                            <th><label for="title" class="refined-search-label">Title</label></th>
+                            <th><label for="text" class="refined-search-label">Text</label></th>
+                            <th><label for="author" class="refined-search-label">Author</label></th>
+                            <th><label for="info class="refined-search-label">|</label></th>
+                            <th><label for="title" class="refined-search-label">Name</label></th>
+                            <th><label for="text" class="refined-search-label">Mail</label></th>
+                            <th><label for="title" class="refined-search-label">Description</label></th>
+                            <th><label for="text" class="refined-search-label">Phone</label></th>
+                            <th><label for="text" class="refined-search-label">Employment</label><br></th>
+                        </tr>
+                        <tr>
+                            <td><div class="checkbox-div" id="1"><input type="checkbox" name="title" ' . $set["title"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                            <td><div class="checkbox-div" id="2"><input type="checkbox" name="text" ' . $set["text"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                            <td><div class="checkbox-div" id="3"><input type="checkbox" name="author" ' . $set["author"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                            <td><p></p></td>
+                            <td><div class="checkbox-div" id="4"><input type="checkbox" name="name" ' . $set["name"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                            <td><div class="checkbox-div" id="5"><input type="checkbox" name="mail" ' . $set["mail"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                            <td><div class="checkbox-div" id="6"><input type="checkbox" name="description" ' . $set["description"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                            <td><div class="checkbox-div" id="7"><input type="checkbox" name="phone" ' . $set["phone"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                            <td><div class="checkbox-div" id="8"><input type="checkbox" name="employment" ' . $set["employment"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                        </tr>
+                    </table>
+                </form>   
+            ';
+        
+            for ($i = 1; $i < 9; $i++) {
+                echo '
+                <script>
+                    document.getElementById("' . $i . '").addEventListener("click", event => {
+                        if (document.getElementById("' . $i . '").children[0].checked) {
+                            document.getElementById("' . $i . '").style.backgroundColor = "#0D3326";
+                        } else {
+                            document.getElementById("' . $i . '").style.backgroundColor = "";
+                        }
+                    });
+                    if (document.getElementById("' . $i . '").children[0].checked) {
+                        document.getElementById("' . $i . '").style.backgroundColor = "#0D3326";
+                    } else {
+                        document.getElementById("' . $i . '").style.backgroundColor = "";
+                    }
+                </script>';
+            }
+        }
+
+
         echo '<link rel="stylesheet" href="/forum/assets/style/pc.findings.css">';
 
         echo '
@@ -35,7 +100,25 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
             $phrase = "";
         }
 
-        foreach ($data->search_articles($phrase) as $value) {
+        if (isset($_GET["rsearch"])) {
+            $mode_list = array();
+
+            if (isset($_GET["title"])) {
+                array_push($mode_list, "articleTitle");
+            }
+            if (isset($_GET["text"])) {
+                array_push($mode_list, "articleText");
+            }
+            if (isset($_GET["author"])) {
+                array_push($mode_list, "userId");
+            }
+            
+            $article_list = $data->search_articles($phrase, 100, $mode_list);
+        } else {
+            $article_list = $data->search_articles($phrase);
+        }
+
+        foreach ($article_list as $value) {
             echo '
                 <div class="article-block-entry block-entry" id="article_' . $value["articleId"] . '">
                     <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . $value["articleTitle"] .'</span><br>
@@ -69,8 +152,31 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
             $phrase = "";
         }
 
-        foreach ($data->search_users($phrase) as $value) {
+        if (isset($_GET["rsearch"])) {
+            $mode_list = [];
 
+            if (isset($_GET["name"])) {
+                array_push($mode_list, "userName");
+            }
+            if (isset($_GET["mail"])) {
+                array_push($mode_list, "userMail");
+            }
+            if (isset($_GET["description"])) {
+                array_push($mode_list, "userDescription");
+            }
+            if (isset($_GET["phone"])) {
+                array_push($mode_list, "userPhone");
+            }
+            if (isset($_GET["employment"])) {
+                array_push($mode_list, "userEmployment");
+            }
+
+            $user_list = $data->search_users($phrase, 100, $mode_list);
+        } else {
+            $user_list = $data->search_users($phrase);
+        }
+
+        foreach ($user_list as $value) {
             echo '
                 <div class="user-block-entry block-entry" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
                     <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] .'</span><br>
