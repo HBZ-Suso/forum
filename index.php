@@ -35,17 +35,23 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                 }
             }
 
+            if (isset($_GET["search"])) {
+                $search = $_GET["search"];
+            } else {
+                $search = $_GET["rsearch"];
+            }
+
 
             echo '
                 <form action="/forum/?rsearch=true" method="get" class="refined-search">
-                    <input type="text" name="rsearch" autocomplete="off" placeholder="Search"  class="refined-search-text">
+                    <input type="text" name="rsearch" autocomplete="off" value="' . $search . '"  class="refined-search-text">
                     <input type="submit" class="refined-search-submit" value="->"><br>
 
                     <table class="refined-search-table">
                         <tr>
                             <th><label for="title" class="refined-search-label">Title</label></th>
                             <th><label for="text" class="refined-search-label">Text</label></th>
-                            <th><label for="author" class="refined-search-label">Author</label></th>
+                            <!--<th><label for="author" class="refined-search-label">Author</label></th>-->
                             <th><label for="info class="refined-search-label">|</label></th>
                             <th><label for="title" class="refined-search-label">Name</label></th>
                             <th><label for="text" class="refined-search-label">Mail</label></th>
@@ -56,7 +62,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                         <tr>
                             <td><div class="checkbox-div" id="1"><input type="checkbox" name="title" ' . $set["title"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
                             <td><div class="checkbox-div" id="2"><input type="checkbox" name="text" ' . $set["text"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                            <td><div class="checkbox-div" id="3"><input type="checkbox" name="author" ' . $set["author"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                            <!--<td><div class="checkbox-div" id="3"><input type="checkbox" name="author" ' . $set["author"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>-->
                             <td><p></p></td>
                             <td><div class="checkbox-div" id="4"><input type="checkbox" name="name" ' . $set["name"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
                             <td><div class="checkbox-div" id="5"><input type="checkbox" name="mail" ' . $set["mail"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
