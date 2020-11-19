@@ -1,0 +1,56 @@
+.article-block {
+    left: 2.5%;
+}
+
+.user-block {
+    right: 2.5%;
+}
+
+.block {
+    background-color: lightgray;
+    width: 43%;
+    position: absolute;
+    top: 90px;
+    bottom: 0px;
+    border-radius: 10px;
+    margin: 1%;
+    overflow: auto;
+}
+
+
+.block-heading {
+    font-size: 3vw;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.block-entry {
+    width: 96%;
+    background-color: gray;
+    font-size: 2vw;
+    padding: 2%;
+    margin-top: 0.3vw;
+    margin-bottom: 0.3vw;
+    cursor: pointer;
+}
+
+.block-entry:hover {
+    background-color: rgb(104, 104, 104)
+}
+
+
+.block-entry-element {
+    display: inline;
+}
+
+.block-entry-heading {
+    display: inline;
+}
+
+.article-title {
+    text-decoration: underline;
+}
+
+.user-name {
+    text-decoration: underline;
+}

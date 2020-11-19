@@ -12,7 +12,8 @@ forum:
         userMail (TEXT)
         userPhone (TEXT)
         userSettings (JSON)
-        codeType (TINYTEXT, administrator / user, comes from code)
+        userType (TINYTEXT, administrator / user, comes from code)
+        userIntended (TINYTEXT, from codeIntended)
 
     articles:
         articleId (number, ticking up, MEDIUMINT, unsigned)
@@ -38,6 +39,7 @@ forum:
         codeId (number, ticking up, MEDIUMINT, unsigned)
         codeName (string, TEXT)
         codeType (TINYTEXT, administrator / user)
+        codeIntendet (TINYTEXT, discribes intendation of code)
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>

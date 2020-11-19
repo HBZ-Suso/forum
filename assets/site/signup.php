@@ -58,7 +58,7 @@ if (!isset($_GET["form"])) {
         exit("Passworderror");
     }
 
-    if ($data->create_user($_POST["username"], $_POST["password"], $_POST["age"], $_POST["employment"], $_POST["description"], $_POST["mail"], $_POST["phone"], array("public" => true), $code_query)) {
+    if ($data->create_user($_POST["username"], $_POST["password"], $_POST["age"], $_POST["employment"], $_POST["description"], $_POST["mail"], $_POST["phone"], array("public" => true), $code_query["type"], $code_query["intended"])) {
         header("LOCATION:/forum/");
         exit("Successfully created account...");
     } else {

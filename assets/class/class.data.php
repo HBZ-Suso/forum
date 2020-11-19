@@ -88,15 +88,15 @@ class Data
     }
 
 
-    public function create_user ($username, $password, $age, $employment, $description, $mail, $phone, $settings, $type)
+    public function create_user ($username, $password, $age, $employment, $description, $mail, $phone, $settings, $type, $intended)
     {
         if ($this->check_entry_exists("users", "userName", $username)) {
             return false;
         }
 
-        $query = "INSERT INTO users (userName, userPassword, userAge, userEmployment, userDescription, userMail, userPhone, userSettings, userType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO users (userName, userPassword, userAge, userEmployment, userDescription, userMail, userPhone, userSettings, userType, userIntended) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ssissssss", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, json_encode($settings), $type);
+        $stmt->bind_param("ssisssssss", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, json_encode($settings), $type, $intended);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -291,7 +291,7 @@ class Data
         }
 
 
-        $query = "SELECT codeType FROM codes WHERE codeName=?";
+        $query = "SELECT * FROM codes WHERE codeName=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("s", $code);
         $stmt->execute();
@@ -299,7 +299,7 @@ class Data
         $stmt->close();
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-                $type = $row["codeType"];
+                $type = array("type" => $row["codeType"], "intended" => $row["codeIntended"]);
             }
         } else {
             return false;
