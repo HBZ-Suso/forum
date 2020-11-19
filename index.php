@@ -1,5 +1,6 @@
 <?php 
 session_start();
+$require_purifier = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (isset($_GET["show"])) {
@@ -20,7 +21,7 @@ if (isset($_GET["show"])) {
 
 
 
-if (isset($_GET["search"]) || !isset($_GET["show"])) {
+if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) && !isset($_GET["userName"]) && !isset($_GET["articleId"]) && !isset($_GET["articleTitle"]))) {
     if ($info->mobile === false) {
         echo '<link rel="stylesheet" href="/forum/assets/style/pc.findings.css">';
 
@@ -88,4 +89,43 @@ if (isset($_GET["search"]) || !isset($_GET["show"])) {
         echo '</div>
         ';
     }
+} else if (isset($_GET["userId"]) || isset($_GET["userName"])) {
+    if (isset($_GET["userId"])) {
+        $userId = $_GET["userId"];
+        if (isset($_GET["userName"]) && intval($data->get_id_by_username($_GET["userName"])) !== intval($_GET["userId"])) {
+            header("LOCATION:/forum/?error=requesterror");
+            die("Requesterror");
+        }
+    } else {
+        $userId = intval($data->get_id_by_username($_GET["userName"]));
+    }
+
+
+    if (isset($_SESSION["userId"]) && intval($_SESSION["userId"]) === intval($userId)) {
+        header("LOCATION: /forum/?show=account");
+        die("Trying to access own account");
+    }
+
+    $user_data = $data->get_user_by_id($userId);
+
+
+    echo '
+    <div class="user-block">
+        <textarea class="user-block-entry" user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] . '</span>
+        <textarea class="user-block-entry" user-block-title">' . $user_data["userEmployment"] . '</textarea>
+        <textarea class="user-block-entry" user-block-title">' . $user_data["userAge"] . '</textarea>
+        <textarea class="user-block-entry" user-block-title">' . $user_data["userMail"] . '</textarea>
+        <textarea class="user-block-entry" user-block-title">' . $user_data["userPhone"] . '</textarea>
+    
+    
+        <textarea class="user-block-description">
+            ' . $user_data["userDescription"] . '
+        </textarea>
+    </div>
+    ';
+
+
+
+
+
 }

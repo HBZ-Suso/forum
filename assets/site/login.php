@@ -5,6 +5,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (isset($_GET["logout"])) {
     unset($_SESSION["user"]);
+    unset($_SESSION["userId"]);
     header("LOCATION: /forum/");
     exit("Successfully logged out...");
 }
@@ -38,6 +39,7 @@ if (!isset($_GET["form"])) {
 
     if ($data->check_login($_POST["username"], $_POST["password"])) {
         $_SESSION["user"] = $_POST["username"];
+        $_SESSION["userId"] = intval($data->get_id_by_username($_SESSION["user"]));
         header("LOCATION: /forum/");
         exit("Successfully logged in...");
     } else {

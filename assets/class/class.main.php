@@ -20,6 +20,10 @@ $data = new Data();
 $info = new Info();
 $text = new Text($_SESSION["language"]);
 
+if (isset($require_purifier)) {
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.filter.php";
+    $filter = new Filter();
+}
 
 if (!isset($hide_frame)) {
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/frame.php";

@@ -240,23 +240,61 @@ class Data
     }
 
 
+    public function get_user_by_id ($id) 
+    {
+        $query = "SELECT * FROM users WHERE userid=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", intval($id));
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return $row;
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
+
+
+
     public function get_username_by_id ($code) 
     {
         $query = "SELECT userName FROM users WHERE userId=?";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("s", $code);
+        $stmt->bind_param("i", $code);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-        $return = array();
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 return $row["userName"];
             }
         } else {
-            return array();
+            return false;
         }
-        return array();
+        return false;
+    }
+
+
+    public function get_id_by_username ($username) 
+    {
+        $query = "SELECT userId FROM users WHERE userName=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return intval($row["userId"]);
+            }
+        } else {
+            return false;
+        }
+        return false;
     }
 
 
