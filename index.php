@@ -125,8 +125,14 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
         }
 
         foreach ($article_list as $value) {
+            if (isset($_SESSION["userId"]) && ($_SESSION["userId"] === $value["userId"])) {
+                $self = " owned";
+            } else {
+                $self = "";
+            }
+
             echo '
-                <div class="article-block-entry block-entry" id="article_' . $value["articleId"] . '">
+                <div class="article-block-entry block-entry' . $self . '" id="article_' . $value["articleId"] . '">
                     <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . $value["articleTitle"] .'</span><br>
                     <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">Author: </p>' . $data->get_username_by_id($value["userId"]) .'</span>
                     <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Views: </p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span>
@@ -183,9 +189,17 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
             $user_list = $data->search_users($phrase);
         }
 
+        
+
         foreach ($user_list as $value) {
+            if (isset($_SESSION["userId"]) && ($_SESSION["userId"] === $value["userId"])) {
+                $self = " owned";
+            } else {
+                $self = "";
+            }
+
             echo '
-                <div class="user-block-entry block-entry" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
+                <div class="user-block-entry block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
                     <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] .'</span><br>
                     <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">Mail: </p>' . $value["userMail"] .'</span>
                     <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Visited: </p>' . $data->get_article_views_by_user_id($value["userId"]) .'</span>

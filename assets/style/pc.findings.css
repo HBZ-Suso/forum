@@ -41,10 +41,17 @@
     cursor: pointer;
 }
 
+.owned {
+    background-color:aquamarine; 
+}
+
 .block-entry:hover {
     background-color: rgb(104, 104, 104)
 }
 
+.owned:hover {
+    background-color:rgb(31, 151, 111); 
+}
 
 .block-entry-element {
     display: inline;
@@ -133,3 +140,5 @@
 .refined-search-table > tbody > tr > th {
     width: 13.5%;
 }
+
+
