@@ -129,7 +129,8 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                 <div class="article-block-entry block-entry" id="article_' . $value["articleId"] . '">
                     <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . $value["articleTitle"] .'</span><br>
                     <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">Author: </p>' . $data->get_username_by_id($value["userId"]) .'</span>
-                    <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Views: </p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span><br>
+                    <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Views: </p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span>
+                    <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Likes: </p>' . $data->get_article_likes_by_article_id($value["articleId"]) .'</span><br>
                 </div>
 
                 <script>
@@ -187,7 +188,8 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                 <div class="user-block-entry block-entry" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
                     <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] .'</span><br>
                     <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">Mail: </p>' . $value["userMail"] .'</span>
-                    <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Views: </p>' . $data->get_article_views_by_user_id($value["userId"]) .'</span><br>
+                    <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Visited: </p>' . $data->get_article_views_by_user_id($value["userId"]) .'</span>
+                    <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Liked: </p>' . $data->get_article_likes_by_user_id($value["userId"]) .'</span><br>
                 </div>
 
                 <script>
@@ -241,6 +243,8 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
 
 
 } else if (isset($_GET["articleId"]) || isset($_GET["articleTitle"])) {
+
+
     if (isset($_GET["articleId"])) {
         $articleId = $_GET["articleId"];
         if (isset($_GET["articleTitle"]) && intval($data->get_id_by_articletitle($_GET["articleTitle"])) !== intval($_GET["articleId"])) {
@@ -257,10 +261,24 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
         die("This article does not exist");
     }
 
+    if (isset($_SESSION["userId"])) {
+        $data->create_view($_SESSION["userId"], $articleId);
+        if ($data->check_if_article_liked_by_user($_SESSION["userId"], $articleId)) {
+            $liked = " liked";
+        } else {
+            $liked = "";
+        }
+    }
+    
+    
+
     echo '
     <link rel="stylesheet" href="/forum/assets/style/pc.article.css">
 
+    
+
     <div class="article-block">
+        <div class="like-article ' . $liked . '">Like</div>
         <textarea disabled class="article-block-entry article-block-title">' . $article_data["articleTitle"] . '</textarea>
         <textarea disabled class="article-block-entry article-block-author">Author: ' . $data->get_username_by_id($article_data["userId"]) . '</textarea>
         <textarea disabled class="article-block-entry article-block-tags">Tags: ' . implode("; ", json_decode($article_data["articleTags"])) . '</textarea>
@@ -268,6 +286,10 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
     
         <textarea disabled class="article-block-content">' . $article_data["articleText"] . '</textarea>
     </div>
+
+
+
+    <script>document.querySelector(".like-article").addEventListener("click", (e) => {window.location = "/forum/assets/site/like_article.php?articleId=' . $articleId . '&refer=/forum/?articleId=' . $articleId . '";})</script>
     ';
 
 }

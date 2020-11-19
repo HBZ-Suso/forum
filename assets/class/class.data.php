@@ -118,33 +118,45 @@ class Data
     }
 
 
-    public function create_like ($userId, $articleId)
+    public function execute_like ($userId, $articleId)
     {
-        $query = "SELECT likeId FROM likes WHERE articleId=" . $articleId . " AND userId=" . $userId;
-        $result = $this->connId->query($query);
-        if ($result->num_rows > 0) {
-            return false;
-        }
-
-        $query = "INSERT INTO likes (userId, articleId) VALUES (?, ?)";
+        $query = "SELECT likeId FROM likes WHERE articleId=? AND userId=?;";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ii", $userId, $articleId);
+        $stmt->bind_param("ii", $articleId, $userId);
         $stmt->execute();
+        $result = $stmt->get_result();
         $stmt->close();
-        return true;
+        if ($result->num_rows > 0) {
+            $query = "DELETE FROM likes WHERE articleId=? AND userId=?;";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("ii", $articleId, $userId);
+            $stmt->execute();
+            $stmt->close();
+            return true;
+        } else {
+            $query = "INSERT INTO likes (userId, articleId) VALUES (?, ?);";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("ii", $userId, $articleId);
+            $stmt->execute();
+            $stmt->close();
+            return true;
+        }
     }
 
 
     public function create_view ($userId, $articleId)
     {
-        $query = "SELECT viewId FROM views WHERE articleId=" . $articleId . " AND userId=" . $userId;
-        $result = $this->connId->query($query);
+        $query = "SELECT * FROM views WHERE articleId=? AND userId=?;";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ii", $articleId, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         if ($result->num_rows > 0) {
             return false;
         }
 
-
-        $query = "INSERT INTO views (userId, articleId) VALUES (?, ?)";
+        $query = "INSERT INTO views (userId, articleId) VALUES (?, ?);";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("ii", $userId, $articleId);
         $stmt->execute();
@@ -196,11 +208,11 @@ class Data
     }
 
 
-    public function search_articles ($phrase, $max=100, $mode = ["articleTitle", "articleTags", "articleText"]) 
+    public function search_articles ($phrase, $max=100, $mode = ["articleTitle", "articleTags", "articleText"], $order="articleCreated DESC") 
     {
         $return = array();
         foreach($mode as $value) {
-            $query = "SELECT * FROM articles WHERE " . $value . " LIKE ? LIMIT " . $max;
+            $query = "SELECT * FROM articles WHERE " . $value . " LIKE ? ORDER BY " . $order . " LIMIT " . $max . ";";
             $query_phrase = "%" . $phrase . "%";
             $stmt = $this->connId->prepare($query);
             $stmt->bind_param("s", $query_phrase);
@@ -223,11 +235,11 @@ class Data
     }
 
 
-    public function search_users ($phrase, $max=100, $mode = ["userName", "userDescription", "userMail", "userPhone", "userEmployment"]) 
+    public function search_users ($phrase, $max=100, $mode = ["userName", "userDescription", "userMail", "userPhone", "userEmployment"], $order="userCreated DESC")
     {   
         $return = array();
         foreach($mode as $value) {
-            $query = "SELECT * FROM users WHERE " . $value . " LIKE ? LIMIT " . $max;
+            $query = "SELECT * FROM users WHERE " . $value . " LIKE ? ORDER BY " . $order . " LIMIT " . $max . ";";
             $query_phrase = "%" . $phrase . "%";
             $stmt = $this->connId->prepare($query);
             $stmt->bind_param("s", $query_phrase);
@@ -352,7 +364,19 @@ class Data
     {
         $query = "SELECT viewId FROM views WHERE articleId=?";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("s", $id);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows;
+    }
+
+
+    public function get_article_likes_by_article_id ($id) 
+    {
+        $query = "SELECT likeId FROM likes WHERE articleId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
@@ -364,11 +388,39 @@ class Data
     {
         $query = "SELECT viewId FROM views WHERE userId=?";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("s", $id);
+        $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         return $result->num_rows;
+    }
+
+
+    public function get_article_likes_by_user_id ($id) 
+    {
+        $query = "SELECT likeId FROM likes WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows;
+    }
+
+
+    public function check_if_article_liked_by_user ($userId, $articleId) 
+    {
+        $query = "SELECT likeId FROM likes WHERE userId=? AND articleId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ii", $userId, $articleId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

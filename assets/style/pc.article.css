@@ -48,3 +48,21 @@
     color: black;
     font-size: 2vw;
 }
+
+
+.like-article {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 2vw;
+    margin: 1vw;
+    background-color: rgb(83, 83, 83);
+    padding: 0.5vw;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.liked {
+    background-color: red;
+}
