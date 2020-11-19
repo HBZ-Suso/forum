@@ -113,7 +113,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                 array_push($mode_list, "userId");
             }
             
-            $article_list = $data->search_articles($phrase, 100, $mode_list);
+            $article_list = $data->search_articles($_GET["rsearch"], 100, $mode_list);
         } else {
             $article_list = $data->search_articles($phrase);
         }
@@ -171,7 +171,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                 array_push($mode_list, "userEmployment");
             }
 
-            $user_list = $data->search_users($phrase, 100, $mode_list);
+            $user_list = $data->search_users($_GET["rsearch"], 100, $mode_list);
         } else {
             $user_list = $data->search_users($phrase);
         }
