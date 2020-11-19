@@ -48,3 +48,9 @@ Icons:
 
 Administrator:
     Password: forum_admin
+
+
+
+layers: 
+    frame: 2
+    menu: 3

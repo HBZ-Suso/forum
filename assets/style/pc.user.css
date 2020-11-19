@@ -4,7 +4,7 @@
     font-family: 'Roboto', sans-serif!important;
 }
 
-.article-block  {
+.user-block  {
     position: absolute;
     width: 88%;
     background-color: gray;
@@ -17,7 +17,7 @@
 
 
 
-.article-block-entry {
+.user-block-entry {
     resize: none;
     color: black;
     background-color:gray;
@@ -32,13 +32,15 @@
     text-align: center;
 }
 
-.article-block-title {
+.user-block-title {
     font-size:  3vw;
     height: 3.7vw;
     text-decoration: underline;
 }
 
-.article-block-content {
+.user-type-administrator { color: red; }
+
+.user-block-description {
     padding: 1%;
     margin-top: 3vh;
     width: 100%;

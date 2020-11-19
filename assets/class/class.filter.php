@@ -3,7 +3,7 @@
 class Filter
 {
 
-	public static $purifier_url = "/assets/php/htmlpurifier-4.13.0/library/HTMLPurifier.auto.php";
+	public static $purifier_url = "/forum/assets/php/htmlpurifier-4.13.0/library/HTMLPurifier.auto.php";
 
 	public function __construct()
 	{

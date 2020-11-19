@@ -242,7 +242,26 @@ class Data
 
     public function get_user_by_id ($id) 
     {
-        $query = "SELECT * FROM users WHERE userid=?";
+        $query = "SELECT * FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", intval($id));
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return $row;
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
+
+
+    public function get_article_by_id ($id) 
+    {
+        $query = "SELECT * FROM articles WHERE articleId=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", intval($id));
         $stmt->execute();
@@ -296,6 +315,27 @@ class Data
         }
         return false;
     }
+
+
+
+    public function get_id_by_articletitle ($title) 
+    {
+        $query = "SELECT articleId FROM articles WHERE articleTitle=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return intval($row["articleId"]);
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
+
 
 
     public function get_article_views_by_article_id ($id) 
