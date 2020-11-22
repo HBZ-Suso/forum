@@ -135,10 +135,16 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                 $self = "";
             }
 
+            if ($data->get_user_by_id($value["userId"])["userVerified"] == "1") {
+                $verified = '<p class="verified">&#10003</p>';
+            } else {
+                $verified = "";
+            }
+
             echo '
                 <div class="article-block-entry block-entry' . $self . '" id="article_' . $value["articleId"] . '">
                     <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . $value["articleTitle"] .'</span><br>
-                    <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">Author: </p>' . $data->get_username_by_id($value["userId"]) .'</span>
+                    <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">Author: </p>' . $data->get_username_by_id($value["userId"]) . $verified .'</span>
                     <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Views: </p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span>
                     <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Likes: </p>' . $data->get_article_likes_by_article_id($value["articleId"]) .'</span><br>
                 </div>
@@ -193,6 +199,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
             $user_list = $data->search_users($phrase);
         }
 
+
         
 
         foreach ($user_list as $value) {
@@ -202,9 +209,15 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                 $self = "";
             }
 
+            if ($value["userVerified"] == "1") {
+                $verified = '<p class="verified">&#10003</p>';
+            } else {
+                $verified = "";
+            }
+
             echo '
                 <div class="user-block-entry block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
-                    <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] .'</span><br>
+                    <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] . $verified . '</span><br>
                     <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">Mail: </p>' . $value["userMail"] .'</span>
                     <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Views: </p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
                     <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Likes: </p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
@@ -243,13 +256,27 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                     $self = "";
                 }
 
+                if (isset($value["userName"])) {
+                    if ($value["userVerified"] == "1") {
+                        $verified = '<p class="verified">&#10003</p>';
+                    } else {
+                        $verified = "";
+                    }
+                } else {
+                    if ($data->get_user_by_id($value["userId"])["userVerified"] == "1") {
+                        $verified = '<p class="verified">&#10003</p>';
+                    } else {
+                        $verified = "";
+                    }
+                }
+                
                 
 
                 if (isset($value["articleId"])) {
                     echo '
                         <div class="article-block-entry block-entry' . $self . '" id="highlights_' . $value["articleId"] . '">
                             <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . $value["articleTitle"] .'</span><br>
-                            <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">Author: </p>' . $data->get_username_by_id($value["userId"]) .'</span>
+                            <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">Author: </p>' . $data->get_username_by_id($value["userId"]) . $verified . '</span>
                             <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Views: </p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span>
                             <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Likes: </p>' . $data->get_article_likes_by_article_id($value["articleId"]) .'</span><br>
                         </div>
@@ -260,10 +287,10 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                             })
                         </script>
                     ';
-                } else if (isset($value["userId"])) {
+                } else if (isset($value["userName"])) {
                     echo '
                     <div class="highlights-block-entry block-entry' . $self . '" id="highlights_' . $value["userId"] . '">
-                        <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] .'</span><br>
+                        <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"]  . $verified .'</span><br>
                         <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">Mail: </p>' . $value["userMail"] .'</span>
                         <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Views: </p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
                         <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Likes: </p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
@@ -315,11 +342,25 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
 
 
 
-    if (isset($_SESSION["userId"]) && (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($_SESSION["userId"])) || intval($userId) === intval($_SESSION["userId"]))) {
+    if (isset($_SESSION["userId"]) && (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($userId)) || intval($userId) === intval($_SESSION["userId"]))) {
         $delete_button = '<div class="delete-user">Delete</div>
         <script>document.querySelector(".delete-user").addEventListener("click", (e) => {window.location = "/forum/assets/site/delete.php?userId=' . $userId . '&refer=/forum/";})</script>';
     } else {
         $delete_button = "";
+    }
+
+    if (isset($_SESSION["userId"]) && $data->is_admin_by_id($_SESSION["userId"])) {
+        $verify_button = '<div class="verify-user">Verify</div>
+        <script>document.querySelector(".verify-user").addEventListener("click", (e) => {window.location = "/forum/assets/site/verify.php?userId=' . $userId . '&refer=/forum/?userId=' . $userId . '";})</script>';
+    } else {
+        $verify_button = "";
+    }
+
+
+    if ($user_data["userVerified"] == "1") {
+        $verified = '<p class="verified">&#10003</p>';
+    } else {
+        $verified = "";
     }
 
 
@@ -330,7 +371,8 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
     <div class="user-block">
         <div class="like-user ' . $liked . '">Like</div>
         ' . $delete_button . '
-        <textarea disabled class="user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] . '</textarea>
+        ' . $verify_button . '
+        <textarea disabled class="user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] .  '</textarea> ' . $verified . '
         <textarea disabled class="user-block-entry user-block-employment">Employment: ' . $user_data["userEmployment"] . '</textarea>
         <textarea disabled class="user-block-entry user-block-age">Age: ' . $user_data["userAge"] . '</textarea>
         <textarea disabled class="user-block-entry user-block-mail">Mail: ' . $user_data["userMail"] . '</textarea>
@@ -389,6 +431,13 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
         $author = "The author of this article was deleted...";
     }
 
+
+    if ($data->get_user_by_id($article_data["userId"])["userVerified"] == "1") {
+        $verified = '<p class="verified">&#10003</p>';
+    } else {
+        $verified = "";
+    }
+
     echo '
     <link rel="stylesheet" href="/forum/assets/style/pc.article.css">
 
@@ -397,7 +446,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
     <div class="article-block">
         <div class="like-article ' . $liked . '">Like</div>
         ' . $delete_button . '
-        <textarea disabled class="article-block-entry article-block-title">' . $article_data["articleTitle"] . '</textarea>
+        <textarea disabled class="article-block-entry article-block-title">' . $article_data["articleTitle"] . '</textarea>' . $verified . '
         <textarea disabled class="article-block-entry article-block-author">' . $author . '</textarea>
         <textarea disabled class="article-block-entry article-block-tags">Tags: ' . implode("; ", json_decode($article_data["articleTags"])) . '</textarea>
         <textarea disabled class="article-block-entry article-block-created">Created: ' . $article_data["articleCreated"] . '</textarea>

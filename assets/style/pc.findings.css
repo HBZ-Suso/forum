@@ -24,9 +24,9 @@
     background-color: lightgray;
     border-radius: 10px;
     overflow: auto;
-    min-height: 700px;
-    max-height: 100%;
-    height: 70%;
+    min-height: 500px;
+    max-height: 1000px;
+    height: 75%;
     flex: 1 1 450px; /*  Stretching: */
     /*flex: 0 1 150px;   No stretching: */
     margin: 5px;
@@ -154,3 +154,9 @@
 }
 
 
+
+
+.verified {
+    display: inline;
+    color: rgb(45, 209, 45);
+}

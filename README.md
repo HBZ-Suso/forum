@@ -14,6 +14,8 @@ forum:
         userSettings (JSON)
         userType (TINYTEXT, administrator / user, comes from code)
         userIntended (TINYTEXT, from codeIntended)
+        userVerified (TINYTEXT, "TRUE" or "FALSE")
+        userLastArticle (UNIX Timestamp, at first unix timestamp of creation, then last article time)
 
     articles:
         articleId (number, ticking up, MEDIUMINT, unsigned)

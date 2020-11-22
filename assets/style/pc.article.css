@@ -79,3 +79,20 @@
     border-radius: 10px;
     cursor: pointer;
 }
+
+
+
+.verified {
+    position: absolute;
+    right: 7vw;
+    top: 1vw;
+    padding: 0px;
+    margin: 0px;
+    font-size: 3vw;
+    color: rgb(45, 209, 45);
+    background-color: rgb(167, 167, 167);
+    border-radius: 5vw;
+    height: 3.4vw;
+    width: 3.4vw;
+    text-align: center;
+}

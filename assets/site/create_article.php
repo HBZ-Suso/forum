@@ -12,8 +12,18 @@ $require_purifier = true;
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
+if (!isset($_SESSION["user"]) || !isset($_SESSION["userId"])) {
+    header("LOCATION:/forum/assets/site/signup.php?error=permissionerror");
+    exit("Permissionerror");
+}
 
-if (!isset($_GET["form"])) {
+
+if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastArticle"]) < 60*32) && !($data->is_admin_by_id($_SESSION["userId"]))) {
+    header("LOCATION: /forum/?error=timeouterror");
+    exit("Timeouterror");
+}
+
+if (!isset($_GET["form"])) { 
     echo '
     <link rel="stylesheet" href="/forum/assets/style/form.css">
     <form action="/forum/assets/site/create_article.php?form=true" method="post" class="main-form">
@@ -41,11 +51,6 @@ if (!isset($_GET["form"])) {
             header("LOCATION:/forum/assets/site/signup.php?error=formerror");
             exit("Formerror");
         }
-
-    if (!isset($_SESSION["user"]) || !isset($_SESSION["userId"])) {
-        header("LOCATION:/forum/assets/site/signup.php?error=user");
-        exit("Formerror");
-    }
 
 
     $tags = explode("-", clean($filter->purify($_POST["tags"], 15)));

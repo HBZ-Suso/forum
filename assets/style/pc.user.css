@@ -63,6 +63,19 @@
     padding: 0.5vw;
     border-radius: 10px;
     cursor: pointer;
+    width: 5.7vw;
+}
+
+.verify-user {
+    position: absolute;
+    top: 0px;
+    left: 8vw;
+    font-size: 2vw;
+    margin: 1vw;
+    background-color: rgb(83, 83, 83);
+    padding: 0.5vw;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 
@@ -81,4 +94,20 @@
 
 .liked {
     background-color: red;
+}
+
+
+.verified {
+    position: absolute;
+    right: 7vw;
+    top: 1vw;
+    padding: 0px;
+    margin: 0px;
+    font-size: 3vw;
+    color: rgb(45, 209, 45);
+    background-color: rgb(167, 167, 167);
+    border-radius: 5vw;
+    height: 3.4vw;
+    width: 3.4vw;
+    text-align: center;
 }

@@ -94,9 +94,12 @@ class Data
             return false;
         }
 
-        $query = "INSERT INTO users (userName, userPassword, userAge, userEmployment, userDescription, userMail, userPhone, userSettings, userType, userIntended) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $time = time();
+        $query = "INSERT INTO users (userName, userPassword, userAge, userEmployment, userDescription, userMail, userPhone, userSettings, userType, userIntended, userVerified, userLastArticle) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ssisssssss", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, json_encode($settings), $type, $intended);
+        $verify = "0";
+        $settings_encoded = json_encode($settings);
+        $stmt->bind_param("ssisssssssss", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, $settings_encoded , $type, $intended, $verify, $time);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -112,6 +115,13 @@ class Data
         $query = "INSERT INTO articles (userId, articleTitle, articleText, articleTags) VALUES (?, ?, ?, ?)";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("isss", $userId, $title, $text, json_encode($tags));
+        $stmt->execute();
+        $stmt->close();
+
+        $time = time();
+        $query = "UPDATE users SET userLastArticle=? WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ss", $time, $userId);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -167,6 +177,30 @@ class Data
             $stmt->close();
             return true;
         }
+    }
+
+
+
+    public function execute_verify_by_user_id ($userId) 
+    {
+        $query = "SELECT * FROM users WHERE userId=? AND userVerified=?";
+        $stmt = $this->connId->prepare($query);
+        $set = "1";
+        $stmt->bind_param("ss", $userId, $set);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        if ($result->num_rows > 0) {
+            $set = "0";
+        }
+
+        $query = "UPDATE users SET userVerified=? WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ss", $set, $userId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
     }
 
 
@@ -258,27 +292,6 @@ class Data
             return false;
         }
         
-        return false;
-    }
-
-
-    public function get_article ($articleId) 
-    {
-        if (!$this->check_entry_exists("articles", "articleId", $articleId)) {
-            return false;
-        }
-
-        $query = "SELECT * FROM articles WHERE articleId=?";
-        $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("i", $articleId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-
-        while($row = $result->fetch_assoc()) {
-            return $row;
-        }
-
         return false;
     }
 
