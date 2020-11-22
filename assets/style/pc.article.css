@@ -66,3 +66,16 @@
 .liked {
     background-color: red;
 }
+
+
+.delete-article {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 2vw;
+    margin: 1vw;
+    background-color: rgb(83, 83, 83);
+    padding: 0.5vw;
+    border-radius: 10px;
+    cursor: pointer;
+}

@@ -13,5 +13,5 @@ if (isset($_SESSION["userId"]) && isset($_GET["articleId"])) {
     exit("Refered back to /forum/?articleId=" . $_GET["articleId"]);
 }
 
-header("LOCATION:/forum/?error=likerequesterror");
-exit("Likerequesterror");
+header("LOCATION:/forum/?error=requesterror");
+exit("Requesterror");

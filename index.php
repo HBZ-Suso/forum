@@ -96,7 +96,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
 
         echo '<link rel="stylesheet" href="/forum/assets/style/pc.findings.css">';
 
-        echo '
+        echo '<div class="block-container">
             <div class="article-block block">
                 <h1 class="article-block-heading block-heading">Articles</h1>';
                 
@@ -214,7 +214,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
             ';
         }
 
-        echo '</div>
+        echo '</div></div>
         ';
     }
 } else if (isset($_GET["userId"]) || isset($_GET["userName"])) {
@@ -228,22 +228,28 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
         $userId = intval($data->get_id_by_username($_GET["userName"]));
     }
 
-
-    if (isset($_SESSION["userId"]) && intval($_SESSION["userId"]) === intval($userId)) {
-        header("LOCATION: /forum/?show=account");
-        die("Trying to access own account");
-    }
-
     $user_data = $data->get_user_by_id($userId);
     if ($user_data === false) {
         header("LOCATION:/forum/?error=notexistentuser");
         die("This user does not exist");
     }
 
+
+
+    if (isset($_SESSION["userId"]) && (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($_SESSION["userId"])) || intval($userId) === intval($_SESSION["userId"]))) {
+        $delete_button = '<div class="delete-user">Delete</div>
+        <script>document.querySelector(".delete-user").addEventListener("click", (e) => {window.location = "/forum/assets/site/delete.php?userId=' . $userId . '&refer=/forum/";})</script>';
+    } else {
+        $delete_button = "";
+    }
+
+
+
     echo '
     <link rel="stylesheet" href="/forum/assets/style/pc.user.css">
 
     <div class="user-block">
+        ' . $delete_button . '
         <textarea disabled class="user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] . '</textarea>
         <textarea disabled class="user-block-entry user-block-employment">Employment: ' . $user_data["userEmployment"] . '</textarea>
         <textarea disabled class="user-block-entry user-block-age">Age: ' . $user_data["userAge"] . '</textarea>
@@ -285,6 +291,21 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
     }
     
     
+    if (isset($_SESSION["userId"]) && (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($article_data["userId"])) || $_SESSION["userId"] === $article_data["userId"])) {
+        $delete_button = '<div class="delete-article">Delete</div>
+        <script>document.querySelector(".delete-article").addEventListener("click", (e) => {window.location = "/forum/assets/site/delete.php?articleId=' . $articleId . '&refer=/forum/";})</script>';
+    } else {
+        $delete_button = "";
+    }
+
+    // USE VARIABLE TO REDUCE QUERY AMOUNT
+    $try_author_name = $data->get_username_by_id($article_data["userId"]);
+
+    if ($try_author_name && $try_author_name !== "") {
+        $author = "Author: " . $try_author_name;
+    } else {
+        $author = "The author of this article was deleted...";
+    }
 
     echo '
     <link rel="stylesheet" href="/forum/assets/style/pc.article.css">
@@ -293,8 +314,9 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
 
     <div class="article-block">
         <div class="like-article ' . $liked . '">Like</div>
+        ' . $delete_button . '
         <textarea disabled class="article-block-entry article-block-title">' . $article_data["articleTitle"] . '</textarea>
-        <textarea disabled class="article-block-entry article-block-author">Author: ' . $data->get_username_by_id($article_data["userId"]) . '</textarea>
+        <textarea disabled class="article-block-entry article-block-author">' . $author . '</textarea>
         <textarea disabled class="article-block-entry article-block-tags">Tags: ' . implode("; ", json_decode($article_data["articleTags"])) . '</textarea>
         <textarea disabled class="article-block-entry article-block-created">Created: ' . $article_data["articleCreated"] . '</textarea>
     

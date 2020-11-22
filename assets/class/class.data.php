@@ -166,6 +166,30 @@ class Data
 
 
 
+    public function delete_article_by_id ($articleId)
+    {
+
+        $query = "DELETE FROM articles WHERE articleId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $articleId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
+
+
+    public function delete_user_by_id ($userId)
+    {
+
+        $query = "DELETE FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
+
+
 
     public function check_login ($username, $password)
     {
@@ -204,6 +228,21 @@ class Data
             return $row;
         }
 
+        return false;
+    }
+
+
+    public function is_admin_by_id ($userId)
+    {
+        $query = "SELECT userType FROM users WHERE  userId=? AND userType='administrator';";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            return true;
+        }
         return false;
     }
 

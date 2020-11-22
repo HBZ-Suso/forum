@@ -5,22 +5,21 @@
 }
 
 
-.article-block {
-    left: 2.5%;
-}
-
-.user-block {
-    right: 2.5%;
+.block-container {
+    width: 94%;
+    left: 3%;
+    position: absolute;
+    top: 100px;
+    bottom: 10px;
+    display: grid;
+    grid-gap: 1rem;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
 }
 
 .block {
     background-color: lightgray;
-    width: 43%;
-    position: absolute;
-    top: 250px;
-    bottom: 0px;
     border-radius: 10px;
-    margin: 1%;
     overflow: auto;
 }
 
