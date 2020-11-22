@@ -41,7 +41,7 @@
 }
 
 .owned {
-    background-color:aquamarine; 
+    background-color: rgb(31, 151, 111);
 }
 
 .block-entry:hover {
@@ -49,7 +49,7 @@
 }
 
 .owned:hover {
-    background-color:rgb(31, 151, 111); 
+    background-color:aquamarine;  
 }
 
 .block-entry-element {
