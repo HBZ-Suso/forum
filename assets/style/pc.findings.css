@@ -9,18 +9,31 @@
     width: 94%;
     left: 3%;
     position: absolute;
-    top: 250px;
+    top: 100px;
     bottom: 10px;
-    display: grid;
-    grid-gap: 1rem;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.big-top {
+    top: 250px;
 }
 
 .block {
     background-color: lightgray;
     border-radius: 10px;
     overflow: auto;
+    min-height: 700px;
+    max-height: 100%;
+    height: 70%;
+    flex: 1 1 450px; /*  Stretching: */
+    /*flex: 0 1 150px;   No stretching: */
+    margin: 5px;
+}
+
+.highlights-block {
+    margin-bottom: 100px;
 }
 
 

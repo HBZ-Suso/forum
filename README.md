@@ -23,16 +23,29 @@ forum:
         articleTags (used for search, JSON (array))
         articleCreated (timestamp)
 
-    likes:
+    articleLikes:
         likeId (number, ticking up, Double, unsigned)
         userId (number, ticking up, MEDIUMINT)
         articleId (number, ticking up, MEDIUMINT)
         likeCreated (timestamp)
     
-    views:
+    articleViews:
         viewId (number, ticking up, Double, unsigned)
         userId (number, ticking up, MEDIUMINT, unsigned)
         articleId (number, ticking up, MEDIUMINT, unsigned)
+        viewCreated (timestamp)
+
+
+    userLikes:
+        likeId (number, ticking up, Double, unsigned)
+        userId (number, ticking up, MEDIUMINT)
+        targetUserId (number, ticking up, MEDIUMINT)
+        likeCreated (timestamp)
+    
+    userViews:
+        viewId (number, ticking up, Double, unsigned)
+        userId (number, ticking up, MEDIUMINT, unsigned)
+        targetUserId (number, ticking up, MEDIUMINT, unsigned)
         viewCreated (timestamp)
 
     codes:

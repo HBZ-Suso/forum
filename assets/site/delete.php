@@ -33,7 +33,7 @@ if (isset($_GET["userId"])) {
     }
 
     if (!isset($_GET["sure"])) {
-        echo '<a ="/forum/assets/site/delete.php?sure=true&articleId=' . $_GET["articleId"] . '">Sure!</a>';
+        echo '<a href="/forum/assets/site/delete.php?sure=true&articleId=' . $_GET["articleId"] . '">Sure!</a>';
         echo '<a href="/forum/">No!</a>';
         exit();
     }

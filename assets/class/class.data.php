@@ -118,23 +118,23 @@ class Data
     }
 
 
-    public function execute_like ($userId, $articleId)
+    public function execute_article_like ($userId, $articleId)
     {
-        $query = "SELECT likeId FROM likes WHERE articleId=? AND userId=?;";
+        $query = "SELECT likeId FROM articleLikes WHERE articleId=? AND userId=?;";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("ii", $articleId, $userId);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         if ($result->num_rows > 0) {
-            $query = "DELETE FROM likes WHERE articleId=? AND userId=?;";
+            $query = "DELETE FROM articleLikes WHERE articleId=? AND userId=?;";
             $stmt = $this->connId->prepare($query);
             $stmt->bind_param("ii", $articleId, $userId);
             $stmt->execute();
             $stmt->close();
             return true;
         } else {
-            $query = "INSERT INTO likes (userId, articleId) VALUES (?, ?);";
+            $query = "INSERT INTO articleLikes (userId, articleId) VALUES (?, ?);";
             $stmt = $this->connId->prepare($query);
             $stmt->bind_param("ii", $userId, $articleId);
             $stmt->execute();
@@ -144,9 +144,35 @@ class Data
     }
 
 
-    public function create_view ($userId, $articleId)
+    public function execute_user_like ($userId, $targetUserId)
     {
-        $query = "SELECT * FROM views WHERE articleId=? AND userId=?;";
+        $query = "SELECT likeId FROM userLikes WHERE targetUserId=? AND userId=?;";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ii", $targetUserId, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            $query = "DELETE FROM userLikes WHERE targetUserId=? AND userId=?;";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("ii", $targetUserId, $userId);
+            $stmt->execute();
+            $stmt->close();
+            return true;
+        } else {
+            $query = "INSERT INTO userLikes (userId, targetUserId) VALUES (?, ?);";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("ii", $userId, $targetUserId);
+            $stmt->execute();
+            $stmt->close();
+            return true;
+        }
+    }
+
+
+    public function create_article_view ($userId, $articleId)
+    {
+        $query = "SELECT * FROM articleViews WHERE articleId=? AND userId=?;";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("ii", $articleId, $userId);
         $stmt->execute();
@@ -156,9 +182,30 @@ class Data
             return false;
         }
 
-        $query = "INSERT INTO views (userId, articleId) VALUES (?, ?);";
+        $query = "INSERT INTO articleViews (userId, articleId) VALUES (?, ?);";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("ii", $userId, $articleId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
+
+
+    public function create_user_view ($userId, $targetUserId)
+    {
+        $query = "SELECT * FROM userViews WHERE targetUserId=? AND userId=?;";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ii", $targetUserId, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            return false;
+        }
+
+        $query = "INSERT INTO userViews (userId, targetUserId) VALUES (?, ?);";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ii", $userId, $targetUserId);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -221,8 +268,12 @@ class Data
             return false;
         }
 
-        $query = "SELECT * FROM articles WHERE articleId=" . $articleId;
-        $result = $this->connId->query($query);
+        $query = "SELECT * FROM articles WHERE articleId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $articleId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
 
         while($row = $result->fetch_assoc()) {
             return $row;
@@ -271,6 +322,86 @@ class Data
         } else {
             return false;
         }
+    }
+
+
+    public function get_highlights_by_user_id ($userId, $max=100)
+    {
+        $highlighted = [];
+
+        $query = "SELECT articleId as Id FROM articleLikes WHERE userId=? ORDER BY likeCreated desc LIMIT " . round($max / 2) . ";";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        while ($row = $result->fetch_assoc()) {
+            array_push($highlighted, $row);
+        }
+
+
+        $query = "SELECT articleId FROM articleViews WHERE userId=? ORDER BY viewCreated desc LIMIT " . round($max / 2) . ";";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        while ($row = $result->fetch_assoc()) {
+            array_push($highlighted, $row);
+        }
+
+        
+        $query = "SELECT targetUserId FROM userViews WHERE userId=? ORDER BY viewCreated desc LIMIT " . round($max / 2) . ";";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        while ($row = $result->fetch_assoc()) {
+            array_push($highlighted, $row);
+        }
+
+
+        $query = "SELECT targetUserId FROM userLikes WHERE userId=? ORDER BY likeCreated desc LIMIT " . round($max / 2 ) . ";";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        while ($row = $result->fetch_assoc()) {
+            if (!in_array($row, $highlighted)) {
+                array_push($highlighted, $row);
+            }
+        }
+
+
+        if (count($highlighted) > 0) {
+            $return = [];
+
+            foreach($highlighted as $value) {
+                if (isset($value["articleId"])) {
+                    $fetch = $value["articleId"];
+                    $content = $this->get_article_by_id($fetch);
+                    if ($content != false) {
+                        array_push($return, $this->get_article_by_id($fetch));
+                    }
+                } else if (isset($value["targetUserId"])) {
+                    $fetch = $value["targetUserId"];
+                    $content = $this->get_user_by_id($fetch);
+                    if ($content !== false) {
+                        array_push($return, $this->get_user_by_id($fetch));
+                    }
+                } 
+                
+            }
+            return $return;
+        }
+
+        return false;
     }
 
 
@@ -401,7 +532,7 @@ class Data
 
     public function get_article_views_by_article_id ($id) 
     {
-        $query = "SELECT viewId FROM views WHERE articleId=?";
+        $query = "SELECT viewId FROM articleViews WHERE articleId=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -413,7 +544,7 @@ class Data
 
     public function get_article_likes_by_article_id ($id) 
     {
-        $query = "SELECT likeId FROM likes WHERE articleId=?";
+        $query = "SELECT likeId FROM articleLikes WHERE articleId=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -423,9 +554,57 @@ class Data
     }
 
 
+    public function get_user_likes_by_targetUserId ($userId) 
+    {
+        $query = "SELECT likeId FROM userLikes WHERE targetUserId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows;
+    }
+
+
+    public function get_user_views_by_targetUserId ($userId) 
+    {
+        $query = "SELECT viewId FROM userViews WHERE targetUserId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows;
+    }
+
+
+    public function get_user_likes_by_user_Id ($userId) 
+    {
+        $query = "SELECT likeId FROM userLikes WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows;
+    }
+
+
+    public function get_user_views_by_user_Id ($userId) 
+    {
+        $query = "SELECT viewId FROM userViews WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows;
+    }
+
+
     public function get_article_views_by_user_id ($id) 
     {
-        $query = "SELECT viewId FROM views WHERE userId=?";
+        $query = "SELECT viewId FROM articleViews WHERE userId=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -437,7 +616,7 @@ class Data
 
     public function get_article_likes_by_user_id ($id) 
     {
-        $query = "SELECT likeId FROM likes WHERE userId=?";
+        $query = "SELECT likeId FROM articleLikes WHERE userId=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -449,9 +628,25 @@ class Data
 
     public function check_if_article_liked_by_user ($userId, $articleId) 
     {
-        $query = "SELECT likeId FROM likes WHERE userId=? AND articleId=?";
+        $query = "SELECT likeId FROM articleLikes WHERE userId=? AND articleId=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("ii", $userId, $articleId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function check_if_user_liked_by_user ($userId, $targetUserId) 
+    {
+        $query = "SELECT likeId FROM userLikes WHERE userId=? AND targetUserId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ii", $userId, $targetUserId);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();

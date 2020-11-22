@@ -91,12 +91,16 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                     }
                 </script>';
             }
+
+            $top = " big-top";
+        } else {
+            $top = "";
         }
 
 
         echo '<link rel="stylesheet" href="/forum/assets/style/pc.findings.css">';
 
-        echo '<div class="block-container">
+        echo '<div class="block-container' . $top . '">
             <div class="article-block block">
                 <h1 class="article-block-heading block-heading">Articles</h1>';
                 
@@ -202,8 +206,8 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
                 <div class="user-block-entry block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
                     <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] .'</span><br>
                     <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">Mail: </p>' . $value["userMail"] .'</span>
-                    <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Visited: </p>' . $data->get_article_views_by_user_id($value["userId"]) .'</span>
-                    <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Liked: </p>' . $data->get_article_likes_by_user_id($value["userId"]) .'</span><br>
+                    <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Views: </p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
+                    <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Likes: </p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
                 </div>
 
                 <script>
@@ -214,8 +218,73 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
             ';
         }
 
-        echo '</div></div>
+        echo '</div>
         ';
+
+        if (isset($_SESSION["userId"])) {
+            echo '
+                <div class="highlights-block block">
+                    <h1 class="highlights-block-heading block-heading">Highlights</h1>';
+                    
+            if (isset($_GET["search"])) {
+                $phrase = $_GET["search"];
+            } else {
+                $phrase = "";
+            }
+            
+            $highlight_data = $data->get_highlights_by_user_id($_SESSION["userId"]);
+
+            //echo json_encode($highlight_data);
+
+            foreach ($highlight_data as $value) {
+                if (isset($_SESSION["userId"]) && ($_SESSION["userId"] === $value["userId"])) {
+                    $self = " owned";
+                } else {
+                    $self = "";
+                }
+
+                
+
+                if (isset($value["articleId"])) {
+                    echo '
+                        <div class="article-block-entry block-entry' . $self . '" id="highlights_' . $value["articleId"] . '">
+                            <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . $value["articleTitle"] .'</span><br>
+                            <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">Author: </p>' . $data->get_username_by_id($value["userId"]) .'</span>
+                            <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Views: </p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span>
+                            <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Likes: </p>' . $data->get_article_likes_by_article_id($value["articleId"]) .'</span><br>
+                        </div>
+
+                        <script>
+                            document.getElementById("highlights_' . $value["articleId"] . '").addEventListener("click", (e) => {
+                                window.location = "/forum/?articleId=' . $value["articleId"] . '&articleTitle=' . $value["articleTitle"] . '";
+                            })
+                        </script>
+                    ';
+                } else if (isset($value["userId"])) {
+                    echo '
+                    <div class="highlights-block-entry block-entry' . $self . '" id="highlights_' . $value["userId"] . '">
+                        <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] .'</span><br>
+                        <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">Mail: </p>' . $value["userMail"] .'</span>
+                        <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Views: </p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
+                        <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Likes: </p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
+                    </div>
+
+                    <script>
+                        document.getElementById("highlights_' . $value["userId"] . '").addEventListener("click", (e) => {
+                            window.location = "/forum/?userId=' . $value["userId"] . '&userName=' . $value["userName"] . '";
+                        })
+                    </script>
+                ';
+                }
+
+                
+            }
+
+            echo '</div>
+            ';
+        }
+
+        echo "</div>";
     }
 } else if (isset($_GET["userId"]) || isset($_GET["userName"])) {
     if (isset($_GET["userId"])) {
@@ -235,6 +304,16 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
     }
 
 
+    if (isset($_SESSION["userId"])) {
+        $data->create_user_view($_SESSION["userId"], $userId);
+        if ($data->check_if_user_liked_by_user($_SESSION["userId"], $userId)) {
+            $liked = " liked";
+        } else {
+            $liked = "";
+        }
+    }
+
+
 
     if (isset($_SESSION["userId"]) && (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($_SESSION["userId"])) || intval($userId) === intval($_SESSION["userId"]))) {
         $delete_button = '<div class="delete-user">Delete</div>
@@ -249,6 +328,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
     <link rel="stylesheet" href="/forum/assets/style/pc.user.css">
 
     <div class="user-block">
+        <div class="like-user ' . $liked . '">Like</div>
         ' . $delete_button . '
         <textarea disabled class="user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] . '</textarea>
         <textarea disabled class="user-block-entry user-block-employment">Employment: ' . $user_data["userEmployment"] . '</textarea>
@@ -259,6 +339,8 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
     
         <textarea disabled class="user-block-description">' . $user_data["userDescription"] . '</textarea>
     </div>
+
+    <script>document.querySelector(".like-user").addEventListener("click", (e) => {window.location = "/forum/assets/site/like.php?targetUserId=' . $userId . '&refer=/forum/?userId=' . $userId . '";})</script>
     ';
 
 
@@ -282,7 +364,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
     }
 
     if (isset($_SESSION["userId"])) {
-        $data->create_view($_SESSION["userId"], $articleId);
+        $data->create_article_view($_SESSION["userId"], $articleId);
         if ($data->check_if_article_liked_by_user($_SESSION["userId"], $articleId)) {
             $liked = " liked";
         } else {
@@ -325,7 +407,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
 
 
 
-    <script>document.querySelector(".like-article").addEventListener("click", (e) => {window.location = "/forum/assets/site/like_article.php?articleId=' . $articleId . '&refer=/forum/?articleId=' . $articleId . '";})</script>
+    <script>document.querySelector(".like-article").addEventListener("click", (e) => {window.location = "/forum/assets/site/like.php?articleId=' . $articleId . '&refer=/forum/?articleId=' . $articleId . '";})</script>
     ';
 
 }
