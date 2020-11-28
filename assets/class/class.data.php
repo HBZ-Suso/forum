@@ -278,8 +278,47 @@ class Data
             return false;
         }
 
-        $query = "SELECT userPassword FROM users WHERE userName='" . $username . "'";
-        $result = $this->connId->query($query);
+        $query = "SELECT userPassword FROM users WHERE userName=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                if (password_verify($password, $row["userPassword"])) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+        
+        return false;
+    }
+
+
+    public function check_login_by_Id ($userId, $password)
+    {
+        $query = "SELECT * FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows <= 0) {
+            return false;
+        }
+        $stmt->close();
+
+
+        $query = "SELECT userPassword FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 if (password_verify($password, $row["userPassword"])) {
@@ -701,4 +740,18 @@ class Data
         return $type;
     }
 
+
+
+    public function change_user_column_by_id_and_name ($userId, $column, $change_to) {
+        if (strtoupper($column) === "USERNAME" || strtoupper($column) === "USERID" || strtoupper($column) === "USERINTENDED" || strtoupper($column) === "USERLASTARTICLE" || strtoupper($column) === "USERTYPE" || strtoupper($column) === "USERCREATED") {
+            return false;
+        } else {
+            $query = 'UPDATE users SET ' . $column . '=? WHERE userId=?';
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("si", $change_to, $userId);
+            $stmt->execute();
+            $stmt->close();
+            return true;
+        }
+    }
 }

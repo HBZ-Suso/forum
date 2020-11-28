@@ -24,8 +24,8 @@
     background-color: lightgray;
     border-radius: 10px;
     overflow: auto;
-    min-height: 500px;
-    max-height: 1000px;
+    min-height: 600px;
+    max-height: 1400px;
     height: 75%;
     flex: 1 1 450px; /*  Stretching: */
     /*flex: 0 1 150px;   No stretching: */

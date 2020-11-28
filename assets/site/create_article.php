@@ -18,7 +18,7 @@ if (!isset($_SESSION["user"]) || !isset($_SESSION["userId"])) {
 }
 
 
-if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastArticle"]) < 60*32) && !($data->is_admin_by_id($_SESSION["userId"]))) {
+if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastArticle"]) < 60*60*24) && !($data->is_admin_by_id($_SESSION["userId"]))) {
     header("LOCATION: /forum/?error=timeouterror");
     exit("Timeouterror");
 }
