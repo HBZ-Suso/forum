@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif!important;
+    margin: 0px;
+    padding: 0px;
+}
+
+.window {
+    position: absolute;
+    top: 100px;
+    width: 80%;
+    left: 8%;
+    padding: 1%;
+    border-radius: 0.3vw;
+    background-color: gray;
+    min-height: 60%;
+    height: min-content;
+}
+
+.flex-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: center;
+}
+
+
+.flex-container > textarea {
+    flex: 1 1 50px;
+    resize: none;
+    padding: 0.4%;
+    margin: 0px;
+    margin: 0.2%;
+    background-color: gray;
+    border: 2px solid black;
+    border-radius: 2px;
+    color: black;
+}
+
+#title {
+    display: inline-block!important;
+    text-align: center;
+    flex: none;
+    width: 100%;
+    height: min-content;
+}
+
+#userDescription {
+    text-align: center;
+    flex-basis: 100%!important;
+    height: 40vh;
+}
+
+
+#password {
+    margin-top: 3%;
+    width: 20%;
+    margin-left: 40%;
+}
+
+#userSubmit {
+    margin-top: 0.2%;
+    height: 10%;
+    width: 20%;
+    margin-left: 40%!important;
+    background-color: rgb(97, 97, 97);
+    border: black;
+    color: black;
+    transition: 0.5s all ease-in;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#userSubmit:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(44, 44, 44);
+}
+
+
+.counter {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    font-size: 2vw;
+    border-radius: 10vw;
+    height: 2.6vw;
+    width: 2.6vw;
+    margin: 0.3vw;
+    padding: 0.1vw;
+    text-align: center;
+    vertical-align: center;
+    background-color: green;
+}
