@@ -2,60 +2,60 @@
 
 Database name: forum
 
-users:
-    userId (number, ticking up, MEDIUMINT, unsigned)
-    userName (TEXT)
-    userPassword (hash, LONGTEXT)
-    userAge (TINYINT, unsigned)
-    userEmployment (MEDIUMTEXT)
-    userDescription (formatet text, LONGTEXT)
-    userCreated (timestamp)
-    userMail (TEXT)
-    userPhone (TEXT)
-    userSettings (JSON)
-    userType (TINYTEXT, administrator / user, comes from code)
-    userIntended (TINYTEXT, from codeIntended)
-    userVerified (TINYTEXT, "TRUE" or "FALSE")
-    userLastArticle (UNIX Timestamp, at first unix timestamp of creation, then last article time)
+1. users:
+    1. userId (number, ticking up, MEDIUMINT, unsigned)
+    2. userName (TEXT)
+    3. userPassword (hash, LONGTEXT)
+    4. userAge (TINYINT, unsigned)
+    5. userEmployment (MEDIUMTEXT)
+    6. userDescription (formatet text, LONGTEXT)
+    7. userCreated (timestamp)
+    8. userMail (TEXT)
+    9. userPhone (TEXT)
+    10. userSettings (JSON)
+    11. userType (TINYTEXT, administrator / user, comes from code)
+    12. userIntended (TINYTEXT, from codeIntended)
+    13. userVerified (TINYTEXT, "TRUE" or "FALSE")
+    14. serLastArticle (UNIX Timestamp, at first unix timestamp of creation, then last article time)
 
-articles:
-    articleId (number, ticking up, MEDIUMINT, unsigned)
-    userId (MEDIUMINT, unsigned)
-    articleTitle (TEXT)
-    articleText (formatet text, LONGTEXT)
-    articleTags (used for search, JSON (array))
-    articleCreated (timestamp)
+2. articles:
+    1. articleId (number, ticking up, MEDIUMINT, unsigned)
+    2. userId (MEDIUMINT, unsigned)
+    3. articleTitle (TEXT)
+    4. articleText (formatet text, LONGTEXT)
+    5. articleTags (used for search, JSON (array))
+    6. articleCreated (timestamp)
 
-articleLikes:
-    likeId (number, ticking up, Double, unsigned)
-    userId (number, ticking up, MEDIUMINT)
-    articleId (number, ticking up, MEDIUMINT)
-    likeCreated (timestamp)
+3. articleLikes:
+    1. likeId (number, ticking up, Double, unsigned)
+    2. userId (number, ticking up, MEDIUMINT)
+    3. articleId (number, ticking up, MEDIUMINT)
+    4. likeCreated (timestamp)
 
-articleViews:
-    viewId (number, ticking up, Double, unsigned)
-    userId (number, ticking up, MEDIUMINT, unsigned)
-    articleId (number, ticking up, MEDIUMINT, unsigned)
-    viewCreated (timestamp)
+4. articleViews:
+    1. viewId (number, ticking up, Double, unsigned)
+    2. userId (number, ticking up, MEDIUMINT, unsigned)
+    3. articleId (number, ticking up, MEDIUMINT, unsigned)
+    4. viewCreated (timestamp)
 
 
-userLikes:
-    likeId (number, ticking up, Double, unsigned)
-    userId (number, ticking up, MEDIUMINT)
-    targetUserId (number, ticking up, MEDIUMINT)
-    likeCreated (timestamp)
+5. userLikes:
+    1. likeId (number, ticking up, Double, unsigned)
+    2. userId (number, ticking up, MEDIUMINT)
+    3. targetUserId (number, ticking up, MEDIUMINT)
+    4. likeCreated (timestamp)
 
-userViews:
-    viewId (number, ticking up, Double, unsigned)
-    userId (number, ticking up, MEDIUMINT, unsigned)
-    targetUserId (number, ticking up, MEDIUMINT, unsigned)
-    viewCreated (timestamp)
+6. userViews:
+    1. viewId (number, ticking up, Double, unsigned)
+    2. userId (number, ticking up, MEDIUMINT, unsigned)
+    3. targetUserId (number, ticking up, MEDIUMINT, unsigned)
+    4. viewCreated (timestamp)
 
-codes:
-    codeId (number, ticking up, MEDIUMINT, unsigned)
-    codeName (string, TEXT)
-    codeType (TINYTEXT, administrator / user)
-    codeIntendet (TINYTEXT, discribes intendation of code)
+7. codes:
+    1. codeId (number, ticking up, MEDIUMINT, unsigned)
+    2. codeName (string, TEXT)
+    3. codeType (TINYTEXT, administrator / user)
+    4. codeIntendet (TINYTEXT, discribes intendation of code)
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
