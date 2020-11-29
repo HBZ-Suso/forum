@@ -17,6 +17,7 @@ Database name: forum
     12. userIntended (TINYTEXT, from codeIntended)
     13. userVerified (TINYTEXT, "TRUE" or "FALSE")
     14. userLastArticle (UNIX Timestamp, at first unix timestamp of creation, then last article time)
+    15. userLastComment (UNIX Timestamp, at first unix timestamp of creation, then last comment time)
 
 2. articles:
     1. articleId (number, ticking up, MEDIUMINT, unsigned)
@@ -38,20 +39,35 @@ Database name: forum
     3. articleId (number, ticking up, MEDIUMINT, unsigned)
     4. viewCreated (timestamp)
 
+5. articleComments:
+    1. commentId (DOUBLE, unsigned, AI)
+    2. userId (MEDIUMINT)
+    3. articleId (MEDIUMINT)
+    4. commentTitle (MEDIUMTEXT)
+    5. commentText (LONGTEXT)
+    6. commentCreated (TIMESTAMP)
 
-5. userLikes:
+6. userLikes:
     1. likeId (number, ticking up, Double, unsigned)
     2. userId (number, ticking up, MEDIUMINT)
     3. targetUserId (number, ticking up, MEDIUMINT)
     4. likeCreated (timestamp)
 
-6. userViews:
+7. userViews:
     1. viewId (number, ticking up, Double, unsigned)
     2. userId (number, ticking up, MEDIUMINT, unsigned)
     3. targetUserId (number, ticking up, MEDIUMINT, unsigned)
     4. viewCreated (timestamp)
 
-7. codes:
+8. userComments:
+    1. commentId (DOUBLE, unsigned, AI)
+    2. userId (MEDIUMINT)
+    3. targetUserId (MEDIUMINT)
+    4. commentTitle (MEDIUMTEXT)
+    5. commentText (LONGTEXT)
+    6. commentCreated (TIMESTAMP)
+
+9. codes:
     1. codeId (number, ticking up, MEDIUMINT, unsigned)
     2. codeName (string, TEXT)
     3. codeType (TINYTEXT, administrator / user)

@@ -62,10 +62,46 @@ echo '
     <textarea disabled class="article-block-entry article-block-tags">Tags: ' . implode("; ", json_decode($article_data["articleTags"])) . '</textarea>
     <textarea disabled class="article-block-entry article-block-created">Created: ' . $article_data["articleCreated"] . '</textarea>
 
-    <textarea disabled class="article-block-content">' . $article_data["articleText"] . '</textarea>
-</div>
+    <textarea disabled class="article-block-content">' . $article_data["articleText"] . '</textarea>';
+
+
+$comments = $data->get_article_comments_by_id($articleId);
+
+echo '<div class="comment-section">';
+
+if (isset($_SESSION["userId"])) {
+    echo '<form class="comment-form comment" method="post" action="/forum/assets/site/comment.php?articleId=' . $articleId . '">';
+    echo '<input class="comment-title" name="title" placeholder="Title">';
+    echo '<h3 class="comment-author">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
+    echo '<input class="comment-text" name="text" placeholder="Your comment..."></input>';
+    echo '<input type="submit" name="submit" class="comment-form-submit">';
+    echo '</form>';
+}
+
+foreach($comments as $row) {
+    echo '<div class="comment">';
+    echo '<h3 class="comment-title">' . $row["commentTitle"] . '</h3>';
+    echo '<h3 class="comment-author">' . $data->get_username_by_id($row["userId"]) . '</h3>';
+    echo '<textarea class="comment-text" disabled>' . $row["commentText"] . '</textarea>';
+    if (isset($_SESSION["userId"]) && ($data->is_admin_by_id($_SESSION["userId"]) || intval($row["userId"]) === intval($_SESSION["userId"]))) {
+        echo '<button class="comment-delete" id="comment-element-' . intval($row["commentId"] * 1342 + 234) . '">Delete</button>';
+        echo '
+        <script>
+        document.getElementById("comment-element-' . intval($row["commentId"] * 1342 + 234) . '").addEventListener("click", (e) => {
+            window.location = "/forum/assets/site/delete_comment.php?type=article&articleId=' . $articleId . '&commentId=' . $row["commentId"] . '";
+        });
+        </script>';
+    }
+    echo '</div>';
+}
+
+
+echo '
+</div></div>
 
 
 
 <script>document.querySelector(".like-article").addEventListener("click", (e) => {window.location = "/forum/assets/site/like.php?articleId=' . $articleId . '&refer=/forum/?articleId=' . $articleId . '";})</script>
 ';
+
+

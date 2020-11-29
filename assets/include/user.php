@@ -65,8 +65,40 @@ echo '
     <textarea disabled class="user-block-entry user-block-phone">Phone: ' . $user_data["userPhone"] . '</textarea>
 
 
-    <textarea disabled class="user-block-description">' . $user_data["userDescription"] . '</textarea>
-</div>
+    <textarea disabled class="user-block-description">' . $user_data["userDescription"] . '</textarea>';
+
+$comments = $data->get_user_comments_by_id($userId);
+
+echo '<div class="comment-section">';
+
+if (isset($_SESSION["userId"])) {
+    echo '<form class="comment-form comment" method="post" action="/forum/assets/site/comment.php?userId=' . $userId . '">';
+    echo '<input class="comment-title" name="title" placeholder="Title">';
+    echo '<h3 class="comment-author">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
+    echo '<input class="comment-text" name="text" placeholder="Your comment..."></input>';
+    echo '<input type="submit" name="submit" class="comment-form-submit">';
+    echo '</form>';
+}
+
+foreach($comments as $row) {
+    echo '<div class="comment">';
+    echo '<h3 class="comment-title">' . $row["commentTitle"] . '</h3>';
+    echo '<h3 class="comment-author">' . $data->get_username_by_id($row["userId"]) . '</h3>';
+    echo '<textarea class="comment-text" disabled>' . $row["commentText"] . '</textarea>';
+    if (isset($_SESSION["userId"]) && ($data->is_admin_by_id($_SESSION["userId"]) || intval($row["userId"]) === intval($_SESSION["userId"]))) {
+        echo '<button class="comment-delete" id="comment-element-' . intval($row["commentId"] + 42374682734) . '">Delete</button>';
+        echo '
+        <script>
+        document.getElementById("comment-element-' . intval($row["commentId"] + 42374682734) . '").addEventListener("click", (e) => {
+            window.location = "/forum/assets/site/delete_comment.php?type=user&userId=' . $userId . '&commentId=' . $row["commentId"] . '";
+        });
+        </script>';
+    }
+    echo '</div>';
+}
+
+echo '
+</div></div>
 
 <script>document.querySelector(".like-user").addEventListener("click", (e) => {window.location = "/forum/assets/site/like.php?targetUserId=' . $userId . '&refer=/forum/?userId=' . $userId . '";})</script>
 ';

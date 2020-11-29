@@ -19,7 +19,7 @@ if (isset($_GET["search"])) {
 
 echo '
     <form action="/forum/?rsearch=true" method="get" class="refined-search">
-        <input type="text" name="rsearch" autocomplete="off" value="' . $search . '"  class="refined-search-text">
+        <input type="text" name="rsearch" autocomplete="off" placeholder="Refined Search..." value="' . $search . '"  class="refined-search-text">
         <input type="submit" class="refined-search-submit" value="->"><br>
 
         <table class="refined-search-table">

@@ -95,11 +95,11 @@ class Data extends Connector {
         }
 
         $time = time();
-        $query = "INSERT INTO users (userName, userPassword, userAge, userEmployment, userDescription, userMail, userPhone, userSettings, userType, userIntended, userVerified, userLastArticle) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO users (userName, userPassword, userAge, userEmployment, userDescription, userMail, userPhone, userSettings, userType, userIntended, userVerified, userLastArticle, userLastComment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->connId->prepare($query);
         $verify = "0";
         $settings_encoded = json_encode($settings);
-        $stmt->bind_param("ssisssssssss", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, $settings_encoded , $type, $intended, $verify, $time);
+        $stmt->bind_param("ssisssssssssi", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, $settings_encoded , $type, $intended, $verify, $time, $time);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -753,5 +753,142 @@ class Data extends Connector {
             $stmt->close();
             return true;
         }
+    }
+
+
+    public function create_article_comment ($userId, $articleId, $commentTitle, $commentText)
+    {
+        $query = "INSERT INTO articleComments (userId, articleId, commentTitle, commentText) VALUES (?, ?, ?, ?);";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("iiss", $userId, $articleId, $commentTitle, $commentText);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
+    
+
+
+    public function create_user_comment ($userId, $targetUserId, $commentTitle, $commentText)
+    {
+        $query = "INSERT INTO userComments (userId, targetUserId, commentTitle, commentText) VALUES (?, ?, ?, ?);";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("iiss", $userId, $targetUserId, $commentTitle, $commentText);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
+
+
+
+    public function delete_article_comment_by_id ($commentId)
+    {
+        $query = "DELETE FROM articleComments WHERE commentID=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $commentId);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+
+    public function delete_user_comment_by_id ($commentId)
+    {
+        $query = "DELETE FROM userComments WHERE commentID=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $commentId);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+
+
+    public function get_article_comments_by_id ($articleId)
+    {
+        $query = "SELECT * FROM articleComments WHERE articleId=? ORDER BY commentCreated desc";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $articleId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            $return = [];
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+            return $return;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public function get_user_comments_by_id ($targetUserId)
+    {
+        $query = "SELECT * FROM userComments WHERE targetUserId=? ORDER BY commentCreated desc";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $targetUserId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            $return = [];
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+            return $return;
+        } else {
+            return false;
+        }
+    }
+
+
+
+
+    public function get_user_comment_by_id ($commentId)
+    {
+        $query = "SELECT * FROM userComments WHERE commentId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $commentId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $row;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
+    public function get_article_comment_by_id ($commentId)
+    {
+        $query = "SELECT * FROM articleComments WHERE commentId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $commentId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $row;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public function set_comment_timeout_by_id ($userId)
+    {
+        $time = time();
+        $query = "UPDATE users SET userLastComment=? WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ss", $time, $userId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
     }
 }
