@@ -1,6 +1,6 @@
 <?php 
 
-class Data
+class Connector
 {
     /*
     URL of config file
@@ -62,7 +62,7 @@ class Data
         mysqli_close($this->connId);
     }
 
-
+}
 
 
 
@@ -71,7 +71,7 @@ class Data
 
 
 
-
+class Data extends Connector {
 
     public function check_entry_exists ($tableName, $columnName, $entry) {
         $query = "SELECT " . $columnName . " FROM " . $tableName . " WHERE " . $columnName . "=?";
