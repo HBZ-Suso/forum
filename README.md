@@ -60,13 +60,9 @@ Database name: forum
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
 
-
-
 Administrator:
     Password: forum_admin
 
-
-
-layers: 
+layers:
     frame: 2
     menu: 3
