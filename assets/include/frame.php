@@ -47,6 +47,15 @@ if ($info->mobile === true) {
             }
         })
     </script>
+    <script>
+        var size_heading = () => {
+            let font_size = Math.min(window.innerWidth / 23,  60);
+            document.querySelector(".main-heading-text").style.fontSize = font_size + "px";
+        }
+
+        window.onresize = size_heading;
+        window.onload = size_heading;
+    </script>
     ';
 }
 
