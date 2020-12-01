@@ -1,0 +1,27 @@
+
+<link rel="stylesheet" href="/forum/assets/style/loading.css">
+<div class="loading-background">
+    <div class="loading-animation">
+        <span class="loading-flower"></span>
+        <span class="loading-flower"></span>
+        <span class="loading-flower"></span>
+        <span class="loading-flower"></span>
+    </div>
+</div>
+
+<script>
+    setTimeout(() => {
+        try {
+            document.querySelector(".loading-background").style.display = "flex";
+            console.debug("LOADING-ANIMATION: Now showing loading animation...");
+        } catch (error) {console.debug("LOADING-ANIMATION: Element already removed...")}
+    }, 100);
+</script>
+
+<script>
+    window.addEventListener("load", function load(event) {
+        window.removeEventListener("load", load, false); // Listener entfernen, da nicht mehr benötigt
+        document.querySelector(".loading-background").remove(); // Entferne Loading Animation
+        var page_loaded_animation = true;
+    }, false);
+</script>

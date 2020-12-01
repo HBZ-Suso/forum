@@ -50,6 +50,7 @@ echo '
 ';
 
 for ($i = 1; $i < 9; $i++) {
+    if ($i === 3) {continue;}
     echo '
     <script>
         document.getElementById("' . $i . '").addEventListener("click", event => {

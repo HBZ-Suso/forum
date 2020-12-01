@@ -26,6 +26,7 @@ if (isset($require_purifier)) {
 }
 
 if (!isset($hide_frame)) {
+    include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/loading.html";
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/frame.php";
 }
 

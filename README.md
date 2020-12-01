@@ -82,3 +82,4 @@ Administrator:
 layers:
     frame: 2
     menu: 3
+    loading-background: 4
