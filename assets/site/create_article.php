@@ -25,15 +25,20 @@ if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastArticle"])
 
 if (!isset($_GET["form"])) { 
     echo '
-    <link rel="stylesheet" href="/forum/assets/style/form.css">
-    <form action="/forum/assets/site/create_article.php?form=true" method="post" class="main-form">
-        <input type="text" name="title" placeholder="Title" class="title">
-        <textarea name="text" placeholder="Text" class="text" style="height: 45vh;"></textarea>
-        <input type="text" name="tags" placeholder="Tags (Seperated by whitespace)" class="tags">
-        <input type="submit" name="submit" class="submit">
-    </form>
+    <link rel="stylesheet" href="/forum/assets/style/create_article.css">
 
-    <div class="home">Home</div>
+    <div class="background">
+
+        <form action="/forum/assets/site/create_article.php?form=true" method="post" class="main-form">
+            <input type="text" name="title" placeholder="Title" class="title">
+            <textarea name="text" placeholder="Text" class="text"></textarea>
+            <input type="text" name="tags" placeholder="Tags (Seperated by whitespace)" class="tags">
+            <input type="submit" name="submit" class="submit">
+        </form>
+
+        <div class="home">Home</div>
+
+    </div>
 
     <script>
         document.querySelector(".home").addEventListener("click", (e) => {

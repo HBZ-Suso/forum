@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif!important;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.background {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    height: fit-content;
+    background-color: #34495e;
+    display: flex;
+}
+
+
+.main-form {
+    margin: auto;
+    height: fit-content;
+    min-width: 500px;
+    width: 55vw;
+    background-color: #191919;
+    border-radius: 20px;
+}
+
+.login {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+.main-form input[type = "text"],.main-form input[type = "password"],.main-form input[type = "number"]  {
+    background: none;
+    margin: 20px auto;
+    min-width: 340px;
+    width: 35vw;
+    outline: none;
+    display: block;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    text-align: center;
+    color: white;
+    border-radius: 26px;
+    transition: 0.25s;
+
+    /* HIDE NUMBER INCREMENT BUTTONS */
+    -moz-appearance: textfield;
+}
+
+.main-form textarea {
+    background: none;
+    margin: 20px auto;
+    min-width: 420px;
+    width: 45vw;
+    min-height: 180px;
+    height: 45vh;
+    resize: none;
+    outline: none;
+    display: block;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    text-align: center;
+    color: white;
+    border-radius: 26px;
+    transition: 0.25s;
+}
+
+.submit {
+    background: none;
+    margin: 20px auto;
+    outline: none;
+    display: block;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    text-align: center;
+    color: white;
+    border-radius: 26px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.main-form input[type = "text"]:focus,.main-form input[type = "password"]:focus,.main-form input[type = "number"]:focus   {
+    min-width: 380px;
+    width: 39vw;
+    border-color: #2ecc71;
+}
+
+.main-form textarea:focus {
+    border-color: #2ecc71;
+    min-width: 460px;
+    width: 49vw;
+}
+
+.login:hover {
+    transition: all 0.2s linear;
+    cursor:pointer;
+    text-decoration: underline;
+}
+
+.submit:hover {
+    color: black;
+    background: #2ecc71;
+}
+
+
+/* HIDE NUMBER INCREMENT BUTTONS Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+.home {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-Index: 3;
+    background-color: #191919;
+    width: 120px;
+    height: 50px;
+    border-bottom-right-radius: 10px;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.home:hover {
+    background-color: #19232cc9;
+    border-right: 3px solid #3498db;
+    border-bottom: 3px solid #3498db;
+}

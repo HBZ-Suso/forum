@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif!important;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.login-background {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    height: fit-content;
+    background-color: #34495e;
+    display: flex;
+}
+
+
+.main-form {
+    margin: auto;
+    height: 350px;
+    width: 350px;
+    background-color: #191919;
+    border-radius: 20px;
+}
+
+.signup {
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-size: 40px;
+    margin-top: 20px;
+}
+
+.main-form input[type = "text"],.main-form input[type = "password"]  {
+    background: none;
+    margin: 20px auto;
+    width: 240px;
+    outline: none;
+    display: block;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    text-align: center;
+    color: white;
+    border-radius: 26px;
+    transition: 0.25s;
+}
+
+.submit {
+    background: none;
+    margin: 20px auto;
+    outline: none;
+    display: block;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px;
+    text-align: center;
+    color: white;
+    border-radius: 26px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.main-form input[type = "text"]:focus,.main-form input[type = "password"]:focus {
+    width: 280px;
+    border-color: #2ecc71;
+}
+
+.signup:hover {
+    transition: all 0.2s linear;
+    cursor:pointer;
+    text-decoration: underline;
+}
+
+.submit:hover {
+    background: #2ecc71;
+}
+
+
+.home {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-Index: 3;
+    background-color: #191919;
+    width: 120px;
+    height: 50px;
+    border-bottom-right-radius: 10px;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.home:hover {
+    background-color: #19232cc9;
+    border-right: 3px solid #3498db;
+    border-bottom: 3px solid #3498db;
+}

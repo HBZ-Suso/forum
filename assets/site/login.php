@@ -12,16 +12,18 @@ if (isset($_GET["logout"])) {
 
 if (!isset($_GET["form"])) {
     echo '
-    <link rel="stylesheet" href="/forum/assets/style/form.css">
-    <form action="/forum/assets/site/login.php?form=true" method="post" class="main-form">
-        <a class="sender" href="/forum/assets/site/signup.php">Signup</a><br>
-        <input type="text" name="username" placeholder="Your username" class="username">
-        <input type="password" name="password" placeholder="Your Password" class="password">
-        <input type="submit" name="submit" value="submit" class="submit">
-    </form>
-    
-    <div class="home">Home</div>
+    <link rel="stylesheet" href="/forum/assets/style/login.css">
+    <div class="login-background">
+        <form action="/forum/assets/site/login.php?form=true" method="post" class="main-form">
+            <a class="signup" href="/forum/assets/site/signup.php"> To Signup</a><br>
+            <input type="text" name="username" placeholder="Your username" class="username">
+            <input type="password" name="password" placeholder="Your Password" class="password">
+            <input type="submit" name="submit" value="submit" class="submit">
+        </form>
+        
+        <div class="home">Home</div>
 
+    </div>
     <script>
         document.querySelector(".home").addEventListener("click", (e) => {
             window.location = "/forum";
