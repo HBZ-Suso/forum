@@ -21,7 +21,6 @@
 }
 
 .block {
-    background-color: lightgray;
     border-radius: 10px;
     overflow: auto;
     min-height: 600px;
@@ -45,7 +44,6 @@
 
 .block-entry {
     width: 96%;
-    background-color: gray;
     font-size: 2vw;
     padding: 2%;
     margin-top: 0.3vw;
@@ -53,17 +51,6 @@
     cursor: pointer;
 }
 
-.owned {
-    background-color: rgb(31, 151, 111);
-}
-
-.block-entry:hover {
-    background-color: rgb(104, 104, 104)
-}
-
-.owned:hover {
-    background-color:aquamarine;  
-}
 
 .block-entry-element {
     display: inline;

@@ -13,7 +13,6 @@
 .refined-search-text {
     width: 40%;
     margin-left: 25%;
-    background-color: aquamarine;
     border: none;
     height: 45px;
     border-radius: 20px;
@@ -23,7 +22,6 @@
 .refined-search-submit {
     width: 10%;
     vertical-align: center;
-    background-color: aquamarine;
     border: none;
     height: 45px;
     border-radius: 20px;
@@ -31,11 +29,7 @@
 }
 
 .refined-search-submit:hover {
-    background-color: rgb(41, 187, 138);
     cursor: pointer;
-}
-.refined-search-text:hover {
-    background-color: rgb(41, 187, 138);
 }
 
 .refined-search-table {
@@ -59,7 +53,6 @@
 
 .refined-search-table > tbody > tr > td > div {
     margin: auto;
-    background-color: aquamarine;
     border: none;
     border-radius: 15px;
     width: 40px;

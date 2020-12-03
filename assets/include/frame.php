@@ -20,19 +20,19 @@ if ($info->mobile === true) {
 
     echo '
     <link rel="stylesheet" href="/forum/assets/style/pc.frame.css">
-    <div class="main-heading-container">
+    <div class="main-heading-container theme-main-color-1">
         <img class="main-menu-icon" src="https://img.icons8.com/material-rounded/1000/000000/menu.png"/>
 
         <h1 class="main-heading-text">' . $text->get("frame-pc-heading") . '</h1>
 
         <form action="/forum/" method="get" class="main-heading-search">
-            <input type="text" name="search" autocomplete="off" placeholder="' . $text->get("frame-pc-heading-search") .'"  class="main-heading-search-text">
-            <input type="submit" class="main-heading-search-submit" value="->">
+            <input type="text" name="search" autocomplete="off" placeholder="' . $text->get("frame-pc-heading-search") .'"  class="main-heading-search-text theme-main-color-2">
+            <input type="submit" class="main-heading-search-submit theme-main-color-2" value="->">
         </form>
     </div>
-    <div class="main-menu">
-        <a class="main-menu-entry" href="/forum/?show=account">' . $account . '</a><br>
-        <a class="main-menu-entry" href="/forum/?show=about">' . $text->get("frame-menu-about") . '</a><br>' . $logout . '
+    <div class="main-menu theme-main-color-1">
+        <a class="main-menu-entry hover-theme-main-color-2" href="/forum/?show=account">' . $account . '</a><br>
+        <a class="main-menu-entry hover-theme-main-color-2" href="/forum/?show=about">' . $text->get("frame-menu-about") . '</a><br>' . $logout . '
     </div>
 
     <script>

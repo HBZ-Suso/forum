@@ -21,8 +21,8 @@ echo '
     <link rel="stylesheet" href="/forum/assets/style/refined_search.css">
 
     <form action="/forum/?rsearch=true" method="get" class="refined-search">
-        <input type="text" name="rsearch" autocomplete="off" placeholder="Refined Search..." value="' . $search . '"  class="refined-search-text">
-        <input type="submit" class="refined-search-submit" value="->"><br>
+        <input type="text" name="rsearch" autocomplete="off" placeholder="Refined Search..." value="' . $search . '"  class="refined-search-text theme-main-color-2">
+        <input type="submit" class="refined-search-submit theme-main-color-2" value="->"><br>
 
         <table class="refined-search-table">
             <tr>
@@ -37,15 +37,15 @@ echo '
                 <th><label for="text" class="refined-search-label">Employment</label><br></th>
             </tr>
             <tr>
-                <td><div class="checkbox-div" id="1"><input type="checkbox" name="title" ' . $set["title"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <td><div class="checkbox-div" id="2"><input type="checkbox" name="text" ' . $set["text"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <!--<td><div class="checkbox-div" id="3"><input type="checkbox" name="author" ' . $set["author"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>-->
+                <td><div class="checkbox-div theme-main-color-2" id="1"><input type="checkbox" name="title" ' . $set["title"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                <td><div class="checkbox-div theme-main-color-2" id="2"><input type="checkbox" name="text" ' . $set["text"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                <!--<td><div class="checkbox-div theme-main-color-2" id="3"><input type="checkbox" name="author" ' . $set["author"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>-->
                 <td><p></p></td>
-                <td><div class="checkbox-div" id="4"><input type="checkbox" name="name" ' . $set["name"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <td><div class="checkbox-div" id="5"><input type="checkbox" name="mail" ' . $set["mail"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <td><div class="checkbox-div" id="6"><input type="checkbox" name="description" ' . $set["description"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <td><div class="checkbox-div" id="7"><input type="checkbox" name="phone" ' . $set["phone"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <td><div class="checkbox-div" id="8"><input type="checkbox" name="employment" ' . $set["employment"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                <td><div class="checkbox-div theme-main-color-2" id="4"><input type="checkbox" name="name" ' . $set["name"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                <td><div class="checkbox-div theme-main-color-2" id="5"><input type="checkbox" name="mail" ' . $set["mail"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                <td><div class="checkbox-div theme-main-color-2" id="6"><input type="checkbox" name="description" ' . $set["description"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                <td><div class="checkbox-div theme-main-color-2" id="7"><input type="checkbox" name="phone" ' . $set["phone"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                <td><div class="checkbox-div theme-main-color-2" id="8"><input type="checkbox" name="employment" ' . $set["employment"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
             </tr>
         </table>
     </form>   
@@ -57,15 +57,15 @@ for ($i = 1; $i < 9; $i++) {
     <script>
         document.getElementById("' . $i . '").addEventListener("click", event => {
             if (document.getElementById("' . $i . '").children[0].checked) {
-                document.getElementById("' . $i . '").style.backgroundColor = "#0D3326";
+                document.getElementById("' . $i . '").classList.add("refined-search-color");
             } else {
-                document.getElementById("' . $i . '").style.backgroundColor = "";
+                document.getElementById("' . $i . '").classList.remove("refined-search-color");
             }
         });
         if (document.getElementById("' . $i . '").children[0].checked) {
-            document.getElementById("' . $i . '").style.backgroundColor = "#0D3326";
+            document.getElementById("' . $i . '").classList.add("refined-search-color");
         } else {
-            document.getElementById("' . $i . '").style.backgroundColor = "";
+            document.getElementById("' . $i . '").classList.remove("refined-search-color");
         }
     </script>';
 }

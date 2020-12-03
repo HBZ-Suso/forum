@@ -1,7 +1,7 @@
 <?php 
 
 echo '
-<div class="user-block block">
+<div class="user-block block block theme-main-color-2">
     <h1 class="user-block-heading block-heading">Users</h1>';
                 
 if (isset($_GET["search"])) {
@@ -51,7 +51,7 @@ foreach ($user_list as $value) {
     }
 
     echo '
-        <div class="user-block-entry block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
+        <div class="user-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
             <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] . $verified . '</span><br>
             <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">Mail: </p>' . $value["userMail"] .'</span>
             <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Views: </p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
