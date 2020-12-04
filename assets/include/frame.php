@@ -12,10 +12,10 @@ if ($info->mobile === true) {
 } else {
     if (isset($_SESSION["user"])) {
         $account = $text->get("frame-menu-account");
-        $logout = '<a class="main-menu-entry" href="/forum/assets/site/create_article.php">' . $text->get("frame-menu-create") . '</a><a class="main-menu-entry" href="/forum/assets/site/login.php?logout=true">' . $text->get("frame-menu-logout") . '</a><br>';
+        $logged = '<a class="main-menu-entry hover-theme-main-color-2" href="/forum/assets/site/create_article.php">' . $text->get("frame-menu-create") . '</a><a class="main-menu-entry hover-theme-main-color-2" href="/forum/assets/site/login.php?logout=true">' . $text->get("frame-menu-logout") . '</a><br>';
     } else {
         $account = $text->get("frame-menu-login");
-        $logout = "";
+        $logged = "";
     }
 
     echo '
@@ -32,7 +32,7 @@ if ($info->mobile === true) {
     </div>
     <div class="main-menu theme-main-color-1">
         <a class="main-menu-entry hover-theme-main-color-2" href="/forum/?show=account">' . $account . '</a><br>
-        <a class="main-menu-entry hover-theme-main-color-2" href="/forum/?show=about">' . $text->get("frame-menu-about") . '</a><br>' . $logout . '
+        <a class="main-menu-entry hover-theme-main-color-2" href="/forum/?show=about">' . $text->get("frame-menu-about") . '</a><br>' . $logged . '
     </div>
 
     <script>

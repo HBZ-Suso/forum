@@ -31,22 +31,22 @@ if (isset($_GET["selected"])) {
 
 <link rel="stylesheet" href="/forum/assets/style/account.css">
 
-<div class="window">
+<div class="window theme-main-color-1">
     <form id="main_form" action="/forum/assets/site/change_data.php" method="post">
         <div class="flex-container">
             <h1 id="Title"><?php echo $user_data["userName"];?></h1>
-            <textarea id="userMail"></textarea>
-            <textarea id="userPhone"></textarea>
-            <textarea id="userEmployment"></textarea>
-            <textarea id="userAge"></textarea>
-            <textarea id="userIntended" disabled><?php echo $user_data["userIntended"];?></textarea>
-            <textarea id="userDescription"></textarea>
+            <textarea id="userMail" class="theme-main-color-2"></textarea>
+            <textarea id="userPhone" class="theme-main-color-2"></textarea>
+            <textarea id="userEmployment" class="theme-main-color-2"></textarea>
+            <textarea id="userAge" class="theme-main-color-2"></textarea>
+            <textarea id="userIntended" disabled class="theme-main-color-2"><?php echo $user_data["userIntended"];?></textarea>
+            <textarea id="userDescription" class="theme-main-color-2"></textarea>
         </div>
 
 
         <input style="display: none;" name="change_data" id="change_data" type="text">
 
-        <input type="submit" id="userSubmit" value="Save">
+        <input type="submit" id="userSubmit" value="Save" class="theme-main-color-2">
     </form>
 </div>
 <span id="counter" class="counter">20</span>

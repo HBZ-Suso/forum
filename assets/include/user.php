@@ -54,39 +54,39 @@ if ($user_data["userVerified"] == "1") {
 echo '
 <link rel="stylesheet" href="/forum/assets/style/pc.user.css">
 
-<div class="user-block">
+<div class="user-block theme-main-color-1">
     <div class="like-user ' . $liked . '">Like</div>
     ' . $delete_button . '
     ' . $verify_button . '
-    <textarea disabled class="user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] .  '</textarea> ' . $verified . '
-    <textarea disabled class="user-block-entry user-block-employment">Employment: ' . $user_data["userEmployment"] . '</textarea>
-    <textarea disabled class="user-block-entry user-block-age">Age: ' . $user_data["userAge"] . '</textarea>
-    <textarea disabled class="user-block-entry user-block-mail">Mail: ' . $user_data["userMail"] . '</textarea>
-    <textarea disabled class="user-block-entry user-block-phone">Phone: ' . $user_data["userPhone"] . '</textarea>
+    <textarea disabled class="theme-main-color-1 user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] .  '</textarea> ' . $verified . '
+    <textarea disabled class="theme-main-color-1 user-block-entry user-block-employment">Employment: ' . $user_data["userEmployment"] . '</textarea>
+    <textarea disabled class="theme-main-color-1 user-block-entry user-block-age">Age: ' . $user_data["userAge"] . '</textarea>
+    <textarea disabled class="theme-main-color-1 user-block-entry user-block-mail">Mail: ' . $user_data["userMail"] . '</textarea>
+    <textarea disabled class="theme-main-color-1 user-block-entry user-block-phone">Phone: ' . $user_data["userPhone"] . '</textarea>
 
 
     <textarea disabled class="user-block-description">' . $user_data["userDescription"] . '</textarea>';
 
 $comments = $data->get_user_comments_by_id($userId);
 
-echo '<div class="comment-section">';
+echo '<div class="comment-section theme-main-color-1">';
 
 if (isset($_SESSION["userId"])) {
-    echo '<form class="comment-form comment" method="post" action="/forum/assets/site/comment.php?userId=' . $userId . '">';
-    echo '<input class="comment-title" name="title" placeholder="Title">';
-    echo '<h3 class="comment-author">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
-    echo '<input class="comment-text" name="text" placeholder="Your comment..."></input>';
-    echo '<input type="submit" name="submit" class="comment-form-submit">';
+    echo '<form class="comment-form comment theme-main-color-1" method="post" action="/forum/assets/site/comment.php?userId=' . $userId . '">';
+    echo '<input class="comment-title theme-main-color-1" name="title" placeholder="Title">';
+    echo '<h3 class="comment-author theme-main-color-1">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
+    echo '<input class="comment-text theme-main-color-1" name="text" placeholder="Your comment..."></input>';
+    echo '<input type="submit" name="submit" class="comment-form-submit theme-main-color-1">';
     echo '</form>';
 }
 
 foreach($comments as $row) {
-    echo '<div class="comment">';
-    echo '<h3 class="comment-title">' . $row["commentTitle"] . '</h3>';
-    echo '<h3 class="comment-author">' . $data->get_username_by_id($row["userId"]) . '</h3>';
-    echo '<textarea class="comment-text" disabled>' . $row["commentText"] . '</textarea>';
+    echo '<div class="comment theme-main-color-1">';
+    echo '<h3 class="comment-title theme-main-color-1">' . $row["commentTitle"] . '</h3>';
+    echo '<h3 class="comment-author theme-main-color-1">' . $data->get_username_by_id($row["userId"]) . '</h3>';
+    echo '<textarea class="comment-text theme-main-color-1" disabled>' . $row["commentText"] . '</textarea>';
     if (isset($_SESSION["userId"]) && ($data->is_admin_by_id($_SESSION["userId"]) || intval($row["userId"]) === intval($_SESSION["userId"]))) {
-        echo '<button class="comment-delete" id="comment-element-' . intval($row["commentId"] + 42374682734) . '">Delete</button>';
+        echo '<button class="comment-delete theme-main-color-1" id="comment-element-' . intval($row["commentId"] + 42374682734) . '">Delete</button>';
         echo '
         <script>
         document.getElementById("comment-element-' . intval($row["commentId"] + 42374682734) . '").addEventListener("click", (e) => {

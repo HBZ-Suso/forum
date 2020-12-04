@@ -54,35 +54,35 @@ echo '
 
 
 
-<div class="article-block">
+<div class="article-block theme-main-color-1">
     <div class="like-article ' . $liked . '">Like</div>
     ' . $delete_button . '
-    <textarea disabled class="article-block-entry article-block-title">' . $article_data["articleTitle"] . '</textarea>' . $verified . '
-    <textarea disabled class="article-block-entry article-block-author">' . $author . '</textarea>
-    <textarea disabled class="article-block-entry article-block-tags">Tags: ' . implode("; ", json_decode($article_data["articleTags"])) . '</textarea>
-    <textarea disabled class="article-block-entry article-block-created">Created: ' . $article_data["articleCreated"] . '</textarea>
+    <textarea disabled class="theme-main-color-1 article-block-entry article-block-title">' . $article_data["articleTitle"] . '</textarea>' . $verified . '
+    <textarea disabled class="theme-main-color-1 article-block-entry article-block-author">' . $author . '</textarea>
+    <textarea disabled class="theme-main-color-1 article-block-entry article-block-tags">Tags: ' . implode("; ", json_decode($article_data["articleTags"])) . '</textarea>
+    <textarea disabled class="theme-main-color-1 article-block-entry article-block-created">Created: ' . $article_data["articleCreated"] . '</textarea>
 
     <textarea disabled class="article-block-content">' . $article_data["articleText"] . '</textarea>';
 
 
 $comments = $data->get_article_comments_by_id($articleId);
 
-echo '<div class="comment-section">';
+echo '<div class="comment-section theme-main-color-1">';
 
 if (isset($_SESSION["userId"])) {
-    echo '<form class="comment-form comment" method="post" action="/forum/assets/site/comment.php?articleId=' . $articleId . '">';
-    echo '<input class="comment-title" name="title" placeholder="Title">';
-    echo '<h3 class="comment-author">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
-    echo '<input class="comment-text" name="text" placeholder="Your comment..."></input>';
-    echo '<input type="submit" name="submit" class="comment-form-submit">';
+    echo '<form class="comment-form comment theme-main-color-1" method="post" action="/forum/assets/site/comment.php?articleId=' . $articleId . '">';
+    echo '<input class="comment-title theme-main-color-1" name="title" placeholder="Title">';
+    echo '<h3 class="comment-author theme-main-color-1">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
+    echo '<input class="comment-text theme-main-color-1" name="text" placeholder="Your comment..."></input>';
+    echo '<input type="submit" name="submit" class="comment-form-submit theme-main-color-1">';
     echo '</form>';
 }
 
 foreach($comments as $row) {
-    echo '<div class="comment">';
-    echo '<h3 class="comment-title">' . $row["commentTitle"] . '</h3>';
-    echo '<h3 class="comment-author">' . $data->get_username_by_id($row["userId"]) . '</h3>';
-    echo '<textarea class="comment-text" disabled>' . $row["commentText"] . '</textarea>';
+    echo '<div class="comment theme-main-color-1">';
+    echo '<h3 class="comment-title theme-main-color-1">' . $row["commentTitle"] . '</h3>';
+    echo '<h3 class="comment-author theme-main-color-1">' . $data->get_username_by_id($row["userId"]) . '</h3>';
+    echo '<textarea class="comment-text theme-main-color-1" disabled>' . $row["commentText"] . '</textarea>';
     if (isset($_SESSION["userId"]) && ($data->is_admin_by_id($_SESSION["userId"]) || intval($row["userId"]) === intval($_SESSION["userId"]))) {
         echo '<button class="comment-delete" id="comment-element-' . intval($row["commentId"] * 1342 + 234) . '">Delete</button>';
         echo '

@@ -13,7 +13,6 @@
     left: 8%;
     padding: 1%;
     border-radius: 0.3vw;
-    background-color: gray;
     min-height: 60%;
     height: min-content;
 }
@@ -33,7 +32,6 @@
     padding: 0.4%;
     margin: 0px;
     margin: 0.2%;
-    background-color: gray;
     border: 2px solid black;
     border-radius: 2px;
     color: black;
@@ -65,10 +63,9 @@
     height: 10%;
     width: 20%;
     margin-left: 40%!important;
-    background-color: rgb(97, 97, 97);
     border: black;
     color: black;
-    transition: 0.5s all ease-in;
+    transition: 0.2s all ease-in;
     border-radius: 5px;
     padding: 5px;
 }

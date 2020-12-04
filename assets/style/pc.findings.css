@@ -23,8 +23,8 @@
 .block {
     border-radius: 10px;
     overflow: auto;
-    min-height: 600px;
-    max-height: 1400px;
+    min-height: 450px;
+    max-height: 700px;
     height: 75%;
     flex: 1 1 450px; /*  Stretching: */
     /*flex: 0 1 150px;   No stretching: */

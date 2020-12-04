@@ -32,7 +32,7 @@ if (!isset($hide_frame)) {
             setcookie("theme", $_SESSION["theme"], time() + 60*60*24*365, "/");
         }
     } else if (isset($_COOKIE["theme"])) {
-        if (in_array($_COOKIE["theme"], ["dark"])) {
+        if (in_array($_COOKIE["theme"], ["dark", "yellow"])) {
             $_SESSION["theme"] = $_COOKIE["theme"];
         }
         $theme = $_SESSION["theme"];
@@ -40,8 +40,8 @@ if (!isset($hide_frame)) {
         $_SESSION["theme"] = "dark";
         setcookie("theme", $_SESSION["theme"], time() + 60*60*24*365, "/");
     }
-    
-    
+
+
     echo '<link rel="stylesheet" href="/forum/assets/theme/' . $theme . '.css">';
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/loading.html";
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/frame.php";

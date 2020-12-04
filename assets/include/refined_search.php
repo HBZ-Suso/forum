@@ -2,13 +2,22 @@
 
 $args = ["title", "text", "author", "name", "mail", "description", "phone", "employment"];
 $set = [];
+$one_set = false;
 foreach($args as $value) {
     if (isset($_GET[$value])) {
         $set[$value] = "checked";
+        $one_set = true;
     } else {
         $set[$value] = "";
     }
 }
+
+if ($one_set === false) {
+    foreach($args as $value) {
+        $set[$value] = "checked";
+    }
+}
+
 
 if (isset($_GET["search"])) {
     $search = $_GET["search"];

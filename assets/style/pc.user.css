@@ -7,7 +7,6 @@
 .user-block  {
     position: absolute;
     width: 88%;
-    background-color: gray;
     top: 100px;
     left: 5%;
     padding: 1%;
@@ -20,7 +19,6 @@
 .user-block-entry {
     resize: none;
     color: black;
-    background-color:gray;
     height: min-content;
     border: none;
     border: none;
@@ -45,7 +43,6 @@
     padding: 1%;
     margin-top: 3vh;
     width: 100%;
-    background-color: lightgray;
     height: 50vh;
     resize: none;
     color: black;
@@ -120,7 +117,6 @@
     margin-left: 1%;
     margin-top: 1%;
     padding: 1%;
-    background-color: lightgray;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -139,7 +135,6 @@
     grid-template-columns: auto auto 1fr auto;
     grid-template-rows: 1fr;
     vertical-align: top;
-    background-color: gray;
     height: min-content;
 }
 
@@ -160,7 +155,6 @@
 }
 
 .comment-title { 
-    background-color: gray;
     font-size: 100%;
     border: none;
     padding-left: 10%;
@@ -176,7 +170,6 @@
     vertical-align: center;
     border: none;
     color: black;
-    background-color: gray;
     -moz-appearance: textfield-multiline;
     -webkit-appearance: textarea;
     overflow: auto;
