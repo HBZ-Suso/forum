@@ -15,7 +15,6 @@ class Filter
 
 	public function purify($text, $times)
 	{
-		echo "xD";
 		$to_return = $text;
 		for ($i = 0; $i < $times; $i++) {
 			$to_return = $this->purifier->purify($to_return);

@@ -23,7 +23,7 @@ if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastArticle"])
     exit("Timeouterror");
 }
 
-if (!isset($_GET["form"])) { 
+if (!isset($_POST["form"])) { 
     echo '
     <link rel="stylesheet" href="/forum/assets/style/create_article.css">
 
@@ -33,7 +33,7 @@ if (!isset($_GET["form"])) {
             <input type="text" name="title" placeholder="Title" class="title">
             <textarea name="text" placeholder="Text" class="text"></textarea>
             <input type="text" name="tags" placeholder="Tags (Seperated by whitespace)" class="tags">
-            <input type="submit" name="submit" class="submit">
+            <input type="submit" name="submit" class="submit" id="submit-article">
         </form>
 
         <div class="home">Home</div>
@@ -45,12 +45,11 @@ if (!isset($_GET["form"])) {
             window.location = "/forum";
         });
     </script>
+    <script src="/forum/assets/script/create_article.js"></script>
     ';
 } else {
     if (
-        !isset($_POST["submit"]) || 
         !isset($_POST["title"]) || 
-        !isset($_POST["tags"]) || 
         !isset($_POST["text"])
         ) {
             header("LOCATION:/forum/assets/site/signup.php?error=formerror");
@@ -61,13 +60,10 @@ if (!isset($_GET["form"])) {
     $tags = explode("-", clean($filter->purify($_POST["tags"], 15)));
     
     if ($data->create_article($_SESSION["userId"], $filter->purify($_POST["title"], 50), $filter->purify($_POST["text"], 35), $tags)) {
-        header("LOCATION: /forum/");
-        exit("Successfully created article...");
+        exit("success");
     } else {
-        header("LOCATION:/forum/assets/site/signup.php?error=creationerror");
-        exit("Error whilst trying to create article");
+        exit("error");
     }
-
 
 }
 
