@@ -42,5 +42,6 @@ if (isset($change["userPhone"])) {
 }
 
 
-header("LOCATION:/forum/assets/site/account.php?selected=" . $change["selected"]);
-exit("Successfully changed data...");
+//header("LOCATION:/forum/assets/site/account.php?selected=" . $change["selected"]);
+//exit("Successfully changed data...");
+exit();

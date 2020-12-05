@@ -7,31 +7,29 @@ var elements = [
     document.getElementById("userAge")
 ]
 
-var timeout = 20;
+function send_ajax () {
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            reload.changed = false;
+            document.getElementById("saved").style.display = "block";
+            document.getElementById("saved").innerText = "Saved!";
+            setTimeout(() => {document.getElementById("saved").innerText = ""; document.getElementById("saved").style.display = "none";}, 1000);
+        }
+    };
+
+    xhttp.open("POST", "/forum/assets/site/change_data.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("change_data=" + JSON.stringify(changed) + "&ajax=true");
+}
+
+var timeout = 5;
 
 var reload = {
-    reloading: false,
+    changed: false,
     execute: function () {
-        if (reload.reloading === false) {
-            setTimeout(function () {document.getElementById("main_form").submit();}, timeout * 1000);
-            reload.reloading = true; 
-            document.getElementById("counter").innerText = timeout;
-            setTimeout(reload.update_timer, 1000);
-        }
-    },
-    update_timer: function () {
-        document.getElementById("counter").innerText = parseInt(document.getElementById("counter").innerText) - 1;
-        if (parseInt(document.getElementById("counter").innerText) < 0) {
-            document.getElementById("counter").innerText = 20;
-            document.getElementById("counter").style.backgroundColor = "aquamarine";
-        } else {
-            if (parseInt(document.getElementById("counter").innerText) > 10) {
-                document.getElementById("counter").style.backgroundColor = "orange";
-            } else {
-                document.getElementById("counter").style.backgroundColor = "red";
-            }
-            setTimeout(reload.update_timer, 1000);
-        } 
+        this.changed = true;
     }
 }
 
@@ -44,7 +42,6 @@ elements.forEach((element, index) => {
             if (e.target.value === user_data[e.target.id]) {
                 delete changed[e.target.id];
             }
-            document.getElementById("change_data").value = JSON.stringify(changed);
             reload.execute();
         });
         element.addEventListener("change", (e) => {
@@ -53,7 +50,6 @@ elements.forEach((element, index) => {
             if (e.target.value === user_data[e.target.id]) {
                 delete changed[e.target.id];
             }
-            document.getElementById("change_data").value = JSON.stringify(changed);
             reload.execute();
         })
     }
@@ -81,7 +77,20 @@ document.getElementById("userAge").addEventListener("change", (e) => {
 })
 
 
-if (selected !== undefined) {
-    document.getElementById(selected).click();
-    document.getElementById(selected).focus();
+
+document.getElementById("userSubmit").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    send_ajax();
+})
+
+
+
+var timer = () => {
+    if (reload.changed == true) {
+        send_ajax();
+    }
+    setTimeout(() => {timer()}, 1000 * timeout);
 }
+
+timer();

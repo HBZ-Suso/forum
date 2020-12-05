@@ -77,14 +77,15 @@
 }
 
 
-.counter {
+.saved {
     position: absolute;
     bottom: 0px;
     left: 0px;
     font-size: 2vw;
     border-radius: 10vw;
     height: 2.6vw;
-    width: 2.6vw;
+    width: auto;
+    display: none;
     margin: 0.3vw;
     padding: 0.1vw;
     text-align: center;

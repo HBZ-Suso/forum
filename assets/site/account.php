@@ -43,12 +43,9 @@ if (isset($_GET["selected"])) {
             <textarea id="userDescription" class="theme-main-color-2"></textarea>
         </div>
 
-
-        <input style="display: none;" name="change_data" id="change_data" type="text">
-
         <input type="submit" id="userSubmit" value="Save" class="theme-main-color-2">
     </form>
 </div>
-<span id="counter" class="counter">20</span>
+<span id="saved" class="saved"></span>
 <script src="/forum/assets/script/account.js"></script>
 
