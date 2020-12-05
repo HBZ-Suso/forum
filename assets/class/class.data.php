@@ -891,4 +891,33 @@ class Data extends Connector {
         $stmt->close();
         return true;
     }
+
+
+
+    public function get_last_user_comment_id ()
+    {
+        $query = "SELECT commentId FROM userComments ORDER BY commentId desc";
+        $result = $this->connId->query($query);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $row["commentId"];
+            }
+        } else {
+            return false;
+        }
+    }
+
+
+    public function get_last_article_comment_id ()
+    {
+        $query = "SELECT commentId FROM articleComments ORDER BY commentId desc";
+        $result = $this->connId->query($query);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $row["commentId"];
+            }
+        } else {
+            return false;
+        }
+    }
 }

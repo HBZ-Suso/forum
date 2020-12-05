@@ -12,46 +12,24 @@ if (!isset($_SESSION["user"]) || !isset($_SESSION["userId"])) {
 }
 
 
-if (!(isset($_GET["articleId"]) || isset($_GET["userId"])) || !isset($_POST["title"]) || !isset($_POST["text"])) {
-    if (isset($_GET["articleId"])) {
-        $get = '?articleId=' . $_GET["articleId"] . "&error=formerror";
-    } else if (isset($_GET["userId"])) {
-        $get = '?userId=' . $_GET["userId"] . "&error=formerror";
-    } else {
-        $get = "?error=formerror";
-    }
-    header("LOCATION:/forum/" . $get);
+if (!(isset($_POST["articleId"]) || isset($_POST["userId"])) || !isset($_POST["title"]) || !isset($_POST["text"])) {
     exit("Formerror");
 }
 
 if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastComment"]) < 60) && !($data->is_admin_by_id($_SESSION["userId"]))) {
-    if (isset($_GET["articleId"])) {
-        $get = '?articleId=' . $_GET["articleId"] . "&error=timeouterror";
-    } else if (isset($_GET["userId"])) {
-        $get = '?userId=' . $_GET["userId"] . "&error=timeouterror";
-    } else {
-        $get = "?error=timeouterror";
-    }
-    header("LOCATION: /forum/" . $get);
     exit("Timeouterror");
 }
 
-if (isset($_GET["articleId"])) {
-    $data->create_article_comment($_SESSION["userId"], $_GET["articleId"], $filter->purify($_POST["title"], 25), $filter->purify($_POST["text"], 20));
-} else if (isset($_GET["userId"])) {
-    $data->create_user_comment($_SESSION["userId"], $_GET["userId"], $filter->purify($_POST["title"], 25), $filter->purify($_POST["text"], 20));
+if (isset($_POST["articleId"])) {
+    $data->create_article_comment($_SESSION["userId"], $_POST["articleId"], $filter->purify($_POST["title"], 25), $filter->purify($_POST["text"], 20));
+} else if (isset($_POST["userId"])) {
+    $data->create_user_comment($_SESSION["userId"], $_POST["userId"], $filter->purify($_POST["title"], 25), $filter->purify($_POST["text"], 20));
 }
 
 $data->set_comment_timeout_by_id($_SESSION["userId"]);
 
-
-if (isset($_GET["articleId"])) {
-    $get = '?articleId=' . $_GET["articleId"];
-} else if (isset($_GET["userId"])) {
-    $get = '?userId=' . $_GET["userId"];
-} else {
-    $get = "";
+if (isset($_POST["articleId"])) {
+    exit($data->get_last_article_comment_id());
+} else if (isset($_POST["userId"])) {
+    exit($data->get_last_user_comment_id());
 }
-
-header("LOCATION:/forum/" . $get);
-exit("Successfully added comment....");
