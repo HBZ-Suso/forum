@@ -6,6 +6,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 if (isset($_GET["logout"])) {
     unset($_SESSION["user"]);
     unset($_SESSION["userId"]);
+    unset($_SESSION["userIp"]);
     header("LOCATION: /forum/");
     exit("Successfully logged out...");
 }
@@ -32,7 +33,8 @@ if (!isset($_GET["form"])) {
     ';
 } else {
     if (!isset($_POST["submit"])) {
-        exit("Error, please do not change the request data...");
+        header("LOCATION:/forum/assets/site/login.php?error=formerror");
+        exit("Formerror, please do not change the request data...");
     }
     if (!isset($_POST["username"]) || !isset($_POST["password"])) {
         header("LOCATION:/forum/assets/site/login.php");
@@ -42,6 +44,7 @@ if (!isset($_GET["form"])) {
     if ($data->check_login($_POST["username"], $_POST["password"])) {
         $_SESSION["user"] = $_POST["username"];
         $_SESSION["userId"] = intval($data->get_id_by_username($_SESSION["user"]));
+        $_SESSION["userIp"] = $info->get_ip();
         header("LOCATION: /forum/");
         exit("Successfully logged in...");
     } else {

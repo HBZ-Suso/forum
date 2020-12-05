@@ -16,4 +16,18 @@ class Info
             $this->mobile = false;
         }
     }
+
+
+    public function get_ip ()
+    {
+        /* CAN BE SET BY USER!
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {*/
+            $ip = $_SERVER['REMOTE_ADDR'];
+        //}
+        return $ip;
+    }
 }

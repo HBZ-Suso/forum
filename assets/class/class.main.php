@@ -48,6 +48,16 @@ if (!isset($hide_frame)) {
 }
 
 
+if (isset($_SESSION["user"]) || isset($_SESSION["userId"])) {
+    if (!isset($_SESSION["userIp"]) || $_SESSION["userIp"] !== $info->get_ip()) {
+        unset($_SESSION["user"]);
+        unset($_SESSION["userId"]);
+        unset($_SESSION["userIp"]);
+        header("LOCATION: /forum/?forced_logout=differentIp");
+        exit("As your ip changed, you were logged out.");
+    }
+}
+
 
 
 
