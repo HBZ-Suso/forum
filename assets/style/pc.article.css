@@ -145,6 +145,7 @@
     border: none;
     padding-left: 10%;
     font-weight: normal;
+    outline: none;
 }
 
 .comment-author {
@@ -160,6 +161,7 @@
     -webkit-appearance: textarea;
     overflow: auto;
     resize: none;
+    outline: none;
 }
 
 

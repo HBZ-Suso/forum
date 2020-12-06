@@ -17,6 +17,7 @@
     height: 45px;
     border-radius: 20px;
     padding-left: 7px;
+    outline: none;
 }
 
 .refined-search-submit {
@@ -49,6 +50,7 @@
     height: 100%;
     opacity: 0;
     cursor: pointer;
+    outline: none;
 }
 
 .refined-search-table > tbody > tr > td > div {

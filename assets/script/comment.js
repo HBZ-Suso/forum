@@ -42,6 +42,7 @@ var refresh_comments = async () => {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let comments = JSON.parse(this.responseText);
+            comments.reverse();
             document.getElementById("js_comments").innerHTML = "";
             for (let key in comments) {
                 let element = comments[key];
