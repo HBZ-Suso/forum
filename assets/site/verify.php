@@ -11,7 +11,6 @@ if (!isset($_SESSION["userId"]) || !$data->is_admin_by_id($_SESSION["userId"])) 
 
 if (isset($_GET["userId"])) {
     $data->execute_verify_by_user_id($_GET["userId"]);
-    echo "xD";
     if (isset($_GET["refer"])) {
         header("LOCATION: " . $_GET["refer"]);
         exit("Refered back.");
