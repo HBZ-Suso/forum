@@ -19,7 +19,7 @@ function send_ajax () {
         }
     };
 
-    xhttp.open("POST", "/forum/assets/site/change_data.php", true);
+    xhttp.open("POST", "/forum/assets/api/change_data.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("change_data=" + JSON.stringify(changed) + "&ajax=true");
 }

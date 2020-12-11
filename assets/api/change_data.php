@@ -26,7 +26,6 @@ if (isset($change["userDescription"])) {
 }
 if (isset($change["userAge"])) {
     if (!is_numeric($change["userAge"])) {
-        header("LOCATION:/forum/assets/site/account.php?form=requesterror");
         exit("Formerror");
     }
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userAge", $filter->purify($change["userAge"], 25));
