@@ -7,7 +7,7 @@ function send_ajax_request (title, text, tags) {
         }
     };
 
-    xhttp.open("POST", "/forum/assets/api/create_article.php", true);
+    xhttp.open("POST", "/forum/assets/site/create_article.php", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("form=true&title=" + title + "&text=" +  text + "&tags=" + tags);
 }

@@ -12,6 +12,10 @@ if (isset($_GET["logout"])) {
 }
 
 if (!isset($_GET["form"])) {
+    if (isset($_GET["refer"])) {
+        $_SESSION["login-refer"] = $_GET["refer"];
+    }
+
     echo '
     <link rel="stylesheet" href="/forum/assets/style/login.css">
     <div class="login-background">

@@ -29,15 +29,15 @@ if (isset($_SESSION["userId"])) {
 
 
 if (isset($_SESSION["userId"]) && (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($userId)) || intval($userId) === intval($_SESSION["userId"]))) {
-    $delete_button = '<div class="delete-user">Delete</div>
-    <script>document.querySelector(".delete-user").addEventListener("click", (e) => {window.location = "/forum/assets/site/delete.php?userId=' . $userId . '&refer=/forum/";})</script>';
+    $delete_button = '<div class="delete-btn">Delete</div>
+    <script src="/forum/assets/script/delete.js"></script>';
 } else {
     $delete_button = "";
 }
 
 if (isset($_SESSION["userId"]) && $data->is_admin_by_id($_SESSION["userId"])) {
     $verify_button = '<div class="verify-user">Verify</div>
-    <script>document.querySelector(".verify-user").addEventListener("click", (e) => {window.location = "/forum/assets/site/verify.php?userId=' . $userId . '&refer=/forum/?userId=' . $userId . '";})</script>';
+    <script src="/forum/assets/script/verify.js"></script>';
 } else {
     $verify_button = "";
 }
@@ -55,7 +55,8 @@ echo '
 <link rel="stylesheet" href="/forum/assets/style/pc.user.css">
 
 <div class="user-block theme-main-color-1">
-    <div class="like-user ' . $liked . '">Like</div>
+    <div class="like-btn ' . $liked . '">Like</div>
+    <script src="/forum/assets/script/like.js"></script>
     ' . $delete_button . '
     ' . $verify_button . '
     <textarea disabled class="theme-main-color-1 user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] .  '</textarea> ' . $verified . '
@@ -86,7 +87,7 @@ if (isset($_SESSION["userId"])) {
     <div id="js_comments"></div>
     ';
 } else {
-    echo '<script>var cur_Id = "articleId=" + "' . $articleId . '";</script>
+    echo '<script>var cur_Id = "userId=" + "' . $userId . '";</script>
     <script>var cur_username = false;</script>
     <script async defer src="/forum/assets/script/comment.js"></script>
     <div id="js_comments"></div>';
@@ -96,6 +97,4 @@ if (isset($_SESSION["userId"])) {
 
 echo '
 </div></div>
-
-<script>document.querySelector(".like-user").addEventListener("click", (e) => {window.location = "/forum/assets/site/like.php?targetUserId=' . $userId . '&refer=/forum/?userId=' . $userId . '";})</script>
 ';

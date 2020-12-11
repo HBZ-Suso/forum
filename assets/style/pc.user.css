@@ -51,7 +51,7 @@
 
 
 
-.delete-user {
+.delete-btn {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -77,7 +77,7 @@
 }
 
 
-.like-user {
+.like-btn {
     position: absolute;
     top: 0px;
     right: 0px;
