@@ -15,8 +15,14 @@ var delete_comment = async (commentId) => {
     xhttp.send(cur_Id + "&commentId=" + commentId);
 }
 
+let delete_button;
 
 async function create_new_comment (title, text, id, user) {
+    delete_button = "";
+    if (cur_username !== false) {
+        var delete_button = '<button class="comment-delete" id="comment-element-' + id + '">Delete</button>'
+    }
+
     let element =  '<div class="comment theme-main-color-1" id="comment-id-' + id + '">' + 
     '<h3 class="comment-title theme-main-color-1">' + 
     title + 
@@ -25,12 +31,14 @@ async function create_new_comment (title, text, id, user) {
     user +
     '</h3>' +
     '<textarea class="comment-text theme-main-color-1" disabled>' + text + '</textarea>' + 
-    '<button class="comment-delete" id="comment-element-' + id + '">Delete</button>' +
+    delete_button +
     '</div>'
 
     document.getElementById("js_comments").insertAdjacentHTML("afterbegin", element);
 
-    document.getElementById("comment-element-" + id).addEventListener("click", (e) => { delete_comment(e.target.id.replace("comment-element-", ""));});
+    if (cur_username !== false) {
+        document.getElementById("comment-element-" + id).addEventListener("click", (e) => { delete_comment(e.target.id.replace("comment-element-", ""));});
+    }
 
     return true;
 }
@@ -42,7 +50,9 @@ var refresh_comments = async () => {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let comments = JSON.parse(this.responseText);
-            comments.reverse();
+            if (comments.length > 0) {
+                comments.reverse();
+            }
             document.getElementById("js_comments").innerHTML = "";
             for (let key in comments) {
                 let element = comments[key];
@@ -61,6 +71,9 @@ var refresh_comments = async () => {
 
 
 async function submit_comment_ajax (title, text) {
+    if (cur_username === false) {
+        throw new Error("Not logged in");
+    }
     let xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function() {
@@ -105,19 +118,20 @@ async function submit_comment_ajax (title, text) {
     return true;
 }
 
-document.getElementById("submit-comment").addEventListener("click", (e) => {
-    e.preventDefault();
+if (cur_username !== false) {
+    document.getElementById("submit-comment").addEventListener("click", (e) => {
+        e.preventDefault();
 
-    if (document.querySelector(".comment-text").value !== "" && document.querySelector(".comment-title").value !== "") {
-        submit_comment_ajax(document.querySelector(".comment-text").value, document.querySelector(".comment-title").value);
-    }
-})
+        if (document.querySelector(".comment-text").value !== "" && document.querySelector(".comment-title").value !== "") {
+            submit_comment_ajax(document.querySelector(".comment-title").value, document.querySelector(".comment-text").value);
+        }
+    })
+}
 
 
 
 
 var reload_loop = () => {
-
     refresh_comments().then(() => {try {document.getElementById("loading-comments-info").remove();} catch (e) {console.log(e);}}, () => {try {document.getElementById("loading-comments-info").innerText = "Failed to load comments";} catch (e) {console.log(e);}});
     setTimeout(() => {
         reload_loop();

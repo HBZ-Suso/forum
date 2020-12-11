@@ -83,6 +83,11 @@ if (isset($_SESSION["userId"])) {
     <script async defer src="/forum/assets/script/comment.js"></script>
     <div id="js_comments"></div>
     ';
+} else {
+    echo '<script>var cur_Id = "articleId=" + "' . $articleId . '";</script>
+    <script>var cur_username = false;</script>
+    <script async defer src="/forum/assets/script/comment.js"></script>
+    <div id="js_comments"></div>';
 }
 
 

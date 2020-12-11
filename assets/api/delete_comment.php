@@ -19,12 +19,12 @@ if (isset($_POST["articleId"])) {
 }
 
 if ($type === "article") {
-    if (!$data->is_admin_by_id($_SESSION["userId"]) && ($data->get_article_comment_by_id($_POST["commentId"])["userId"] !== $_SESSION["userId"])) {
+    if (!$data->is_admin_by_id($_SESSION["userId"]) && ($data->get_article_comment_by_id($_POST["commentId"])["userId"] !== $_SESSION["userId"]) && (intval($data->get_article_by_id($_POST["articleId"])["userId"]) !== intval($_SESSION["userId"]))) {
         exit("Permissionerror");
     }
     $data->delete_article_comment_by_id($_POST["commentId"]);
 } else if ($type === "user") {
-    if (!$data->is_admin_by_id($_SESSION["userId"]) && ($data->get_user_comment_by_id($_POST["commentId"])["userId"] !== $_SESSION["userId"])) {
+    if (!$data->is_admin_by_id($_SESSION["userId"]) && ($data->get_user_comment_by_id($_POST["commentId"])["userId"] !== $_SESSION["userId"])  && (intval($_POST["userId"]) !== intval($_SESSION["userId"]))) {
         exit("Permissionerror");
     }
     $data->delete_user_comment_by_id($_POST["commentId"]);
