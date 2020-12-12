@@ -13,7 +13,7 @@ if (isset($_GET["show"])) {
             }
             break;
         case "about":
-            exit("Not coded yet ;-)");
+            include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about.php";
             break;
     }
 }
