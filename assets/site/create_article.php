@@ -30,13 +30,13 @@ if (!isset($_POST["form"])) {
     <div class="background">
 
         <form action="/forum/assets/site/create_article.php?form=true" method="post" class="main-form">
-            <input type="text" name="title" placeholder="Title" class="title">
-            <textarea name="text" placeholder="Text" class="text"></textarea>
-            <input type="text" name="tags" placeholder="Tags (Seperated by whitespace)" class="tags">
+            <input type="text" name="title" placeholder="' . $text->get("create-article-title") . '" class="title">
+            <textarea name="text" placeholder="' . $text->get("create-article-text") . '" class="text"></textarea>
+            <input type="text" name="tags" placeholder="' . $text->get("create-article-tags") . '" class="tags">
             <input type="submit" name="submit" class="submit" id="submit-article">
         </form>
 
-        <div class="home">Home</div>
+        <div class="home">' . $text->get("create-article-home") . '</div>
 
     </div>
 

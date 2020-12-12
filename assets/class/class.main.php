@@ -57,10 +57,3 @@ if (isset($_SESSION["user"]) || isset($_SESSION["userId"])) {
         exit("As your ip changed, you were logged out.");
     }
 }
-
-
-
-
-
-
-

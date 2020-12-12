@@ -35,15 +35,15 @@ echo '
 
         <table class="refined-search-table">
             <tr>
-                <th><label for="title" class="refined-search-label">Title</label></th>
-                <th><label for="text" class="refined-search-label">Text</label></th>
-                <!--<th><label for="author" class="refined-search-label">Author</label></th>-->
+                <th><label for="title" class="refined-search-label">' . $text->get("refined-title") . '</label></th>
+                <th><label for="text" class="refined-search-label">' . $text->get("refined-text") . '</label></th>
+                <!--<th><label for="author" class="refined-search-label">' . $text->get("refined-author") . '</label></th>-->
                 <th><label for="info class="refined-search-label">|</label></th>
-                <th><label for="title" class="refined-search-label">Name</label></th>
-                <th><label for="text" class="refined-search-label">Mail</label></th>
-                <th><label for="title" class="refined-search-label">Description</label></th>
-                <th><label for="text" class="refined-search-label">Phone</label></th>
-                <th><label for="text" class="refined-search-label">Employment</label><br></th>
+                <th><label for="title" class="refined-search-label">' . $text->get("refined-name") . '</label></th>
+                <th><label for="text" class="refined-search-label">' . $text->get("refined-mail") . '</label></th>
+                <th><label for="title" class="refined-search-label">' . $text->get("refined-description") . '</label></th>
+                <th><label for="text" class="refined-search-label">' . $text->get("refined-phone") . '</label></th>
+                <th><label for="text" class="refined-search-label">' . $text->get("refined-Employment") . '</label><br></th>
             </tr>
             <tr>
                 <td><div class="checkbox-div theme-main-color-2" id="1"><input type="checkbox" name="title" ' . $set["title"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>

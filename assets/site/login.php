@@ -8,7 +8,7 @@ if (isset($_GET["logout"])) {
     unset($_SESSION["userId"]);
     unset($_SESSION["userIp"]);
     header("LOCATION: /forum/");
-    exit("Successfully logged out...");
+    exit($text->get("login-logged-out"));
 }
 
 if (!isset($_GET["form"])) {
@@ -20,13 +20,13 @@ if (!isset($_GET["form"])) {
     <link rel="stylesheet" href="/forum/assets/style/login.css">
     <div class="login-background">
         <form action="/forum/assets/site/login.php?form=true" method="post" class="main-form">
-            <a class="signup" href="/forum/assets/site/signup.php"> To Signup</a><br>
-            <input type="text" name="username" placeholder="Your username" class="username">
-            <input type="password" name="password" placeholder="Your Password" class="password">
+            <a class="signup" href="/forum/assets/site/signup.php">' . $text->get("login-signup") . '</a><br>
+            <input type="text" name="username" placeholder="' . $text->get("login-username") . '" class="username">
+            <input type="password" name="password" placeholder="' . $text->get("login-pwd") . '" class="password">
             <input type="submit" name="submit" value="submit" class="submit">
         </form>
         
-        <div class="home">Home</div>
+        <div class="home">' . $text->get("create-article-home") . '</div>
 
     </div>
     <script>

@@ -53,9 +53,9 @@ foreach ($user_list as $value) {
     echo '
         <div class="user-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
             <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] . $verified . '</span><br>
-            <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">Mail: </p>' . $value["userMail"] .'</span>
-            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Views: </p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
-            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">Likes: </p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
+            <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">' . $text->get("user-block-mail") . '</p>' . $value["userMail"] .'</span>
+            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $text->get("user-block-views") . '</p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
+            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $text->get("user-block-like") . '</p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
         </div>
 
         <script>

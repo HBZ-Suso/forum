@@ -44,9 +44,9 @@ foreach ($article_list as $value) {
     echo '
     <div class="article-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" id="article_' . $value["articleId"] . '">
         <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . $value["articleTitle"] .'</span><br>
-        <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">Author: </p>' . $data->get_username_by_id($value["userId"]) . $verified .'</span>
-        <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Views: </p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span>
-        <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">Likes: </p>' . $data->get_article_likes_by_article_id($value["articleId"]) .'</span><br>
+        <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">' . $text->get("article-block-author") . '</p>' . $data->get_username_by_id($value["userId"]) . $verified .'</span>
+        <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">' . $text->get("article-block-views") . '</p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span>
+        <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">' . $text->get("article-block-like") . '</p>' . $data->get_article_likes_by_article_id($value["articleId"]) .'</span><br>
     </div>
 
     <script>

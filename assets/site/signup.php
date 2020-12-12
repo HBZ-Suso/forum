@@ -13,20 +13,20 @@ if (!isset($_GET["form"])) {
     <div class="login-background">
 
         <form action="/forum/assets/site/signup.php?form=true" method="post" class="main-form">
-            <a class="login" href="/forum/assets/site/login.php">To Login</a><br>
-            <input type="text" name="username" placeholder="Your username" class="username">
-            <input type="password" name="password" placeholder="Your Password" class="password">
-            <input type="password" name="password_2" placeholder="Again, to be sure" class="password password_2">
-            <input type="number" min=1 max=114 name="age" placeholder="Your Age" class="age">
-            <input type="text" name="employment" placeholder="Your Employment" class="employment">
-            <textarea name="description" placeholder="Your Description" class="description"></textarea>
-            <input type="text" name="mail" placeholder="Your Mail" class="mail">
-            <input type="text" name="phone" placeholder="Your Phone Number" class="phone">
-            <input type="text" name="code" placeholder="Your Code" class="code">
+            <a class="login" href="/forum/assets/site/login.php">' . $text->get("signup-login") . '</a><br>
+            <input type="text" name="username" placeholder="' . $text->get("signup-username") . '" class="username">
+            <input type="password" name="password" placeholder="' . $text->get("signup-pwd") . '" class="password">
+            <input type="password" name="password_2" placeholder="' . $text->get("signup-pwd-again") . '" class="password password_2">
+            <input type="number" min=1 max=114 name="age" placeholder="' . $text->get("signup-age") . '" class="age">
+            <input type="text" name="employment" placeholder="' . $text->get("signup-employment") . '" class="employment">
+            <textarea name="description" placeholder="' . $text->get("signup-description") . '" class="description"></textarea>
+            <input type="text" name="mail" placeholder="' . $text->get("signup-mail") . '" class="mail">
+            <input type="text" name="phone" placeholder="' . $text->get("signup-phone") . '" class="phone">
+            <input type="text" name="code" placeholder="' . $text->get("signup-code") . '" class="code">
             <input type="submit" name="submit" value="submit" class="submit">
         </form>
 
-        <div class="home">Home</div>
+        <div class="home">' . $text->get("create-article-home") . '</div>
 
     </div>
 
