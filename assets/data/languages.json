@@ -61,7 +61,9 @@
         "signup-pwd-again": "Again, just to be sure",
         "signup-pwd": "Your password",
         "signup-username": "Your username",
-        "signup-login": "To login"
+        "signup-login": "To login",
+        "theme-switcher": "Switch Theme",
+        "theme-switcher-question": "What theme do you want to choose?"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -125,6 +127,8 @@
         "signup-pwd-again": "Noch einmal...",
         "signup-pwd": "Dein Passwort",
         "signup-username": "Dein Benutzername",
-        "signup-login": "Zum Anmelden"
+        "signup-login": "Zum Anmelden",
+        "theme-switcher": "Thema wechseln",
+        "theme-switcher-question": "Welches Thema willst du auswählen?"
     }
 }

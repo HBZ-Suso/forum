@@ -104,3 +104,16 @@
 
 
 
+.theme-switcher {
+    position: fixed;
+    z-index: 2;
+    left: 0px;
+    bottom: 0px;
+    font-size: min(1vw, 35px);
+    padding: min(0.6vw, 30px);
+    border-radius: min(2vw, 40px);
+}
+
+.theme-switcher:hover {
+    cursor: pointer;
+}

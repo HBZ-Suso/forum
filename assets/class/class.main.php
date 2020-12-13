@@ -12,14 +12,6 @@ if ($_SESSION["language"] !== $_COOKIE["language"]) {
     setcookie("language", $_SESSION["language"], time() +24*3600*365, "/");
 }
 
-echo "
-<style>
-    .script-warning {display: none;}
-    @media (scripting: none) {.script-warning {background-color: red;position: fixed;height: 100%;width: 100%;top: 0px;left: 0px; display: block!important; z-index: 6;}}
-</style>";
-echo "<div class='script-warning'>This site is relying on Javascript, please switch to a browser that supports JS or activate it.</div>";
-
-
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.info.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.data.php";
@@ -34,6 +26,18 @@ if (isset($require_purifier)) {
 }
 
 if (!isset($hide_frame)) {
+    echo '<script src="/forum/assets/script/functions.js"></script>';
+
+
+    echo "
+    <style>
+        .script-warning {display: none;}
+        @media (scripting: none) {.script-warning {background-color: red;position: fixed;height: 100%;width: 100%;top: 0px;left: 0px; display: block!important; z-index: 6;}}
+    </style>";
+    echo "<div class='script-warning'>This site is relying on Javascript, please switch to a browser that supports JS or activate it.</div>";
+
+
+
     if (isset($_SESSION["theme"])) {
         $theme = $_SESSION["theme"];
         if (!isset($_COOKIE["theme"]) || $_COOKIE["theme"] !== $_SESSION["theme"]) {
@@ -50,7 +54,7 @@ if (!isset($hide_frame)) {
     }
 
 
-    echo '<link rel="stylesheet" href="/forum/assets/theme/' . $theme . '.css">';
+    echo '<div id="theme-box"><link rel="stylesheet" href="/forum/assets/theme/' . $theme . '.css"></div>';
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/loading.html";
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/frame.php";
 }

@@ -19,4 +19,9 @@ class Text
     {
         echo json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] .self::$language_file), true)[$this->language][$key];
     }
+
+    public function get_all() 
+    {
+        return json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] .self::$language_file), true)[$this->language];
+    }
 } 
