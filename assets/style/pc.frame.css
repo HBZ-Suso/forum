@@ -41,7 +41,7 @@
 }
 
 .main-heading-search-text {
-    font-size: 2vw;
+    font-size: min(2vw, 30px);
     width: auto;
     border-radius: 130px;
     border: 0px;
@@ -52,7 +52,7 @@
 }
 
 .main-heading-search-submit {
-    font-size: 2vw;
+    font-size: min(2vw, 30px);
     width: 8vw;
     border-radius: 130px;
     border: 0px;
@@ -83,7 +83,7 @@
     font-family: 'Roboto', sans-serif;
     z-index: 3;
     display: none;
-    width: 15%;
+    width: min(15%, 220px);
     position: fixed;
     top: 80px;
     left: 0px;
@@ -95,7 +95,7 @@
 .main-menu-entry {
     display: inline-block;
     width: 100%;
-    font-size: 2vw;
+    font-size: min(2vw, 36px);
     color: black;
     text-decoration: none;
     padding-left: 5%;

@@ -23,8 +23,8 @@
     border: none;
     border: none;
     width: 100%;
-    font-size:  1.2vw;
-    height: 1.4vw;
+    font-size:  min(1.2vw, 30px);
+    height: min(1.4vw, 35px);
     padding: 0px;
     margin: 0px;
     text-align: center;
@@ -32,8 +32,8 @@
 }
 
 .article-block-title {
-    font-size:  3vw;
-    height: 3.7vw;
+    font-size:  min(3vw, 50px);
+    height:  min(3vw, 50px);
     text-decoration: underline;
 }
 
@@ -44,7 +44,7 @@
     height: 50vh;
     resize: none;
     color: black;
-    font-size: 2vw;
+    font-size: min(2vw, 30px);
 }
 
 
@@ -52,7 +52,7 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    font-size: 2vw;
+    font-size: min(2vw, 25px);
     margin: 1vw;
     background-color: rgb(83, 83, 83);
     padding: 0.5vw;
@@ -70,7 +70,7 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    font-size: 2vw;
+    font-size: min(2vw, 25px);
     margin: 1vw;
     background-color: rgb(83, 83, 83);
     padding: 0.5vw;
@@ -82,16 +82,16 @@
 
 .verified {
     position: absolute;
-    right: 7vw;
+    right: min(7vw, 140px);
     top: 1vw;
     padding: 0px;
     margin: 0px;
-    font-size: 3vw;
+    font-size:min(3vw, 50px);
     color: rgb(45, 209, 45);
     background-color: rgb(167, 167, 167);
     border-radius: 5vw;
-    height: 3.4vw;
-    width: 3.4vw;
+    height: min(3.4vw, 55px);
+    width: min(3.4vw, 55px);
     text-align: center;
 }
 
