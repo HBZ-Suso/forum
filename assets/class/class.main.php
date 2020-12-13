@@ -14,8 +14,8 @@ if ($_SESSION["language"] !== $_COOKIE["language"]) {
 
 echo "
 <style>
-    @media (scripting: enabled) {.script-warning {display: none;}}
-    @media (scripting: none) {.script-warning {background-color: red;position: fixed;height: 100%;width: 100%;top: 0px;left: 0px;}}
+    .script-warning {display: none;}
+    @media (scripting: none) {.script-warning {background-color: red;position: fixed;height: 100%;width: 100%;top: 0px;left: 0px; display: block!important; z-index: 6;}}
 </style>";
 echo "<div class='script-warning'>This site is relying on Javascript, please switch to a browser that supports JS or activate it.</div>";
 

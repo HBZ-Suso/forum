@@ -83,5 +83,6 @@ layers:
     frame: 2
     menu: 3
     loading-background: 4
+    script-warning: 6
 
 GITHUB: github.com/HBZ-Suso/forum
