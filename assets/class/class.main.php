@@ -12,6 +12,14 @@ if ($_SESSION["language"] !== $_COOKIE["language"]) {
     setcookie("language", $_SESSION["language"], time() +24*3600*365, "/");
 }
 
+echo "
+<style>
+    @media (scripting: enabled) {.script-warning {display: none;}}
+    @media (scripting: none) {.script-warning {background-color: red;position: fixed;height: 100%;width: 100%;top: 0px;left: 0px;}}
+</style>";
+echo "<div class='script-warning'>This site is relying on Javascript, please switch to a browser that supports JS or activate it.</div>";
+
+
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.info.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.data.php";
