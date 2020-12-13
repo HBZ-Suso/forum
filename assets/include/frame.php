@@ -59,3 +59,8 @@ echo '
 <div class="theme-switcher theme-main-color-1" id="theme-switcher">' . $text->get("theme-switcher") . '</div>
 <script src="/forum/assets/script/theme.js"></script>
 ';
+
+echo '
+<div class="language-switcher theme-main-color-1" id="language-switcher">' . $text->get("language-switcher") . '</div>
+<script src="/forum/assets/script/language.js"></script>
+';

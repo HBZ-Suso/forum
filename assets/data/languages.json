@@ -63,7 +63,9 @@
         "signup-username": "Your username",
         "signup-login": "To login",
         "theme-switcher": "Switch Theme",
-        "theme-switcher-question": "What theme do you want to choose?"
+        "theme-switcher-question": "What theme do you want to choose?",
+        "language-switcher": "Change language",
+        "language-switcher-question": "What language should the site use?"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -129,6 +131,8 @@
         "signup-username": "Dein Benutzername",
         "signup-login": "Zum Anmelden",
         "theme-switcher": "Thema wechseln",
-        "theme-switcher-question": "Welches Thema willst du auswählen?"
+        "theme-switcher-question": "Welches Thema willst du auswählen?",
+        "language-switcher": "Ändere Sprache",
+        "language-switcher-question": "Zu welcher Sprache?"
     }
 }
