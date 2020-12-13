@@ -54,6 +54,15 @@ if (!isset($hide_frame)) {
     }
 
 
+    echo '
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>HBZ-Forum</title>
+        <meta name="description" content="Das ofizielle HBZ-Forum | The official HBZ-forum">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>';
+
     echo '<div id="theme-box"><link rel="stylesheet" href="/forum/assets/theme/' . $theme . '.css"></div>';
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/loading.html";
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/frame.php";
