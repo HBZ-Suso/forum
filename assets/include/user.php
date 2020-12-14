@@ -46,7 +46,7 @@ if (isset($_SESSION["userId"]) && $data->is_admin_by_id($_SESSION["userId"])) {
 if ($user_data["userVerified"] == "1") {
     $verified = '<p class="verified">&#10003</p>';
 } else {
-    $verified = "";
+    $verified = '<p class="verified" style="display: none;">&#10003</p>';
 }
 
 

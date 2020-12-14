@@ -10,7 +10,14 @@ verify_element.addEventListener("click", (e) => {
 
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
-                window.location = "/forum/";
+                console.log("Success...");
+                if (document.querySelector(".verified").style.display !== "none") {
+                    document.querySelector(".verified").style.display= "none";
+                } else {
+                    document.querySelector(".verified").style.display = "block";
+                }
+                
+                verify_element.style.backgroundColor = "";
             }
         }
 
