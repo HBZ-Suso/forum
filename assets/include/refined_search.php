@@ -43,7 +43,7 @@ echo '
                 <th><label for="text" class="refined-search-label">' . $text->get("refined-mail") . '</label></th>
                 <th><label for="title" class="refined-search-label">' . $text->get("refined-description") . '</label></th>
                 <th><label for="text" class="refined-search-label">' . $text->get("refined-phone") . '</label></th>
-                <th><label for="text" class="refined-search-label">' . $text->get("refined-Employment") . '</label><br></th>
+                <th><label for="text" class="refined-search-label">' . $text->get("refined-employment") . '</label><br></th>
             </tr>
             <tr>
                 <td><div class="checkbox-div theme-main-color-2" id="1"><input type="checkbox" name="title" ' . $set["title"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>

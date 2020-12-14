@@ -1,18 +1,22 @@
 var delete_comment = async (commentId) => {
-    let xhttp = new XMLHttpRequest();
+    if (document.getElementById(commentId).style.backgroundColor === "yellow") {
+        let xhttp = new XMLHttpRequest();
 
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            let comments = refresh_comments();
-            return comments;
-        } else if (this.readyState == 4) {
-            throw new Error(this.status);
-        }
-    };
-
-    xhttp.open("POST", "/forum/assets/api/delete_comment.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(cur_Id + "&commentId=" + commentId);
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let comments = refresh_comments();
+                return comments;
+            } else if (this.readyState == 4) {
+                throw new Error(this.status);
+            }
+        };
+    
+        xhttp.open("POST", "/forum/assets/api/delete_comment.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(cur_Id + "&commentId=" + commentId.replace("comment-element-", ""));
+    } else {
+        document.getElementById(commentId).style.backgroundColor = "yellow";
+    }
 }
 
 let delete_button;
@@ -37,7 +41,7 @@ async function create_new_comment (title, text, id, user) {
     document.getElementById("js_comments").insertAdjacentHTML("afterbegin", element);
 
     if (cur_username !== false) {
-        document.getElementById("comment-element-" + id).addEventListener("click", (e) => { delete_comment(e.target.id.replace("comment-element-", ""));});
+        document.getElementById("comment-element-" + id).addEventListener("click", (e) => { delete_comment(e.target.id);});
     }
 
     return true;

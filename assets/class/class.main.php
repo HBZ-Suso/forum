@@ -44,7 +44,7 @@ if (!isset($hide_frame)) {
             setcookie("theme", $_SESSION["theme"], time() + 60*60*24*365, "/");
         }
     } else if (isset($_COOKIE["theme"])) {
-        if (in_array($_COOKIE["theme"], ["dark", "yellow"])) {
+        if (in_array($_COOKIE["theme"], $info->get_themes())) {
             $_SESSION["theme"] = $_COOKIE["theme"];
         }
         $theme = $_SESSION["theme"];
@@ -53,6 +53,11 @@ if (!isset($hide_frame)) {
         setcookie("theme", $_SESSION["theme"], time() + 60*60*24*365, "/");
     }
 
+    foreach($info->get_themes() as $value) {
+        echo $value;
+    }
+
+    echo count($info->get_themes());
 
     echo '
     <head>

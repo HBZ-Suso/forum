@@ -1,0 +1,52 @@
+
+
+.theme-main-color-1 {
+    color: black;
+    background-color: #457b9d;
+}
+
+.theme-main-color-2 {
+    color: #f1faee;
+    background-color: #1d3557;
+}
+
+.theme-main-color-3 {
+    color: white;
+    background-color: #e63946;
+}
+
+.hover-theme-main-color-1:hover {
+    color: black;
+    background-color: #a8dadc;
+}
+.hover-theme-main-color-2:hover {
+    color: black;
+    background-color: #a8dadc;
+}
+.hover-theme-main-color-3:hover {
+    color: #88c0d0;
+    background-color: #457b9d;
+}
+.hover-theme-main-4:hover {
+    background-color: #457b9d;
+}
+.owned {
+    color: white;
+    background-color: #e63946;
+}
+
+.owned:hover {
+    background-color:rgb(8, 118, 133);  
+}
+
+.checkbox-div {
+    background-color: #e63946;
+}
+
+.refined-search-color {
+    background-color: #1d3557;
+}
+
+.refined-search {
+    background-color: #EE6C4D!important;
+}

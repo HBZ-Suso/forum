@@ -30,4 +30,16 @@ class Info
         //}
         return $ip;
     }
+
+
+    public function get_themes ()
+    {
+        $elements = array();
+        foreach(scandir($_SERVER["DOCUMENT_ROOT"] . "/forum/assets/theme/") as $value) {
+            if (substr($value, -4) === ".css") {
+                array_push($elements, str_replace(".css", "", $value));
+            }
+        }
+        return $elements;
+    }
 }
