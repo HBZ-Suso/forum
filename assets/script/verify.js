@@ -6,10 +6,9 @@ verify_element.addEventListener("click", (e) => {
             window.location = "/forum/assets/site/login.php?refer=" + cur_Id.replace("=", "-|-|-");
         }
 
-        let xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
+        axios
+            .post("/forum/assets/api/verify.php", cur_Id)
+            .then((response) => {
                 console.log("Success...");
                 if (document.querySelector(".verified").style.display !== "none") {
                     document.querySelector(".verified").style.display= "none";
@@ -18,12 +17,10 @@ verify_element.addEventListener("click", (e) => {
                 }
                 
                 verify_element.style.backgroundColor = "";
-            }
-        }
-
-        xhttp.open("POST", "/forum/assets/api/verify.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(cur_Id);
+            })
+            .catch((error) => {
+                throw new Error(error);
+            })
     } else {
         verify_element.style.backgroundColor = "yellow";
     }

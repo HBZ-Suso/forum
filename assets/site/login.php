@@ -1,6 +1,7 @@
 <?php
 session_start();
 $hide_frame = true;
+$show_essentials = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (isset($_GET["logout"])) {

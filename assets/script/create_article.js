@@ -1,15 +1,12 @@
 function send_ajax_request (title, text, tags) {
-    let xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+    axios
+        .post("/forum/assets/site/create_article.php", "form=true&title=" + title + "&text=" +  text + "&tags=" + tags)
+        .then((response) => {
             window.location = "/forum/?articleTitle=" + document.querySelector(".title").value;
-        }
-    };
-
-    xhttp.open("POST", "/forum/assets/site/create_article.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("form=true&title=" + title + "&text=" +  text + "&tags=" + tags);
+        })
+        .catch((error) => {
+            throw new Error(error);
+        })
 }
 
 document.getElementById("submit-article").addEventListener("click", (e) => {

@@ -9,6 +9,7 @@ function clean ($string) {
 
 $hide_frame = true;
 $require_purifier = true;
+$show_essentials = true;
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 

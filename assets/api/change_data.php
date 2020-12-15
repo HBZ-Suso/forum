@@ -5,16 +5,15 @@ $require_purifier = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (!isset($_SESSION["userId"])) {
-    header("LOCATION:/forum/?form=permissionerror");
     exit("Formerror");
 }
 
 
 if (!isset($_POST["change_data"])) {
-    header("LOCATION:/forum/assets/site/account.php?form=formerror");
     exit("Formerror");
 }
 
+echo $_POST["change_data"];
 
 $change = json_decode($_POST["change_data"], true);
 
@@ -41,6 +40,5 @@ if (isset($change["userPhone"])) {
 }
 
 
-//header("LOCATION:/forum/assets/site/account.php?selected=" . $change["selected"]);
-//exit("Successfully changed data...");
+
 exit();

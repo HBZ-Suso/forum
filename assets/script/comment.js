@@ -1,19 +1,14 @@
 var delete_comment = async (commentId) => {
     if (document.getElementById(commentId).style.backgroundColor === "yellow") {
-        let xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                let comments = refresh_comments();
-                return comments;
-            } else if (this.readyState == 4) {
-                throw new Error(this.status);
-            }
-        };
-    
-        xhttp.open("POST", "/forum/assets/api/delete_comment.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(cur_Id + "&commentId=" + commentId.replace("comment-element-", ""));
+        axios
+        .post("/forum/assets/api/delete_comment.php", cur_Id + "&commentId=" + commentId.replace("comment-element-", ""))
+        .then((response) => {
+            let comments = refresh_comments();
+            return comments;
+        })
+        .catch((error) => {
+            throw new Error(error);
+        })
     } else {
         document.getElementById(commentId).style.backgroundColor = "yellow";
     }
@@ -49,11 +44,11 @@ async function create_new_comment (title, text, id, user) {
 
 
 var refresh_comments = async () => {
-    let xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            let comments = JSON.parse(this.responseText);
+    axios
+        .post("/forum/assets/api/get_comments.php", cur_Id)
+        .then((response) => {
+            console.log(response)
+            let comments = response.data;
             if (comments.length > 0) {
                 comments.reverse();
             }
@@ -63,14 +58,10 @@ var refresh_comments = async () => {
                 create_new_comment(element["commentTitle"], element["commentText"], element["commentId"], element["username"])
             }
             return true;
-        } else if (this.readyState == 4) {
-            throw new Error(this.status);
-        }
-    };
-
-    xhttp.open("POST", "/forum/assets/api/get_comments.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(cur_Id);
+        })
+        .catch((error) => {
+            throw new Error(error);
+        })
 }
 
 
@@ -78,47 +69,33 @@ async function submit_comment_ajax (title, text) {
     if (cur_username === false) {
         throw new Error("Not logged in");
     }
-    let xhttp = new XMLHttpRequest();
 
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText.indexOf("error") !== -1) {
-                switch (this.responseText) {
-                    case "Timeouterror":
-                        console.debug("Timeout");
-                        let styling = [".comment-form", ".comment-text", ".comment-title", ".comment-author"]
-                        styling.forEach((element, index) => {
-                            document.querySelector(element).style.transition = "0.5s all ease-out";
-                            document.querySelector(element).style.backgroundColor = "red";
-                            document.querySelector(element).style.transition = "none";
-                            
-                        })
-                        setTimeout((e) => {
-                            let styling = [".comment-form", ".comment-text", ".comment-title", ".comment-author"]
-                            styling.forEach((element, index) => {
-                                document.querySelector(element).style.transition = "1s all ease-out";
-                                document.querySelector(element).style.backgroundColor = "";
-                                document.querySelector(element).style.transition = "none";
-                                
-                            }) 
-                        }, 1000)
-                        break;
-                }
-            } else {
-                refresh_comments();
-
-                document.querySelector(".comment-title").value = "";
-                document.querySelector(".comment-text").value = "";
+    axios
+        .post("/forum/assets/api/comment.php", cur_Id + "&title=" + title + "&text=" +  text)
+        .then((response) => {
+            console.log(response)
+            if (response.data === "Timeouterror") {
+                let styling = [".comment-form", ".comment-text", ".comment-title", ".comment-author"]
+                styling.forEach((element, index) => {
+                    document.querySelector(element).style.transition = "0.5s all ease-out";
+                    document.querySelector(element).style.backgroundColor = "red";
+                    document.querySelector(element).style.transition = "none";
+                    
+                })
+                setTimeout((e) => {
+                    let styling = [".comment-form", ".comment-text", ".comment-title", ".comment-author"]
+                    styling.forEach((element, index) => {
+                        document.querySelector(element).style.transition = "1s all ease-out";
+                        document.querySelector(element).style.backgroundColor = "";
+                        document.querySelector(element).style.transition = "none";
+                        
+                    }) 
+                }, 1000);
             }
-        } else if (this.readyState == 4) {
-            throw new Error(this.status);
-        }
-    };
-
-    xhttp.open("POST", "/forum/assets/api/comment.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(cur_Id + "&title=" + title + "&text=" +  text);
-
+        })
+        .catch((error) => {
+            throw new Error(error);
+        })
     return true;
 }
 

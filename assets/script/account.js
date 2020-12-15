@@ -8,20 +8,18 @@ var elements = [
 ]
 
 function send_ajax () {
-    let xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+    ajax_request = "change_data=" +  JSON.stringify(changed);
+    axios
+        .post("/forum/assets/api/change_data.php", ajax_request)
+        .then((response) => {
             reload.changed = false;
             document.getElementById("saved").style.display = "block";
             document.getElementById("saved").innerText = "Saved!";
             setTimeout(() => {document.getElementById("saved").innerText = ""; document.getElementById("saved").style.display = "none";}, 1000);
-        }
-    };
-
-    xhttp.open("POST", "/forum/assets/api/change_data.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("change_data=" + JSON.stringify(changed) + "&ajax=true");
+        })
+        .catch((error) => {
+            console.debug(error);
+        })
 }
 
 var timeout = 5;
@@ -37,7 +35,6 @@ elements.forEach((element, index) => {
     element.value = user_data[element.id];
     if (element !== null) {
         element.addEventListener("keyup", (e) => {
-            changed["selected"] = e.target.id;
             changed[e.target.id] = e.target.value;
             if (e.target.value === user_data[e.target.id]) {
                 delete changed[e.target.id];
@@ -45,7 +42,6 @@ elements.forEach((element, index) => {
             reload.execute();
         });
         element.addEventListener("change", (e) => {
-            changed["selected"] = e.target.id;
             changed[e.target.id] = e.target.value;
             if (e.target.value === user_data[e.target.id]) {
                 delete changed[e.target.id];

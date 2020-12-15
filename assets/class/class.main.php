@@ -25,7 +25,10 @@ if (isset($require_purifier)) {
     $filter = new Filter();
 }
 
+
+
 if (!isset($hide_frame)) {
+    echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
     echo '<script src="/forum/assets/script/functions.js"></script>';
 
 
@@ -35,7 +38,6 @@ if (!isset($hide_frame)) {
         @media (scripting: none) {.script-warning {background-color: red;position: fixed;height: 100%;width: 100%;top: 0px;left: 0px; display: block!important; z-index: 6;}}
     </style>";
     echo "<div class='script-warning'>This site is relying on Javascript, please switch to a browser that supports JS or activate it.</div>";
-
 
 
     if (isset($_SESSION["theme"])) {
@@ -51,6 +53,7 @@ if (!isset($hide_frame)) {
     } else {
         $_SESSION["theme"] = "dark";
         setcookie("theme", $_SESSION["theme"], time() + 60*60*24*365, "/");
+        $theme = "dark";
     }
 
     foreach($info->get_themes() as $value) {
@@ -73,6 +76,46 @@ if (!isset($hide_frame)) {
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/frame.php";
 }
 
+if (isset($show_essentials)) {
+    echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
+    echo '<script src="/forum/assets/script/functions.js"></script>';
+
+
+    echo "
+    <style>
+        .script-warning {display: none;}
+        @media (scripting: none) {.script-warning {background-color: red;position: fixed;height: 100%;width: 100%;top: 0px;left: 0px; display: block!important; z-index: 6;}}
+    </style>";
+    echo "<div class='script-warning'>This site is relying on Javascript, please switch to a browser that supports JS or activate it.</div>";
+
+
+    if (isset($_SESSION["theme"])) {
+        $theme = $_SESSION["theme"];
+        if (!isset($_COOKIE["theme"]) || $_COOKIE["theme"] !== $_SESSION["theme"]) {
+            setcookie("theme", $_SESSION["theme"], time() + 60*60*24*365, "/");
+        }
+    } else if (isset($_COOKIE["theme"])) {
+        if (in_array($_COOKIE["theme"], $info->get_themes())) {
+            $_SESSION["theme"] = $_COOKIE["theme"];
+        }
+        $theme = $_SESSION["theme"];
+    } else {
+        $_SESSION["theme"] = "dark";
+        setcookie("theme", $_SESSION["theme"], time() + 60*60*24*365, "/");
+        $theme = "dark";
+    }
+
+    echo '
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>HBZ-Forum</title>
+        <meta name="description" content="Das ofizielle HBZ-Forum | The official HBZ-forum">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>';
+
+    echo '<div id="theme-box"><link rel="stylesheet" href="/forum/assets/theme/' . $theme . '.css"></div>';
+}
 
 if (isset($_SESSION["user"]) || isset($_SESSION["userId"])) {
     if (!isset($_SESSION["userIp"]) || $_SESSION["userIp"] !== $info->get_ip()) {

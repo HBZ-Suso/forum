@@ -6,17 +6,14 @@ delete_element.addEventListener("click", (e) => {
             window.location = "/forum/assets/site/login.php?refer=" + cur_Id.replace("=", "-|-|-");
         }
 
-        let xhttp = new XMLHttpRequest();
-
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
+        axios
+            .post("/forum/assets/api/delete.php", cur_Id)
+            .then((response) => {
                 window.location = "/forum/";
-            }
-        }
-
-        xhttp.open("POST", "/forum/assets/api/delete.php", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(cur_Id);
+            })
+            .catch((error) => {
+                throw new Error(error);
+            })
     } else {
         delete_element.style.backgroundColor = "yellow";
     }
