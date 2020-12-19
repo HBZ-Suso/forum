@@ -3,14 +3,14 @@ session_start();
 $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
-if (!isset($_POST["articleId"]) && !isset($_POST["userId"])) {
+if (!isset($rargs["articleId"]) && !isset($rargs["userId"])) {
     exit("Formerror");
 }
 
 
 header("Content-Type: application/json");
-if ($_POST["articleId"]) {
-    $comments = $data->get_article_comments_by_id($_POST["articleId"]);
+if ($rargs["articleId"]) {
+    $comments = $data->get_article_comments_by_id($rargs["articleId"]);
     if (isset($comments)) {
         for ($iter = 0; $iter < count($comments); $iter++) {
             if (!isset($comments[$iter]["userId"])) {continue;}
@@ -20,8 +20,8 @@ if ($_POST["articleId"]) {
     exit(json_encode($comments));
 }
 
-if ($_POST["userId"]) {
-    $comments = $data->get_user_comments_by_id($_POST["userId"]);
+if ($rargs["userId"]) {
+    $comments = $data->get_user_comments_by_id($rargs["userId"]);
     if (isset($comments)) {
         for ($iter = 0; $iter < count($comments); $iter++) {
             if (!isset($comments[$iter]["userId"])) {continue;}

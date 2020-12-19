@@ -8,19 +8,19 @@ if (!isset($_SESSION["userId"])) {
 }
 
 
-if (isset($_POST["userId"])) {
-    if (!($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($_POST["userId"])) && !$_SESSION["userId"] === $_POST["userId"]) {
+if (isset($rargs["userId"])) {
+    if (!($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($rargs["userId"])) && !$_SESSION["userId"] === $rargs["userId"]) {
         exit("Permissionerror");
     }
 
-    $data->delete_user_by_id($_POST["userId"]);;
+    $data->delete_user_by_id($rargs["userId"]);;
     exit("Success");
-} else if (isset($_POST["articleId"])) {
-    if (!$data->is_admin_by_id($_SESSION["userId"]) && !$_SESSION["userId"] === $data->get_article_by_id($_POST["articleId"])["userId"]) {
+} else if (isset($rargs["articleId"])) {
+    if (!$data->is_admin_by_id($_SESSION["userId"]) && !$_SESSION["userId"] === $data->get_article_by_id($rargs["articleId"])["userId"]) {
         exit("Permissionerror");
     }
 
-    $data->delete_article_by_id($_POST["articleId"]);;
+    $data->delete_article_by_id($rargs["articleId"]);;
     exit("Success");
 }
 

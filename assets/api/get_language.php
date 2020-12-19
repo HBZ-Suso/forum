@@ -7,8 +7,8 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 
 
-if (isset($_POST["code"])) {
-    $value = $text->get($_POST["code"]);
+if (isset($rargs["code"])) {
+    $value = $text->get($rargs["code"]);
     if ($value === "") {
         exit("CODENOTFOUND");
     } else {

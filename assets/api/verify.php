@@ -8,8 +8,8 @@ if (!isset($_SESSION["userId"]) || !$data->is_admin_by_id($_SESSION["userId"])) 
 }
 
 
-if (isset($_POST["userId"])) {
-    $data->execute_verify_by_user_id($_POST["userId"]);
+if (isset($rargs["userId"])) {
+    $data->execute_verify_by_user_id($rargs["userId"]);
     exit("Success");
 }
 

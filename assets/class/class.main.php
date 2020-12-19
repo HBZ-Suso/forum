@@ -12,6 +12,8 @@ if ($_SESSION["language"] !== $_COOKIE["language"]) {
     setcookie("language", $_SESSION["language"], time() +24*3600*365, "/");
 }
 
+$rargs = array_merge($_GET, $_POST);
+
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.info.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.data.php";

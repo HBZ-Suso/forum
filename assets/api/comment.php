@@ -12,7 +12,7 @@ if (!isset($_SESSION["user"]) || !isset($_SESSION["userId"])) {
 }
 
 
-if (!(isset($_POST["articleId"]) || isset($_POST["userId"])) || !isset($_POST["title"]) || !isset($_POST["text"])) {
+if (!(isset($rargs["articleId"]) || isset($rargs["userId"])) || !isset($rargs["title"]) || !isset($rargs["text"])) {
     exit("Formerror");
 }
 
@@ -20,16 +20,16 @@ if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastComment"])
     exit("Timeouterror");
 }
 
-if (isset($_POST["articleId"])) {
-    $data->create_article_comment($_SESSION["userId"], $_POST["articleId"], $filter->purify($_POST["title"], 25), $filter->purify($_POST["text"], 20));
-} else if (isset($_POST["userId"])) {
-    $data->create_user_comment($_SESSION["userId"], $_POST["userId"], $filter->purify($_POST["title"], 25), $filter->purify($_POST["text"], 20));
+if (isset($rargs["articleId"])) {
+    $data->create_article_comment($_SESSION["userId"], $rargs["articleId"], $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
+} else if (isset($rargs["userId"])) {
+    $data->create_user_comment($_SESSION["userId"], $rargs["userId"], $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
 }
 
 $data->set_comment_timeout_by_id($_SESSION["userId"]);
 
-if (isset($_POST["articleId"])) {
+if (isset($rargs["articleId"])) {
     exit($data->get_last_article_comment_id());
-} else if (isset($_POST["userId"])) {
+} else if (isset($rargs["userId"])) {
     exit($data->get_last_user_comment_id());
 }

@@ -9,13 +9,13 @@ if (!isset($_SESSION["userId"])) {
 }
 
 
-if (!isset($_POST["change_data"])) {
+if (!isset($rargs["change_data"])) {
     exit("Formerror");
 }
 
-echo $_POST["change_data"];
+echo $rargs["change_data"];
 
-$change = json_decode($_POST["change_data"], true);
+$change = json_decode($rargs["change_data"], true);
 
 if (isset($change["userPassword"])) {
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userPassword", password_hash($change["userPassword"], PASSWORD_DEFAULT));

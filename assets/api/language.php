@@ -2,10 +2,10 @@
 
 session_start();
 
-if (isset($_POST["language"])) {
-    if (in_array($_POST["language"], ["english", "deutsch"])) {
-        $_SESSION["language"] = $_POST["language"];
-        exit ($_POST["language"]);
+if (isset($rargs["language"])) {
+    if (in_array($rargs["language"], ["english", "deutsch"])) {
+        $_SESSION["language"] = $rargs["language"];
+        exit ($rargs["language"]);
     } else {
         exit ("Languagenotfounderror");
     } 

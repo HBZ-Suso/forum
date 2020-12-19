@@ -542,6 +542,25 @@ class Data extends Connector {
     }
 
 
+    public function get_user_id_by_name ($name) 
+    {
+        $query = "SELECT userId FROM users WHERE userName=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return $row["userId"];
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
+
+
     public function get_id_by_username ($username) 
     {
         $query = "SELECT userId FROM users WHERE userName=?";
