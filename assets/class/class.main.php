@@ -58,12 +58,6 @@ if (!isset($hide_frame)) {
         $theme = "dark";
     }
 
-    foreach($info->get_themes() as $value) {
-        echo $value;
-    }
-
-    echo count($info->get_themes());
-
     echo '
     <head>
         <meta charset="utf-8">

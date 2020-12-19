@@ -2,12 +2,12 @@
 
 if (isset($_GET["userId"])) {
     $userId = $_GET["userId"];
-    if (isset($_GET["userName"]) && intval($data->get_id_by_username($_GET["userName"])) !== intval($_GET["userId"])) {
+    if (isset($_GET["userName"]) && intval($data->get_user_id_by_name($_GET["userName"])) !== intval($_GET["userId"])) {
         header("LOCATION:/forum/?error=requesterror");
         die("Requesterror");
     }
 } else {
-    $userId = intval($data->get_id_by_username($_GET["userName"]));
+    $userId = intval($data->get_user_id_by_name($_GET["userName"]));
 }
 
 $user_data = $data->get_user_by_id($userId);

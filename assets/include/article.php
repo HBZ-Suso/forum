@@ -2,12 +2,12 @@
 
 if (isset($_GET["articleId"])) {
     $articleId = $_GET["articleId"];
-    if (isset($_GET["articleTitle"]) && intval($data->get_id_by_articletitle($_GET["articleTitle"])) !== intval($_GET["articleId"])) {
+    if (isset($_GET["articleTitle"]) && intval($data->get_article_id_by_title($_GET["articleTitle"])) !== intval($_GET["articleId"])) {
         header("LOCATION:/forum/?error=requesterror");
         die("Requesterror");
     }
 } else {
-    $articleId = intval($data->get_id_by_articletitle($_GET["articleTitle"]));
+    $articleId = intval($data->get_article_id_by_title($_GET["articleTitle"]));
 }
 
 $article_data = $data->get_article_by_id($articleId);

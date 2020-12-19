@@ -560,7 +560,7 @@ class Data extends Connector {
         return false;
     }
 
-
+    /* DEPRECATED, use get_user_id_by_name
     public function get_id_by_username ($username) 
     {
         $query = "SELECT userId FROM users WHERE userName=?";
@@ -577,11 +577,10 @@ class Data extends Connector {
             return false;
         }
         return false;
-    }
+    }*/
 
 
-
-    public function get_id_by_articletitle ($title) 
+    public function get_article_id_by_title ($title) 
     {
         $query = "SELECT articleId FROM articles WHERE articleTitle=?";
         $stmt = $this->connId->prepare($query);
@@ -598,6 +597,26 @@ class Data extends Connector {
         }
         return false;
     }
+
+    
+    /* DEPRECATED, use get_article_id_by_title
+    public function get_id_by_articletitle ($title) 
+    {
+        $query = "SELECT articleId FROM articles WHERE articleTitle=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                return intval($row["articleId"]);
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }*/
 
 
 
