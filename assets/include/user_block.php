@@ -2,7 +2,7 @@
 
 echo '
 <div class="user-block block block theme-main-color-2">
-    <h1 class="user-block-heading block-heading">Users</h1>';
+    <h1 class="user-block-heading block-heading">' . $text->get("article-block-heading") . '</h1>';
                 
 if (isset($_GET["search"])) {
     $phrase = $_GET["search"];

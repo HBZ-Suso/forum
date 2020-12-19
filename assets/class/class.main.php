@@ -70,11 +70,16 @@ if (!isset($hide_frame)) {
     echo '<div id="theme-box"><link rel="stylesheet" href="/forum/assets/theme/' . $theme . '.css"></div>';
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/loading.html";
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/frame.php";
+
+    echo '<script src="/forum/assets/script/language.js"></script>';
+    echo '<script src="/forum/assets/script/theme.js"></script>';
 }
 
 if (isset($show_essentials)) {
     echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
     echo '<script src="/forum/assets/script/functions.js"></script>';
+    echo '<script src="/forum/assets/script/language.js"></script>';
+    echo '<script src="/forum/assets/script/theme.js"></script>';
 
 
     echo "
