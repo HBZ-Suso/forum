@@ -91,4 +91,5 @@
     text-align: center;
     vertical-align: center;
     background-color: green;
+    z-index: 2;
 }
