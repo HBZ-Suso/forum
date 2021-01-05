@@ -12,6 +12,7 @@
     width: 100%;
     min-height: 100%;
     height: fit-content;
+    width: fit-content;
     background-color: #34495e;
     display: flex;
 }
@@ -20,7 +21,7 @@
 .main-form {
     margin: auto;
     height: fit-content;
-    min-width: 500px;
+    min-width: 450px;
     width: 55vw;
     background-color: #191919;
     border-radius: 20px;
@@ -63,6 +64,7 @@
     width: 45vw;
     min-height: 180px;
     height: 45vh;
+    max-height: 100%;
     resize: none;
     outline: none;
     display: block;

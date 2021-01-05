@@ -2,7 +2,7 @@
 
 echo '
 <div class="user-block block block theme-main-color-2">
-    <h1 class="user-block-heading block-heading">' . $text->get("article-block-heading") . '</h1>';
+    <h1 class="user-block-heading block-heading">' . $text->get("user-block-heading") . '</h1>';
                 
 if (isset($_GET["search"])) {
     $phrase = $_GET["search"];
@@ -50,12 +50,24 @@ foreach ($user_list as $value) {
         $verified = "";
     }
 
+    if ($info->mobile === true) {
+        $like_text = '<img class="like-icon-heart" src="https://img.icons8.com/fluent/48/000000/like.png"/>';
+    } else {
+        $like_text = $text->get("user-block-like");
+    }
+
+    if ($info->mobile === true) {
+        $view_text = '<img class="view-icon-eye" src="https://img.icons8.com/material-sharp/24/000000/visible.png"/>';
+    } else {
+        $view_text = $text->get("user-block-views");
+    }
+
     echo '
         <div class="user-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
             <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] . $verified . '</span><br>
             <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">' . $text->get("user-block-mail") . '</p>' . $value["userMail"] .'</span>
-            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $text->get("user-block-views") . '</p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
-            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $text->get("user-block-like") . '</p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
+            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $view_text . '</p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
+            <span class="user-block-entry-element block-entry-element user-likes"><p class="user-likes-heading user-block-entry-heading block-entry-heading">' . $like_text . '</p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
         </div>
 
         <script>

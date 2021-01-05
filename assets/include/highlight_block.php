@@ -36,14 +36,27 @@ foreach ($highlight_data as $value) {
     }
 
 
+    if ($info->mobile === true) {
+        $like_text = '<img class="like-icon-heart" src="https://img.icons8.com/fluent/48/000000/like.png"/>';
+    } else {
+        $like_text = $text->get("highlight-block-like");
+    }
+
+    if ($info->mobile === true) {
+        $view_text = '<img class="view-icon-eye" src="https://img.icons8.com/material-sharp/24/000000/visible.png"/>';
+    } else {
+        $view_text = $text->get("highlight-block-views");
+    }
+
+
 
     if (isset($value["articleId"])) {
         echo '
             <div class="article-block-entry theme-main-color-3 hover-theme-main-4 block-entry' . $self . '" id="highlights_' . $value["articleId"] . '">
                 <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . $value["articleTitle"] .'</span><br>
                 <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">' . $text->get("highlight-block-author") . ' </p>' . $data->get_username_by_id($value["userId"]) . $verified . '</span>
-                <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">' . $text->get("highlight-block-views") . '</p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span>
-                <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">' . $text->get("highlight-block-like") . ' </p>' . $data->get_article_likes_by_article_id($value["articleId"]) .'</span><br>
+                <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">' . $view_text . '</p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span>
+                <span class="article-block-entry-element block-entry-element article-likes"><p class="article-likes-heading article-block-entry-heading block-entry-heading">' . $like_text . ' </p>' . $data->get_article_likes_by_article_id($value["articleId"]) .'</span><br>
             </div>
 
             <script>
@@ -57,8 +70,8 @@ foreach ($highlight_data as $value) {
         <div class="highlights-block-entry theme-main-color-3 hover-theme-main-4 block-entry' . $self . '" id="highlights_' . $value["userId"] . '">
             <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"]  . $verified .'</span><br>
             <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">' . $text->get("highlight-block-mail") . '</p>' . $value["userMail"] .'</span>
-            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $text->get("highlight-block-views") . ' </p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
-            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $text->get("highlight-block-like") . '</p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
+            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $view_text . ' </p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
+            <span class="user-block-entry-element block-entry-element user-likes"><p class="user-likes-heading user-block-entry-heading block-entry-heading">' . $like_text . '</p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
         </div>
 
         <script>

@@ -9,8 +9,13 @@ if (isset($_SESSION["user"])) {
     $logged = "";
 }
 
+if ($info->mobile === false) {
+    echo '<link rel="stylesheet" href="/forum/assets/style/pc.frame.css">';
+} else {
+    echo '<link rel="stylesheet" href="/forum/assets/style/mobile.frame.css">';
+}
+
 echo '
-<link rel="stylesheet" href="/forum/assets/style/pc.frame.css">
 <div class="main-heading-container theme-main-color-1">
     <img class="main-menu-icon" src="https://img.icons8.com/material-rounded/1000/000000/menu.png"/>
 
@@ -45,12 +50,18 @@ echo '
 </script>
 <script>
     var size_heading = () => {
-        let font_size = Math.min(window.innerWidth / 23,  60);
-        document.querySelector(".main-heading-text").style.fontSize = font_size + "px";
+        if (window.mobileCheck() !== true) {
+            let font_size = Math.min(window.innerWidth / 23,  60);
+            document.querySelector(".main-heading-text").style.fontSize = font_size + "px";
+        }
     }
 
-    window.onresize = size_heading;
-    window.onload = size_heading;
+    console.log(window.mobileCheck());
+    
+    if (window.mobileCheck() !== true) {
+        window.onresize = size_heading;
+        window.onload = size_heading;
+    }
 </script>
 
 <div class="theme-switcher theme-main-color-1" id="theme-switcher">' . $text->get("theme-switcher") . '</div>

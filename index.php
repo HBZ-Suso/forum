@@ -22,24 +22,32 @@ if (isset($_GET["show"])) {
 
 
 if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) && !isset($_GET["userName"]) && !isset($_GET["articleId"]) && !isset($_GET["articleTitle"]))) {
-    if ($info->mobile === false) {
+    if ($info->mobile !== true) {
         if (isset($_GET["search"]) || isset($_GET["rsearch"])) {
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/refined_search.php";
             $top = " big-top";
         } else {
             $top = "";
         }
-
         echo '<link rel="stylesheet" href="/forum/assets/style/pc.findings.css">';
+        
         echo '<div class="block-container' . $top . '">';
-
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/article_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/user_block.php";
-
         if (isset($_SESSION["userId"])) {
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/highlight_block.php";
         }
+        echo "</div>";
+    } else {
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/mobile_search.php";
+        echo '<link rel="stylesheet" href="/forum/assets/style/mobile.findings.css">';
 
+        echo '<div class="block-container' . $top . '">';
+        if (isset($_SESSION["userId"])) {
+            include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/highlight_block.php";
+        }
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/article_block.php";
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/user_block.php";
         echo "</div>";
     }
 } else if (isset($_GET["userId"]) || isset($_GET["userName"])) {

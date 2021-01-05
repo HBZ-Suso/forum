@@ -75,6 +75,7 @@ Database name: forum
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
+    <a href="https://icons8.com/icon/DFU1kReSUccu/heart">Heart icon by Icons8</a>
 
 Administrator:
     Password: forum_admin
