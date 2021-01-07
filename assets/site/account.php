@@ -27,20 +27,27 @@ echo '
 if (isset($_GET["selected"])) {
     echo '<script>var selected = "' . $_GET["selected"] . '";</script>';
 }
+
+$s_mobile = "pc.";
+
+if ($info->mobile === true) {
+    $s_mobile = "mobile.";
+}
+
 ?>
 
-<link rel="stylesheet" href="/forum/assets/style/account.css">
+<link rel="stylesheet" href="/forum/assets/style/<?php echo $s_mobile; ?>account.css">
 
 <div class="window theme-main-color-1">
     <form id="main_form" action="/forum/assets/site/change_data.php" method="post">
         <div class="flex-container">
             <h1 id="Title"><?php echo $user_data["userName"];?></h1>
-            <textarea id="userMail" class="theme-main-color-2"></textarea>
+            <textarea id="userMail" class="theme-main-color-2 user-entry-first"></textarea>
             <textarea id="userPhone" class="theme-main-color-2"></textarea>
             <textarea id="userEmployment" class="theme-main-color-2"></textarea>
             <textarea id="userAge" class="theme-main-color-2"></textarea>
             <textarea id="userIntended" disabled class="theme-main-color-2"><?php echo $user_data["userIntended"];?></textarea>
-            <textarea id="userDescription" class="theme-main-color-2"></textarea>
+            <textarea id="userDescription" class="theme-main-color-2 user-entry-last"></textarea>
         </div>
 
         <input type="submit" id="userSubmit" value="Save" class="theme-main-color-2">
