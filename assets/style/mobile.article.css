@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif!important;
+}
+
+.article-block  {
+    position: absolute;
+    width: 98%;
+    top: 100px;
+    left: 0px;
+    padding: 1%;
+    margin: 0px;
+}
+
+
+
+.article-block-entry {
+    resize: none;
+    color: black;
+    height: min-content;
+    border: none;
+    border: none;
+    width: 100%;
+    font-size:  min(4vw, 30px);
+    height: min-content;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
+.article-block-title {
+    font-size:  min(7.4vw, 50px);
+    height:  min-content;
+    padding: 0px;
+    margin: 0px;
+    text-decoration: underline;
+}
+
+.author-href {
+    text-decoration: none;
+    color: black;
+}
+
+.article-block-content {
+    padding: 1%;
+    margin-top: 3vh;
+    width: 100%;
+    height: auto;
+    resize: none;
+    color: black;
+    font-size: min(4.6vw, 30px);
+}
+
+
+.like-btn {
+    position: absolute;
+    top: min(2.8vw, 20px);
+    left: 0px;
+    font-size: min(4vw, 30px);
+    background-color: rgb(83, 83, 83);
+    padding: 0.5vw;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;3
+    cursor: pointer;
+}
+
+
+.liked {
+    background-color: red;
+}
+
+
+.delete-btn {
+    display: none;
+}
+
+
+
+.verified {
+    position: absolute;
+    right: 5px;
+    top: 1vw;
+    padding: 0px;
+    margin: 0px;
+    font-size:min(8vw, 50px);
+    color: rgb(45, 209, 45);
+    border-radius: 5vw;
+    text-align: center;
+}
+
+
+
+
+.comment-section {
+    width: 96%;
+    margin-left: 1%;
+    margin-top: 1%;
+    padding: 1%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: min-content;
+    overflow-y: auto;
+    border-radius: 10px;
+}
+
+
+.comment {
+    background-color: gray;
+    border-bottom: 1px solid black;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-title, .comment-author, .comment-text, .comment-form-submit, .comment-delete {
+    background-color: gray;
+    border: none;
+    resize: none;
+    width: 96%;
+    margin-left: 2%;
+}
+
+.comment-title, .comment-author {
+    color: black;
+    font-weight: normal;
+    margin: 0px;
+    margin-left: 5px;
+}
+
+.comment-text {
+    height: 10vh;
+}
+
+.comment-delete {
+    background-color: rgb(110, 110, 110);
+    cursor: pointer;
+    color: black;
+}

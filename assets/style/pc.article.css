@@ -184,3 +184,9 @@
 .comment:hover > .comment-delete {
     background-color: rgb(158, 158, 158);
 }
+
+
+.author-href {
+    text-decoration: none;
+    color: black;
+}

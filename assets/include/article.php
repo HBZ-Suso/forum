@@ -49,22 +49,25 @@ if ($data->get_user_by_id($article_data["userId"])["userVerified"] == "1") {
     $verified = "";
 }
 
+if ($info->mobile === true) {
+    echo '<link rel="stylesheet" href="/forum/assets/style/mobile.article.css">';
+} else {
+    echo '<link rel="stylesheet" href="/forum/assets/style/pc.article.css">';
+}
+
 echo '
-<link rel="stylesheet" href="/forum/assets/style/pc.article.css">
-
-
 
 <div class="article-block theme-main-color-1">
     <div class="like-btn ' . $liked . '">' . $text->get("article-view-like") . '</div>
     <script src="/forum/assets/script/like.js"></script>
     ' . $delete_button . '
-    <textarea disabled class="theme-main-color-1 article-block-entry article-block-title">' . $article_data["articleTitle"] . '</textarea>' . $verified . '
-    <textarea disabled class="theme-main-color-1 article-block-entry article-block-author">' . $author . '</textarea>
-    <textarea disabled class="theme-main-color-1 article-block-entry article-block-tags">' . $text->get("article-view-tags") . implode("; ", json_decode($article_data["articleTags"])) . '</textarea>
-    <textarea disabled class="theme-main-color-1 article-block-entry article-block-created">' . $text->get("article-view-created") . $article_data["articleCreated"] . '</textarea>
+    <div class="theme-main-color-1 article-block-entry article-block-title">' . $article_data["articleTitle"] . '</div>' . $verified . '
+    <a class="author-href" href="/forum/?userId=' . $article_data["userId"] . '"><div class="theme-main-color-1 article-block-entry article-block-author">' . $author . '</div></a>
+    <div class="theme-main-color-1 article-block-entry article-block-tags">' . $text->get("article-view-tags") . implode("; ", json_decode($article_data["articleTags"])) . '</div>
+    <div class="theme-main-color-1 article-block-entry article-block-created">' . $text->get("article-view-created") . $article_data["articleCreated"] . '</div>
 
-    <textarea disabled class="article-block-content">' . $article_data["articleText"] . '</textarea>';
-
+    <textarea disabled id="article-content" class="article-block-content">' . $article_data["articleText"] . '</textarea>
+    <script>document.getElementById("article-content").style.height = (document.getElementById("article-content").scrollHeight + 10) + \'px\';</script>';
 
 $comments = $data->get_article_comments_by_id($articleId);
 
@@ -77,7 +80,7 @@ if (isset($_SESSION["userId"])) {
     echo '<form class="comment-form comment theme-main-color-1">';
     echo '<input class="comment-title theme-main-color-1" name="title" placeholder="' . $text->get("comments-title") . '">';
     echo '<h3 class="comment-author theme-main-color-1">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
-    echo '<input class="comment-text theme-main-color-1" name="text" placeholder="' . $text->get("comments-comment") . '"></input>';
+    echo '<textarea class="comment-text theme-main-color-1" name="text" placeholder="' . $text->get("comments-comment") . '"></textarea>';
     echo '<input type="submit" name="submit" class="comment-form-submit theme-main-color-1" id="submit-comment">';
     echo '</form>
     <script>var cur_Id = "articleId=" + "' . $articleId . '";</script>

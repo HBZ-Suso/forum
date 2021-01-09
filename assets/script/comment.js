@@ -19,24 +19,21 @@ let delete_button;
 async function create_new_comment (title, text, id, user) {
     delete_button = "";
     if (cur_username !== false) {
-        var delete_button = '<button class="comment-delete" id="comment-element-' + id + '">Delete</button>'
+        var delete_button = `<button class="comment-delete" id="comment-element-${id}">Delete</button>`;
     }
 
-    let element =  '<div class="comment theme-main-color-1" id="comment-id-' + id + '">' + 
-    '<h3 class="comment-title theme-main-color-1">' + 
-    title + 
-    '</h3>' +
-    '<h3 class="comment-author theme-main-color-1">' +
-    user +
-    '</h3>' +
-    '<textarea class="comment-text theme-main-color-1" disabled>' + text + '</textarea>' + 
-    delete_button +
-    '</div>'
+    let element =  `
+    <div class="comment theme-main-color-1" id="comment-id-${id}" id="${id}">
+        <h3 class="comment-title theme-main-color-1">${title}</h3>
+        <a class="author-href" href="/forum/?userName=${user}"><h3 class="comment-author theme-main-color-1">${user}</h3></a>
+        <textarea class="comment-text theme-main-color-1" disabled>${text}</textarea>
+        ${delete_button}
+    </div>`;
 
     document.getElementById("js_comments").insertAdjacentHTML("afterbegin", element);
 
     if (cur_username !== false) {
-        document.getElementById("comment-element-" + id).addEventListener("click", (e) => { delete_comment(e.target.id);});
+        document.getElementById("comment-element-" + id).addEventListener("click", (e) => { console.log(e.target.id); delete_comment(e.target.id);});
     }
 
     return true;
@@ -47,7 +44,6 @@ var refresh_comments = async () => {
     axios
         .post("/forum/assets/api/get_comments.php", cur_Id)
         .then((response) => {
-            console.log(response)
             let comments = response.data;
             if (comments.length > 0) {
                 comments.reverse();
@@ -73,7 +69,6 @@ async function submit_comment_ajax (title, text) {
     axios
         .post("/forum/assets/api/comment.php", cur_Id + "&title=" + title + "&text=" +  text)
         .then((response) => {
-            console.log(response)
             if (response.data === "Timeouterror") {
                 let styling = [".comment-form", ".comment-text", ".comment-title", ".comment-author"]
                 styling.forEach((element, index) => {
@@ -92,6 +87,7 @@ async function submit_comment_ajax (title, text) {
                     }) 
                 }, 1000);
             }
+            refresh_comments();
         })
         .catch((error) => {
             throw new Error(error);
