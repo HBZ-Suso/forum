@@ -13,14 +13,12 @@ function send_ajax () {
         .post("/forum/assets/api/change_data.php", ajax_request)
         .then((response) => {
             reload.changed = false;
-            document.getElementById("saved").style.display = "block";
-            document.getElementById("saved").innerText = "Saved!";
-            setTimeout(() => {document.getElementById("saved").innerText = ""; document.getElementById("saved").style.display = "none"; }, 1000);
+            document.getElementById("userSubmit").style.backgroundColor = "green";
+            setTimeout(() => {document.getElementById("userSubmit").style.backgroundColor = ""}, 1500);
         })
         .catch((error) => {
             console.debug(error);
-            document.getElementById("userSubmit").style.backgroundColor = "green";
-            setTimeout(() => {document.getElementById("userSubmit").style.backgroundColor = ""}, 1500);
+            
         })
 }
 
