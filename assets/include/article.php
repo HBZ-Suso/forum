@@ -56,9 +56,9 @@ if ($info->mobile === true) {
 }
 
 echo '
-
+<div class="like-btn ' . $liked . '">' . $text->get("article-view-like") . '</div>
 <div class="article-block theme-main-color-1">
-    <div class="like-btn ' . $liked . '">' . $text->get("article-view-like") . '</div>
+    
     <script src="/forum/assets/script/like.js"></script>
     ' . $delete_button . '
     <div class="theme-main-color-1 article-block-entry article-block-title">' . $article_data["articleTitle"] . '</div>' . $verified . '

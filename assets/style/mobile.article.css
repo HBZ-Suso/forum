@@ -6,11 +6,12 @@
 
 .article-block  {
     position: absolute;
-    width: 98%;
-    top: 100px;
+    width: 100%;
+    top: 116px;
     left: 0px;
-    padding: 1%;
     margin: 0px;
+    margin-bottom: 20px;
+    padding-bottom: 30px;
 }
 
 
@@ -43,19 +44,22 @@
 }
 
 .article-block-content {
-    padding: 1%;
+    padding: 2%;
     margin-top: 3vh;
-    width: 98%;
+    width: 96%;
     height: auto;
     resize: none;
     color: black;
     font-size: min(4.6vw, 30px);
+    background-color: rgb(190, 190, 190);
+    border: none;
 }
 
 
 .like-btn {
-    position: absolute;
-    top:-20px;
+    position: fixed;
+    top:80px;
+    z-index: 1;
     right: 20px;
     font-size: min(6vw, 50px);
     background-color: rgb(83, 83, 83);

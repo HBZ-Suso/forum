@@ -62,7 +62,7 @@
     margin-top: 0.2%;
     height: 10%;
     width: 20%;
-    margin-left: 40%!important;
+    left: 40%;
     border: black;
     color: black;
     transition: 0.2s all ease-in;

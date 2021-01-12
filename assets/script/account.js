@@ -15,10 +15,12 @@ function send_ajax () {
             reload.changed = false;
             document.getElementById("saved").style.display = "block";
             document.getElementById("saved").innerText = "Saved!";
-            setTimeout(() => {document.getElementById("saved").innerText = ""; document.getElementById("saved").style.display = "none";}, 1000);
+            setTimeout(() => {document.getElementById("saved").innerText = ""; document.getElementById("saved").style.display = "none"; }, 1000);
         })
         .catch((error) => {
             console.debug(error);
+            document.getElementById("userSubmit").style.backgroundColor = "green";
+            setTimeout(() => {document.getElementById("userSubmit").style.backgroundColor = ""}, 1500);
         })
 }
 

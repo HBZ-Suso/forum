@@ -44,14 +44,14 @@ if ($info->mobile === false) {
     <script src="/forum/assets/script/include/frame.js"></script>
     
     
-    <div class="theme-switcher theme-main-color-1" id="theme-switcher">' . $text->get("theme-switcher") . '</div>
-    <div class="language-switcher theme-main-color-1" id="language-switcher">' . $text->get("language-switcher") . '</div>';
+    <div class="theme-switcher theme-main-color-1 hover-theme-main-color-2" id="theme-switcher">' . $text->get("theme-switcher") . '</div>
+    <div class="language-switcher theme-main-color-1 hover-theme-main-color-2" id="language-switcher">' . $text->get("language-switcher") . '</div>';
 } else {
     echo '
     </div>
     <div class="main-menu theme-main-color-1">
         
-        <input class="main-menu-entry main-menu-entry-search main-menu-entry-first theme-main-color-1 hover-theme-main-color-3" placeholder="' . $text->get("frame-menu-search") .'"><button class="frame-menu-entry-search-button theme-main-color-1 hover-theme-main-color-3">' . $text->get("frame-menu-search-button") .'</button><br>
+        <input class="main-menu-entry main-menu-entry-search main-menu-entry-first theme-main-color-1" placeholder="' . $text->get("frame-menu-search") .'"><button class="frame-menu-entry-search-button theme-main-color-1 hover-theme-main-color-3">' . $text->get("frame-menu-search-button") .'</button><br>
     
         <script>
             document.querySelector(".main-menu-entry-search").addEventListener("keydown", (e) => {
@@ -72,8 +72,8 @@ if ($info->mobile === false) {
     <script src="/forum/assets/script/include/frame.js"></script>
     
     
-    <div class="theme-switcher theme-main-color-1" id="theme-switcher">' . $text->get("theme-switcher") . '</div>
-    <div class="language-switcher theme-main-color-1" id="language-switcher">' . $text->get("language-switcher") . '</div>
+    <div class="theme-switcher theme-main-color-1 hover-theme-main-color-2" id="theme-switcher">' . $text->get("theme-switcher") . '</div>
+    <div class="language-switcher theme-main-color-1 hover-theme-main-color-2" id="language-switcher">' . $text->get("language-switcher") . '</div>
     ';
 }
 

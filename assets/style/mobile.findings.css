@@ -9,7 +9,7 @@
     width: 100%; 
     position: absolute;
     top: 100px;
-    bottom: 10px;
+    bottom: 10px;    padding-bottom: 30px;
     left: 0px;
 }
 
@@ -25,10 +25,6 @@
     margin-bottom: 1vh;
 }
 
-.highlights-block {
-    margin-bottom: 100px;
-}
-
 
 .block-heading {
     font-size: min(7vw, 100px);
@@ -41,7 +37,7 @@
     font-size: min(5vw, 70px);
     padding: 2%;
     margin-top: 0.3vw;
-    margin-bottom: 0.3vw;
+    margin-bottom: 0.7vw;
     cursor: pointer;
     position: relative;
 }

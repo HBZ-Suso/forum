@@ -41,18 +41,23 @@ if ($info->mobile === true) {
 <div class="window theme-main-color-1">
     <form id="main_form" action="/forum/assets/site/change_data.php" method="post">
         <div class="flex-container">
-            <h1 id="Title"><?php echo $user_data["userName"];?></h1>
+            <h1 id="title"><?php echo $user_data["userName"];?></h1>
             <textarea id="userMail" class="theme-main-color-2 user-entry-first"></textarea>
             <textarea id="userPhone" class="theme-main-color-2"></textarea>
             <textarea id="userEmployment" class="theme-main-color-2"></textarea>
             <textarea id="userAge" class="theme-main-color-2"></textarea>
             <textarea id="userIntended" disabled class="theme-main-color-2"><?php echo $user_data["userIntended"];?></textarea>
             <textarea id="userDescription" class="theme-main-color-2 user-entry-last"></textarea>
+            <input type="submit" id="userSubmit" value="Save" class="theme-main-color-2">
         </div>
 
-        <input type="submit" id="userSubmit" value="Save" class="theme-main-color-2">
+        
     </form>
+    <div id="placeholder-id"></div>
 </div>
-<span id="saved" class="saved"></span>
+
+
+
+
 <script src="/forum/assets/script/account.js"></script>
 

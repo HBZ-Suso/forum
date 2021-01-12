@@ -119,8 +119,8 @@
     border-bottom-right-radius: 5px;
 }
 
-.main-menu-entry-search:focus { 
-    width: 90vw!important;
+.main-menu-entry-search:focus {
+    width: 55vw!important;
 }
 
 .frame-menu-entry-search-button {
@@ -148,6 +148,8 @@
     font-size: min(5vw, 35px);
     padding: min(1vw, 30px);
     border-top-right-radius: min(2vw, 40px);
+    border-top: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .theme-switcher:hover {
@@ -163,6 +165,8 @@
     font-size: min(5vw, 35px);
     padding: min(1vw, 30px);
     border-top-left-radius: min(2vw, 40px);
+    border-top: 1px solid black;
+    border-left: 1px solid black;
 }
 
 .language-switcher:hover {

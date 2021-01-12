@@ -9,24 +9,20 @@
 .window {
     position: absolute;
     top: 100px;
-    width: 98%;
-    padding: 1%;
+    width: 100%;
     border-radius: 0.3vw;
     min-height: 60%;
     height: min-content;
-    margin-bottom: 3000px;
 }
 
 
 .flex-container {
     position: relative;
-    width: 100%;
 }
 
 
 .flex-container > textarea {
     padding: 0.4%;
-    width: 100%;
     resize: none;
     border: none;
     border-bottom: 1px solid black;
@@ -53,8 +49,8 @@
 
 #userDescription {
     text-align: center;
-    flex-basis: 100%!important;
     height: 40vh;
+    position: relative;
 }
 
 
@@ -66,12 +62,12 @@
 
 #userSubmit {
     position: absolute;
-    bottom: 11px;
+    bottom: 5px;
     margin-top: 0.2%;
     width: 10%;
+    left: 45%;
     min-width: 45px;
     font-size: 15px;
-    margin-left: 45%!important;
     border: 1px solid black;
     color: black;
     transition: 0.2s all ease-in;
@@ -86,19 +82,13 @@
 }
 
 
-.saved {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    font-size: 2vw;
-    border-radius: 10vw;
-    height: 2.6vw;
-    width: auto;
-    display: none;
-    margin: 0.3vw;
-    padding: 0.1vw;
-    text-align: center;
-    vertical-align: center;
-    background-color: green;
-    z-index: 2;
+#userMail, #userPhone, #userEmployment, #userAge, #userIntended, #userDescription {
+    padding-left: 1%;
+    width: 98.6%;
+}
+
+
+#placeholder-id {
+    height: 32px;
+    width: 100%;
 }

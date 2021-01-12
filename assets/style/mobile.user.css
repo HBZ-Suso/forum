@@ -6,11 +6,11 @@
 
 .user-block  {
     position: absolute;
-    width: 98%;
-    top: 100px;
+    width: 100%;
+    top: 116px;
     left: 0px;
-    padding: 1%;
     margin: 0px;
+    padding-bottom: 30px;
 }
 
 
@@ -51,12 +51,16 @@
     resize: none;
     color: black;
     font-size: min(4.6vw, 30px);
+    background-color: rgb(230, 230, 230);
+    border: none;
 }
 
 
 .like-btn {
-    position: absolute;
-    top:-20px;
+    text-align: center;
+    width: 70px;
+    position: fixed;
+    top:80px;
     right: 20px;
     font-size: min(6vw, 50px);
     background-color: rgb(83, 83, 83);
@@ -151,8 +155,10 @@
 
 
 .verify-user {
-    position: absolute;
-    top:-20px;
+    text-align: center;
+    width: 70px;
+    position: fixed;
+    top:80px;
     left: 20px;
     font-size: min(6vw, 50px);
     background-color: rgb(83, 83, 83);
