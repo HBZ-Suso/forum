@@ -26,7 +26,6 @@
     resize: none;
     border: none;
     border-bottom: 1px solid black;
-    color: black;
 }
 
 .user-entry-first {
@@ -69,7 +68,6 @@
     min-width: 45px;
     font-size: 15px;
     border: 1px solid black;
-    color: black;
     transition: 0.2s all ease-in;
     border-radius: 5px;
     padding: 5px;

@@ -34,7 +34,6 @@
     margin: 0.2%;
     border: 2px solid black;
     border-radius: 2px;
-    color: black;
 }
 
 #title {
@@ -64,7 +63,6 @@
     width: 20%;
     left: 40%;
     border: black;
-    color: black;
     transition: 0.2s all ease-in;
     border-radius: 5px;
     padding: 5px;
