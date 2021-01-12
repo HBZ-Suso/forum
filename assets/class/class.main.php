@@ -30,6 +30,20 @@ if (isset($require_purifier)) {
 
 
 if (!isset($hide_frame)) {
+    echo '
+    <!DOCTYPE html>
+    <html lang="' . $text->get_language_code_from_name($_SESSION["language"]) . '">
+    ';
+
+    echo '
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>HBZ-Forum</title>
+        <meta name="description" content="Das ofizielle HBZ-Forum | The official HBZ-forum">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>';
+
     echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
     echo '<script src="/forum/assets/script/functions.js"></script>';
 
@@ -58,15 +72,6 @@ if (!isset($hide_frame)) {
         $theme = "dark";
     }
 
-    echo '
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>HBZ-Forum</title>
-        <meta name="description" content="Das ofizielle HBZ-Forum | The official HBZ-forum">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>';
-
     echo '<div id="theme-box"><link rel="stylesheet" href="/forum/assets/theme/' . $theme . '.css"></div>';
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/loading.html";
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/frame.php";
@@ -76,6 +81,12 @@ if (!isset($hide_frame)) {
 }
 
 if (isset($show_essentials)) {
+
+    echo '
+
+    <html lang="' . $text->get_language_code_from_name($_SESSION["language"]) . '">
+
+    ';
     echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
     echo '<script src="/forum/assets/script/functions.js"></script>';
     echo '<script src="/forum/assets/script/language.js"></script>';

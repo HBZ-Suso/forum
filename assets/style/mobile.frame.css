@@ -94,13 +94,15 @@
 
 .main-menu-entry {
     display: inline-block;
-    width: 100%;
+    width: 97.5%!important;
     font-size: min(9vw, 36px);
-    color: black;
     text-decoration: none;
     padding-left: 5%;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    margin-left: 0px;
 }
 
 .main-menu-entry-first {
@@ -109,6 +111,30 @@
 
 .main-menu-entry-last {
     border-bottom-right-radius: 5px;
+}
+
+.main-menu-entry-search {
+    width:105%!important;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.main-menu-entry-search:focus { 
+    width: 90vw!important;
+}
+
+.frame-menu-entry-search-button {
+    display: inline-block;
+    width: 103%!important;
+    font-size: min(9vw, 36px);
+    text-decoration: none;
+    padding-left: 5%;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    margin-left: 0px;
+    cursor: pointer;
 }
 
 

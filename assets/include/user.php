@@ -49,21 +49,25 @@ if ($user_data["userVerified"] == "1") {
     $verified = '<p class="verified" style="display: none;">&#10003</p>';
 }
 
+if ($info->mobile === true) {
+    echo '<link rel="stylesheet" href="/forum/assets/style/mobile.user.css">';
+} else {
+    echo '<link rel="stylesheet" href="/forum/assets/style/pc.user.css">';
+}
 
 
 echo '
-<link rel="stylesheet" href="/forum/assets/style/pc.user.css">
 
 <div class="user-block theme-main-color-1">
     <div class="like-btn ' . $liked . '">' . $text->get("user-view-like") . '</div>
     <script src="/forum/assets/script/like.js"></script>
     ' . $delete_button . '
     ' . $verify_button . '
-    <textarea disabled class="theme-main-color-1 user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] .  '</textarea> ' . $verified . '
-    <textarea disabled class="theme-main-color-1 user-block-entry user-block-employment">' . $text->get("user-view-employment") . $user_data["userEmployment"] . '</textarea>
-    <textarea disabled class="theme-main-color-1 user-block-entry user-block-age">' . $text->get("user-view-age") .  $user_data["userAge"] . '</textarea>
-    <textarea disabled class="theme-main-color-1 user-block-entry user-block-mail">' . $text->get("user-view-mail") . $user_data["userMail"] . '</textarea>
-    <textarea disabled class="theme-main-color-1 user-block-entry user-block-phone">' . $text->get("user-view-phone") . $user_data["userPhone"] . '</textarea>
+    <div disabled class="theme-main-color-1 user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] .  '</div> ' . $verified . '
+    <div disabled class="theme-main-color-1 user-block-entry user-block-employment">' . $text->get("user-view-employment") . $user_data["userEmployment"] . '</div>
+    <div disabled class="theme-main-color-1 user-block-entry user-block-age">' . $text->get("user-view-age") .  $user_data["userAge"] . '</div>
+    <div disabled class="theme-main-color-1 user-block-entry user-block-mail">' . $text->get("user-view-mail") . $user_data["userMail"] . '</div>
+    <div disabled class="theme-main-color-1 user-block-entry user-block-phone">' . $text->get("user-view-phone") . $user_data["userPhone"] . '</div>
 
 
     <textarea disabled class="user-block-description">' . $user_data["userDescription"] . '</textarea>';
@@ -79,7 +83,7 @@ if (isset($_SESSION["userId"])) {
     echo '<input class="comment-title theme-main-color-1" name="title" placeholder="' . $text->get("comments-title") . '">';
     echo '<h3 class="comment-author theme-main-color-1">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
     echo '<input class="comment-text theme-main-color-1" name="text" placeholder="' . $text->get("comments-comment") . '"></input>';
-    echo '<input type="submit" name="submit" class="comment-form-submit theme-main-color-1" id="submit-comment">';
+    echo '<input type="submit" name="submit" class="comment-form-submit theme-main-color-1" id="submit-comment" value="' . $text->get("comments-submit") . '">';
     echo '</form>
     <script>var cur_Id = "userId=" + "' . $userId . '";</script>
     <script>var cur_username = "' . $_SESSION["user"] . '";</script>

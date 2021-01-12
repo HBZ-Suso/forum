@@ -32,6 +32,9 @@ if (isset($_GET["rsearch"])) {
     $user_list = $data->search_users($_GET["rsearch"], 100, $mode_list);
 } else {
     $user_list = $data->search_users($phrase);
+    if ($mobile === true) {
+        $user_list = $data->search_users($phrase, 100);
+    }
 }
 
 
@@ -51,13 +54,13 @@ foreach ($user_list as $value) {
     }
 
     if ($info->mobile === true) {
-        $like_text = '<img class="like-icon-heart" src="https://img.icons8.com/fluent/48/000000/like.png"/>';
+        $like_text = '<img class="like-icon-heart" alt="Likes:" src="https://img.icons8.com/fluent/1000/000000/like.png"/>';
     } else {
         $like_text = $text->get("user-block-like");
     }
 
     if ($info->mobile === true) {
-        $view_text = '<img class="view-icon-eye" src="https://img.icons8.com/material-sharp/24/000000/visible.png"/>';
+        $view_text = '<img class="view-icon-eye" alt="Views: " src="https://img.icons8.com/material-sharp/1000/000000/visible.png"/>';
     } else {
         $view_text = $text->get("user-block-views");
     }

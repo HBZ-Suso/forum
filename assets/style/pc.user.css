@@ -42,7 +42,7 @@
 .user-block-description {
     padding: 1%;
     margin-top: 3vh;
-    width: 100%;
+    width: 98%;
     height: 50vh;
     resize: none;
     color: black;
@@ -160,11 +160,17 @@
     padding-left: 10%;
     font-weight: normal;
     outline: none;
+    color: black;
 }
 
 .comment-author {
     font-weight: normal;
     font-size: 100%;
+    color: black;
+}
+
+.author-href {
+    text-decoration: none;
 }
 
 .comment-text {
@@ -185,8 +191,24 @@
     cursor: pointer;
 }
 
-.comment:hover > .comment-form-submit {
+.comment:hover > .comment-form-submit, .comment:focus > .comment-form-submit {
     background-color: rgb(158, 158, 158);
+}
+
+
+.comment:hover > .author-href > .comment-author, 
+.comment:focus-within > .author-href > .comment-author, 
+.comment:hover > .author-href, 
+.comment:focus-within > .author-href,
+.comment:hover > h3,
+.comment:hover > input,
+.comment:hover > textarea,
+.comment:hover
+.comment:focus-within > h3
+.comment:focus-within > input
+.comment:focus-within > textarea
+.comment:focus-within {
+    background-color: lightgray;
 }
 
 
@@ -196,6 +218,6 @@
     cursor: pointer;
 }
 
-.comment:hover > .comment-delete {
+.comment:hover > .comment-delete, .comment:focus > .comment-delete {
     background-color: rgb(158, 158, 158);
 }

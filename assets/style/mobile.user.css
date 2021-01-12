@@ -4,7 +4,7 @@
     font-family: 'Roboto', sans-serif!important;
 }
 
-.article-block  {
+.user-block  {
     position: absolute;
     width: 98%;
     top: 100px;
@@ -15,7 +15,7 @@
 
 
 
-.article-block-entry {
+.user-block-entry {
     resize: none;
     color: black;
     height: min-content;
@@ -29,9 +29,9 @@
     text-align: center;
 }
 
-.article-block-title {
+.user-block-title {
     font-size:  min(7.4vw, 50px);
-    height:  min-content;
+    height:  min(8vw, 50px);
     padding: 0px;
     margin: 0px;
     text-decoration: underline;
@@ -42,11 +42,12 @@
     color: black;
 }
 
-.article-block-content {
+.user-block-description {
     padding: 1%;
     margin-top: 3vh;
     width: 98%;
     height: auto;
+    min-height: 35vh;
     resize: none;
     color: black;
     font-size: min(4.6vw, 30px);
@@ -120,7 +121,6 @@
     resize: none;
     width: 96%;
     margin-left: 2%;
-
     color: black;
 }
 
@@ -146,4 +146,18 @@
     background-color: rgb(110, 110, 110);
     cursor: pointer;
     color: black;
+}
+
+
+
+.verify-user {
+    position: absolute;
+    top:-20px;
+    left: 20px;
+    font-size: min(6vw, 50px);
+    background-color: rgb(83, 83, 83);
+    padding: 0.5vw;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    cursor: pointer;
 }

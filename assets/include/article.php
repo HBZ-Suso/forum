@@ -81,7 +81,7 @@ if (isset($_SESSION["userId"])) {
     echo '<input class="comment-title theme-main-color-1" name="title" placeholder="' . $text->get("comments-title") . '">';
     echo '<h3 class="comment-author theme-main-color-1">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
     echo '<textarea class="comment-text theme-main-color-1" name="text" placeholder="' . $text->get("comments-comment") . '"></textarea>';
-    echo '<input type="submit" name="submit" class="comment-form-submit theme-main-color-1" id="submit-comment">';
+    echo '<input type="submit" name="submit" class="comment-form-submit theme-main-color-1" id="submit-comment" value="' . $text->get("comments-submit") . '">';
     echo '</form>
     <script>var cur_Id = "articleId=" + "' . $articleId . '";</script>
     <script>var cur_username = "' . $_SESSION["user"] . '";</script>
