@@ -86,5 +86,6 @@ layers:
     loading-background: 4
     script-warning: 6
     theme-switcher: 2
+    refined search popout: 4
 
 GITHUB: github.com/HBZ-Suso/forum

@@ -2,14 +2,18 @@ function set_language () {
     get_text("language-switcher-question").then(function (result) {
         var language_prompt_answer = prompt(result);
 
-        axios
+        if (language_prompt_answer.length > 0) {
+            axios
             .post("/forum/assets/api/language.php?language=" + language_prompt_answer)
             .then((response) => {
-                window.location.reload();
+                if (response.data.indexOf("error") === -1) {
+                    window.location.reload();
+                }
             })
             .catch((error) => {
                 throw new Error(error);
             })
+        }
     })
 }
 

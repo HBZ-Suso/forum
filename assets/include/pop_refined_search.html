@@ -1,0 +1,64 @@
+<style>
+    #r-popout {
+        position: absolute;
+        top: -15px;
+        height: 50px;
+        width: 50px;
+        left: 50%;
+        margin-left: -25px;
+        z-index: 4;
+    }
+
+    #r-popout:hover {
+        position: absolute;
+        top: -17.5px;
+        height: 55px;
+        width: 55px;
+        left: 50%;
+        margin-left: -27.5px;
+        cursor: pointer;
+    }
+
+    #r-popout > img {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+</style>
+
+<div id="r-popout">
+    <img id="r-expand-arrow" class="r-arrow" style="display: none;" src="https://img.icons8.com/flat_round/100/000000/expand-arrow.png"/>
+    <img id="r-collapse-arrow" class="r-arrow" style="display: none;" src="https://img.icons8.com/flat_round/100/000000/collapse-arrow--v1.png"/>
+</div>
+
+<script defer>
+    var r_pop = true;
+
+    if (document.getElementById("refined-search-form").style.display === "none") {
+        console.log("wow")
+        r_pop = false;
+        document.getElementById("r-expand-arrow").style.display = "block";
+        document.getElementById("r-collapse-arrow").style.display = "none";
+    } else {
+        r_pop = true;
+        document.getElementById("r-collapse-arrow").style.display = "block";
+        document.getElementById("r-expand-arrow").style.display = "none";
+    }
+
+    document.getElementById("r-expand-arrow").addEventListener("click", () => {
+        r_pop = true;
+        document.getElementById("r-collapse-arrow").style.display = "block";
+        document.getElementById("r-expand-arrow").style.display = "none";
+        document.getElementById("refined-search-form").style.display = "";
+        document.querySelector(".block-container").classList.add("big-top");
+    });
+
+    document.getElementById("r-collapse-arrow").addEventListener("click", () => {
+        r_pop = true;
+        document.getElementById("r-expand-arrow").style.display = "block";
+        document.getElementById("r-collapse-arrow").style.display = "none";
+        document.getElementById("refined-search-form").style.display = "none";
+        document.querySelector(".block-container").classList.remove("big-top");
+    });
+</script>

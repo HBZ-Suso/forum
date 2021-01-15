@@ -103,6 +103,8 @@
     border-top: none;
     border-left: none;
     margin-left: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 .main-menu-entry-first {
