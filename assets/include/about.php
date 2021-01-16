@@ -10,21 +10,21 @@ if ($info->mobile === false) {
         echo '
         <div class="about-block-extended">
             <div class="about-us about-entry">
-                <h2 class="about-us-title about-sub-title">Wir sind Wir?</h2>
-                <p class="about-us-text about-sub-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
+                <h2 class="about-us-title about-sub-title">' . $text->get("about-us-title") . '</h2>
+                <p class="about-us-text about-sub-text">' . $text->get("about-us-text") . '</p>
             </div>
             <div class="about-goal about-entry">
-                <h2 class="about-us-title about-sub-title">Unser Ziel mit diesem Projekt</h2>
-                <p class="about-us-text about-sub-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
+                <h2 class="about-us-title about-sub-title">' . $text->get("about-goal-title") . '</h2>
+                <p class="about-us-text about-sub-text">' . $text->get("about-goal-text") . '</p>
             </div>
             <div class="about-other-projects about-entry">
-                <h2 class="about-us-title about-sub-title">Andere projekte</h2>
-                <p class="about-us-text about-sub-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
+                <h2 class="about-us-title about-sub-title">' . $text->get("about-other-projects-title") . '</h2>
+                <p class="about-us-text about-sub-text">' . $text->get("about-other-projects-text") . '</p>
             </div>
         </div>
         ';
         echo '<div class="about-collab">';
-        echo '<h1 class="about-collab-heading">Collaborators:</h1>';
+        echo '<h1 class="about-collab-heading">' . $text->get("about-collab-title") . '</h1>';
         echo '<div class="about-collab-flex">';
         foreach($data->get_user_collaborators() as $row) {
             echo '
@@ -34,7 +34,7 @@ if ($info->mobile === false) {
                     <p class="about-collaborator-lore">' . $row["collaboratorLore"] . '</p>
                 </span>
                 <span style="display: none;" class="about-collaborator-description" id="a-c-d-' . $row["collaboratorId"] . '"><p class="about-collaborator-d-t">' . $row["collaboratorDescription"] . '</p></span>
-                <span style="display: none;" class="about-collaborator-visit" id="a-c-v-' . $row["collaboratorId"] . '" linkref="' . $row["collaboratorLink"] . '">Visit Profile</span>
+                <span style="display: none;" class="about-collaborator-visit" id="a-c-v-' . $row["collaboratorId"] . '" linkref="' . $row["collaboratorLink"] . '">' . $text->get("about-collab-visit") . '</span>
                 </a>
                 <script>
                     document.getElementById("a-c-' . $row["collaboratorId"] . '").addEventListener("click", (e) => {
@@ -71,7 +71,7 @@ if ($info->mobile === false) {
         echo '</div></div></div>';
     } else {
         echo '<div class="about-collab about-collab-alone theme-main-color-2">';
-        echo '<h1 class="about-collab-heading">Collaborators:</h1>';
+        echo '<h1 class="about-collab-heading">' . $text->get("about-collab-title") . '</h1>';
         echo '<div class="about-collab-flex">';
         foreach($data->get_user_collaborators() as $row) {
             echo '
@@ -81,7 +81,7 @@ if ($info->mobile === false) {
                     <p class="about-collaborator-lore">' . $row["collaboratorLore"] . '</p>
                 </span>
                 <span style="display: none;" class="about-collaborator-description" id="a-c-d-' . $row["collaboratorId"] . '"><p class="about-collaborator-d-t">' . $row["collaboratorDescription"] . '</p></span>
-                <span style="display: none;" class="about-collaborator-visit" id="a-c-v-' . $row["collaboratorId"] . '" linkref="' . $row["collaboratorLink"] . '">Visit Profile</span>
+                <span style="display: none;" class="about-collaborator-visit" id="a-c-v-' . $row["collaboratorId"] . '" linkref="' . $row["collaboratorLink"] . '">' . $text->get("about-collab-visit") . '</span>
                 </a>
                 <script>
                     document.getElementById("a-c-' . $row["collaboratorId"] . '").addEventListener("click", (e) => {

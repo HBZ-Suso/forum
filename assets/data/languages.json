@@ -71,7 +71,15 @@
         "theme-switcher": "Switch Theme",
         "theme-switcher-question": "What theme do you want to choose?",
         "language-switcher": "Change language",
-        "language-switcher-question": "What language should the site use?"
+        "language-switcher-question": "What language should the site use?",
+        "about-us-title": "Who are we?",
+        "about-us-text": "We are the highly skilled group of the Heinrich Suso Gymnasiums Konstanz.",
+        "about-goal-title": "Our goal",
+        "about-goal-text": "We want to provide a community for all members and former members of the highly skilled group of the Heinrich Suso Gymnasium.",
+        "about-other-projects-title": "Other projects",
+        "about-other-projects-text": "Other projects we provide are eushfisuahgiudf fdsgudsfhiguhdfiu hdsguhdfsiguhsdfiu gdfsgfdushgfdsuhg sdffgdfugdfg dfsg  fdiu ghifd uhdifg hidfuh ...",
+        "about-collab-title": "Collaborators:",
+        "about-collab-visit": "Visit Profile"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -145,6 +153,14 @@
         "theme-switcher": "Thema wechseln",
         "theme-switcher-question": "Welches Thema willst du auswählen?",
         "language-switcher": "Ändere Sprache",
-        "language-switcher-question": "Zu welcher Sprache?"
+        "language-switcher-question": "Zu welcher Sprache?",
+        "about-us-title": "Wir sind wir?",
+        "about-us-text": "Wir sind der Hochbegabtenzug des Heinrich-Suso-Gymnasium Konstanz.",
+        "about-goal-title": "User Ziel",
+        "about-goal-text": "Wir wollen eine Gemeinschaft für alle Mitglieder und ehemaligen Mitglieder des Hochbgabtenzuges bieten.",
+        "about-other-projects-title": "Andere Projekte",
+        "about-other-projects-text": "Andere Projekte sind bspw. eushfisuahgiudf fdsgudsfhiguhdfiu hdsguhdfsiguhsdfiu gdfsgfdushgfdsuhg sdffgdfugdfg dfsg  fdiu ghifd uhdifg hidfuh ...",
+        "about-collab-title": "Mitwirkende:",
+        "about-collab-visit": "Besuche Profil"
     }
 }
