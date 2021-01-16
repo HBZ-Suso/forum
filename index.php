@@ -37,6 +37,8 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/highlight_block.php";
         }
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/pop_refined_search.html";
+
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about.php";
         echo "</div>";
     } else {
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/mobile_search.php";

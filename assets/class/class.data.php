@@ -881,6 +881,24 @@ class Data extends Connector
     }
 
 
+    public function get_user_collaborators()
+    {
+        $query = "SELECT * FROM collaborators";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            $return = [];
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+            return $return;
+        } else {
+            return false;
+        }
+    }
 
 
     public function get_user_comment_by_id($commentId)

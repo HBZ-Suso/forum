@@ -73,6 +73,13 @@ Database name: forum
     3. codeType (TINYTEXT, administrator / user)
     4. codeIntendet (TINYTEXT, discribes intendation of code)
 
+10. collaborators:
+    1. collaboratorId (MEDIUMINT, ticking up, unsigned)
+    2. collaboratorName (MEDIUMTEXT)
+    3. collaboratorLore (LONGTEXT)
+    4. collaboratorDescription (LONGTEXT)
+    5. collaboratorLink (LONGTEXT)
+
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
     <a href="https://icons8.com/icon/DFU1kReSUccu/heart">Heart icon by Icons8</a>
@@ -87,5 +94,7 @@ layers:
     script-warning: 6
     theme-switcher: 2
     refined search popout: 4
+    about-collaborator: 0
+    about-collaborator on clicked: 1
 
 GITHUB: github.com/HBZ-Suso/forum
