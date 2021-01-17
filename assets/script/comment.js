@@ -26,7 +26,7 @@ async function create_new_comment (title, text, id, user) {
     <div class="comment theme-main-color-1" id="comment-id-${id}" id="${id}">
         <h3 class="comment-title theme-main-color-1">${title}</h3>
         <a class="author-href" href="/forum/?userName=${user}"><h3 class="comment-author theme-main-color-1">${user}</h3></a>
-        <textarea class="comment-text theme-main-color-1" disabled>${text}</textarea>
+        <div class="comment-text theme-main-color-1" disabled>${text}</div>
         ${delete_button}
     </div>`;
 
@@ -66,6 +66,10 @@ async function submit_comment_ajax (title, text) {
         throw new Error("Not logged in");
     }
 
+    if (title.length > 100 || text.length > 1000) {
+        throw new Error("Text too long");
+    }
+
     axios
         .post("/forum/assets/api/comment.php", cur_Id + "&title=" + title + "&text=" +  text)
         .then((response) => {
@@ -100,7 +104,24 @@ if (cur_username !== false) {
         e.preventDefault();
 
         if (document.querySelector(".comment-text").value !== "" && document.querySelector(".comment-title").value !== "") {
-            submit_comment_ajax(document.querySelector(".comment-title").value, document.querySelector(".comment-text").value);
+            submit_comment_ajax(document.querySelector(".comment-title").value, document.querySelector(".comment-text").value).catch((error) => {
+                let styling = [".comment-form", ".comment-text", ".comment-title", ".comment-author"]
+                styling.forEach((element, index) => {
+                    document.querySelector(element).style.transition = "0.5s all ease-out";
+                    document.querySelector(element).style.backgroundColor = "red";
+                    document.querySelector(element).style.transition = "none";
+                    
+                });
+                setTimeout((e) => {
+                    let styling = [".comment-form", ".comment-text", ".comment-title", ".comment-author"]
+                    styling.forEach((element, index) => {
+                        document.querySelector(element).style.transition = "1s all ease-out";
+                        document.querySelector(element).style.backgroundColor = "";
+                        document.querySelector(element).style.transition = "none";
+                        
+                    }) 
+                });
+            });
         }
     })
 }

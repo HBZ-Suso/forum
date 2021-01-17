@@ -70,7 +70,7 @@ if ($info->mobile !== true) {
         }
         echo '</div></div></div>';
     } else {
-        echo '<div class="about-collab about-collab-alone theme-main-color-2">';
+        echo '<div class="block about-collab about-collab-alone theme-main-color-2" style="overflow: initial;">';
         echo '<h1 class="about-collab-heading">' . $text->get("about-collab-title") . '</h1>';
         echo '<div class="about-collab-flex">';
         foreach($data->get_user_collaborators() as $row) {

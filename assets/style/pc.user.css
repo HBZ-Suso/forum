@@ -174,7 +174,8 @@
 }
 
 .comment-text {
-    vertical-align: center;
+    vertical-align: middle;
+    line-height: 100%;
     border: none;
     color: black;
     -moz-appearance: textfield-multiline;
@@ -182,6 +183,9 @@
     overflow: auto;
     outline: none;
     resize: none;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -202,11 +206,11 @@
 .comment:focus-within > .author-href,
 .comment:hover > h3,
 .comment:hover > input,
-.comment:hover > textarea,
+.comment:hover > div,
 .comment:hover
 .comment:focus-within > h3
 .comment:focus-within > input
-.comment:focus-within > textarea
+.comment:focus-within > div
 .comment:focus-within {
     background-color: lightgray;
 }

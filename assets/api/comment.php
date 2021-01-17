@@ -20,6 +20,10 @@ if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastComment"])
     exit("Timeouterror");
 }
 
+if (strlen($rargs["title"]) > 100 || strlen($rargs["text"]) > 1000) {
+    exit("Textlengtherror");
+}
+
 if (isset($rargs["articleId"])) {
     $data->create_article_comment($_SESSION["userId"], $rargs["articleId"], $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
 } else if (isset($rargs["userId"])) {

@@ -128,7 +128,11 @@
     background-color: lightgray;
 }
 
-.comment:hover > textarea {
+.comment:hover > div {
+    background-color: lightgray!important;
+}
+
+.comment:hover > a > h3 {
     background-color: lightgray;
 }
 
@@ -162,6 +166,9 @@
     overflow: auto;
     resize: none;
     outline: none;
+    overflow-y: auto;
+    display: flex;
+    align-items: center;
 }
 
 
