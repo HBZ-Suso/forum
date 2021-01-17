@@ -50,6 +50,8 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
         }
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/article_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/user_block.php";
+
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about.php";
         echo "</div>";
     }
 } else if (isset($_GET["userId"]) || isset($_GET["userName"])) {

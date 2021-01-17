@@ -25,8 +25,13 @@ if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastArticle"])
 }
 
 if (!isset($_POST["form"])) { 
+    if ($info->mobile !== true) {
+        echo '<link rel="stylesheet" href="/forum/assets/style/pc.create_article.css">';
+    } else {
+        echo '<link rel="stylesheet" href="/forum/assets/style/mobile.create_article.css">';
+    }
+
     echo '
-    <link rel="stylesheet" href="/forum/assets/style/create_article.css">
 
     <div class="background">
 

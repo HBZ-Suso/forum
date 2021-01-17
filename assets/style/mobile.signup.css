@@ -18,9 +18,10 @@
 
 
 .main-form {
+    padding-top: 60px;
     margin: auto;
     height: fit-content;
-    width: 500px;
+    width: 100%;
     background-color: #191919;
     border-radius: 20px;
 }
@@ -40,7 +41,7 @@
 .main-form input[type = "text"],.main-form input[type = "password"],.main-form input[type = "number"]  {
     background: none;
     margin: 20px auto;
-    width: 340px;
+    width: 80%;
     outline: none;
     display: block;
     border: 2px solid #3498db;
@@ -57,7 +58,7 @@
 .main-form textarea {
     background: none;
     margin: 20px auto;
-    width: 420px;
+    width: 80%;
     height: 180px;
     resize: none;
     outline: none;
@@ -85,13 +86,13 @@
 }
 
 .main-form input[type = "text"]:focus,.main-form input[type = "password"]:focus,.main-form input[type = "number"]:focus   {
-    width: 380px;
+    width: 90%;
     border-color: #2ecc71;
 }
 
 .main-form textarea:focus {
     border-color: #2ecc71;
-    width: 440px;
+    width: 90%;
 }
 
 .login:hover {
@@ -126,6 +127,9 @@ input::-webkit-inner-spin-button {
     font-size: 40px;
     cursor: pointer;
     padding: 6px;
+    color: white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
 }
 
 .home:hover {

@@ -17,8 +17,13 @@ if (!isset($_GET["form"])) {
         $_SESSION["login-refer"] = $_GET["refer"];
     }
 
+    if ($info->mobile !== true) {
+        echo '<link rel="stylesheet" href="/forum/assets/style/pc.login.css">';
+    } else {
+        echo '<link rel="stylesheet" href="/forum/assets/style/mobile.login.css">';
+    }
+
     echo '
-    <link rel="stylesheet" href="/forum/assets/style/login.css">
     <div class="login-background">
         <form action="/forum/assets/site/login.php?form=true" method="post" class="main-form">
             <a class="signup" href="/forum/assets/site/signup.php">' . $text->get("login-signup") . '</a><br>

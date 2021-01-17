@@ -8,8 +8,13 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 
 if (!isset($_GET["form"])) {
+    if ($info->mobile !== true) {
+        echo '<link rel="stylesheet" href="/forum/assets/style/pc.signup.css">';
+    } else {
+        echo '<link rel="stylesheet" href="/forum/assets/style/mobile.signup.css">';
+    }
+
     echo '
-    <link rel="stylesheet" href="/forum/assets/style/signup.css">
 
     <div class="login-background">
 

@@ -19,13 +19,13 @@
 
 .main-form {
     margin: auto;
-    height: 350px;
-    width: 350px;
+    height: fit-content;
+    width: 500px;
     background-color: #191919;
     border-radius: 20px;
 }
 
-.signup {
+.login {
     color: white;
     text-transform: uppercase;
     font-weight: 500;
@@ -37,10 +37,29 @@
     margin-top: 20px;
 }
 
-.main-form input[type = "text"],.main-form input[type = "password"]  {
+.main-form input[type = "text"],.main-form input[type = "password"],.main-form input[type = "number"]  {
     background: none;
     margin: 20px auto;
-    width: 240px;
+    width: 340px;
+    outline: none;
+    display: block;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    text-align: center;
+    color: white;
+    border-radius: 26px;
+    transition: 0.25s;
+
+    /* HIDE NUMBER INCREMENT BUTTONS */
+    -moz-appearance: textfield;
+}
+
+.main-form textarea {
+    background: none;
+    margin: 20px auto;
+    width: 420px;
+    height: 180px;
+    resize: none;
     outline: none;
     display: block;
     border: 2px solid #3498db;
@@ -65,12 +84,17 @@
     cursor: pointer;
 }
 
-.main-form input[type = "text"]:focus,.main-form input[type = "password"]:focus {
-    width: 280px;
+.main-form input[type = "text"]:focus,.main-form input[type = "password"]:focus,.main-form input[type = "number"]:focus   {
+    width: 380px;
     border-color: #2ecc71;
 }
 
-.signup:hover {
+.main-form textarea:focus {
+    border-color: #2ecc71;
+    width: 440px;
+}
+
+.login:hover {
     transition: all 0.2s linear;
     cursor:pointer;
     text-decoration: underline;
@@ -79,6 +103,15 @@
 .submit:hover {
     background: #2ecc71;
 }
+
+
+/* HIDE NUMBER INCREMENT BUTTONS Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 
 
 .home {
@@ -93,6 +126,9 @@
     font-size: 40px;
     cursor: pointer;
     padding: 6px;
+    color: white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
 }
 
 .home:hover {
