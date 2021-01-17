@@ -28,6 +28,31 @@
     border-bottom: 1px solid black;
 }
 
+#userNewPassword {
+    margin-top: 10px;
+}
+
+.flex-container > input {
+    padding: 0.4%;
+    resize: none;
+    border: none;
+    height: 35px;
+    border-bottom: 1px solid black;
+}
+
+.flex-container > #userChangePassword {
+    padding: 0.4%;
+    resize: none;
+    height: 35px;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 35px;
+}
+
+
 .user-entry-first {
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
@@ -80,9 +105,14 @@
 }
 
 
-#userMail, #userPhone, #userEmployment, #userAge, #userIntended, #userDescription {
+#userMail, #userPhone, #userEmployment, #userAge, #userIntended, #userDescription, .flex-container > input, #userChangePassword {
     padding-left: 1%;
     width: 98.6%;
+}
+
+#userChangePassword {
+   padding-left: 0px;
+   width: 100%;
 }
 
 

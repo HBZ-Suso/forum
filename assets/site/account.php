@@ -39,7 +39,7 @@ if ($info->mobile === true) {
 <link rel="stylesheet" href="/forum/assets/style/<?php echo $s_mobile; ?>account.css">
 
 <div class="window theme-main-color-1">
-    <form id="main_form" action="/forum/assets/site/change_data.php" method="post">
+    <form id="main_form" action="" method="post">
         <div class="flex-container">
             <h1 id="title"><?php echo $user_data["userName"];?></h1>
             <textarea id="userMail" class="theme-main-color-2 user-entry-first"></textarea>
@@ -47,6 +47,9 @@ if ($info->mobile === true) {
             <textarea id="userEmployment" class="theme-main-color-2"></textarea>
             <textarea id="userAge" class="theme-main-color-2"></textarea>
             <textarea id="userIntended" disabled class="theme-main-color-2"><?php echo $user_data["userIntended"];?></textarea>
+            <input type="password" id="userNewPassword" class="theme-main-color-2" placeholder="<?php echo $text->get("account-change-password-1"); ?>"></input>
+            <input type="password" id="userNewPassword2" class="theme-main-color-2" placeholder="<?php echo $text->get("account-change-password-2"); ?>"></input>
+            <input type="submit" id="userChangePassword" class="theme-main-color-2" value="<?php echo $text->get("account-change-password"); ?>">
             <textarea id="userDescription" class="theme-main-color-2 user-entry-last"></textarea>
             <input type="submit" id="userSubmit" value="Save" class="theme-main-color-2">
         </div>
@@ -61,3 +64,28 @@ if ($info->mobile === true) {
 
 <script src="/forum/assets/script/account.js"></script>
 
+<script>
+    document.getElementById("userChangePassword").addEventListener("click", (e) => {
+        e.preventDefault();
+        let pwd1 = document.getElementById("userNewPassword").value;
+        let pwd2 = document.getElementById("userNewPassword2").value;
+        if (pwd1 === pwd2 && pwd1 !== "") {
+            ajax_request = "change_data=" +  JSON.stringify({"userPassword": pwd1});
+            axios
+                .post("/forum/assets/api/change_data.php", ajax_request)
+                .then((response) => {
+                    reload.changed = false;
+                    document.getElementById("userChangePassword").style.backgroundColor = "green";
+                    document.getElementById("userNewPassword").value = "";
+                    document.getElementById("userNewPassword2").value = "";
+                    setTimeout(() => {document.getElementById("userChangePassword").style.transition = "0.3s all linear"; document.getElementById("userChangePassword").style.backgroundColor = ""}, 1500);
+                })
+                .catch((error) => {
+                    console.debug(error);
+                })
+        } else {
+            document.getElementById("userChangePassword").style.backgroundColor = "red";
+            setTimeout(() => {document.getElementById("userChangePassword").style.transition = "0.3s all linear"; document.getElementById("userChangePassword").style.backgroundColor = "";}, 1000)
+        }
+    })
+</script>

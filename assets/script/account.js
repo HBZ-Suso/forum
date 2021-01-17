@@ -76,7 +76,6 @@ document.getElementById("userAge").addEventListener("change", (e) => {
 
 document.getElementById("userSubmit").addEventListener("click", (e) => {
     e.preventDefault();
-
     send_ajax();
 })
 

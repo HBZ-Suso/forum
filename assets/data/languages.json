@@ -79,7 +79,10 @@
         "about-other-projects-title": "Other projects",
         "about-other-projects-text": "Other projects we provide are eushfisuahgiudf fdsgudsfhiguhdfiu hdsguhdfsiguhsdfiu gdfsgfdushgfdsuhg sdffgdfugdfg dfsg  fdiu ghifd uhdifg hidfuh ...",
         "about-collab-title": "Collaborators:",
-        "about-collab-visit": "Visit Profile"
+        "about-collab-visit": "Visit Profile",
+        "account-change-password": "Change Password",
+        "account-change-password-1": "New password",
+        "account-change-password-2": "And again..."
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -161,6 +164,9 @@
         "about-other-projects-title": "Andere Projekte",
         "about-other-projects-text": "Andere Projekte sind bspw. eushfisuahgiudf fdsgudsfhiguhdfiu hdsguhdfsiguhsdfiu gdfsgfdushgfdsuhg sdffgdfugdfg dfsg  fdiu ghifd uhdifg hidfuh ...",
         "about-collab-title": "Mitwirkende:",
-        "about-collab-visit": "Besuche Profil"
+        "about-collab-visit": "Besuche Profil",
+        "account-change-password": "Ändere Passwort",
+        "account-change-password-1": "Neues Passwort",
+        "account-change-password-2": "Und noch einmal..."
     }
 }
