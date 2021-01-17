@@ -46,7 +46,7 @@
     border-radius: 2px;
 }
 
-.flex-container > #useruserChangePassword {
+.flex-container > #userChangePassword {
     flex: 1 1 50px;
     resize: none;
     padding: 0.4%;

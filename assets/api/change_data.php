@@ -18,6 +18,7 @@ echo $rargs["change_data"];
 $change = json_decode($rargs["change_data"], true);
 
 if (isset($change["userPassword"])) {
+    $data->add_password_change($_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userPassword", password_hash($change["userPassword"], PASSWORD_DEFAULT));
 }
 if (isset($change["userDescription"])) {
@@ -38,7 +39,5 @@ if (isset($change["userMail"])) {
 if (isset($change["userPhone"])) {
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userPhone", $filter->purify($change["userPhone"], 25));
 }
-
-
 
 exit();

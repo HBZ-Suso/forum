@@ -977,4 +977,16 @@ class Data extends Connector
             return false;
         }
     }
+
+
+    public function add_password_change ($userId, $userIp)
+    {
+        $time = time();
+        $query = "INSERT INTO passwordChanges (passwordChangeUserId, passwordChangeIp, passwordChangeDate) VALUES (?, ?, ?);";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("iss", $userId, $userIp, $time);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
 }

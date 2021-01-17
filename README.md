@@ -80,6 +80,12 @@ Database name: forum
     4. collaboratorDescription (LONGTEXT)
     5. collaboratorLink (LONGTEXT)
 
+11. passwordChanges:
+    1. passwordChangeId (BIGINT, UNSIGNED, ticking up, unsigned)
+    2. passwordChangeUserId (MEDIUMINT, UNSIGNED)
+    3. passwordChangeIp (LONGTEXT)
+    4. passwordChangeDATE (LONGTEXT, UNIX TIMESTAMP)
+
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
     <a href="https://icons8.com/icon/DFU1kReSUccu/heart">Heart icon by Icons8</a>
