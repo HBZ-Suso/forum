@@ -48,11 +48,6 @@ if (!isset($_GET["form"])) {
         !isset($_POST["username"]) || 
         !isset($_POST["password"]) || 
         !isset($_POST["password_2"]) ||
-        !isset($_POST["age"]) ||
-        !isset($_POST["employment"]) ||
-        !isset($_POST["description"]) ||
-        !isset($_POST["mail"]) ||
-        !isset($_POST["phone"]) ||
         !isset($_POST["code"])
         ) {
             header("LOCATION:/forum/assets/site/signup.php?error=formerror");

@@ -1,5 +1,17 @@
 <?php 
 
+if (!isset($_SESSION["res_x"]) || !isset($_SESSION["res_y"])) {
+    echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
+    echo '
+        <script>
+            axios.get("/forum/assets/api/set_resolution.php?res_x=" + window.innerWidth + "&res_y=" + window.innerHeight).then((response) => {window.location.reload;}).catch((error) => {console.debug(error);});
+        </script>
+    ';
+    exit();
+} 
+
+
+
 // Setting languages before including classes because class.text.php needs language on construct
 if (!isset($_SESSION["language"])) {
     if (isset($_COOKIE["language"])) {
@@ -54,7 +66,7 @@ if (!isset($hide_frame)) {
         @media (scripting: none) {.script-warning {background-color: red;position: fixed;height: 100%;width: 100%;top: 0px;left: 0px; display: block!important; z-index: 6;}}
     </style>";
     echo "<div class='script-warning'>This site is relying on Javascript, please switch to a browser that supports JS or activate it.</div>";
-
+    echo '<script src="/forum/assets/script/include/resolution.js"></script>';
 
     if (isset($_SESSION["theme"])) {
         $theme = $_SESSION["theme"];
