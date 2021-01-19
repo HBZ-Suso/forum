@@ -4,6 +4,10 @@
     font-family: 'Roboto', sans-serif!important;
 }
 
+body {
+    position: relative;
+}
+
 .article-block  {
     position: absolute;
     width: 88%;

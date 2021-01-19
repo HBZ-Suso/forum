@@ -51,15 +51,19 @@ if ($user_data["userVerified"] == "1") {
 
 if ($info->mobile === true) {
     echo '<link rel="stylesheet" href="/forum/assets/style/mobile.user.css">';
+    $l1 = '<div class="like-btn ' . $liked . '">' . $text->get("user-view-like") . '</div>';
+    $l2 = '';
 } else {
     echo '<link rel="stylesheet" href="/forum/assets/style/pc.user.css">';
+    $l1 = '';
+    $l2 = '<div class="like-btn ' . $liked . '">' . $text->get("user-view-like") . '</div>';
 }
 
 
 echo '
-
+' . $l1 . '
 <div class="user-block theme-main-color-1">
-    <div class="like-btn ' . $liked . '">' . $text->get("user-view-like") . '</div>
+    ' . $l2 . '
     <script src="/forum/assets/script/like.js"></script>
     ' . $delete_button . '
     ' . $verify_button . '

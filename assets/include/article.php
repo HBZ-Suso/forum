@@ -51,15 +51,20 @@ if ($data->get_user_by_id($article_data["userId"])["userVerified"] == "1") {
 
 if ($info->mobile === true) {
     echo '<link rel="stylesheet" href="/forum/assets/style/mobile.article.css">';
+    $l1 = '<div class="like-btn ' . $liked . '">' . $text->get("article-view-like") . '</div>';
+    $l2 = '';
 } else {
     echo '<link rel="stylesheet" href="/forum/assets/style/pc.article.css">';
+    $l1 = '';
+    $l2 = '<div class="like-btn ' . $liked . '">' . $text->get("article-view-like") . '</div>';
 }
 
+
 echo '
-<div class="like-btn ' . $liked . '">' . $text->get("article-view-like") . '</div>
-<div class="article-block theme-main-color-1">
-    
-    <script src="/forum/assets/script/like.js"></script>
+    ' . $l1 . '
+    <div class="article-block theme-main-color-1">
+    ' . $l2 . '
+    <script src="/forum/assets/script/like.js" defer></script>
     ' . $delete_button . '
     <div class="theme-main-color-1 article-block-entry article-block-title">' . $article_data["articleTitle"] . '</div>' . $verified . '
     <a class="author-href" href="/forum/?userId=' . $article_data["userId"] . '"><div class="theme-main-color-1 article-block-entry article-block-author">' . $author . '</div></a>
