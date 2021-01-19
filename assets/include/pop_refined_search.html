@@ -25,6 +25,27 @@
         position: relative;
     }
 
+
+    @media screen and (max-width: 990px) {
+        #r-popout {
+            position: absolute;
+            top: -15px;
+            height: 30px;
+            width: 30px;
+            left: 50%;
+            margin-left: -15px;
+            z-index: 4;
+        }
+        #r-popout:hover {
+            position: absolute;
+            top: -17.5px;
+            height: 35px;
+            width: 35px;
+            left: 50%;
+            margin-left: -17.5px;
+            cursor: pointer;
+        }
+    }
 </style>
 
 <div id="r-popout">
