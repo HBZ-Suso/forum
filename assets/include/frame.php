@@ -4,10 +4,12 @@
 
 if (isset($_SESSION["user"])) {
     $account = $text->get("frame-menu-account");
+    $account_ref = "/forum/?show=account";
     $logged = '<a class="main-menu-entry hover-theme-main-color-3 theme-main-color-1" href="/forum/assets/site/create_article.php">' . $text->get("frame-menu-create") . '</a><a class="main-menu-entry theme-main-color-1 hover-theme-main-color-3 main-menu-entry-last" href="/forum/assets/site/login.php?logout=true">' . $text->get("frame-menu-logout") . '</a><br>';
     $last_text = "";
 } else {
     $account = $text->get("frame-menu-login");
+    $account_ref = "/forum/assets/site/login.php";
     $logged = "";
     $last_text = "main-menu-entry-last";
 }
@@ -37,7 +39,7 @@ if ($info->mobile === false) {
     
     </div>
     <div class="main-menu theme-main-color-1">
-        <a class="main-menu-entry theme-main-color-1 hover-theme-main-color-3 main-menu-entry-first" href="/forum/?show=account">' . $account . '</a><br>
+        <a class="main-menu-entry theme-main-color-1 hover-theme-main-color-3 main-menu-entry-first" href="' . $account_ref . '">' . $account . '</a><br>
         <a class="main-menu-entry theme-main-color-1 hover-theme-main-color-3 ' . $last_text . '" href="/forum/?show=about">' . $text->get("frame-menu-about") . '</a><br>' . $logged . '
     </div>
     
@@ -51,7 +53,8 @@ if ($info->mobile === false) {
     </div>
     <div class="main-menu theme-main-color-1">
         
-        <input class="main-menu-entry main-menu-entry-search main-menu-entry-first theme-main-color-1" placeholder="' . $text->get("frame-menu-search") .'"><button class="frame-menu-entry-search-button theme-main-color-1 hover-theme-main-color-3">' . $text->get("frame-menu-search-button") .'</button><br>
+        <input class="main-menu-entry main-menu-entry-search main-menu-entry-first theme-main-color-1" placeholder="' . $text->get("frame-menu-search") .'">
+        <button class="frame-menu-entry-search-button theme-main-color-1 hover-theme-main-color-3">' . $text->get("frame-menu-search-button") .'</button><br>
     
         <script>
             document.querySelector(".main-menu-entry-search").addEventListener("keydown", (e) => {
@@ -65,7 +68,7 @@ if ($info->mobile === false) {
             });
         </script>
 
-        <a class="main-menu-entry theme-main-color-1 hover-theme-main-color-3" href="/forum/?show=account">' . $account . '</a><br>
+        <a class="main-menu-entry theme-main-color-1 hover-theme-main-color-3" href="' . $account_ref . '">' . $account . '</a><br>
         <a class="main-menu-entry theme-main-color-1 hover-theme-main-color-3 ' . $last_text . '" href="/forum/?show=about">' . $text->get("frame-menu-about") . '</a><br>' . $logged . '
     </div>
     
