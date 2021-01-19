@@ -117,6 +117,7 @@
 
 
 .theme-switcher {
+    border: 1px solid black;
     position: fixed;
     z-index: 2;
     left: 0px;
@@ -132,6 +133,7 @@
 
 
 .language-switcher {
+    border: 1px solid black;
     position: fixed;
     z-index: 2;
     right: 0px;

@@ -102,5 +102,7 @@ layers:
     refined search popout: 4
     about-collaborator: 0
     about-collaborator on clicked: 1
+    custum prompt: 6
+    custom prompt enter: 7
 
 GITHUB: github.com/HBZ-Suso/forum

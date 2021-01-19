@@ -1,20 +1,24 @@
 function set_theme () {
     get_text("theme-switcher-question").then(function (result) {
-        var theme_prompt_answer = prompt(result);
+        window.prompt(result).then(() => {
+            var theme_prompt_answer = document.getElementById("q-input").value;
 
-        if (theme_prompt_answer !== "") {
-            axios
-            .post("/forum/assets/api/theme.php", "theme=" + theme_prompt_answer)
-            .then((response) => {
-                if (response.data === theme_prompt_answer) {
-                    document.getElementById("theme-box").innerHTML = "";
-                    document.getElementById("theme-box").innerHTML = '<link rel="stylesheet" href="/forum/assets/theme/' + response.data + '.css">';
-                }
-            })
-            .catch((error) => {
-                throw new Error(error);
-            })
-        }
+            if (theme_prompt_answer !== "") {
+                axios
+                .post("/forum/assets/api/theme.php", "theme=" + theme_prompt_answer)
+                .then((response) => {
+                    if (response.data === theme_prompt_answer) {
+                        document.getElementById("theme-box").innerHTML = "";
+                        document.getElementById("theme-box").innerHTML = '<link rel="stylesheet" href="/forum/assets/theme/' + response.data + '.css">';
+                    }
+                })
+                .catch((error) => {
+                    throw new Error(error);
+                })
+            }
+        }).catch(() => {
+            console.debug("Prompt error");
+        })
     })
 }
 
