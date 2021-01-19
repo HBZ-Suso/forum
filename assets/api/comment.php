@@ -24,10 +24,14 @@ if (strlen($rargs["title"]) > 100 || strlen($rargs["text"]) > 1000) {
     exit("Textlengtherror");
 }
 
+if (strlen($filter->purify($rargs["title"], 25)) < 1 || strlen($filter->purify($rargs["text"], 20)) < 1) {
+    exit("Textlengtherror");        
+} 
+
 if (isset($rargs["articleId"])) {
-    $data->create_article_comment($_SESSION["userId"], $rargs["articleId"], $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
+    $data->create_article_comment($_SESSION["userId"], intval($filter->purify($rargs["articleId"], 25)), $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
 } else if (isset($rargs["userId"])) {
-    $data->create_user_comment($_SESSION["userId"], $rargs["userId"], $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
+    $data->create_user_comment($_SESSION["userId"], intval($filter->purify($rargs["userId"], 25)), $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
 }
 
 $data->set_comment_timeout_by_id($_SESSION["userId"]);

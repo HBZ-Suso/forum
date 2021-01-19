@@ -21,9 +21,6 @@ class Info
             $this->mobile = true;
             $this->small_m = true;
         }
-        echo intval($_SESSION["res_x"]) / intval($_SESSION["res_y"]);
-        echo "<br>";
-        echo intval($_SESSION["res_x"]);
     }
 
 

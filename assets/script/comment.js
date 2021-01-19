@@ -45,6 +45,7 @@ var refresh_comments = async () => {
         .post("/forum/assets/api/get_comments.php", cur_Id)
         .then((response) => {
             let comments = response.data;
+            console.log(comments)
             if (comments.length > 0) {
                 comments.reverse();
             }
@@ -74,6 +75,24 @@ async function submit_comment_ajax (title, text) {
         .post("/forum/assets/api/comment.php", cur_Id + "&title=" + title + "&text=" +  text)
         .then((response) => {
             if (response.data === "Timeouterror") {
+                let styling = [".comment-form", ".comment-text", ".comment-title", ".comment-author"]
+                styling.forEach((element, index) => {
+                    document.querySelector(element).style.transition = "0.5s all ease-out";
+                    document.querySelector(element).style.backgroundColor = "red";
+                    document.querySelector(element).style.transition = "none";
+                    
+                })
+                setTimeout((e) => {
+                    let styling = [".comment-form", ".comment-text", ".comment-title", ".comment-author"]
+                    styling.forEach((element, index) => {
+                        document.querySelector(element).style.transition = "1s all ease-out";
+                        document.querySelector(element).style.backgroundColor = "";
+                        document.querySelector(element).style.transition = "none";
+                        
+                    }) 
+                }, 1000);
+            }
+            if (response.data === "Textlengtherror") {
                 let styling = [".comment-form", ".comment-text", ".comment-title", ".comment-author"]
                 styling.forEach((element, index) => {
                     document.querySelector(element).style.transition = "0.5s all ease-out";
