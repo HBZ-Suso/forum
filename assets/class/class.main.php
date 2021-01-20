@@ -4,7 +4,7 @@ if (!isset($_SESSION["res_x"]) || !isset($_SESSION["res_y"])) {
     echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
     echo '
         <script>
-            axios.get("/forum/assets/api/set_resolution.php?res_x=" + window.innerWidth + "&res_y=" + window.innerHeight).then((response) => {window.location.reload;}).catch((error) => {console.debug(error);});
+            axios.get("/forum/assets/api/set_resolution.php?res_x=" + window.innerWidth + "&res_y=" + window.innerHeight).then((response) => {window.location.reload();}).catch((error) => {console.debug(error); window.location.reload();});
         </script>
     ';
     exit();
