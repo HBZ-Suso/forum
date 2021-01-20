@@ -104,5 +104,6 @@ layers:
     about-collaborator on clicked: 1
     custum prompt: 6
     custom prompt enter: 7
+    verify & like btns: 2
 
 GITHUB: github.com/HBZ-Suso/forum

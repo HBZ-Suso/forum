@@ -58,7 +58,6 @@
 
 .like-btn {
     text-align: center;
-    width: 70px;
     position: fixed;
     top:80px;
     right: 20px;
@@ -68,6 +67,7 @@
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     cursor: pointer;
+    z-index: 2;
 }
 
 
@@ -156,7 +156,6 @@
 
 .verify-user {
     text-align: center;
-    width: 70px;
     position: fixed;
     top:80px;
     left: 20px;
@@ -166,4 +165,5 @@
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     cursor: pointer;
+    z-index: 2;
 }

@@ -29,9 +29,10 @@ window.mobileCheck = function () {
     return check;
 };
 
-window.prompt = function (text, timeout=0) {
+window.prompt = function (text, info_text, timeout=0) {
     document.querySelector(".q-box-container").style.display = "";
     document.getElementById("q-heading").innerText = text;
+    document.getElementById("q-info").innerText = info_text;
     document.getElementById("q-input").value = "";
     document.getElementById("q-input").focus();
     document.getElementById("q-input").click();
