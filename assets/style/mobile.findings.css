@@ -23,6 +23,7 @@
     max-height: 700px;
     height: 75%;
     margin-bottom: 1vh;
+    position: relative;
 }
 
 
@@ -105,4 +106,39 @@
         height: 80%;
         max-height: 90%;
     }
+}
+
+
+
+
+.page-arrow {
+    position: absolute;
+    bottom: 5px;
+    border-radius: 25%;
+}
+
+.page-arrow:hover {
+    background-color: gray;
+}
+
+.articlePage {
+    left: 45%;
+    width: 10%;
+    bottom: 0px;
+    position: absolute;
+}
+
+.userPage {
+    left: 45%;
+    width: 10%;
+    bottom: 0px;
+    position: absolute;
+}
+
+.page-arrow-left {
+    left: 5px;
+}
+
+.page-arrow-right {
+    right: 5px;
 }
