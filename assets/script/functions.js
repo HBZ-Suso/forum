@@ -51,6 +51,12 @@ window.prompt = function (text, info_text="", timeout=0) {
                 }
             } 
         })
+        document.getElementById("q-input").addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                document.querySelector(".q-box-container").style.display = "none";
+                reject(new Error("Escaped"));
+            } 
+        })
         document.getElementById("q-question-enter").addEventListener("click", (e) => {
             if (document.getElementById("q-input").value !== "" && document.getElementById("q-input").value.length !== 0) {
                 document.querySelector(".q-box-container").style.display = "none";

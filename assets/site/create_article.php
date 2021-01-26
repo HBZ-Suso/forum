@@ -24,6 +24,11 @@ if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastArticle"])
     exit("Timeouterror");
 }
 
+if (strval($data->get_user_lock($_SESSION["userId"])) === "1") {
+    header("LOCATION: /forum/?error=lockederror");
+    exit("Lockederror");
+}
+
 if (!isset($_POST["form"])) { 
     if ($info->mobile !== true) {
         echo '<link rel="stylesheet" href="/forum/assets/style/pc.create_article.css">';
@@ -34,7 +39,6 @@ if (!isset($_POST["form"])) {
     echo '
 
     <div class="background">
-
         <form action="/forum/assets/site/create_article.php?form=true" method="post" class="main-form">
             <input type="text" name="title" placeholder="' . $text->get("create-article-title") . '" class="title">
             <textarea name="text" placeholder="' . $text->get("create-article-text") . '" class="text"></textarea>
@@ -43,7 +47,6 @@ if (!isset($_POST["form"])) {
         </form>
 
         <div class="home">' . $text->get("create-article-home") . '</div>
-
     </div>
 
     <script>

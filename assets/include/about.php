@@ -33,7 +33,7 @@ if ($info->mobile !== true) {
                     <p class="about-collaborator-name">' . $row["collaboratorName"] . '</p>
                     <p class="about-collaborator-lore">' . $row["collaboratorLore"] . '</p>
                 </span>
-                <span style="display: none;" class="about-collaborator-description" id="a-c-d-' . $row["collaboratorId"] . '"><p class="about-collaborator-d-t">' . $row["collaboratorDescription"] . '</p></span>
+                <span draggable="false" style="display: none;" class="about-collaborator-description" id="a-c-d-' . $row["collaboratorId"] . '"><p draggable="false" class="about-collaborator-d-t">' . $row["collaboratorDescription"] . '</p></span>
                 <span style="display: none;" class="about-collaborator-visit" id="a-c-v-' . $row["collaboratorId"] . '" linkref="' . $row["collaboratorLink"] . '">' . $text->get("about-collab-visit") . '</span>
                 </a>
                 <script>
@@ -80,7 +80,7 @@ if ($info->mobile !== true) {
                     <p class="about-collaborator-name">' . $row["collaboratorName"] . '</p>
                     <p class="about-collaborator-lore">' . $row["collaboratorLore"] . '</p>
                 </span>
-                <span style="display: none;" class="about-collaborator-description" id="a-c-d-' . $row["collaboratorId"] . '"><p class="about-collaborator-d-t">' . $row["collaboratorDescription"] . '</p></span>
+                <span style="display: none;" class="about-collaborator-description" id="a-c-d-' . $row["collaboratorId"] . '"><p draggable="false" class="about-collaborator-d-t">' . $row["collaboratorDescription"] . '</p></span>
                 <span style="display: none;" class="about-collaborator-visit" id="a-c-v-' . $row["collaboratorId"] . '" linkref="' . $row["collaboratorLink"] . '">' . $text->get("about-collab-visit") . '</span>
                 </a>
                 <script>

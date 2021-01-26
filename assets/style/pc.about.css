@@ -103,6 +103,11 @@
     font-size: 15px;
     border: 1px solid black;
     z-index: 2;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
 }
 
 .about-collaborator-d-t {
@@ -156,3 +161,6 @@
     text-align: center;
     text-decoration: underline;
 }
+
+
+

@@ -28,6 +28,10 @@ if (strlen($filter->purify($rargs["title"], 25)) < 1 || strlen($filter->purify($
     exit("Textlengtherror");        
 } 
 
+if (strval($data->get_user_lock($_SESSION["userId"])) === "1") {
+    exit("Lockederror");
+}
+
 if (isset($rargs["articleId"])) {
     $data->create_article_comment($_SESSION["userId"], intval($filter->purify($rargs["articleId"], 25)), $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
 } else if (isset($rargs["userId"])) {

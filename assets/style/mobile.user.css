@@ -76,8 +76,43 @@
 }
 
 
-.delete-btn {
-    display: none;
+
+
+
+.user-settings {
+    height: 11vw;
+    left: 1vw;
+    top: 1vw;
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.user-settings:active {
+    transform: rotate(90deg);
+   -webkit-transform: rotate(90deg);
+   -ms-transform: rotate(90deg);
+}
+
+
+.user-settings-menu {
+    z-index: 1;
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+    border-top-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    padding-top: 14vw;
+    overflow: hidden;
+    width: 35vw;
+}
+
+.user-settings-menu > div {
+    padding-left: 0.6vw;
+    padding-bottom: 0.3vw;
+    padding-top: 0.3vw;
+    cursor: pointer;
+    font-size: 7vw;
 }
 
 
@@ -88,13 +123,23 @@
     top: 1vw;
     padding: 0px;
     margin: 0px;
-    font-size:min(8vw, 50px);
+    font-size: min(8vw, 50px);
     color: rgb(45, 209, 45);
     border-radius: 5vw;
     text-align: center;
 }
 
-
+.locked {
+    position: absolute;
+    right: 5px;
+    top: 8vw;
+    padding: 0px;
+    margin: 0px;
+    font-size: min(8vw, 50px);
+    color: red;
+    border-radius: 5vw;
+    text-align: center;
+}
 
 
 .comment-section {

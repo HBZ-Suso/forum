@@ -18,6 +18,7 @@ Database name: forum
     13. userVerified (TINYTEXT, "TRUE" or "FALSE")
     14. userLastArticle (UNIX Timestamp, at first unix timestamp of creation, then last article time, UNSIGNED INT)
     15. userLastComment (UNIX Timestamp, at first unix timestamp of creation, then last comment time, UNSIGEND INT)
+    16. userLocked (UNSIGNED TINYINT, 1 for true or 0 for false)
 
 2. articles:
     1. articleId (number, ticking up, MEDIUMINT, unsigned)
@@ -89,6 +90,7 @@ Database name: forum
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
     <a href="https://icons8.com/icon/DFU1kReSUccu/heart">Heart icon by Icons8</a>
+    <a href="https://icons8.com/icon/83214/settings">Settings icon by Icons8</a>
 
 Administrator:
     Password: forum_admin

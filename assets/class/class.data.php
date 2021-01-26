@@ -96,12 +96,17 @@ class Data extends Connector
         }
 
         $time = time();
-        $query = "INSERT INTO users (userName, userPassword, userAge, userEmployment, userDescription, userMail, userPhone, userSettings, userType, userIntended, userVerified, userLastArticle, userLastComment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO users (userName, userPassword, userAge, userEmployment, userDescription, userMail, userPhone, userSettings, userType, userIntended, userVerified, userLastArticle, userLastComment, userLocked) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->connId->prepare($query);
         $verify = "0";
         $settings_encoded = json_encode($settings);
-        $stmt->bind_param("ssisssssssssi", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, $settings_encoded, $type, $intended, $verify, $time, $time);
+        $stmt->bind_param("ssisssssssssis", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, $settings_encoded, $type, $intended, $verify, $time, $time, $verify); // SECOND VERIFY INSTEAD OF NEW VAR LOCKED
         $stmt->execute();
+        $result = $stmt->get_result();
+        while ($row = $result->fetch_assoc()) {
+            echo $row;
+            exit();
+        }
         $stmt->close();
         return true;
     }
@@ -339,6 +344,21 @@ class Data extends Connector
     public function is_admin_by_id($userId)
     {
         $query = "SELECT userType FROM users WHERE  userId=? AND userType='administrator';";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public function is_moderator_by_id ($userId)
+    {
+        $query = "SELECT userType FROM users WHERE  userId=? AND userType='moderator';";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("s", $userId);
         $stmt->execute();
@@ -782,7 +802,7 @@ class Data extends Connector
 
     public function change_user_column_by_id_and_name($userId, $column, $change_to)
     {
-        if (strtoupper($column) === "USERNAME" || strtoupper($column) === "USERID" || strtoupper($column) === "USERINTENDED" || strtoupper($column) === "USERLASTARTICLE" || strtoupper($column) === "USERTYPE" || strtoupper($column) === "USERCREATED") {
+        if (!(strtoupper($column) === "USERNAME" || strtoupper($column) === "USERID" || strtoupper($column) === "USERINTENDED" || strtoupper($column) === "USERLASTARTICLE" || strtoupper($column) === "USERTYPE" || strtoupper($column) === "USERCREATED" || strtoupper($column) === "USERLOCKED")) {
             return false;
         } else {
             $query = 'UPDATE users SET ' . $column . '=? WHERE userId=?';
@@ -791,6 +811,35 @@ class Data extends Connector
             $stmt->execute();
             $stmt->close();
             return true;
+        }
+    }
+
+
+    public function toggle_user_lock ($userId, $set)
+    {
+        $query = 'UPDATE users SET userLocked=? WHERE userId=?';
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("si", $set, $userId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
+
+
+    public function get_user_lock ($userId) 
+    {
+        $query = "SELECT userLocked FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $row["userLocked"];
+            }
+        } else {
+            return false;
         }
     }
 
