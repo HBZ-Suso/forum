@@ -371,22 +371,55 @@ class Data extends Connector
     }
 
 
-    public function search_articles($phrase, $max = 100, $mode = ["articleTitle", "articleTags", "articleText"], $order = "articleCreated DESC")
+    public function search_articles($phrase, $min = 1, $max = 100, $mode = ["articleTitle", "articleTags", "articleText"], $order = "articleCreated DESC")
     {
-        $return = array();
-        foreach ($mode as $value) {
-            $query = "SELECT * FROM articles WHERE " . $value . " LIKE ? ORDER BY " . $order . " LIMIT " . $max . ";";
-            $query_phrase = "%" . $phrase . "%";
-            $stmt = $this->connId->prepare($query);
+        if (strlen($phrase) || count($mode) < 1) {
+            $q_str = ' WHERE ';
+        }
+
+        if (strlen($phrase) && in_array("articleTitle", $mode)) {
+            $q_str .= "articleTitle LIKE ? ";
+        }
+        if (strlen($phrase) && in_array("articleTags", $mode)) {
+            if (count($mode) > 1) {
+                $q_str .= "OR ";
+            }
+            $q_str .= "articleTags LIKE ? ";
+        }
+        if (strlen($phrase) && in_array("articleText", $mode)) {
+            if (count($mode) > 1) {
+                $q_str .= "OR ";
+            }
+            $q_str .= "articleText LIKE ? ";
+        }
+
+        $query = '
+        SELECT *
+        FROM articles
+        ' . $q_str . '
+        ORDER BY ' . $order . '
+        LIMIT ' . strval(round(intval($min))) . ', 
+        ' . strval(round(intval($max))) . ';
+        ';
+        $stmt = $this->connId->prepare($query);
+        $query_phrase = "%" . $phrase . "%";
+       
+        if (count($mode) === 1) {
             $stmt->bind_param("s", $query_phrase);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $stmt->close();
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    if (!in_array($row, $return)) {
-                        array_push($return, $row);
-                    }
+        } else if (count($mode) === 2) {
+            $stmt->bind_param("ss", $query_phrase, $query_phrase);
+        } else if (count($mode) === 3) {
+            $stmt->bind_param("sss", $query_phrase, $query_phrase, $query_phrase);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if (!in_array($row, $return)) {
+                    array_push($return, $row);
                 }
             }
         }
@@ -477,22 +510,70 @@ class Data extends Connector
     }
 
 
-    public function search_users($phrase, $max = 100, $mode = ["userName", "userDescription", "userMail", "userPhone", "userEmployment"], $order = "userCreated DESC")
+    public function search_users($phrase, $min=0, $max=100, $mode = ["userName", "userDescription", "userMail", "userPhone", "userEmployment"], $order = "userCreated DESC")
     {
-        $return = array();
-        foreach ($mode as $value) {
-            $query = "SELECT * FROM users WHERE " . $value . " LIKE ? ORDER BY " . $order . " LIMIT " . $max . ";";
-            $query_phrase = "%" . $phrase . "%";
-            $stmt = $this->connId->prepare($query);
+        if (strlen($phrase) || count($mode) < 1) {
+            $q_str = ' WHERE ';
+        }
+
+        if (strlen($phrase) && in_array("userName", $mode)) {
+            $q_str .= "userName LIKE ? ";
+        }
+        if (strlen($phrase) && in_array("userDescription", $mode)) {
+            if (count($mode) > 1) {
+                $q_str .= "OR ";
+            }
+            $q_str .= "userDescription LIKE ? ";
+        }
+        if (strlen($phrase) && in_array("userMail", $mode)) {
+            if (count($mode) > 1) {
+                $q_str .= "OR ";
+            }
+            $q_str .= "userMail LIKE ? ";
+        }
+        if (strlen($phrase) && in_array("userPhone", $mode)) {
+            if (count($mode) > 1) {
+                $q_str .= "OR ";
+            }
+            $q_str .= "userPhone LIKE ? ";
+        }
+        if (strlen($phrase) && in_array("userEmployment", $mode)) {
+            if (count($mode) > 1) {
+                $q_str .= "OR ";
+            }
+            $q_str .= "userEmployment LIKE ? ";
+        }
+
+        $query = '
+        SELECT *
+        FROM users
+        ' . $q_str . '
+        ORDER BY ' . $order . '
+        LIMIT ' . strval(intval($min)) . ', 
+        ' . strval(intval($max)) . ';
+        ';
+        $stmt = $this->connId->prepare($query);
+        $query_phrase = "%" . $phrase . "%";
+        if (count($mode) === 1) {
             $stmt->bind_param("s", $query_phrase);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $stmt->close();
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    if (!in_array($row, $return)) {
-                        array_push($return, $row);
-                    }
+        } else if (count($mode) === 2) {
+            $stmt->bind_param("ss", $query_phrase, $query_phrase);
+        } else if (count($mode) === 3) {
+            $stmt->bind_param("sss", $query_phrase, $query_phrase, $query_phrase);
+        } else if (count($mode) === 4) {
+            $stmt->bind_param("ssss", $query_phrase, $query_phrase, $query_phrase, $query_phrase);
+        } else if (count($mode) === 5) {
+            $stmt->bind_param("sssss", $query_phrase, $query_phrase, $query_phrase, $query_phrase, $query_phrase);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if (!in_array($row, $return)) {
+                    array_push($return, $row);
                 }
             }
         }

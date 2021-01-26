@@ -38,6 +38,7 @@
 }
 
 .user-type-administrator { color: red; }
+.user-type-moderator { color: darkgreen; }
 
 .user-block-description {
     padding: 1%;

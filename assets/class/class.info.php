@@ -54,4 +54,10 @@ class Info
     {
         return array_keys(json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/forum/assets/data/languages.json"), true));
     }
+
+
+    public function page_amount () 
+    {
+        return 20;
+    }
 }

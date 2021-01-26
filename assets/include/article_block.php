@@ -10,22 +10,30 @@ if (isset($_GET["search"])) {
     $phrase = "";
 }
 
+if (intval($_SESSION["articlePage"]) < 0) {
+    $_SESSION["articlePage"] = 0;
+}
+
+if (!isset($_SESSION["articlePage"])) {
+    $_SESSION["articlePage"] = 0;
+}
+
 if (isset($_GET["rsearch"])) {
     $mode_list = array();
 
     if (isset($_GET["title"])) {
-    array_push($mode_list, "articleTitle");
+        array_push($mode_list, "articleTitle");
     }
     if (isset($_GET["text"])) {
-    array_push($mode_list, "articleText");
+        array_push($mode_list, "articleText");
     }
     if (isset($_GET["author"])) {
-    array_push($mode_list, "userId");
+        array_push($mode_list, "userId");
     }
 
-    $article_list = $data->search_articles($_GET["rsearch"], 100, $mode_list);
+    $article_list = $data->search_articles($_GET["rsearch"], intval($_SESSION["articlePage"]) * $info->page_amount(), $info->page_amount(), $mode_list);
 } else {
-    $article_list = $data->search_articles($phrase);
+    $article_list = $data->search_articles($phrase, intval($_SESSION["articlePage"]) * $info->page_amount(), $info->page_amount());
 }
 
 foreach ($article_list as $value) {
@@ -69,5 +77,11 @@ foreach ($article_list as $value) {
     ';
 }
 
-echo '</div>
+echo '
+<img id="awr" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+<script>document.getElementById("awr").addEventListener("click", () => {axios.post("/forum/assets/api/set_articlePage.php?articlePage=" + (parseInt(document.getElementById("apc").innerText))).then((result) => {window.location.reload(); }).catch((e) => {console.debug(e);})})</script>
+<p class="articlePage" id="apc">' . (intval($_SESSION["articlePage"]) + 1) .'</p>
+<img id="awl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+<script>document.getElementById("awl").addEventListener("click", () => {axios.post("/forum/assets/api/set_articlePage.php?articlePage=" + (parseInt(document.getElementById("apc").innerText - 2))).then((result) => {window.location.reload(); }).catch((e) => {console.debug(e);})})</script>
+</div>
 ';

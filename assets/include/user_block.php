@@ -10,6 +10,15 @@ if (isset($_GET["search"])) {
     $phrase = "";
 }
 
+if (intval($_SESSION["userPage"]) < 0) {
+    $_SESSION["userPage"] = 0;
+}
+
+if (!isset($_SESSION["userPage"])) {
+    $_SESSION["userPage"] = 0;
+}
+
+
 if (isset($_GET["rsearch"])) {
     $mode_list = [];
 
@@ -29,11 +38,11 @@ if (isset($_GET["rsearch"])) {
         array_push($mode_list, "userEmployment");
     }
 
-    $user_list = $data->search_users($_GET["rsearch"], 100, $mode_list);
+    $user_list = $data->search_users($_GET["rsearch"], intval($_SESSION["userPage"]) * $info->page_amount(), $info->page_amount(), $mode_list);
 } else {
-    $user_list = $data->search_users($phrase);
+    $user_list = $data->search_users($phrase, intval($_SESSION["userPage"]) * $info->page_amount(), $info->page_amount());
     if ($mobile === true) {
-        $user_list = $data->search_users($phrase, 100);
+        $user_list = $data->search_users($phrase, intval($_SESSION["userPage"]) * $info->page_amount(), $info->page_amount());
     }
 }
 
@@ -81,5 +90,10 @@ foreach ($user_list as $value) {
     ';
 }
 
-echo '</div>
-';
+echo '
+<img id="uwr" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+<script>document.getElementById("uwr").addEventListener("click", () => {axios.post("/forum/assets/api/set_userPage.php?userPage=" + (parseInt(document.getElementById("upc").innerText))).then((result) => {window.location.reload(); }).catch((e) => {console.debug(e);})})</script>
+<p class="userPage" id="upc">' . (intval($_SESSION["userPage"]) + 1) .'</p>
+<img id="uwl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+<script>document.getElementById("uwl").addEventListener("click", () => {axios.post("/forum/assets/api/set_userPage.php?userPage=" + (parseInt(document.getElementById("upc").innerText - 2))).then((result) => {window.location.reload(); }).catch((e) => {console.debug(e);})})</script>
+</div>';
