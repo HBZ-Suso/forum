@@ -1,31 +1,25 @@
 <?php 
 session_start();
 
-if (isset($_GET["show"])) {
-    switch ($_GET["show"]) {
-        case "account":
-            if (isset($_SESSION["user"])) {
-                header("LOCATION:/forum/assets/site/account.php");
-                exit();
-            } else {
-                header("LOCATION:/forum/assets/site/login.php");
-                exit();
-            }
-            break;
-    }
-}
-
 $require_purifier = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (isset($_GET["show"])) {
     switch ($_GET["show"]) {
+        case "account":
+            if (isset($_SESSION["user"])) {
+                header("LOCATION:/forum/assets/site/account.php");
+                exit("<script>window.location='/forum/assets/site/account.php';</script>");
+            } else {
+                header("LOCATION:/forum/assets/site/login.php");
+                exit("<script>window.location='/forum/assets/site/login.php';</script>");
+            }
+            break;
         case "about":
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about.php";
             break;
     }
 }
-
 
 
 

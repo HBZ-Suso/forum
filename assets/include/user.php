@@ -10,7 +10,8 @@ if (isset($_GET["userId"])) {
     $userId = intval($data->get_user_id_by_name($_GET["userName"]));
 }
 
-$user_data = $data->get_user_by_id($userId);
+
+$user_data = $data->get_user_by_id(intval($userId));
 if ($user_data === false) {
     header("LOCATION:/forum/?error=notexistentuser");
     die($text->get("user-view-not-found"));
@@ -25,6 +26,7 @@ if ($data->is_logged_in()) {
         $liked = "";
     }
 }
+
 
 if ($data->is_logged_in()) {
     $settings = '<img class="user-settings" src="https://img.icons8.com/material-rounded/1024/000000/settings.png"/><script>document.querySelector(".user-settings").addEventListener("click", (e) => {if (document.querySelector(".user-settings-menu").style.display === "") {document.querySelector(".user-settings-menu").style.display = "none"} else {document.querySelector(".user-settings-menu").style.display = "";}})</script>';
@@ -63,6 +65,7 @@ if ($info->mobile === true) {
     $l1 = '';
     $l2 = '<div class="like-btn ' . $liked . '">' . $text->get("user-view-like") . '</div>';
 }
+
 
 
 echo '

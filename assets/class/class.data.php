@@ -103,9 +103,13 @@ class Data extends Connector
         $stmt->bind_param("ssisssssssssis", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, $settings_encoded, $type, $intended, $verify, $time, $time, $verify); // SECOND VERIFY INSTEAD OF NEW VAR LOCKED
         $stmt->execute();
         $result = $stmt->get_result();
-        while ($row = $result->fetch_assoc()) {
-            echo $row;
-            exit();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo $row;
+                exit();
+            }
+        } else {
+            return true;
         }
         $stmt->close();
         return true;
@@ -602,7 +606,7 @@ class Data extends Connector
     {
         $query = "SELECT * FROM users WHERE userId=?";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("i", intval($id));
+        $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
@@ -621,7 +625,7 @@ class Data extends Connector
     {
         $query = "SELECT * FROM articles WHERE articleId=?";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("i", intval($id));
+        $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();

@@ -13,11 +13,11 @@ Database name: forum
     8. userMail (TEXT)
     9. userPhone (TEXT)
     10. userSettings (JSON)
-    11. userType (TINYTEXT, administrator / user, comes from code)
+    11. userType (TEXT, administrator / user / moderator, comes from code)
     12. userIntended (TINYTEXT, from codeIntended)
-    13. userVerified (TINYTEXT, "TRUE" or "FALSE")
-    14. userLastArticle (UNIX Timestamp, at first unix timestamp of creation, then last article time, UNSIGNED INT)
-    15. userLastComment (UNIX Timestamp, at first unix timestamp of creation, then last comment time, UNSIGEND INT)
+    13. userVerified (TINYINT / BOOLEAN, 1 or 0)
+    14. userLastArticle (UNIX Timestamp, at first unix timestamp of creation, then last article time, UNSIGNED Double)
+    15. userLastComment (UNIX Timestamp, at first unix timestamp of creation, then last comment time, UNSIGEND Double)
     16. userLocked (UNSIGNED TINYINT, 1 for true or 0 for false)
 
 2. articles:
@@ -26,12 +26,12 @@ Database name: forum
     3. articleTitle (TEXT)
     4. articleText (formatet text, LONGTEXT)
     5. articleTags (used for search, JSON (array))
-    6. articleCreated (timestamp)
+    6. articleCreated (timestamp, CURRENT_TIMESTAMP)
 
 3. articleLikes:
     1. likeId (number, ticking up, DOUBLEINT, unsigned)
-    2. userId (number, ticking up, MEDIUMINT)
-    3. articleId (number, ticking up, MEDIUMINT)
+    2. userId (number,  MEDIUMINT)
+    3. articleId (number, MEDIUMINT)
     4. likeCreated (timestamp)
 
 4. articleViews:
@@ -71,8 +71,8 @@ Database name: forum
 9. codes:
     1. codeId (number, ticking up, MEDIUMINT, unsigned)
     2. codeName (string, TEXT)
-    3. codeType (TINYTEXT, administrator / user)
-    4. codeIntendet (TINYTEXT, discribes intendation of code)
+    3. codeType (TEXT, administrator / user/ moderator)
+    4. codeIntended (TEXT, discribes intendation of code)
 
 10. collaborators:
     1. collaboratorId (MEDIUMINT, ticking up, unsigned)
@@ -85,7 +85,7 @@ Database name: forum
     1. passwordChangeId (BIGINT, UNSIGNED, ticking up, unsigned)
     2. passwordChangeUserId (MEDIUMINT, UNSIGNED)
     3. passwordChangeIp (LONGTEXT)
-    4. passwordChangeDATE (LONGTEXT, UNIX TIMESTAMP)
+    4. passwordChangeDate (LONGTEXT, UNIX TIMESTAMP)
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
