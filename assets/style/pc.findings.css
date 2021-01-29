@@ -52,13 +52,18 @@
 
 .block-entry {
     width: 96%;
-    font-size: min(1.3vw, 20px);
+    font-size: min(1.3vw, 25px);
     padding: 2%;
     margin-top: 0.3vw;
     margin-bottom: 0.3vw;
     cursor: pointer;
 }
 
+@media screen and (max-width: 1000px) {
+    .block-entry {
+        font-size: 20px;
+    }
+}
 
 .block-entry-element {
     display: inline;
