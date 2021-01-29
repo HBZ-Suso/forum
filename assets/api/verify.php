@@ -3,7 +3,7 @@ session_start();
 $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
-if (!isset($_SESSION["userId"]) || !$data->is_admin_by_id($_SESSION["userId"])) {
+if (!$data->is_logged_in() || !$data->is_admin_by_id($_SESSION["userId"])) {
     exit("Permissionerror");
 }
 

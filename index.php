@@ -41,7 +41,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
         echo '<div class="block-container' . $top . '">';
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/article_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/user_block.php";
-        if (isset($_SESSION["userId"])) {
+        if ($data->is_logged_in()) {
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/highlight_block.php";
         }
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/pop_refined_search.html";
@@ -53,7 +53,7 @@ if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) 
         echo '<link rel="stylesheet" href="/forum/assets/style/mobile.findings.css">';
 
         echo '<div class="block-container' . $top . '">';
-        if (isset($_SESSION["userId"])) {
+        if ($data->is_logged_in()) {
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/highlight_block.php";
         }
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/article_block.php";

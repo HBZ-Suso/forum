@@ -4,7 +4,7 @@ $hide_frame = true;
 $require_purifier = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
-if (!isset($_SESSION["userId"])) {
+if (!$data->is_logged_in()) {
     exit("Formerror");
 }
 

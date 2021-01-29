@@ -17,7 +17,7 @@ if ($user_data === false) {
 }
 
 
-if (isset($_SESSION["userId"])) {
+if ($data->is_logged_in()) {
     $data->create_user_view($_SESSION["userId"], $userId);
     if ($data->check_if_user_liked_by_user($_SESSION["userId"], $userId)) {
         $liked = " liked";
@@ -26,7 +26,7 @@ if (isset($_SESSION["userId"])) {
     }
 }
 
-if (isset($_SESSION["userId"])) {
+if ($data->is_logged_in()) {
     $settings = '<img class="user-settings" src="https://img.icons8.com/material-rounded/1024/000000/settings.png"/><script>document.querySelector(".user-settings").addEventListener("click", (e) => {if (document.querySelector(".user-settings-menu").style.display === "") {document.querySelector(".user-settings-menu").style.display = "none"} else {document.querySelector(".user-settings-menu").style.display = "";}})</script>';
     $settings_menu = '<div class="user-settings-menu theme-main-color-2" style="display: none;">';
     if ((($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($userId)) || intval($userId) === intval($_SESSION["userId"]))) {
@@ -87,7 +87,7 @@ echo '<div class="comment-section theme-main-color-1">';
 
 echo "<h3 id='loading-comments-info'>" . $text->get("comments-loading") . "</h3>";
 
-if (isset($_SESSION["userId"])) {
+if ($data->is_logged_in()) {
     echo '<form class="comment-form comment theme-main-color-1">';
     echo '<input class="comment-title theme-main-color-1" name="title" placeholder="' . $text->get("comments-title") . '">';
     echo '<h3 class="comment-author theme-main-color-1">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';

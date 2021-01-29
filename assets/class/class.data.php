@@ -431,11 +431,46 @@ class Data extends Connector
     }
 
 
-    public function get_highlights_by_user_id($userId, $max = 100)
+    public function get_highlights_by_user_id($userId, $min = 0, $max = 25)
     {
+        if (!is_numeric($userId)) {
+            exit("Mysqli not numeric value error.");
+        }
+        
+        /*$query = "
+            (
+                SELECT 
+                    targetUserId, 
+                    likeCreated,
+                    userId
+                FROM userLikes 
+            )
+        JOIN
+            (
+                SELECT 
+                    articleId AS Id, 
+                    likeCreated,
+                    userId
+                FROM articleLikes 
+        
+        ORDER BY likeCreated desc;";
+
+        
         $highlighted = [];
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
 
-        $query = "SELECT articleId as Id FROM articleLikes WHERE userId=? ORDER BY likeCreated desc LIMIT " . round($max / 2) . ";";
+        while ($row = $result->fetch_assoc()) {
+            array_push($highlighted, $row);
+        }
+
+        echo json_encode($highlighted);*/
+
+        $highlighted = [];
+        $query = "SELECT articleId, likeCreated FROM articleLikes WHERE userId=?;";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", $userId);
         $stmt->execute();
@@ -446,8 +481,7 @@ class Data extends Connector
             array_push($highlighted, $row);
         }
 
-
-        $query = "SELECT articleId FROM articleViews WHERE userId=? ORDER BY viewCreated desc LIMIT " . round($max / 2) . ";";
+        $query = "SELECT targetUserId, likeCreated FROM userLikes WHERE userId=?;";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", $userId);
         $stmt->execute();
@@ -458,32 +492,10 @@ class Data extends Connector
             array_push($highlighted, $row);
         }
 
-
-        $query = "SELECT targetUserId FROM userViews WHERE userId=? ORDER BY viewCreated desc LIMIT " . round($max / 2) . ";";
-        $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("i", $userId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-
-        while ($row = $result->fetch_assoc()) {
-            array_push($highlighted, $row);
-        }
-
-
-        $query = "SELECT targetUserId FROM userLikes WHERE userId=? ORDER BY likeCreated desc LIMIT " . round($max / 2) . ";";
-        $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("i", $userId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-
-        while ($row = $result->fetch_assoc()) {
-            if (!in_array($row, $highlighted)) {
-                array_push($highlighted, $row);
-            }
-        }
-
+        usort($highlighted, function($a, $b)
+        {
+            return strcmp($a["likeCreated"], $b["likeCreated"]);
+        });
 
         if (count($highlighted) > 0) {
             $return = [];
@@ -492,7 +504,7 @@ class Data extends Connector
                 if (isset($value["articleId"])) {
                     $fetch = $value["articleId"];
                     $content = $this->get_article_by_id($fetch);
-                    if ($content != false) {
+                    if ($content !== false) {
                         array_push($return, $this->get_article_by_id($fetch));
                     }
                 } else if (isset($value["targetUserId"])) {
@@ -503,6 +515,7 @@ class Data extends Connector
                     }
                 }
             }
+            $return = array_slice($return, $min, $max);
             return $return;
         }
 
@@ -1119,4 +1132,18 @@ class Data extends Connector
         $stmt->close();
         return true;
     }
+
+
+    public function is_logged_in ()
+    {
+        if (!isset($_SESSION["user"]) || !isset($_SESSION["userId"])) {
+            return false;
+        } else if (!$this->check_entry_exists("users", "userName", $_SESSION["user"])) {
+            return false;
+        } else if ($this->get_user_by_id($_SESSION["userId"])["userName"] !== $_SESSION["user"]) {
+            return false;
+        } else {
+            return true;
+        }
+    } // USAGE: $data->is_logged_in()
 }

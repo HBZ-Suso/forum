@@ -29,7 +29,7 @@ Database name: forum
     6. articleCreated (timestamp)
 
 3. articleLikes:
-    1. likeId (number, ticking up, Double, unsigned)
+    1. likeId (number, ticking up, DOUBLEINT, unsigned)
     2. userId (number, ticking up, MEDIUMINT)
     3. articleId (number, ticking up, MEDIUMINT)
     4. likeCreated (timestamp)
@@ -49,7 +49,7 @@ Database name: forum
     6. commentCreated (TIMESTAMP)
 
 6. userLikes:
-    1. likeId (number, ticking up, Double, unsigned)
+    1. likeId (number, ticking up, DOUBLEINT, unsigned)
     2. userId (number, ticking up, MEDIUMINT)
     3. targetUserId (number, ticking up, MEDIUMINT)
     4. likeCreated (timestamp)
@@ -101,7 +101,7 @@ layers:
     loading-background: 4
     script-warning: 6
     theme-switcher: 2
-    refined search popout: 4
+    refined search popout: 1
     about-collaborator: 0
     about-collaborator on clicked: 1
     custum prompt: 6

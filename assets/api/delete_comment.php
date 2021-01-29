@@ -5,7 +5,7 @@ $hide_frame = true;
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
-if (!isset($_SESSION["user"]) || !isset($_SESSION["userId"])) {
+if (!isset($_SESSION["user"]) || !$data->is_logged_in()) {
     exit("Permissionerror");
 }
 

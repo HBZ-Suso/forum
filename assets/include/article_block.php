@@ -37,7 +37,7 @@ if (isset($_GET["rsearch"])) {
 }
 
 foreach ($article_list as $value) {
-    if (isset($_SESSION["userId"]) && ($_SESSION["userId"] === $value["userId"])) {
+    if ($data->is_logged_in() && ($_SESSION["userId"] === $value["userId"])) {
         $self = " owned";
     } else {
     $self = "";

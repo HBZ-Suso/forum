@@ -2,7 +2,7 @@
 session_start();
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
-if (!isset($_SESSION["userId"])) {
+if (!$data->is_logged_in()) {
     header("LOCATION:/forum/?form=permissionerror");
     exit("Formerror");
 } 

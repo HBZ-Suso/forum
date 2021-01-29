@@ -105,6 +105,14 @@
     position: absolute;
 }
 
+.highlightPage {
+    left: 45%;
+    width: 10%;
+    bottom: 0px;
+    position: absolute;
+}
+
+
 .page-arrow-left {
     left: 5px;
 }
@@ -112,3 +120,4 @@
 .page-arrow-right {
     right: 5px;
 }
+

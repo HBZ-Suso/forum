@@ -16,7 +16,7 @@ if ($article_data === false) {
     die($text->get("article-view-no-article"));
 }
 
-if (isset($_SESSION["userId"])) {
+if ($data->is_logged_in()) {
     $data->create_article_view($_SESSION["userId"], $articleId);
     if ($data->check_if_article_liked_by_user($_SESSION["userId"], $articleId)) {
         $liked = " liked";
@@ -26,7 +26,7 @@ if (isset($_SESSION["userId"])) {
 }
 
 
-if (isset($_SESSION["userId"]) && (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($article_data["userId"])) || $_SESSION["userId"] === $article_data["userId"])) {
+if ($data->is_logged_in() && (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($article_data["userId"])) || $_SESSION["userId"] === $article_data["userId"])) {
     $delete_button = '<div class="delete-btn">' . $text->get("article-view-delete") . '</div>
     <script src="/forum/assets/script/delete.js"></script>';
 } else {
@@ -81,7 +81,7 @@ echo '<div class="comment-section theme-main-color-1">';
 echo '<h3 id="loading-comments-info">' . $text->get("comments-loading") . '</h3>';
 
 // cur_ID and cur_username used in like, delete and verify
-if (isset($_SESSION["userId"])) {
+if ($data->is_logged_in()) {
     echo '<form class="comment-form comment theme-main-color-1">';
     echo '<input class="comment-title theme-main-color-1" name="title" placeholder="' . $text->get("comments-title") . '">';
     echo '<h3 class="comment-author theme-main-color-1">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
