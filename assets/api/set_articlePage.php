@@ -1,4 +1,7 @@
 <?php
 session_start();
-$_SESSION["highlight"] = $_GET["highlight"];
-exit($_SESSION["highlight"]);
+if (!is_numeric($_GET["articlePage"])) {
+    exit("Formerror");
+}
+$_SESSION["articlePage"] = $_GET["articlePage"];
+exit($_SESSION["articlePage"]);
