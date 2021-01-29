@@ -21,9 +21,21 @@ if (isset($_GET["show"])) {
     }
 }
 
-
-
-if (isset($_GET["search"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) && !isset($_GET["userName"]) && !isset($_GET["articleId"]) && !isset($_GET["articleTitle"]))) {
+if (isset($_GET["search"]) || isset($_GET["rsearch"]) || (!isset($_GET["show"]) && !isset($_GET["userId"]) && !isset($_GET["userName"]) && !isset($_GET["articleId"]) && !isset($_GET["articleTitle"]))) {
+    $search = "";
+    if (isset($_GET["search"])) {
+        $search = $_GET["search"];
+    }
+    if (isset($_GET["rsearch"])) {
+        $search = $_GET["rsearch"];
+    }
+    if ($_SESSION["last_search"] !== $search)  {
+        $_SESSION["articlePage"] = 0;
+        $_SESSION["userPage"] = 0;
+        $_SESSION["highlightPage"] = 0;
+    }
+    $_SESSION["last_search"] = $search;
+    
     if ($info->mobile !== true) {
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/refined_search.php";
         if (isset($_GET["search"]) || isset($_GET["rsearch"])) {

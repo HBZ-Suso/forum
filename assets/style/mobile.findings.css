@@ -18,7 +18,6 @@
 }
 
 .block {
-    overflow: auto;
     min-height: 450px;
     max-height: 700px;
     height: 75%;
@@ -26,6 +25,17 @@
     position: relative;
 }
 
+.scroll-el {
+    position: absolute;
+    top: min(10vw, 80px);
+    bottom: 80px;
+    right: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    overflow: auto;
+}
 
 .block-heading {
     font-size: min(7vw, 100px);
