@@ -16,7 +16,7 @@ if (!(isset($rargs["articleId"]) || isset($rargs["userId"])) || !isset($rargs["t
     exit("Formerror");
 }
 
-if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastComment"]) < 60) && !($data->is_admin_by_id($_SESSION["userId"]))) {
+if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastComment"]) < 60) && !($data->is_admin_by_id($_SESSION["userId"])) && !($data->is_moderator_by_id($_SESSION["userId"]))) {
     exit("Timeouterror");
 }
 
