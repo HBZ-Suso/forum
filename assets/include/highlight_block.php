@@ -23,7 +23,9 @@ if (!isset($_SESSION["highlightPage"])) {
 
 $highlight_data = $data->get_highlights_by_user_id($_SESSION["userId"], intval($_SESSION["highlightPage"]) * $info->page_amount(), $info->page_amount());
 
-//echo json_encode($highlight_data);
+echo '<div class="scroll-el">';
+
+
 
 foreach ($highlight_data as $value) {
     if ($data->is_logged_in() && ($_SESSION["userId"] === $value["userId"])) {
@@ -98,9 +100,10 @@ foreach ($highlight_data as $value) {
 
 
 echo '
-<img id="hwr" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+</div>
+<img alt="<-" id="hwr" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
 <script>document.getElementById("hwr").addEventListener("click", () => {axios.post("/forum/assets/api/set_highlightPage.php?highlightPage=" + (parseInt(document.getElementById("hpc").innerText))).then((result) => {window.location.reload(); }).catch((e) => {console.debug(e);})})</script>
 <p class="highlightPage" id="hpc">' . (intval($_SESSION["highlightPage"]) + 1) .'</p>
-<img id="hwl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+<img alt="<-" id="hwl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
 <script>document.getElementById("hwl").addEventListener("click", () => {axios.post("/forum/assets/api/set_highlightPage.php?highlightPage=" + (parseInt(document.getElementById("hpc").innerText - 2))).then((result) => {window.location.reload(); }).catch((e) => {console.debug(e);})})</script>
 </div>';

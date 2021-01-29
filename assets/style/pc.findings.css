@@ -22,14 +22,26 @@
 
 .block {
     border-radius: 10px;
-    overflow: auto;
-    min-height: 450px;
+    min-height: 550px;
     max-height: 700px;
-    height: 75%;
+    height: 70%;
     flex: 1 1 450px; /*  Stretching: */
     /*flex: 0 1 150px;   No stretching: */
     margin: 5px;
     position: relative;
+}
+
+.scroll-el {
+    position: absolute;
+    height: 70%;
+    top: 15%;
+    bottom: 15%;
+    right: 0px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    overflow: auto;
 }
 
 
@@ -88,6 +100,7 @@
 }
 
 .page-arrow:hover {
+    cursor: pointer;
     background-color: gray;
 }
 

@@ -36,6 +36,8 @@ if (isset($_GET["rsearch"])) {
     $article_list = $data->search_articles($phrase, intval($_SESSION["articlePage"]) * $info->page_amount(), $info->page_amount());
 }
 
+echo '<div class="scroll-el">';
+
 foreach ($article_list as $value) {
     if ($data->is_logged_in() && ($_SESSION["userId"] === $value["userId"])) {
         $self = " owned";
@@ -78,10 +80,11 @@ foreach ($article_list as $value) {
 }
 
 echo '
-<img id="awr" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+</div>
+<img alt="->" id="awr" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
 <script>document.getElementById("awr").addEventListener("click", () => {axios.post("/forum/assets/api/set_articlePage.php?articlePage=" + (parseInt(document.getElementById("apc").innerText))).then((result) => {window.location.reload(); }).catch((e) => {console.debug(e);})})</script>
 <p class="articlePage" id="apc">' . (intval($_SESSION["articlePage"]) + 1) .'</p>
-<img id="awl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+<img alt="<-" id="awl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
 <script>document.getElementById("awl").addEventListener("click", () => {axios.post("/forum/assets/api/set_articlePage.php?articlePage=" + (parseInt(document.getElementById("apc").innerText - 2))).then((result) => {window.location.reload(); }).catch((e) => {console.debug(e);})})</script>
 </div>
 ';
