@@ -54,6 +54,10 @@ if (!isset($hide_frame)) {
         <title>HBZ-Forum</title>
         <meta name="description" content="Das ofizielle HBZ-Forum | The official HBZ-forum">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+        * {font-family: \'Roboto\', sans-serif;} 
+        </style>
     </head>';
 
     echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
@@ -137,6 +141,10 @@ if (isset($show_essentials)) {
         <title>HBZ-Forum</title>
         <meta name="description" content="Das ofizielle HBZ-Forum | The official HBZ-forum">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+        * {font-family: \'Roboto\', sans-serif;} 
+        </style>
     </head>';
 
     echo '<div id="theme-box"><link rel="stylesheet" href="/forum/assets/theme/' . $theme . '.css"></div>';

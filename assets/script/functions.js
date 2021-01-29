@@ -68,3 +68,5 @@ window.prompt = function (text, info_text="", timeout=0) {
         })
     })
 }
+
+get_text("ask-question-placeholder").then((result) => {document.getElementById("q-input").placeholder = result;}, (reject) => {console.debug(reject)}).catch((error) => {console.debug(error);})

@@ -83,7 +83,8 @@
         "about-collab-visit": "Visit Profile",
         "account-change-password": "Change Password",
         "account-change-password-1": "New password",
-        "account-change-password-2": "And again..."
+        "account-change-password-2": "And again...",
+        "ask-question-placeholder": "Enter your placeholder here."
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -159,16 +160,17 @@
         "theme-switcher-question": "Welches Thema willst du auswählen?",
         "language-switcher": "Ändere Sprache",
         "language-switcher-question": "Zu welcher Sprache?",
-        "about-us-title": "Wir sind wir?",
-        "about-us-text": "Am Heinrich-Suso-Gymnasiumin Konstanzwerden  hochbegabte  Schülerinnen  und Schüler ineigens dafür eingerichteten Klassen unterrichtet, welche deutlich kleiner als die Regelklassen sind. Diese Klassen bildenzusammen den Hochbegabtenzug (HBZ). Sollten  Sie  sich für  dieses  Konzept  interessieren, können  Sie  <a href='https://www.suso.schulen.konstanz.de/HP/hbz' style='text-decoration: underline;'>hier</a> klicken, um  auf  die  Website  des  HBZ  gelangen.  Dort  finden  Sie auch aktuelle Informationen sowie Termineaus dem HBZ. <br><p style='font-weight: bold; display: inline;'>Intelligenz ist auf beide Geschlechter gleichverteilt.</p> Daher wäre es naheliegend, dass in  den HBZ-Klassen gleich  viele Mädchen wie  Jungen beschult werden. Dies  ist  aber meistens nicht der Fall, weil sich Hochbegabung bei Jungen häufiger durch Störungen bemerkbar macht als bei Mädchen. Diese werdenim Falle einer Hochbegabung oftals „fleißig“bezeichnet werden. In der HBZ-Eingangsklasse 2020 des Heinrich-Suso-Gym-nasiums werden aktuell acht Mädchen und elf Jungen beschult. Es zeichnet sich langsam ein ausgleichender Trend ab, für dessen Fortsetzung an dieser Stelle ausdrücklich geworben wird.",
-        "about-goal-title": "Unser Ziel",
-        "about-goal-text": "Wir wollen eine Gemeinschaft für alle Mitglieder und ehemaligen Mitglieder des Hochbegabtenzuges bieten und die einzelnen Begabungen so gut wie möglich fördern.",
-        "about-other-projects-title": "Andere Projekte",
-        "about-other-projects-text": "Andere Angebote beinhalten: <ul><li>Die HBZ Projektwoche, siehe <a href='https://hbz.suso.schulen.konstanz.de/projektwoche/' style='text-decoration: underline;'>hier</a>,</li><li>Ein Kopfrechenprojekt welches sich leider noch in der Entwicklung befindet,</li><li>Eine Schach-AG,</li><li>Einen <p style='font-style: italic; display: inline;'>Snap</p>!-Kurs über den sie <a href='https://hbz.suso.schulen.konstanz.de/forum/userName=snap!-ag' style='text-decoration: underline;'>hier</a> mehr erfahren können,</li></ul>",
-        "about-collab-title": "Mitwirkende:",
+        "about-us-title": "Wer sind wir?",
+        "about-us-text": "Am Heinrich-Suso-Gymnasiumin Konstanz werden  hochbegabte  Schülerinnen  und Schüler in eigens dafür eingerichteten Klassen unterrichtet, welche deutlich kleiner als die Regelklassen sind. Diese Klassen bilden zusammen den Hochbegabtenzug (HBZ). Sollten  Sie  sich für  dieses  Konzept  interessieren, können  Sie  <a href='https://www.suso.schulen.konstanz.de/HP/hbz' style='text-decoration: underline;'>hier</a> klicken, um  auf  die  Website  des  HBZ  gelangen.  Dort  finden  Sie auch aktuelle Informationen sowie Termine aus dem HBZ. <br><p style='font-weight: bold; display: inline;'>Intelligenz ist auf beide Geschlechter gleich verteilt.</p> Daher wäre es naheliegend, dass in  den HBZ-Klassen gleich  viele Mädchen wie  Jungen beschult werden. Dies  ist  aber meistens nicht der Fall, weil sich Hochbegabung bei Jungen häufiger durch Störungen bemerkbar macht als bei Mädchen. Diese werden im Falle einer Hochbegabung oftals „fleißig“bezeichnet werden. In der HBZ-Eingangsklasse 2020 des Heinrich-Suso-Gym-nasiums werden aktuell acht Mädchen und elf Jungen beschult. Es zeichnet sich langsam ein ausgleichender Trend ab, für dessen Fortsetzung an dieser Stelle ausdrücklich geworben wird.",
+        "about-goal-title": "Das Ziel dieser Seite",
+        "about-goal-text": "Diese Seite soll der HBZ-Gemeinschaft, bestehend aus ehemaligen und derzeitigen Mitgliedern ebenso wie aus den Lehrern, eine Möglichkeit geben, sich auszutauschen. So können Ehemalige im Kontakt mit Schülern und den Lehrern bleiben und die Schüler können Ehemalige fragen und mit ihnen über ihr Leben nach der Schule reden. ",
+        "about-other-projects-title": "Andere HBZ-Projekte",
+        "about-other-projects-text": "Andere Angebote beinhalten: <ul><li>Die HBZ Projektwoche, siehe <a href='https://hbz.suso.schulen.konstanz.de/projektwoche/' style='text-decoration: underline;'>hier</a>,</li><li>ein Kopfrechenprojekt welches sich leider noch in der Entwicklung befindet,</li><li>eine Schach-AG,</li><li>und einen <p style='font-style: italic; display: inline;'>Snap</p>!-Kurs über den sie <a href='https://hbz.suso.schulen.konstanz.de/forum/userName=snap!-ag' style='text-decoration: underline;'>hier</a> mehr erfahren können.</li></ul>",
+        "about-collab-title": "Mitwirkende",
         "about-collab-visit": "Besuche Profil",
         "account-change-password": "Ändere Passwort",
         "account-change-password-1": "Neues Passwort",
-        "account-change-password-2": "Und noch einmal..."
+        "account-change-password-2": "Und noch einmal...",
+        "ask-question-placeholder": "Gib hier deine Wahl ein."
     }
 }
