@@ -27,7 +27,7 @@ echo '<div class="scroll-el">';
 
 
 
-foreach ($highlight_data as $value) {
+foreach (array_reverse($highlight_data) as $value) {
     if ($data->is_logged_in() && ($_SESSION["userId"] === $value["userId"])) {
         $self = " owned";
     } else {
