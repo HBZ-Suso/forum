@@ -9,11 +9,14 @@ if (!$data->is_logged_in()) {
 }
 
 
-if (!isset($rargs["articleText"]) || !isset($rargs["articleId"])) {
+if (!isset($rargs["articleData"]) || (!isset($rargs["articleId"]))) {
     exit("Formerror");
 }
 
+if (isset(json_decode($rargs["articleData"], true)["articleText"])) { 
+    $data->change_article_column_by_id_and_name($rargs["articleId"], "articleText", $filter->purify(json_decode($rargs["articleData"], true)["articleText"], 25));
+}
 
-$data->change_article_column_by_id_and_name($rargs["articleId"], "articleText", $filter->purify($rargs["articleText"], 25));
-
-exit();
+if (isset(json_decode($rargs["articleData"], true)["articleTitle"])) {
+    $data->change_article_column_by_id_and_name($rargs["articleId"], "articleTitle", $filter->purify(json_decode($rargs["articleData"], true)["articleTitle"], 25));
+}
