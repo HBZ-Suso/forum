@@ -24,9 +24,9 @@ async function create_new_comment (title, text, id, user) {
 
     let element =  `
     <div class="comment theme-main-color-1" id="comment-id-${id}" id="${id}">
-        <h3 class="comment-title theme-main-color-1">${title}</h3>
-        <a class="author-href" href="/forum/?userName=${user}"><h3 class="comment-author theme-main-color-1">${user}</h3></a>
-        <div class="comment-text theme-main-color-1" disabled>${text}</div>
+        <h3 class="comment-title theme-main-color-1">${escapeHtml(title)}</h3>
+        <a class="author-href" href="/forum/?userName=${escapeHtml(user)}"><h3 class="comment-author theme-main-color-1">${escapeHtml(user)}</h3></a>
+        <div class="comment-text theme-main-color-1" disabled>${escapeHtml(text)}</div>
         ${delete_button}
     </div>`;
 
@@ -45,7 +45,6 @@ var refresh_comments = async () => {
         .post("/forum/assets/api/get_comments.php", cur_Id)
         .then((response) => {
             let comments = response.data;
-            console.debug(comments)
             if (comments.length > 0) {
                 comments.reverse();
             }

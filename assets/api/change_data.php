@@ -13,7 +13,7 @@ if (!isset($rargs["change_data"])) {
     exit("Formerror");
 }
 
-echo $rargs["change_data"];
+
 
 $change = json_decode($rargs["change_data"], true);
 

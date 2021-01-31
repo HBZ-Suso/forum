@@ -64,22 +64,45 @@ body {
     cursor: pointer;
 }
 
+.user-settings {
+    height: 4vw;
+    left: 1vw;
+    top: 1vw;
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
+}
 
-.liked {
-    background-color: red;
+.user-settings:active {
+    transform: rotate(90deg);
+   -webkit-transform: rotate(90deg);
+   -ms-transform: rotate(90deg);
 }
 
 
-.delete-btn {
+.user-settings-menu {
+    z-index: 1;
     position: absolute;
-    top: 0px;
-    left: 0px;
-    font-size: min(2vw, 25px);
-    margin: 1vw;
-    background-color: rgb(83, 83, 83);
-    padding: 0.5vw;
-    border-radius: 10px;
+    top: 1vw;
+    left: 1vw;
+    border-top-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    padding-top: 5vw;
+    width: 10vw;
+    overflow: hidden;
+}
+
+.user-settings-menu > div {
+    padding-left: 0.3vw;
+    padding-bottom: 0.1vw;
+    padding-top: 0.1vw;
     cursor: pointer;
+    font-size: 1.5vw;
+}
+
+
+.liked {
+    background-color: red;
 }
 
 
@@ -204,4 +227,23 @@ body {
 .author-href {
     text-decoration: none;
     color: black;
+}
+
+
+#userSubmit {
+    margin-top: 0.2%;
+    width: 20%;
+    margin-top: 0.4%;
+    margin-bottom: 0.4%;
+    margin-left: 40%;
+    border: black;
+    transition: 0.2s all ease-in;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#userSubmit:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(44, 44, 44);
 }

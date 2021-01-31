@@ -75,9 +75,43 @@
 }
 
 
-.delete-btn {
-    display: none;
+
+.user-settings {
+    height: 11vw;
+    left: 1vw;
+    top: 1vw;
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
 }
+
+.user-settings:active {
+    transform: rotate(90deg);
+   -webkit-transform: rotate(90deg);
+   -ms-transform: rotate(90deg);
+}
+
+
+.user-settings-menu {
+    z-index: 1;
+    position: absolute;
+    top: 1vw;
+    left: 1vw;
+    border-top-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    padding-top: 14vw;
+    overflow: hidden;
+    width: 35vw;
+}
+
+.user-settings-menu > div {
+    padding-left: 0.6vw;
+    padding-bottom: 0.3vw;
+    padding-top: 0.3vw;
+    cursor: pointer;
+    font-size: 7vw;
+}
+
 
 
 
@@ -150,4 +184,25 @@
     background-color: rgb(110, 110, 110);
     cursor: pointer;
     color: black;
+}
+
+
+#userSubmit {
+    position: absolute;
+    bottom: 5px;
+    margin-top: 0.2%;
+    width: 10%;
+    left: 45%;
+    min-width: 45px;
+    font-size: 15px;
+    border: 1px solid black;
+    transition: 0.2s all ease-in;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#userSubmit:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(44, 44, 44);
 }

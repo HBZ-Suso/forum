@@ -912,6 +912,20 @@ class Data extends Connector
         }
     }
 
+    public function change_article_column_by_id_and_name($articleId, $column, $change_to)
+    {
+        if (!(strtoupper($column) === "ARTICLETEXT" || strtoupper($column) === "ARTICLETAGS" || strtoupper($column) === "ARTICLETITLE")) {
+            return false;
+        } else {
+            $query = 'UPDATE articles SET ' . $column . '=? WHERE articleId=?';
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("si", $change_to, $articleId);
+            $stmt->execute();
+            $stmt->close();
+            return true;
+        }
+    }
+
 
     public function toggle_user_lock ($userId, $set)
     {

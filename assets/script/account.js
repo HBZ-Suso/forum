@@ -89,15 +89,3 @@ var timer = () => {
 }
 
 timer();
-
-
-
-
-document.getElementById("awr").addEventListener("click", () => {
-    axios
-        .post("/forum/assets/api/set_articlePage.php?articlePage=" + (parseInt(document.getElementById("apc").innerText) - 1))
-        .then((result) => {
-            document.getElementById("apc").innerText = result.data; 
-            window.location.reload();
-        })
-        .catch((e) => {console.debug(e);})})

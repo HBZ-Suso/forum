@@ -75,14 +75,14 @@ echo '
     <script src="/forum/assets/script/like.js"></script>
     ' . $settings . '
     ' . $settings_menu . '
-    <div disabled class="theme-main-color-1 user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . $user_data["userName"] .  '</div> ' . $verified . $locked . '
-    <div disabled class="theme-main-color-1 user-block-entry user-block-employment">' . $text->get("user-view-employment") . $user_data["userEmployment"] . '</div>
-    <div disabled class="theme-main-color-1 user-block-entry user-block-age">' . $text->get("user-view-age") .  $user_data["userAge"] . '</div>
-    <div disabled class="theme-main-color-1 user-block-entry user-block-mail">' . $text->get("user-view-mail") . $user_data["userMail"] . '</div>
-    <div disabled class="theme-main-color-1 user-block-entry user-block-phone">' . $text->get("user-view-phone") . $user_data["userPhone"] . '</div>
+    <div disabled class="theme-main-color-1 user-block-entry user-block-title user-type-' . $user_data["userType"] . '">' . htmlspecialchars($user_data["userName"]) .  '</div> ' . $verified . $locked . '
+    <div disabled class="theme-main-color-1 user-block-entry user-block-employment">' . $text->get("user-view-employment") . htmlspecialchars($user_data["userEmployment"]) . '</div>
+    <div disabled class="theme-main-color-1 user-block-entry user-block-age">' . $text->get("user-view-age") .  htmlspecialchars($user_data["userAge"]) . '</div>
+    <div disabled class="theme-main-color-1 user-block-entry user-block-mail">' . $text->get("user-view-mail") . htmlspecialchars($user_data["userMail"]) . '</div>
+    <div disabled class="theme-main-color-1 user-block-entry user-block-phone">' . $text->get("user-view-phone") . htmlspecialchars($user_data["userPhone"]) . '</div>
 
 
-    <textarea disabled class="user-block-description">' . $user_data["userDescription"] . '</textarea>';
+    <textarea disabled class="user-block-description">' . htmlspecialchars($user_data["userDescription"]) . '</textarea>';
 
 $comments = $data->get_user_comments_by_id($userId);
 

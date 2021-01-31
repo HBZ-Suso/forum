@@ -38,7 +38,7 @@ echo '
     <link rel="stylesheet" href="/forum/assets/style/refined_search.css">
 
     <form action="/forum/?rsearch=true" method="get" class="refined-search" style="' . $style . '" id="refined-search-form">
-        <input type="text" name="rsearch" autocomplete="off" placeholder="Refined Search..." value="' . $search . '"  class="refined-search-text theme-main-color-2">
+        <input type="text" name="rsearch" autocomplete="off" placeholder="Refined Search..." value="' . htmlspecialchars($search) . '"  class="refined-search-text theme-main-color-2">
         <input type="submit" class="refined-search-submit theme-main-color-2" value="->"><br>
 
         <table class="refined-search-table">

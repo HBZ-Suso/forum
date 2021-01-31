@@ -70,3 +70,15 @@ window.prompt = function (text, info_text="", timeout=0) {
 }
 
 get_text("ask-question-placeholder").then((result) => {document.getElementById("q-input").placeholder = result;}, (reject) => {console.debug(reject)}).catch((error) => {console.debug(error);})
+
+function escapeHtml(text) {
+    var map = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#039;'
+    };
+    
+    return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}

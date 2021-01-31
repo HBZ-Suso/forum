@@ -75,16 +75,16 @@ foreach ($user_list as $value) {
     }
 
     echo '
-        <div class="user-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . $value["userName"] . '"  id="user_' . $value["userId"] . '">
-            <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . $value["userName"] . $verified . '</span><br>
-            <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">' . $text->get("user-block-mail") . '</p>' . $value["userMail"] .'</span>
+        <div class="user-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . htmlspecialchars($value["userName"]) . '"  id="user_' . $value["userId"] . '">
+            <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["userName"]) . $verified . '</span><br>
+            <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">' . htmlspecialchars($text->get("user-block-mail")) . '</p>' . $value["userMail"] .'</span>
             <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $view_text . '</p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
             <span class="user-block-entry-element block-entry-element user-likes"><p class="user-likes-heading user-block-entry-heading block-entry-heading">' . $like_text . '</p>' . $data->get_user_likes_by_targetUserId($value["userId"]) .'</span><br>
         </div>
 
         <script>
             document.getElementById("user_' . $value["userId"] . '").addEventListener("click", (e) => {
-                window.location = "/forum/?userId=' . $value["userId"] . '&userName=' . $value["userName"] . '";
+                window.location = "/forum/?userId=' . $value["userId"] . '";
             })
         </script>
     ';
