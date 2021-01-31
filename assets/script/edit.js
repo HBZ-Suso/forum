@@ -14,6 +14,7 @@ document.querySelector(".edit-btn").addEventListener("click", (e) => {
         change_article = true;
         document.querySelector(".article-block-title").contentEditable = "true";
     }
+    document.querySelector(".user-settings-menu").style.display = "none";
 })
 
 

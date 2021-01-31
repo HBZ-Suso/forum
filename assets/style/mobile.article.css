@@ -185,15 +185,14 @@
 }
 
 
+
 #userSubmit {
-    position: absolute;
-    bottom: 5px;
     margin-top: 0.2%;
-    width: 10%;
-    left: 45%;
-    min-width: 45px;
-    font-size: 15px;
-    border: 1px solid black;
+    width: 20%;
+    margin-top: 0.4%;
+    margin-bottom: 0.4%;
+    margin-left: 40%;
+    border: black;
     transition: 0.2s all ease-in;
     border-radius: 5px;
     padding: 5px;

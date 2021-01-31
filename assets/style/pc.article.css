@@ -64,8 +64,9 @@ body {
     cursor: pointer;
 }
 
+
 .user-settings {
-    height: 4vw;
+    height: min(4vw, 100px);
     left: 1vw;
     top: 1vw;
     position: absolute;
@@ -87,8 +88,8 @@ body {
     left: 1vw;
     border-top-left-radius: 1vw;
     border-bottom-right-radius: 1vw;
-    padding-top: 5vw;
-    width: 10vw;
+    padding-top: min(5vw, 110px);
+    width: min(10vw, 200px);
     overflow: hidden;
 }
 
@@ -97,8 +98,9 @@ body {
     padding-bottom: 0.1vw;
     padding-top: 0.1vw;
     cursor: pointer;
-    font-size: 1.5vw;
+    font-size: min(1.5vw, 30px);
 }
+
 
 
 .liked {

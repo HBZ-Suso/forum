@@ -9,6 +9,7 @@ document.querySelector(".main-menu-icon").addEventListener("click", (e) => {
     if (hidden === true) {
         document.querySelector(".main-menu").style.display = "initial";
         hidden = false;
+        document.querySelector(".user-settings-menu").style.display = "none";
     } else {
         document.querySelector(".main-menu").style.display = "none";
         hidden = true;
