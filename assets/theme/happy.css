@@ -1,0 +1,85 @@
+
+
+.theme-main-color-1 {
+    color: black;
+    background-color: #2A9D8F;
+}
+
+.theme-main-color-2 {
+    color: white;
+    background-color: #264653;
+}
+
+.theme-main-color-3 {
+    color: black;
+    background-color: #E9C46A;
+}
+
+.hover-theme-main-color-1:hover {
+    color: black;
+    background-color: #F4A261;
+}
+.hover-theme-main-color-2:hover {
+    color: white;
+    background-color: #192e36;
+}
+.hover-theme-main-color-3:hover {
+    color: #b4dbe6;
+    background-color: #457b9d;
+}
+.hover-theme-main-4:hover {
+    background-color: #F4A261;
+}
+
+.checkbox-div {
+    background-color: #F4A261;
+}
+
+.refined-search-color {
+    background-color: rgb(233, 93, 58);
+}
+
+.refined-search-checkbox {
+    background-color: rgb(233, 93, 58);;
+}
+
+.refined-search {
+    background-color: #E9C46A!important;
+}
+
+
+.user-background-element, .article-background-element, .window {
+    background-image: linear-gradient(to bottom right, rgb(42, 160, 97) 0%, #E9C46A 70%, #F4A261 100%)
+}
+
+
+.block {
+    background-image: linear-gradient(to bottom, #264653, #204f61);
+}
+
+.block-entry {
+    background-image: linear-gradient(to left, #E76F51, #E9C46A);
+}
+
+.block-entry:hover {
+    background-image: linear-gradient(to right, #E76F51, #E9C46A);
+}
+
+
+.owned {
+    color: black;
+    background-image: linear-gradient(to right, #3ad1bf, #0b7e70);
+}
+
+.owned:hover {
+    background-image: linear-gradient(to left, #3ad1bf, #0b7e70);
+}
+
+
+.main-heading-container {
+    background-image: linear-gradient(to left, #3ad1bf, #0b7e70);
+}
+
+.user-entry-last {
+    background-image: linear-gradient(to bottom right, #264653, #315c6d, #27796f);
+}

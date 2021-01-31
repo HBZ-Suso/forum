@@ -29,10 +29,10 @@ if ($data->is_logged_in()) {
     $settings = '<img class="user-settings" src="https://img.icons8.com/material-rounded/1024/000000/settings.png"/><script>document.querySelector(".user-settings").addEventListener("click", (e) => {if (document.querySelector(".user-settings-menu").style.display === "") {document.querySelector(".user-settings-menu").style.display = "none"} else {document.querySelector(".user-settings-menu").style.display = "";}})</script>';
     $settings_menu = '<div class="user-settings-menu theme-main-color-2" style="display: none;">';
     if ((($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($userId)) || intval($article_data["userId"]) === intval($_SESSION["userId"]))) {
-        $settings_menu .= '<div class="delete-btn hover-theme-main-color-1">' . $text->get("user-view-delete") . '</div><script src="/forum/assets/script/delete.js"></script>';
+        $settings_menu .= '<div class="edit-btn hover-theme-main-color-1">' . $text->get("user-view-edit") . '</div><script src="/forum/assets/script/edit.js" defer></script>';
     }
     if ((($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($userId)) || intval($article_data["userId"]) === intval($_SESSION["userId"]))) {
-        $settings_menu .= '<div class="edit-btn hover-theme-main-color-1">' . $text->get("user-view-edit") . '</div><script src="/forum/assets/script/edit.js" defer></script>';
+        $settings_menu .= '<div class="delete-btn hover-theme-main-color-1">' . $text->get("user-view-delete") . '</div><script src="/forum/assets/script/delete.js"></script>';
     }
     $settings_menu .= '</div>';
 } 
@@ -74,16 +74,16 @@ if ($info->mobile === true) {
 
 echo '
     ' . $l1 . '
-    <div class="article-block theme-main-color-1">
+    <div class="article-block theme-main-color-1 article-background-element">
     ' . $l2 . '
     <script src="/forum/assets/script/like.js" defer></script>
     ' . $settings . '
     ' . $settings_menu . '
-    <div class="theme-main-color-1 article-block-entry article-block-title">' . htmlspecialchars($article_data["articleTitle"]) . '</div>' . $verified . '
+    <div class=" article-block-entry article-block-title">' . htmlspecialchars($article_data["articleTitle"]) . '</div>' . $verified . '
     <button id="userSubmit" class="theme-main-color-2 submitButton" style="display: none;">Save</button>
-    <a class="author-href" href="/forum/?userId=' . $article_data["userId"] . '"><div class="theme-main-color-1 article-block-entry article-block-author">' . htmlspecialchars($author) . '</div></a>
-    <div class="theme-main-color-1 article-block-entry article-block-tags">' . $text->get("article-view-tags") . htmlspecialchars(implode("; ", json_decode($article_data["articleTags"]))) . '</div>
-    <div class="theme-main-color-1 article-block-entry article-block-created">' . $text->get("article-view-created") . $article_data["articleCreated"] . '</div>
+    <a class="author-href" href="/forum/?userId=' . $article_data["userId"] . '"><div class="article-block-entry article-block-author">' . htmlspecialchars($author) . '</div></a>
+    <div class=" article-block-entry article-block-tags">' . $text->get("article-view-tags") . htmlspecialchars(implode("; ", json_decode($article_data["articleTags"]))) . '</div>
+    <div class=" article-block-entry article-block-created">' . $text->get("article-view-created") . $article_data["articleCreated"] . '</div>
 
     <textarea disabled id="article-content" class="article-block-content">' . htmlspecialchars($article_data["articleText"]) . '</textarea>
     <script>document.getElementById("article-content").style.height = (document.getElementById("article-content").scrollHeight + 10) + \'px\';</script>';

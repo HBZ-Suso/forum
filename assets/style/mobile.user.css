@@ -182,6 +182,7 @@
 
 .comment-text {
     height: 10vh;
+    overflow-y: auto;
 }
 
 .comment-form-submit {
