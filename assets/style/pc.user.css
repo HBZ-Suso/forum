@@ -76,7 +76,7 @@
     top: 1vw;
     position: absolute;
     cursor: pointer;
-    z-index: 2;
+    z-index: 1;
 }
 
 .user-settings:active {
@@ -87,7 +87,7 @@
 
 
 .user-settings-menu {
-    z-index: 1;
+    z-index: 0;
     position: absolute;
     top: 1vw;
     left: 1vw;
