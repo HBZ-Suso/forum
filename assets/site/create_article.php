@@ -29,9 +29,12 @@ if (strval($data->get_user_lock($_SESSION["userId"])) === "1") {
     exit("Lockederror");
 }
 
+
+
 if (!isset($_POST["form"]) && !isset($_POST["submit"])) { 
     if ($info->mobile !== true) {
-        echo '<link rel="stylesheet" href="/forum/assets/style/pc.create_article.css">';
+        header("LOCATION: /forum/?select=create_article");
+        exit("<script>window.location='/forum/?show=create_article';</script>");
     } else {
         echo '<link rel="stylesheet" href="/forum/assets/style/mobile.create_article.css">';
     }

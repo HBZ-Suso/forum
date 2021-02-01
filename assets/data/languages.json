@@ -75,18 +75,21 @@
         "language-switcher": "Change language",
         "language-switcher-question": "What language should the site use?",
         "about-us-title": "Who are we?",
-        "about-us-text": "We are the highly skilled group of the Heinrich Suso Gymnasiums Konstanz.",
-        "about-goal-title": "Our goal",
-        "about-goal-text": "We want to provide a community for all members and former members of the highly skilled group of the Heinrich Suso Gymnasium.",
+        "about-us-text": "At the Heinrich-Suso-Gymnasium Konstanz highly skilled students are taught in specially arranged classes, noticalble smaller than the others. Those classes together form the Hochbegabtenzug (HBZ). If you are interested in that concept, you can learn more about it on <a href='https://www.suso.schulen.konstanz.de/HP/hbz' style='text-decoration: none;'>this</a> webpage. On it you can find up-to-date information and dates.<br><br>Intelligence is spread equal between the genders. Thus it seems to be obvious to be the same in the giftet classes. That is, however, not true as many grils are often just said to be studious. In the freshman class of the HBZ there are currently eight girls and one boy. Slowly a harmonizing trend is showing, the continuation of which is explicitly promoted for.",
+        "about-goal-title": "The goal of this site",
+        "about-goal-text": "This webpage was created to allow for contact between alumnus and current members of the HBZ, thus giving the opportunity for exchange of thoughts and situations. As such alumnus can, for example, get in contact with their former teachers and present students whilst those are able to ask the alumnus about their life and what they did after school. ",
         "about-other-projects-title": "Other projects",
-        "about-other-projects-text": "Other projects we provide are eushfisuahgiudf fdsgudsfhiguhdfiu hdsguhdfsiguhsdfiu gdfsgfdushgfdsuhg sdffgdfugdfg dfsg  fdiu ghifd uhdifg hidfuh ...",
-        "about-collab-title": "Collaborators:",
+        "about-other-projects-text": "Other projects of the HBZ include: <ul><li>The HBZ-projectweek, see <a href='https://hbz.suso.schulen.konstanz.de/projektwoche/' style='text-decoration: underline;'>this</a>,</li><li>a mental-arithmethic course for primary school pupil,</li><li>a chess club,</li><li>and a <p style='font-style: italic; display: inline;'>Snap</p>!-course opf which you can find out more <a href='https://hbz.suso.schulen.konstanz.de/forum/userName=snap!-ag' style='text-decoration: underline;'>here</a></li></ul>",
+        "about-collab-title": "Collaborators",
         "about-collab-visit": "Visit Profile",
         "account-change-password": "Change Password",
         "account-change-password-1": "New password",
         "account-change-password-2": "And again...",
         "ask-question-placeholder": "Enter your placeholder here.",
-        "overview-block-heading": "Overview"
+        "overview-block-heading": "Overview",
+        "overview-block-text": "This webpage is the Studentforum of the HBZ of the Heinrich-Suso-Gymnasiums. <br>It was made in order for the students as well as for the alumnus to be able to get in contact, even years after graduation. In this way it seeks to enrich the community feeling and show the students what they can expect after graduation. <br>For the official Homepage of the HBZ see <a href='https://www.suso.schulen.konstanz.de/HP/hbz' style='text-decoration: underline;'>this</a> webpage.",
+        "settings-block-heading": "Settings",
+        "settings-save": "Save"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -175,6 +178,9 @@
         "account-change-password-1": "Neues Passwort",
         "account-change-password-2": "Und noch einmal...",
         "ask-question-placeholder": "Gib hier deine Wahl ein.",
-        "overview-block-heading": "Übersicht"
+        "overview-block-heading": "Übersicht",
+        "settings-block-heading": "Einstellungen",
+        "settings-save": "Speichern",
+        "overview-block-text": "Diese Seite ist das Schüler-Forum des Hochbegabtenzuges des Heinrich-Suso-Gymnasiums Konstanz. <br>Sie soll der HBZ-Gemeinschaft, bestehend aus ehemaligen und derzeitigen Mitgliedern ebenso wie aus den Lehrern, eine Möglichkeit geben, sich auszutauschen. So können Ehemalige im Kontakt mit Schülern und den Lehrern bleiben und die Schüler können Ehemalige fragen und mit ihnen über ihr Leben nach der Schule reden. <br>Klicken sie <a href='/forum/?articleId=1'>hier</a> um mehr über diese Seite herauszufinden."
     }
 }

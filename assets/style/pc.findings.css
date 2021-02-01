@@ -16,6 +16,13 @@
     justify-content: center;
     align-items: stretch;
 }
+/*
+@media screen and (max-width: 1200px) {
+    .block-container {
+        width: 99%;
+        left: 0.5%;
+    }
+}*/
 
 .big-top {
     top: 250px;

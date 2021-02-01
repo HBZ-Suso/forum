@@ -1,0 +1,40 @@
+.settings-text-box {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+}
+
+.setting {
+    display: flex;
+    flex-direction: column;
+    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.1);
+    margin-top: min(2vw, 15px);
+    margin-bottom: min(2vw, 15px);
+    border-radius: 5px;
+    width: 20vw;
+    height: min-content;
+    text-align: center;
+    margin: 5%;
+    padding: 2%;
+}
+
+.settings-save {
+    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.1);
+    width: 10%;
+    height: min-content;
+    padding: 1%;
+    margin: 2%;
+    border-radius: 5px;
+    position: fixed;
+    right: 31%;
+    bottom: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s linear;
+}
+
+.settings-save:hover {
+    box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, 0.4);
+}

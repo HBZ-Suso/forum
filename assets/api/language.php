@@ -5,8 +5,12 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (isset($rargs["language"])) {
     if (in_array($rargs["language"], $info->get_languages())) {
-        $_SESSION["language"] = $rargs["language"];
-        exit($rargs["language"]);
+        if ($_SESSION["language"] !== $rargs["language"]) {
+            $_SESSION["language"] = $rargs["language"];
+            exit($rargs["language"]);
+        } else {
+            exit("alreadyselectederror");
+        }
     } else {
         exit("Languagenotfounderror");
     } 

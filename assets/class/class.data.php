@@ -1156,7 +1156,7 @@ class Data extends Connector
     {
         if (!isset($_SESSION["user"]) || !isset($_SESSION["userId"])) {
             return false;
-        } else if ($this->get_user_by_id($_SESSION["userId"])["userName"] !== $_SESSION["user"]) {
+        } else if (strtoupper($this->get_user_by_id($_SESSION["userId"])["userName"]) !== strtoupper($_SESSION["user"])) {
             return false;
         } else {
             return true;

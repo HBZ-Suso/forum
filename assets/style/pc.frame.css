@@ -51,7 +51,7 @@
     left: 0px;
     top: 0px;
     width: 85%;
-    font-size: min(2vw, 30px);
+    font-size: min(1.4vw, 20px);
     border-radius: 8px;
     border: 0px;
     padding: 0px;
@@ -93,7 +93,7 @@
     font-family: 'Roboto', sans-serif;
     z-index: 3;
     display: none;
-    width: min(15%, 220px);
+    width: min(8%, 180px);
     position: fixed;
     top: 80px;
     left: 0px;
@@ -104,7 +104,7 @@
 .main-menu-entry {
     display: inline-block;
     width: 100%;
-    font-size: min(2vw, 36px);
+    font-size: min(1.4vw, 23px);
     color: black;
     text-decoration: none;
     padding-left: 5%;

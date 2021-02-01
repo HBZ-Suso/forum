@@ -2,9 +2,9 @@
 
 echo '<link rel="stylesheet" href="/forum/assets/style/pc.create_article_block.css">';
 
-echo '<div class="block create-article-block">';
+echo '<div class="block create-article-block theme-main-color-2">';
 
-echo '<div class="frame-menu-create block-heading theme-main-color-2">' . $text->get("frame-menu-create") . '</div>';
+echo '<div class="frame-menu-create block-heading">' . $text->get("frame-menu-create") . '</div>';
 
 echo 
 '

@@ -43,11 +43,7 @@ if ($info->mobile === false) {
         <a class="main-menu-entry theme-main-color-1 hover-theme-main-color-3 ' . $last_text . '" href="/forum/?show=about">' . $text->get("frame-menu-about") . '</a><br>' . $logged . '
     </div>
     
-    <script src="/forum/assets/script/include/frame.js"></script>
-    
-    
-    <div class="theme-switcher theme-main-color-1 hover-theme-main-color-2" id="theme-switcher">' . $text->get("theme-switcher") . '</div>
-    <div class="language-switcher theme-main-color-1 hover-theme-main-color-2" id="language-switcher">' . $text->get("language-switcher") . '</div>';
+    <script src="/forum/assets/script/include/frame.js"></script>';
 } else {
     echo '
     </div>

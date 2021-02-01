@@ -16,7 +16,12 @@ if (isset($_GET["show"])) {
             }
             break;
         case "about":
-            include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about.php";
+            if ($info->mobile !== true) {
+                header("LOCATION:/forum?select=about");
+                exit("<script>window.location='/forum?select=about';</script>");
+            } else {
+                include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about.php";
+            }
             break;
     }
 }
@@ -48,16 +53,15 @@ if (isset($_GET["search"]) || isset($_GET["rsearch"]) || (!isset($_GET["show"]) 
         echo '<div class="block-container' . $top . '">';
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/choose.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/overview_block.php";
-        
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/settings_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/article_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/user_block.php";
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about_block.php";
         if ($data->is_logged_in()) {
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/highlight_block.php";
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/create_article_block.php";
         }
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/pop_refined_search.html";
-
-        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about.php";
         echo "</div>";
     } else {
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/mobile_search.php";

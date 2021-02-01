@@ -1,0 +1,124 @@
+.about-block {
+    
+}
+
+.about-block-extended {
+    padding: 3%;
+    width: 94%;
+}
+.about-collab {
+    padding: 3%;
+    width: 94%;
+}
+
+
+.about-collab-heading {
+    text-align: center;
+    width: 100%;
+    font-size: min(6vw, 40px);
+}
+
+.about-collab-flex {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about-entry {
+    border-radius: min(3vw, 20px);
+    margin: 0%;
+    padding: 0%;
+    margin-top: 2%;
+    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.3);
+}
+
+.about-entry {
+    width: 98%;
+    padding: 1%;
+}
+
+.about-collaborator-anchor {
+    position: relative;
+    width: 200px;
+    border-radius: 10px;
+    height: 60px;
+    background-image: linear-gradient(rgba(182, 182, 182, 0.9), rgba(140, 140, 140, 0.9));
+    padding: none;
+    margin: none;
+    color: black;
+    text-decoration: none;
+    margin-right: min(2vw, 20px);
+    margin-left: min(2vw, 20px);
+    margin-bottom: 1vw;
+    z-index: 0;
+    border: 1px solid black;
+}
+
+
+.about-collaborator-anchor > span > p {
+    padding: 0px;
+    margin: 0px;
+    color: black;
+    text-decoration: none;
+    z-index: 0;
+    position: relative;
+}
+
+.about-collaborator-name {
+    text-align: center;
+    padding-top: 4px!important;
+    font-size: 20px;
+}
+
+.about-collaborator-lore {
+    font-size: 17px;
+    text-align: center;
+}
+
+.about-collaborator-description {
+    position: absolute;
+    top: -210px;
+    display: block;
+    background-image: linear-gradient(rgba(210, 210, 210, 0.9), rgba(175, 175, 175, 0.9));
+    width: 186px;
+    height: 180px;
+    overflow-y: hidden;
+    border-radius: 5px;
+    padding: 7px;
+    padding-bottom: 11px;
+    font-size: 15px;
+    border: 1px solid black;
+    z-index: 2;
+}
+
+.about-collaborator-d-t {
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.about-collaborator-visit {
+    position: absolute;
+    left: -1px;
+    top: 52px;
+    display: block;
+    background-image: linear-gradient(rgba(146, 146, 146, 0.9), rgba(125, 125, 125, 0.9));
+    width: 186px;
+    height: 10px;
+    overflow: hidden;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 7px;
+    text-align: center;
+    padding-bottom: 11px;
+    text-decoration: underline;
+    z-index: 2;
+    border: 1px solid black;
+    border-top: none;
+}
+
+.about-block-extended > div > p > a {
+    color: white!important;
+}
