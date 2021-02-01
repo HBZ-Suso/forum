@@ -33,8 +33,8 @@ echo '
 if ($info->mobile === false) {
     echo '
     <form action="/forum/" method="get" class="main-heading-search">
-            <input type="text" name="search" autocomplete="off" placeholder="' . $text->get("frame-pc-heading-search") .'"  class="main-heading-search-text theme-main-color-2">
-            <input type="submit" class="main-heading-search-submit theme-main-color-2" value="->">
+        <input type="text" name="search" autocomplete="off" placeholder="' . $text->get("frame-pc-heading-search") .'"  class="main-heading-search-text theme-main-color-2">
+        <input type="submit" class="main-heading-search-submit theme-main-color-2" value="&#x1F50E;">
     </form>
     
     </div>
