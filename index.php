@@ -38,17 +38,22 @@ if (isset($_GET["search"]) || isset($_GET["rsearch"]) || (!isset($_GET["show"]) 
     
     if ($info->mobile !== true) {
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/refined_search.php";
-        if (isset($_GET["search"]) || isset($_GET["rsearch"])) {
+        if (isset($_GET["rsearch"])) {
             $top = " big-top";
         } else {
             $top = "";
         }
+        echo '<script src="/forum/assets/script/findings.js" defer></script>';
         echo '<link rel="stylesheet" href="/forum/assets/style/pc.findings.css">';
         echo '<div class="block-container' . $top . '">';
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/choose.php";
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/overview_block.php";
+        
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/article_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/user_block.php";
         if ($data->is_logged_in()) {
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/highlight_block.php";
+            include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/create_article_block.php";
         }
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/pop_refined_search.html";
 

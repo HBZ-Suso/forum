@@ -1,0 +1,18 @@
+.choose-block {
+    border-radius: 5px;
+    bottom: 0px;
+}
+
+.choose-entry {
+    width: 80%;
+    padding-left: 10%;
+    margin-top: min(1.5vh, 15px);
+    margin-bottom: min(1.5vh, 15px);
+    font-size: min(4vw, 20px);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    float: right;
+    text-decoration: none;
+}

@@ -1,0 +1,9 @@
+.overview-text-box {
+    padding: 1%;
+    margin: 2%;
+    width: 94%;
+    hyphens: auto; 
+    text-align: justify;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.3);
+}

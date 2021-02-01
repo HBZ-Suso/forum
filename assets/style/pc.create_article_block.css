@@ -1,0 +1,62 @@
+.create-article-block-form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.title {
+    border: none;
+    text-align: center;
+    padding: 1%;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.text {
+    background: none;
+    margin: auto;
+    min-width: 420px;
+    width: 58vw;
+    min-height: 180px;
+    height: 45vh;
+    max-height: 60%;
+    resize: none;
+    outline: none;
+    display: block;
+    background-color: white;
+    padding: 14px 10px;
+    text-align: center;
+    color: black;
+    border-radius: 26px;
+
+
+    resize: none;
+    border: none;
+    text-align: center;
+    padding: 1%;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.tags {
+    border: none;
+    text-align: center;
+    padding: 1%;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.submit {
+    border: none;
+    text-align: center;
+    padding: 1%;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    margin-bottom: 5vh;
+}
+
+.submit:hover {
+    background-color: gray;
+}

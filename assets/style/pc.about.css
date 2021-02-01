@@ -149,11 +149,11 @@
 
 
 .about-collab-alone {
-    border-radius: 10px;
-    flex: 1 1 450px;
-    margin: 5px;
-    width: auto;
+    height: 100%;
+    width: 70%;
     padding: 0px;
+    margin: 0px;
+    position: relative;
 }
 
 .about-collab-alone > h1 {

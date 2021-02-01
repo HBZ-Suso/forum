@@ -27,7 +27,7 @@ if (isset($_GET["search"])) {
     $search = "";
 }
 
-if (!isset($_GET["search"]) && !isset($_GET["rsearch"])) {
+if (!isset($_GET["rsearch"])) {
     $style = 'display: none;';
 } else {
     $style = '';

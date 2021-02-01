@@ -85,7 +85,8 @@
         "account-change-password": "Change Password",
         "account-change-password-1": "New password",
         "account-change-password-2": "And again...",
-        "ask-question-placeholder": "Enter your placeholder here."
+        "ask-question-placeholder": "Enter your placeholder here.",
+        "overview-block-heading": "Overview"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -173,6 +174,7 @@
         "account-change-password": "Ändere Passwort",
         "account-change-password-1": "Neues Passwort",
         "account-change-password-2": "Und noch einmal...",
-        "ask-question-placeholder": "Gib hier deine Wahl ein."
+        "ask-question-placeholder": "Gib hier deine Wahl ein.",
+        "overview-block-heading": "Übersicht"
     }
 }

@@ -29,7 +29,7 @@ if (strval($data->get_user_lock($_SESSION["userId"])) === "1") {
     exit("Lockederror");
 }
 
-if (!isset($_POST["form"])) { 
+if (!isset($_POST["form"]) && !isset($_POST["submit"])) { 
     if ($info->mobile !== true) {
         echo '<link rel="stylesheet" href="/forum/assets/style/pc.create_article.css">';
     } else {
@@ -69,7 +69,8 @@ if (!isset($_POST["form"])) {
     $tags = explode("-", clean($filter->purify($_POST["tags"], 15)));
     
     if ($data->create_article($_SESSION["userId"], $filter->purify($_POST["title"], 50), $filter->purify($_POST["text"], 35), $tags)) {
-        exit("success");
+        header("LOCATION: /forum/?articleTitle=" . $filter->purify($_POST["title"], 50));
+        exit("<script>window.location='/forum/?articleTitle=" . $filter->purify($_POST["title"], 50) . "'</script>");
     } else {
         exit("error");
     }
