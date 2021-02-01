@@ -9,7 +9,6 @@ verify_element.addEventListener("click", (e) => {
         axios
             .post("/forum/assets/api/verify.php", cur_Id)
             .then((response) => {
-                console.log("Success...");
                 if (document.querySelector(".verified").style.display !== "none") {
                     document.querySelector(".verified").style.display= "none";
                 } else {

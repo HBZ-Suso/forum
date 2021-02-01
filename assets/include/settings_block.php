@@ -47,5 +47,3 @@ echo '<div class="settings-save">' . $text->get("settings-save") . '</div>';
 echo '</div>';
 
 echo '<script src="/forum/assets/script/settings.js"></script>';
-
-echo '<script>console.log("' . $_SESSION["theme"] .'")</script>';

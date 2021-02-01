@@ -28,7 +28,7 @@ var size_heading = () => {
     }
 }
 
-console.log(window.mobileCheck());
+
 
 if (window.mobileCheck() !== true) {
     window.onresize = size_heading;

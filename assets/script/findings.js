@@ -71,7 +71,9 @@ document.querySelectorAll(".choose-entry").forEach((element, index) => {
 
 if (window.location.toString().indexOf("select=create_article") !== -1) {
     set_section("frame-menu-create");
-} else if (getCookie("selected_section").length < 1 || blocks[getCookie("selected_section")] === null || blocks[getCookie("selected_section")] === undefined) {
+} else if (getCookie("selected_section").length > 3 && getCookie("selected_section") !== undefined && blocks[getCookie("selected_section")] !== null && blocks[getCookie("selected_section")] !== undefined) {
+    set_section(getCookie("selected_section"));
+} else {
     axios
     .post("/forum/assets/api/get_chosen_section.php")
     .then((data) => {
@@ -88,6 +90,19 @@ if (window.location.toString().indexOf("select=create_article") !== -1) {
     .catch(() => {
         console.debug("Prompt error");
     })
-} else {
-    set_section(getCookie("selected_section"));
+}
+
+let everything_hidden = true;
+for (let key in blocks) {
+    let el = blocks[key];
+    if (el === null) {
+        continue;
+    }
+    if (el.style.display !== "none") {
+        everything_hidden = false;
+    }
+}
+
+if (everything_hidden) {
+    set_section("overview-block-heading")
 }

@@ -8,7 +8,6 @@ lock_element.addEventListener("click", (e) => {
     axios
         .post("/forum/assets/api/lock.php?" + cur_Id)
         .then((response) => {
-            console.log("Success...");
             if (document.getElementById("locked").style.display !== "none") {
                 document.getElementById("locked").style.display = "none";
             } else {
