@@ -173,3 +173,30 @@
         border-top-left-radius: 5px;
     }
 }
+
+
+.side-bar-max-fix {
+    position: fixed;
+    top: 80px;
+    bottom: 0px;
+    left: 7.4%;
+    width: 18.91%;
+    z-index: -2;
+}
+
+.big-top ~ .side-bar-max-fix-fix {
+    position: absolute;
+    height: 280px!important;
+    left: 7%;
+    width: 20%;
+    z-index: -1;
+    background-image: none!important;
+    background-color: white!important;
+}
+
+@media screen and (max-width: 1570px) {
+    .side-bar-max-fix {
+        left: 7.3%;
+        width: 18.91%;
+    }
+}

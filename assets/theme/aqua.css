@@ -84,3 +84,7 @@
 .user-entry-last {
     background-image: linear-gradient(to bottom right, #264653, #315c6d, #27796f);
 }
+
+.side-bar-max-fix {
+    background-image: linear-gradient(to bottom, #204f61, #204f61);
+}

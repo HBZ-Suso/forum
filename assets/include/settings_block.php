@@ -1,13 +1,15 @@
 <?php
 
 echo '<link rel="stylesheet" href="/forum/assets/style/pc.settings.css">';
+echo '<link rel="stylesheet" href="/forum/assets/style/elements/pc.radio_style.css">';
 echo '<div class="block settings-block theme-main-color-2">';
 
 echo '<div class="settings-block-heading block-heading theme-main-color-2">' . $text->get("settings-block-heading") . '</div>';
 
 echo '<div class="settings-text-box">
     <form class="setting">
-        <tr><h1 class="setting-heading">Thema</h1>';
+        <h1 class="setting-heading">Thema</h1>
+        <div class="container">';
 
 foreach($info->get_themes() as $value) {
     if ($_SESSION["theme"] === $value) {
@@ -16,8 +18,15 @@ foreach($info->get_themes() as $value) {
         $checked = "";
     }
     echo '
-    <label name="theme">' . $value . '</label>
-    <input class="theme_radio" type="radio" name="theme" id="' . $value . '" ' . $checked . '>
+    <div class="option">
+        <input class="theme_radio" type="radio" name="language" id="' . $value . '" value="royal" ' . $checked . '>
+        <label for="' . $value . '" aria-label="' . $value . '">
+        <span></span>
+        
+        ' . $value . '
+
+        </label>
+    </div>
     ';
 }
 
@@ -32,13 +41,26 @@ switch ($_SESSION["language"]) {
         $english = "checked";
         break;
 }
-echo '</form>
+echo '</div></form>
     <form class="setting">
         <h1 class="setting-heading">Sprache</h1>
-        <label name="language">Deutsch</label>
-        <input class="language_radio" type="radio" name="language" id="deutsch" ' . $deutsch . '>
-        <label name="language">English</label>
-        <input class="language_radio" type="radio" name="language" id="english" ' . $english . '>
+        <div class="container">
+            <div class="option">
+                <input class="language_radio" type="radio" name="language" id="english" value="language" ' . $english . '>
+                <label for="english" aria-label="english">
+                <span></span>
+                English
+                </label>
+            </div>
+        
+            <div class="option">
+                <input class="language_radio" type="radio" name="language" id="deutsch" value="language" ' . $deutsch . '>
+                <label for="deutsch" aria-label="deutsch">
+                <span></span>
+                Deutsch
+                </label>
+            </div>
+        </div>
     </form>
 </div>';
 

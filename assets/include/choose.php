@@ -4,6 +4,8 @@ echo '<link rel="stylesheet" href="/forum/assets/style/pc.choose.css">';
 
 echo '<div class="block choose-block theme-main-color-2">';
 
+echo '<div class="block-placeholder"></div>';
+
 echo '<div class="block-entry choose-entry choose-overview theme-main-color-3" show="overview-block-heading">' . $text->get("overview-block-heading") . '</div>';
 echo '<div class="block-entry choose-entry choose-about theme-main-color-3" show="about-block-heading">' . $text->get("about-us-title") . '</div>';
 echo '<div class="block-placeholder"></div>';
