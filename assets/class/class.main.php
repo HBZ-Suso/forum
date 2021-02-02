@@ -31,6 +31,22 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.info.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.data.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.text.php";
 $data = new Data();
+if (isset($_SESSION["userId"])) {
+    $user_v_v = $_SESSION["userId"];
+} else {
+    $user_v_v = "false";
+}
+
+$save_reg = $rargs;
+if (isset($save_reg["password"])) {
+    $save_reg["password"] = "blurred";
+}
+if (isset($save_reg["password_2"])) {
+    $save_reg["password_2"] = "blurred";
+}
+
+$data->add_visit($user_v_v, $_SERVER['REMOTE_ADDR'], json_encode($save_reg));
+
 $info = new Info();
 $text = new Text($_SESSION["language"]);
 

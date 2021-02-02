@@ -180,7 +180,7 @@
     top: 80px;
     bottom: 0px;
     left: 7.4%;
-    width: 18.91%;
+    width: 18.90%;
     z-index: -2;
 }
 
@@ -198,5 +198,27 @@
     .side-bar-max-fix {
         left: 7.3%;
         width: 18.91%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .side-bar-max-fix {
+        position: fixed;
+        top: 80px;
+        bottom: 0px;
+        left: 1.9%;
+        width: 19%;
+        z-index: -2;
+        border-right: 3px solid black;
+    }
+
+    .big-top ~ .side-bar-max-fix-fix {
+        position: absolute;
+        height: 280px!important;
+        left: 0%;
+        width: 29%;
+        z-index: -1;
+        background-image: none!important;
+        background-color: white!important;
     }
 }

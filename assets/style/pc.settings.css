@@ -10,10 +10,8 @@
     display: flex;
     flex-direction: column;
     box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.1);
-    margin-top: min(2vw, 15px);
-    margin-bottom: min(2vw, 15px);
     border-radius: 5px;
-    width: 20vw;
+    width: min-content;
     height: min-content;
     text-align: center;
     margin: 5%;
@@ -22,14 +20,11 @@
 
 .settings-save {
     box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.1);
-    width: 10%;
+    width: 86%;
     height: min-content;
-    padding: 1%;
-    margin: 2%;
+    margin: 5%;
+    padding: 2%;
     border-radius: 5px;
-    position: fixed;
-    right: 31%;
-    bottom: 10px;
     text-align: center;
     cursor: pointer;
     transition: all 0.5s linear;

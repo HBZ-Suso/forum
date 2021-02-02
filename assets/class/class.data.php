@@ -1162,4 +1162,17 @@ class Data extends Connector
             return true;
         }
     } // USAGE: $data->is_logged_in()
+
+
+    public function add_visit ($userId, $visitIp, $visitData)
+    {
+        $current_page = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $time = time();
+        $query = "INSERT INTO visits (userId, visitIp, visitDate, visitPage, visitData) VALUES (?, ?, ?, ?, ?);";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ssiss", $userId, $visitIp, $time, $current_page, $visitData);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
 }

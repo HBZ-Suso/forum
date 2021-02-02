@@ -71,6 +71,8 @@ document.querySelectorAll(".choose-entry").forEach((element, index) => {
 
 if (window.location.toString().indexOf("select=create_article") !== -1) {
     set_section("frame-menu-create");
+} else if (window.location.toString().indexOf("select=about") !== -1) {
+    set_section("about-block-heading");
 } else if (getCookie("selected_section").length > 3 && getCookie("selected_section") !== undefined && blocks[getCookie("selected_section")] !== null && blocks[getCookie("selected_section")] !== undefined) {
     set_section(getCookie("selected_section"));
 } else {
@@ -104,5 +106,6 @@ for (let key in blocks) {
 }
 
 if (everything_hidden) {
+    console.debug("EVERYTHING HIDDEN")
     set_section("overview-block-heading")
 }
