@@ -1,12 +1,10 @@
-<?php 
+<?php
+session_start();
+$hide_frame = true;
+require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
-echo '<script src="/forum/assets/script/include/replace_articles.js" defer></script>';
-
-echo '<div class="article-block block theme-main-color-2">
-<h1 class="article-block-heading block-heading">' . $text->get("article-block-heading") . '</h1>';
-
-if (isset($_GET["search"])) {
-    $phrase = $_GET["search"];
+if (isset($rargs["search"])) {
+    $phrase = $rargs["search"];
 } else {
     $phrase = "";
 }
@@ -15,30 +13,35 @@ if (intval($_SESSION["articlePage"]) < 0) {
     $_SESSION["articlePage"] = 0;
 }
 
-if (!isset($_SESSION["use"])) {
+if (!isset($_SESSION["articlePage"])) {
     $_SESSION["articlePage"] = 0;
 }
 
-if (isset($_GET["rsearch"])) {
+if (isset($rargs["page"])) {
+    $page = intval($rargs["page"]);
+} else {
+    $page = intval($_SESSION["articlePage"]);
+}
+
+if (isset($rargs["rsearch"])) {
     $mode_list = array();
 
-    if (isset($_GET["title"])) {
+    if (isset($rargs["title"])) {
         array_push($mode_list, "articleTitle");
     }
-    if (isset($_GET["text"])) {
+    if (isset($rargs["text"])) {
         array_push($mode_list, "articleText");
     }
-    if (isset($_GET["author"])) {
+    if (isset($rargs["author"])) {
         array_push($mode_list, "userId");
     }
 
-    $article_list = $data->search_articles($_GET["rsearch"], intval($_SESSION["articlePage"]) * $info->page_amount(), $info->page_amount(), $mode_list);
+    $article_list = $data->search_articles($rargs["rsearch"], $page * $info->page_amount(), $info->page_amount(), $mode_list);
 } else {
-    $article_list = $data->search_articles($phrase, intval($_SESSION["articlePage"]) * $info->page_amount(), $info->page_amount());
+    $article_list = $data->search_articles($phrase, $page * $info->page_amount(), $info->page_amount());
 }
 
-echo '<div class="scroll-el" id="article-block-scroll">';
-
+$return = "";
 foreach ($article_list as $value) {
     if ($data->is_logged_in() && ($_SESSION["userId"] === $value["userId"])) {
         $self = " owned";
@@ -64,7 +67,7 @@ foreach ($article_list as $value) {
         $view_text = $text->get("article-block-views");
     }
 
-    echo '
+    $return .= '
     <div class="article-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" id="article_' . $value["articleId"] . '">
         <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["articleTitle"]) .'</span><br>
         <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">' . $text->get("article-block-author") . '</p>' . htmlspecialchars($data->get_username_by_id($value["userId"])) . $verified .'</span>
@@ -80,12 +83,6 @@ foreach ($article_list as $value) {
     ';
 }
 
-echo '
-</div>
-<img alt="->" id="awr" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
-<script>document.getElementById("awr").addEventListener("click", (ev) => {axios.post("/forum/assets/api/set_articlePage.php?articlePage=" + (parseInt(document.getElementById("apc").innerText))).then((result) => {reset_articles(); document.getElementById("apc").innerText = parseInt(document.getElementById("apc").innerText) + 1}).catch((e) => {console.debug(e);})})</script>
-<p class="articlePage" id="apc">' . (intval($_SESSION["articlePage"]) + 1) .'</p>
-<img alt="<-" id="awl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
-<script>document.getElementById("awl").addEventListener("click", () => {axios.post("/forum/assets/api/set_articlePage.php?articlePage=" + (parseInt(document.getElementById("apc").innerText - 2))).then((result) => {if (parseInt(document.getElementById("apc").innerText) - 1  > 0) {reset_articles(); document.getElementById("apc").innerText = parseInt(document.getElementById("apc").innerText) - 1}}).catch((e) => {console.debug(e);})})</script>
-</div>
-';
+
+
+echo $return;

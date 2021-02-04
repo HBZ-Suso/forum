@@ -14,16 +14,17 @@
     width: min-content;
     height: min-content;
     text-align: center;
-    margin: 5%;
-    padding: 2%;
+    margin: 2%;
+    padding: 1%;
 }
 
 .settings-save {
     box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.1);
-    width: 86%;
+    width: min-content;
+    min-width: 15%;
     height: min-content;
-    margin: 5%;
-    padding: 2%;
+    margin: 0 auto;
+    padding: 1%;
     border-radius: 5px;
     text-align: center;
     cursor: pointer;

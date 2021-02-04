@@ -1,13 +1,17 @@
-<?php 
+<?php
+session_start();
+$hide_frame = true;
+require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
-echo '<script src="/forum/assets/script/include/replace_users.js" defer></script>';
 
-echo '
-<div class="user-block block block theme-main-color-2">
-    <h1 class="user-block-heading block-heading">' . $text->get("user-block-heading") . '</h1>';
-                
-if (isset($_GET["search"])) {
-    $phrase = $_GET["search"];
+if (isset($rargs["page"])) {
+    $page = intval($rargs["page"]);
+} else {
+    $page = intval($_SESSION["userPage"]);
+}
+
+if (isset($rargs["search"])) {
+    $phrase = $rargs["search"];
 } else {
     $phrase = "";
 }
@@ -21,36 +25,31 @@ if (!isset($_SESSION["userPage"])) {
 }
 
 
-if (isset($_GET["rsearch"])) {
+if (isset($rargs["rsearch"])) {
     $mode_list = [];
 
-    if (isset($_GET["name"])) {
+    if (isset($rargs["name"])) {
         array_push($mode_list, "userName");
     }
-    if (isset($_GET["mail"])) {
+    if (isset($rargs["mail"])) {
         array_push($mode_list, "userMail");
     }
-    if (isset($_GET["description"])) {
+    if (isset($rargs["description"])) {
         array_push($mode_list, "userDescription");
     }
-    if (isset($_GET["phone"])) {
+    if (isset($rargs["phone"])) {
         array_push($mode_list, "userPhone");
     }
-    if (isset($_GET["employment"])) {
+    if (isset($rargs["employment"])) {
         array_push($mode_list, "userEmployment");
     }
 
-    $user_list = $data->search_users($_GET["rsearch"], intval($_SESSION["userPage"]) * $info->page_amount(), $info->page_amount(), $mode_list);
+    $user_list = $data->search_users($rargs["rsearch"], $page * $info->page_amount(), $info->page_amount(), $mode_list);
 } else {
-    $user_list = $data->search_users($phrase, intval($_SESSION["userPage"]) * $info->page_amount(), $info->page_amount());
-    if ($mobile === true) {
-        $user_list = $data->search_users($phrase, intval($_SESSION["userPage"]) * $info->page_amount(), $info->page_amount());
-    }
+    $user_list = $data->search_users($phrase, $page * $info->page_amount(), $info->page_amount());
 }
 
-echo '<div class="scroll-el" id="user-block-scroll">';
-
-
+$return = "";
 foreach ($user_list as $value) {
     if ($data->is_logged_in() && ($_SESSION["userId"] === $value["userId"])) {
         $self = " owned";
@@ -76,7 +75,7 @@ foreach ($user_list as $value) {
         $view_text = $text->get("user-block-views");
     }
 
-    echo '
+    $return .= '
         <div class="user-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . htmlspecialchars($value["userName"]) . '"  id="user_' . $value["userId"] . '">
             <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["userName"]) . $verified . '</span><br>
             <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">' . htmlspecialchars($text->get("user-block-mail")) . '</p>' . $value["userMail"] .'</span>
@@ -92,11 +91,6 @@ foreach ($user_list as $value) {
     ';
 }
 
-echo '
-</div>
-<img alt="->" id="uwr" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
-<script>document.getElementById("uwr").addEventListener("click", () => {axios.post("/forum/assets/api/set_userPage.php?userPage=" + (parseInt(document.getElementById("upc").innerText))).then((result) => {reset_users(); document.getElementById("upc").innerText = parseInt(document.getElementById("upc").innerText) + 1}).catch((e) => {console.debug(e);})})</script>
-<p class="userPage" id="upc">' . (intval($_SESSION["userPage"]) + 1) .'</p>
-<img alt="<-" id="uwl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
-<script>document.getElementById("uwl").addEventListener("click", () => {axios.post("/forum/assets/api/set_userPage.php?userPage=" + (parseInt(document.getElementById("upc").innerText - 2))).then((result) => {if (parseInt(document.getElementById("upc").innerText) - 1  > 0) {reset_users(); document.getElementById("upc").innerText = parseInt(document.getElementById("upc").innerText) - 1}}).catch((e) => {console.debug(e);})})</script>
-</div>';
+
+
+echo $return;

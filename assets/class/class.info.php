@@ -60,4 +60,20 @@ class Info
     {
         return 20;
     }
+
+
+    public function get_cookie_policy ()
+    {
+        return json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/forum/assets/data/policy.json"), true)["cookie"];
+    }
+
+    public function get_privacy_policy ()
+    {
+        return json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/forum/assets/data/policy.json"), true)["privacy"];
+    }
+
+    public function get_licence_policy ()
+    {
+        return json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/forum/assets/data/policy.json"), true)["licence"];
+    }
 }

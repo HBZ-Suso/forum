@@ -88,3 +88,12 @@
 .side-bar-max-fix {
     background-image: linear-gradient(to bottom, #204f61, #204f61);
 }
+
+
+
+:root{
+    scrollbar-color: #2a8d74 #3ad1b0 !important;
+    scrollbar-width: thin !important;
+}
+  
+  

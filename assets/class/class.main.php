@@ -1,5 +1,6 @@
 <?php 
 
+/*
 if (!isset($_SESSION["res_x"]) || !isset($_SESSION["res_y"])) {
     echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
     echo '
@@ -9,7 +10,7 @@ if (!isset($_SESSION["res_x"]) || !isset($_SESSION["res_y"])) {
     ';
     exit();
 } 
-
+*/
 
 
 // Setting languages before including classes because class.text.php needs language on construct
@@ -58,6 +59,7 @@ if (isset($require_purifier)) {
 
 
 if (!isset($hide_frame)) {
+
     echo '
     <!DOCTYPE html>
     <html lang="' . $text->get_language_code_from_name($_SESSION["language"]) . '">
@@ -68,7 +70,7 @@ if (!isset($hide_frame)) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>HBZ-Forum</title>
-        <meta name="description" content="Das ofizielle HBZ-Forum | The official HBZ-forum">
+        <meta name="description" content="Das offizielle HBZ-Forum | The official HBZ-forum">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
         @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
@@ -99,14 +101,17 @@ if (!isset($hide_frame)) {
         }
         $theme = $_SESSION["theme"];
     } else {
-        $_SESSION["theme"] = "dark";
+        $_SESSION["theme"] = "aqua";
         setcookie("theme", $_SESSION["theme"], time() + 60*60*24*365, "/");
-        $theme = "dark";
+        $theme = "aqua";
     }
 
     echo '<div id="theme-box"><link rel="stylesheet" href="/forum/assets/theme/' . $theme . '.css"></div>';
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/loading.html";
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/ask_question.html";
+    if (!isset($_COOKIE["policy-agreed"]) || $_COOKIE["policy-agreed"] !== "true") {
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/policy_popup.php";
+    }
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/frame.php";
 
     echo '<script src="/forum/assets/script/language.js"></script>';
@@ -145,9 +150,9 @@ if (isset($show_essentials)) {
         }
         $theme = $_SESSION["theme"];
     } else {
-        $_SESSION["theme"] = "dark";
+        $_SESSION["theme"] = "aqua";
         setcookie("theme", $_SESSION["theme"], time() + 60*60*24*365, "/");
-        $theme = "dark";
+        $theme = "aqua";
     }
 
     echo '
@@ -155,7 +160,7 @@ if (isset($show_essentials)) {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>HBZ-Forum</title>
-        <meta name="description" content="Das ofizielle HBZ-Forum | The official HBZ-forum">
+        <meta name="description" content="Das offizielle HBZ-Forum | The official HBZ-forum">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
         @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");

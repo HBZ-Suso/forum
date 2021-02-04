@@ -1168,9 +1168,11 @@ class Data extends Connector
     {
         $current_page = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $time = time();
-        $query = "INSERT INTO visits (userId, visitIp, visitDate, visitPage, visitData) VALUES (?, ?, ?, ?, ?);";
+        $u_a = json_encode($_SERVER["HTTP_USER_AGENT"]);
+        $b_r = json_encode(get_browser(null, true));
+        $query = "INSERT INTO visits (userId, visitIp, visitDate, visitPage, visitData, visitUserAgent, visitBrowser) VALUES (?, ?, ?, ?, ?, ?, ?);";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ssiss", $userId, $visitIp, $time, $current_page, $visitData);
+        $stmt->bind_param("ssissss", $userId, $visitIp, $time, $current_page, $visitData, $u_a, $b_r);
         $stmt->execute();
         $stmt->close();
         return true;

@@ -8,7 +8,7 @@ echo '<div class="settings-block-heading block-heading theme-main-color-2">' . $
 
 echo '<div class="settings-text-box">
     <form class="setting">
-        <h1 class="setting-heading">Thema</h1>
+        <h1 class="setting-heading">' . $text->get("theme-setting-heading") . '</h1>
         <div class="container">';
 
 foreach($info->get_themes() as $value) {
@@ -43,7 +43,7 @@ switch ($_SESSION["language"]) {
 }
 echo '</div></form>
     <form class="setting">
-        <h1 class="setting-heading">Sprache</h1>
+        <h1 class="setting-heading">' . $text->get("language-setting-heading") . '</h1>
         <div class="container">
             <div class="option">
                 <input class="language_radio" type="radio" name="language" id="english" value="language" ' . $english . '>

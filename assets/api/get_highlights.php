@@ -1,11 +1,28 @@
 <?php
+session_start();
+$hide_frame = true;
+require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
-echo '<script src="/forum/assets/script/include/replace_highlights.js" defer></script>';
+if (isset($rargs["search"])) {
+    $phrase = $rargs["search"];
+} else {
+    $phrase = "";
+}
 
-echo '
-<div class="highlights-block block block theme-main-color-2">
-    <h1 class="highlights-block-heading block-heading">Highlights</h1>';
-    
+if (intval($_SESSION["highlightPage"]) < 0) {
+    $_SESSION["highlightPage"] = 0;
+}
+
+if (!isset($_SESSION["highlightPage"])) {
+    $_SESSION["highlightPage"] = 0;
+}
+
+if (isset($rargs["page"])) {
+    $page = intval($rargs["page"]);
+} else {
+    $page = intval($_SESSION["highlightPage"]);
+}
+
 if (isset($_GET["search"])) {
     $phrase = $_GET["search"];
 } else {
@@ -21,14 +38,11 @@ if (!isset($_SESSION["highlightPage"])) {
     $_SESSION["highlightPage"] = 0;
 }
 
-
-
-$highlight_data = $data->get_highlights_by_user_id($_SESSION["userId"], intval($_SESSION["highlightPage"]) * $info->page_amount(), $info->page_amount());
-
-echo '<div class="scroll-el" id="highlight-block-scroll">';
+$highlight_data = $data->get_highlights_by_user_id($_SESSION["userId"], $page * $info->page_amount(), $info->page_amount());
 
 
 
+$return = "";
 foreach (array_reverse($highlight_data) as $value) {
     if ($data->is_logged_in() && ($_SESSION["userId"] === $value["userId"])) {
         $self = " owned";
@@ -66,7 +80,7 @@ foreach (array_reverse($highlight_data) as $value) {
 
 
     if (isset($value["articleId"])) {
-        echo '
+        $return .= '
             <div class="article-block-entry theme-main-color-3 hover-theme-main-4 block-entry' . $self . '" id="highlights_article_' . $value["articleId"] . '">
                 <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["articleTitle"]) .'</span><br>
                 <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">' . $text->get("highlight-block-author") . ' </p>' . htmlspecialchars($data->get_username_by_id($value["userId"])) . $verified . '</span>
@@ -81,7 +95,7 @@ foreach (array_reverse($highlight_data) as $value) {
             </script>
         ';
     } else if (isset($value["userName"])) {
-        echo '
+        $return .= '
         <div class="highlights-block-entry theme-main-color-3 hover-theme-main-4 block-entry' . $self . '" id="highlights_user_' . $value["userId"] . '">
             <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["userName"])  . $verified .'</span><br>
             <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">' . htmlspecialchars($text->get("highlight-block-mail")) . '</p>' . $value["userMail"] .'</span>
@@ -96,16 +110,8 @@ foreach (array_reverse($highlight_data) as $value) {
         </script>
     ';
     }
-
-
 }
 
 
-echo '
-</div>
-<img alt="<-" id="hwr" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
-<script>document.getElementById("hwr").addEventListener("click", () => {axios.post("/forum/assets/api/set_highlightPage.php?highlightPage=" + (parseInt(document.getElementById("hpc").innerText))).then((result) => {reset_highlights(); document.getElementById("hpc").innerText = parseInt(document.getElementById("hpc").innerText) + 1}).catch((e) => {console.debug(e);})})</script>
-<p class="highlightPage" id="hpc">' . (intval($_SESSION["highlightPage"]) + 1) .'</p>
-<img alt="<-" id="hwl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
-<script>document.getElementById("hwl").addEventListener("click", () => {axios.post("/forum/assets/api/set_highlightPage.php?highlightPage=" + (parseInt(document.getElementById("hpc").innerText - 2))).then((result) => {if (parseInt(document.getElementById("hpc").innerText) - 1  > 0) {reset_highlights(); document.getElementById("hpc").innerText = parseInt(document.getElementById("hpc").innerText) - 1}}).catch((e) => {console.debug(e);})})</script>
-</div>';
+
+echo $return;

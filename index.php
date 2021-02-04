@@ -63,7 +63,7 @@ if (isset($_GET["search"]) || isset($_GET["rsearch"]) || (!isset($_GET["show"]) 
         }
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/pop_refined_search.html";
         echo "</div>";
-        echo '<div class="side-bar-max-fix"></div>';
+        echo '<div class="side-bar-max-fix theme-main-color-2"></div>';
         echo '<div class="side-bar-max-fix-fix"></div>';
     } else {
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/mobile_search.php";

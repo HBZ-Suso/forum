@@ -86,6 +86,7 @@ Database name: forum
     2. passwordChangeUserId (MEDIUMINT, UNSIGNED)
     3. passwordChangeIp (LONGTEXT)
     4. passwordChangeDate (LONGTEXT, UNIX TIMESTAMP)
+
 12. visitDetails:
     1. visitId (BIGINT, UNSIGNED, ticking up)
     2. userId (TEXT, "false" if not logged in)
@@ -93,6 +94,8 @@ Database name: forum
     4. visitDate (BIGINT, UNIX TIMESTAMP)
     5. visitPage (LONGTEXT)
     6. visitData (LONGTEXT, json of $rargs)
+    7. visitUserAgent (LONGTEXT, json)
+    8. visitBrowser (LONGTEXT, json, output of get_browser)
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>

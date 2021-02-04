@@ -75,7 +75,7 @@
 
 .block-entry {
     width: 95%;
-    font-size: min(1.3vw, 25px);
+    font-size: min(0.8vw, 17px);
     padding: min(2%, 10px);
     margin-top: 0.3vw;
     margin-bottom: 0.3vw;
