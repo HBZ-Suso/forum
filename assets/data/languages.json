@@ -91,7 +91,8 @@
         "overview-block-text": "This webpage is the Studentforum of the HBZ of the Heinrich-Suso-Gymnasiums. <br>It was made in order for the students as well as for the alumnus to be able to get in contact, even years after graduation. In this way it seeks to enrich the community feeling and show the students what they can expect after graduation. <br>For the official Homepage of the HBZ see <a href='https://www.suso.schulen.konstanz.de/HP/hbz' style='text-decoration: underline;'>this</a> webpage.",
         "settings-block-heading": "Settings",
         "settings-save": "Save",
-        "language-setting-heading": "Language"
+        "language-setting-heading": "Language",
+        "view-block-heading": "Quickview"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -185,6 +186,7 @@
         "settings-block-heading": "Einstellungen",
         "settings-save": "Speichern",
         "overview-block-text": "Diese Seite ist das Schüler-Forum des Hochbegabtenzuges des Heinrich-Suso-Gymnasiums Konstanz. <br>Sie soll der HBZ-Gemeinschaft, bestehend aus ehemaligen und derzeitigen Mitgliedern ebenso wie aus den Lehrern, eine Möglichkeit geben, sich auszutauschen. So können Ehemalige im Kontakt mit Schülern und den Lehrern bleiben und die Schüler können Ehemalige fragen und mit ihnen über ihr Leben nach der Schule reden. <br>Klicken sie <a href='/forum/?articleId=1'>hier</a> um mehr über diese Seite herauszufinden.",
-        "language-setting-heading": "Sprache"
+        "language-setting-heading": "Sprache",
+        "view-block-heading": "Schnellansicht"
     }
 }

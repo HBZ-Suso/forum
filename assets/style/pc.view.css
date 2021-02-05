@@ -1,0 +1,128 @@
+.view-block {
+    min-height: 100%;
+    height: min-content;
+    overflow-y: auto;
+}
+
+
+.view-block > div  {
+    width: 88%;
+    left: 5%;
+    padding: 1%;
+    margin: 0px;
+    margin-top: 5%;
+    border-radius: 1vw;
+    position: relative;
+    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.3);
+}
+
+.view-block > div > a {text-decoration: none;}
+
+.view-block > div > .article-block-entry, .view-block > div > a > .article-block-entry, .view-block > div > .user-block-entry, .view-block > div > a > .user-block-entry {
+    resize: none;
+    color: black;
+    height: min-content;
+    border: none;
+    border: none;
+    width: 100%;
+    font-size:  min(1.2vw, 30px);
+    height: min(1.4vw, 35px);
+    padding: 0px;
+    margin: 0px;
+    margin-top: min(0.4vh, 7px);
+    text-align: center;
+    text-decoration: none;
+}
+
+.view-block > div > .article-block-title, .view-block > div > .user-block-title {
+    font-size:  min(3vw, 50px);
+    height:  min(3vw, 50px);
+    text-decoration: underline;
+}
+
+.article-block-content {
+    padding: 1%;
+    margin-top: 3vh;
+    width: 98%;
+    height: 60vh;
+    resize: none;
+    color: black;
+    font-size: min(1.2vw, 20px);
+}
+
+.user-block-description {
+    padding: 1%;
+    margin-top: 3vh;
+    width: 98%;
+    height: 50vh;
+    resize: none;
+    color: black;
+    font-size: min(1.2vw, 20px);
+}
+
+.like-btn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: min(2vw, 25px);
+    margin: 1vw;
+    background-color: rgb(83, 83, 83);
+    padding: 0.5vw;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.view-block > div > .user-settings {
+    display: none;
+}
+
+
+
+
+.liked {
+    background-color: red;
+}
+
+
+
+.view-block > div > .verified {
+    position: absolute;
+    right: min(7vw, 140px);
+    top: 1vw;
+    padding: 0px;
+    margin: 0px;
+    font-size:min(3vw, 50px);
+    color: rgb(45, 209, 45);
+    background-color: rgb(167, 167, 167);
+    border-radius: 5vw;
+    height: min(3.4vw, 55px);
+    width: min(3.4vw, 55px);
+    text-align: center;
+}
+
+
+.view-more {
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 5%!important;
+    margin-top: min(0.4vh, 10px)!important;
+}
+
+.user-type-administrator { color: red; }
+.user-type-moderator { color: darkgreen; }
+
+.view-block > div > .locked {
+    position: absolute;
+    right: min(7vw, 140px);
+    top: 1vw;
+    padding: 0px;
+    margin: 0px;
+    font-size:min(3vw, 50px);
+    color: red;
+    background-color: rgb(167, 167, 167);
+    border-radius: 5vw;
+    height: min(3.4vw, 55px);
+    width: min(3.4vw, 55px);
+    text-align: center;
+}

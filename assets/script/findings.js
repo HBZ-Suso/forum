@@ -1,5 +1,8 @@
+var pc_findings = true;
+
 var blocks = {
     "user-block-heading": document.querySelector(".user-block"),
+    "view-block-heading": document.querySelector(".view-block"),
     "article-block-heading": document.querySelector(".article-block"),
     "highlight-block-heading": document.querySelector(".highlights-block"),
     "frame-menu-create": document.querySelector(".create-article-block"),
@@ -40,6 +43,7 @@ function set_section (c_section) {
 
 document.querySelectorAll(".choose-entry").forEach((element, index) => {
     element.addEventListener("click", (e) => {
+        document.querySelector(".choose-views").style.display = "none";
         document.querySelectorAll(".choose-entry").forEach((choose_el, c_index) => {
             choose_el.style.width = "";
             choose_el.style.boxShadow = "";
@@ -108,4 +112,59 @@ for (let key in blocks) {
 if (everything_hidden) {
     console.debug("EVERYTHING HIDDEN")
     set_section("overview-block-heading")
+}
+
+
+function view (what) {    
+    if (what.indexOf("articleId=") !== -1) {
+        axios
+        .post("/forum/assets/api/get_articleHTML.php?articleId=" + what.replace("articleId=", ""))
+        .then((article_html) => {
+            cur_Id = what;
+            document.querySelector(".view-block").innerHTML = "";
+            document.querySelector(".view-block").innerHTML = article_html.data.replace('<link rel="stylesheet" href="/forum/assets/style/pc.article.css">', "").replace("theme-main-color-1", "").replace("article-background-element", "") + "<div class='view-more' onclick='window.location = \"/forum/?" + what + "\";'>...</div>";
+            document.getElementById("comment_section_" + what).remove();
+        })
+        .catch(() => {
+            console.debug("Prompt error");
+        })
+    } else if (what.indexOf("userId=") !== -1) {
+        axios
+        .post("/forum/assets/api/get_userHTML.php?userId=" + what.replace("userId=", ""))
+        .then((user_html) => {      
+            cur_Id = what;
+            document.querySelector(".view-block").innerHTML = "";
+            document.querySelector(".view-block").innerHTML = user_html.data.replace('<link rel="stylesheet" href="/forum/assets/style/pc.user.css">', "").replace("theme-main-color-1", "").replace("user-background-element", "") + "<div class='view-more' onclick='window.location = \"/forum/?" + what + "\";'>...</div>";
+            document.getElementById("comment_section_" + what).remove();
+        })
+        .catch(() => {
+            console.debug("Prompt error");
+        })
+    }
+
+    document.querySelectorAll(".choose-entry").forEach((choose_el, c_index) => {
+        choose_el.style.width = "";
+        choose_el.style.boxShadow = "";
+    });
+    document.querySelector(".choose-views").style.display = "";
+    document.querySelector(".choose-views").style.width = "83%";
+    document.querySelector(".choose-views").style.boxShadow = "inset 0px 0px 400px 110px rgba(255, 255, 255, .1";
+    if (blocks["view-block-heading"] !== undefined && blocks["view-block-heading"] !== null) {
+        for (let key in blocks) {
+            let el = blocks[key];
+            if (el === null) {
+                continue;
+            }
+            el.style.display = "none";
+        }
+        blocks["view-block-heading"].style.display = "";
+        axios
+        .post("/forum/assets/api/set_chosen_section.php?section=" + section)
+        .then((languages) => {
+        
+        })
+        .catch(() => {
+            console.debug("Prompt error");
+        })
+    }
 }

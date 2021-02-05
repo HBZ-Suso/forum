@@ -9,6 +9,7 @@ echo '<div class="block-placeholder"></div>';
 echo '<div class="block-entry choose-entry choose-overview theme-main-color-3" show="overview-block-heading">' . $text->get("overview-block-heading") . '</div>';
 echo '<div class="block-entry choose-entry choose-about theme-main-color-3" show="about-block-heading">' . $text->get("about-us-title") . '</div>';
 echo '<div class="block-placeholder"></div>';
+echo '<div class="block-entry choose-entry choose-views theme-main-color-3" show="view-block-heading" style="display: none;">' . $text->get("view-block-heading") . '</div>';
 echo '<div class="block-entry choose-entry choose-articles theme-main-color-3" show="article-block-heading">' . $text->get("article-block-heading") . '</div>';
 echo '<div class="block-entry choose-entry choose-users theme-main-color-3" show="user-block-heading">' . $text->get("user-block-heading") . '</div>';
 

@@ -46,7 +46,7 @@ echo '
                 <th><label for="title" class="refined-search-label">' . $text->get("refined-title") . '</label></th>
                 <th><label for="text" class="refined-search-label">' . $text->get("refined-text") . '</label></th>
                 <!--<th><label for="author" class="refined-search-label">' . $text->get("refined-author") . '</label></th>-->
-                <th><label for="info class="refined-search-label">|</label></th>
+                <th><label for="info" class="refined-search-label">|</label></th>
                 <th><label for="title" class="refined-search-label">' . $text->get("refined-name") . '</label></th>
                 <th><label for="text" class="refined-search-label">' . $text->get("refined-mail") . '</label></th>
                 <th><label for="title" class="refined-search-label">' . $text->get("refined-description") . '</label></th>

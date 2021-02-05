@@ -44,9 +44,9 @@
 }
 
 .block {
-    min-height: 100%;
-    height: min-content;
+    height: 100%;
     width: 70%;
+    overflow-y: auto;
     position: relative;
 }
 
@@ -66,7 +66,6 @@
 .block-heading {
     font-size: min(3vw, 40px);
     text-align: center;
-    text-decoration: underline;
     margin-top: min(3%, 20px);
     margin-bottom: min(3%, 20px);
     font-weight: bold;
@@ -75,7 +74,7 @@
 
 .block-entry {
     width: 95%;
-    font-size: min(0.8vw, 17px);
+    font-size: min(1.1vw, 20px);
     padding: min(2%, 10px);
     margin-top: 0.3vw;
     margin-bottom: 0.3vw;

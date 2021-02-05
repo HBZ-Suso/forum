@@ -77,7 +77,7 @@ foreach ($user_list as $value) {
     }
 
     echo '
-        <div class="user-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . htmlspecialchars($value["userName"]) . '"  id="user_' . $value["userId"] . '">
+        <div ref="userId=' . $value["userId"] . '" class="user-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" user_id="' . $value["userId"] . '" user_name="' . htmlspecialchars($value["userName"]) . '"  id="user_' . $value["userId"] . '">
             <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["userName"]) . $verified . '</span><br>
             <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">' . htmlspecialchars($text->get("user-block-mail")) . '</p>' . $value["userMail"] .'</span>
             <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $view_text . '</p>' . $data->get_user_views_by_targetUserId($value["userId"]) .'</span>
@@ -85,9 +85,13 @@ foreach ($user_list as $value) {
         </div>
 
         <script>
-            document.getElementById("user_' . $value["userId"] . '").addEventListener("click", (e) => {
+        document.getElementById("user_' . $value["userId"] . '").addEventListener("click", (e) => {
+            if (typeof pc_findings == "undefined") {
                 window.location = "/forum/?userId=' . $value["userId"] . '";
-            })
+            } else {
+                view("userId=' . $value["userId"] . '");
+            }
+        })
         </script>
     ';
 }

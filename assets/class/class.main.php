@@ -80,6 +80,7 @@ if (!isset($hide_frame)) {
 
     echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
     echo '<script src="/forum/assets/script/functions.js"></script>';
+    echo '<script src="/forum/assets/script/like.js" defer></script>';
 
 
     echo "
@@ -126,6 +127,7 @@ if (isset($show_essentials)) {
 
     ';
     echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
+    echo '<script src="/forum/assets/script/like.js" defer></script>';
     echo '<script src="/forum/assets/script/functions.js"></script>';
     echo '<script src="/forum/assets/script/language.js"></script>';
     echo '<script src="/forum/assets/script/theme.js"></script>';

@@ -54,6 +54,7 @@ if (isset($_GET["search"]) || isset($_GET["rsearch"]) || (!isset($_GET["show"]) 
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/choose.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/overview_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/settings_block.php";
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/view_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/article_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/user_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about_block.php";

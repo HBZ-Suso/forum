@@ -1,20 +1,18 @@
-var like_element = document.querySelector(".like-btn");
-
-like_element.addEventListener("click", (e) => {
-    if (cur_username === false) {
-        window.location = "/forum/assets/site/login.php?refer=" + cur_Id.replace("=", "-|-|-");
-    }
-
+function like (event) {
     axios
-        .post("/forum/assets/api/like.php", cur_Id.replace("userId", "targetUserId"))
+        .post("/forum/assets/api/like.php", event.target.getAttribute("el_Id").replace("userId", "targetUserId"))
         .then((response) => {
-            if (like_element.classList.contains("liked")) {
-                like_element.classList.remove("liked");
+            if (response.data == "Permissionerror") {
+                window.location = "/forum/assets/site/login.php?refer=" + event.target.getAttribute("el_Id").replace("=", "-|-|-");
+            }
+            if (event.target.classList.contains("liked")) {
+                event.target.classList.remove("liked");
             } else {
-                like_element.classList.add("liked");
+                event.target.classList.add("liked");
             }}
         )
         .catch((error) => {
             console.debug(error);
         })
-})
+}
+

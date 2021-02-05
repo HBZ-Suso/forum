@@ -68,7 +68,7 @@ foreach ($article_list as $value) {
     }
 
     $return .= '
-    <div class="article-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" id="article_' . $value["articleId"] . '">
+    <div ref="articleId=' . $value["articleId"] . '" class="article-block-entry hover-theme-main-4 theme-main-color-3 block-entry' . $self . '" id="article_' . $value["articleId"] . '">
         <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["articleTitle"]) .'</span><br>
         <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">' . $text->get("article-block-author") . '</p>' . htmlspecialchars($data->get_username_by_id($value["userId"])) . $verified .'</span>
         <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">' . $view_text . '</p>' . $data->get_article_views_by_article_id($value["articleId"]) .'</span>
@@ -76,9 +76,13 @@ foreach ($article_list as $value) {
     </div>
 
     <script>
-        document.getElementById("article_' . $value["articleId"] . '").addEventListener("click", (e) => {
+    document.getElementById("article_' . $value["articleId"] . '").addEventListener("click", (e) => {
+        if (typeof pc_findings == "undefined") {
             window.location = "/forum/?articleId=' . $value["articleId"] . '";
-        })
+        } else {
+            view("articleId=' . $value["articleId"] . '");
+        }
+    })
     </script>
     ';
 }

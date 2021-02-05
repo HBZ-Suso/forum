@@ -50,7 +50,6 @@
 
 .user-background-element, .article-background-element, .window {
     background-image: linear-gradient(to right, #2a978a, #0b7e70);
-    border: 2px solid #204f61;
 }
 
 
@@ -59,21 +58,21 @@
 }
 
 .block-entry {
-    background-image: linear-gradient(to right, #3ad1bf, #0b7e70);
+    background-image: linear-gradient(to left, #3ad1bf, #0b7e70);
 }
 
 .block-entry:hover {
-    background-image: linear-gradient(to left, #3ad1bf, #0b7e70);
+    background-image: linear-gradient(to right, #3ad1bf, #0b7e70);
 }
 
 
 .owned {
     color: black;
-    background-image: linear-gradient(to left, #E76F51, #E9C46A);
+    background-image: linear-gradient(to right, #E76F51, #E9C46A);
 }
 
 .owned:hover {
-    background-image: linear-gradient(to right, #E76F51, #E9C46A);
+    background-image: linear-gradient(to left, #E76F51, #E9C46A);
 }
 
 
