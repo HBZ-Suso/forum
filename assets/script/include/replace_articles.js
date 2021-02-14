@@ -12,5 +12,10 @@ function reset_articles () {
 function set_articles (articles) {
     document.getElementById("article-block-scroll").innerHTML = "";
     document.getElementById("article-block-scroll").innerHTML = articles;
+    document.querySelectorAll(".article-block-entry").forEach((element, index) => {
+        element.addEventListener("click", (e) => {
+            view(e.target.getAttribute("ref"));
+        })
+    })
 }
 

@@ -12,5 +12,10 @@ function reset_users () {
 function set_users (users) {
     document.getElementById("user-block-scroll").innerHTML = "";
     document.getElementById("user-block-scroll").innerHTML = users;
+    document.querySelectorAll(".user-block-entry").forEach((element, index) => {
+        element.addEventListener("click", (e) => {
+            view(e.target.getAttribute("ref"));
+        })
+    })
 }
 

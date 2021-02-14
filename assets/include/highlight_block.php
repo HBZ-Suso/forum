@@ -67,11 +67,11 @@ foreach (array_reverse($highlight_data) as $value) {
 
     if (isset($value["articleId"])) {
         echo '
-            <div ref="articleId=' . $value["articleId"] . '" class="article-block-entry theme-main-color-3 hover-theme-main-4 block-entry' . $self . '" id="highlights_article_' . $value["articleId"] . '">
-                <span class="article-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["articleTitle"]) . '</span><br>
-                <span class="article-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">' . $text->get("highlight-block-author") . ' </p>' . htmlspecialchars($data->get_username_by_id($value["userId"])) . $verified . '</span>
-                <span class="article-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">' . $view_text . '</p>' . $data->get_article_views_by_article_id($value["articleId"]) . '</span>
-                <span class="article-block-entry-element block-entry-element article-likes"><p class="article-likes-heading article-block-entry-heading block-entry-heading">' . $like_text . ' </p>' . $data->get_article_likes_by_article_id($value["articleId"]) . '</span><br>
+            <div ref="articleId=' . $value["articleId"] . '" class="highlights-block-entry theme-main-color-3 hover-theme-main-4 block-entry' . $self . '" id="highlights_article_' . $value["articleId"] . '">
+                <span class="highlight-block-entry-element block-entry-element article-title"><p class="article-title-heading article-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["articleTitle"]) . '</span><br>
+                <span class="highlight-block-entry-element block-entry-element article-author"><p class="article-author-heading article-block-entry-heading block-entry-heading">' . $text->get("highlight-block-author") . ' </p>' . htmlspecialchars($data->get_username_by_id($value["userId"])) . $verified . '</span>
+                <span class="highlight-block-entry-element block-entry-element article-views"><p class="article-views-heading article-block-entry-heading block-entry-heading">' . $view_text . '</p>' . $data->get_article_views_by_article_id($value["articleId"]) . '</span>
+                <span class="highlight-block-entry-element block-entry-element article-likes"><p class="article-likes-heading article-block-entry-heading block-entry-heading">' . $like_text . ' </p>' . $data->get_article_likes_by_article_id($value["articleId"]) . '</span><br>
             </div>
 
             <script>
@@ -87,10 +87,10 @@ foreach (array_reverse($highlight_data) as $value) {
     } else if (isset($value["userName"])) {
         echo '
         <div ref="userId=' . $value["userId"] . '" class="highlights-block-entry theme-main-color-3 hover-theme-main-4 block-entry' . $self . '" id="highlights_user_' . $value["userId"] . '">
-            <span class="user-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["userName"])  . $verified . '</span><br>
-            <span class="user-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">' . htmlspecialchars($text->get("highlight-block-mail")) . '</p>' . $value["userMail"] . '</span>
-            <span class="user-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $view_text . ' </p>' . $data->get_user_views_by_targetUserId($value["userId"]) . '</span>
-            <span class="user-block-entry-element block-entry-element user-likes"><p class="user-likes-heading user-block-entry-heading block-entry-heading">' . $like_text . '</p>' . $data->get_user_likes_by_targetUserId($value["userId"]) . '</span><br>
+            <span class="highlight-block-entry-element block-entry-element user-name"><p class="user-name-heading user-block-entry-heading block-entry-heading"></p>' . htmlspecialchars($value["userName"])  . $verified . '</span><br>
+            <span class="highlight-block-entry-element block-entry-element user-mail"><p class="user-mail-heading user-block-entry-heading block-entry-heading">' . htmlspecialchars($text->get("highlight-block-mail")) . '</p>' . $value["userMail"] . '</span>
+            <span class="highlight-block-entry-element block-entry-element user-views"><p class="user-views-heading user-block-entry-heading block-entry-heading">' . $view_text . ' </p>' . $data->get_user_views_by_targetUserId($value["userId"]) . '</span>
+            <span class="highlight-block-entry-element block-entry-element user-likes"><p class="user-likes-heading user-block-entry-heading block-entry-heading">' . $like_text . '</p>' . $data->get_user_likes_by_targetUserId($value["userId"]) . '</span><br>
         </div>
 
         <script>

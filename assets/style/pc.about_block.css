@@ -27,7 +27,7 @@
 }
 
 .about-entry {
-    border-radius: min(3vw, 20px);
+    border-radius: 5px;
     margin: 0%;
     padding: 0%;
     margin-top: 2%;
@@ -121,4 +121,12 @@
 
 .about-block-extended > div > p > a {
     color: white!important;
+}
+
+.about-collaborator-anchor:hover {
+    background-image: linear-gradient(rgba(202, 202, 202, 0.9), rgba(160, 160, 160, 0.9));
+}
+
+.about-collaborator-anchor:hover > span {
+    background-image: linear-gradient(rgba(185, 185, 185, 0.9), rgba(175, 175, 175, 0.9));
 }
