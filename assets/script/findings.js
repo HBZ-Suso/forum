@@ -6,6 +6,7 @@ var blocks = {
     "article-block-heading": document.querySelector(".article-block"),
     "highlight-block-heading": document.querySelector(".highlights-block"),
     "frame-menu-create": document.querySelector(".create-article-block"),
+    "frame-menu-create-report": document.querySelector(".create-report-block"),
     "overview-block-heading": document.querySelector(".overview-block"),
     "settings-block-heading": document.querySelector(".settings-block"),
     "about-block-heading": document.querySelector(".about-block")

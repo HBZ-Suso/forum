@@ -58,6 +58,7 @@ if (isset($_GET["search"]) || isset($_GET["rsearch"]) || (!isset($_GET["show"]) 
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/article_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/user_block.php";
         include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about_block.php";
+        include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/create_report_block.php";
         if ($data->is_logged_in()) {
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/highlight_block.php";
             include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/create_article_block.php";

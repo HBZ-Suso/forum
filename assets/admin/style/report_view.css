@@ -1,0 +1,62 @@
+.admin-main-block {
+    width: 80%;
+    min-height: 100%;
+    height: fit-content;
+    background-color: lightgray;
+    padding: 0%;
+    margin: 0%;
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    display: relative;
+}
+
+@media screen and (max-width: 1000px) {
+    .admin-main-block {
+        width: 100%;
+        left: 0%;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .admin-main-block {
+        width:  1000px;
+        left: 50%;
+        margin-left: -500px;
+    }
+}
+
+.admin-main-block-heading {
+    display: block;
+    color: black;
+    text-align: center;
+    width: 100%!important;
+    font-size: 40px;
+    margin-top: 10px;
+    text-decoration: underline;
+}
+
+
+.report-entry {
+    width: 75%;
+    margin-left: 12.5%;
+    text-align: center;
+}
+
+
+.report-entry-title, .report-entry-text {
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: rgb(165, 165, 165);
+}
+
+.report-entry-text {
+    font-size: 17.5px;
+}
+
+
+.report-delete {
+    width: 10%!important;
+    margin-left: 47.5%;
+    text-align: center;
+}

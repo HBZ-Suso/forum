@@ -1,0 +1,17 @@
+.visitor-view-settings {
+    width: 50%;
+    min-width: 200px;
+    margin: auto;
+}
+
+.visitor-view-settings > label, .visitor-view-settings > input {
+    width: 100%;
+}
+
+
+
+
+.visitor-container {
+    width: 100%;
+    table-layout: fixed;
+}

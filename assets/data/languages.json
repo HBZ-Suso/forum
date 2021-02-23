@@ -92,7 +92,11 @@
         "settings-block-heading": "Settings",
         "settings-save": "Save",
         "language-setting-heading": "Language",
-        "view-block-heading": "Quickview"
+        "view-block-heading": "Quickview",
+        "choose-block-administration": "Administration",
+        "frame-menu-create-report": "Create Report",
+        "create-report-title": "Report-Titel",
+        "create-report-text": "Report-Text"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -187,6 +191,10 @@
         "settings-save": "Speichern",
         "overview-block-text": "Diese Seite ist das Schüler-Forum des Hochbegabtenzuges des Heinrich-Suso-Gymnasiums Konstanz. <br>Sie soll der HBZ-Gemeinschaft, bestehend aus ehemaligen und derzeitigen Mitgliedern ebenso wie aus den Lehrern, eine Möglichkeit geben, sich auszutauschen. So können Ehemalige im Kontakt mit Schülern und den Lehrern bleiben und die Schüler können Ehemalige fragen und mit ihnen über ihr Leben nach der Schule reden. <br>Klicken sie <a href='/forum/?articleId=1'>hier</a> um mehr über diese Seite herauszufinden.",
         "language-setting-heading": "Sprache",
-        "view-block-heading": "Schnellansicht"
+        "view-block-heading": "Schnellansicht",
+        "choose-block-administration": "Administration",
+        "frame-menu-create-report": "Rückmeldung schreiben",
+        "create-report-title": "Meldungstitel",
+        "create-report-text": "Meldungstext"
     }
 }

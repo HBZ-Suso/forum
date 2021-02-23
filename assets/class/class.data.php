@@ -1177,4 +1177,143 @@ class Data extends Connector
         $stmt->close();
         return true;
     }
+
+
+
+    public function get_visits ($min, $max, $column, $to)
+    {
+        if ($column == false || $to == false) {
+            $query = "SELECT * FROM visits ORDER BY visitDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            $return = array();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    array_push($return, $row);
+                }
+                return $return;
+            } else {
+                return false;
+            }
+        } else if ($column !== false && $to !== false) {
+            if (!in_array($column, array("visitIp", "visitId", "userId", "visitDate", "visitData", "visitPage", "visitUserAgent"))) {
+                return false;
+            }
+            $query = "SELECT * FROM visits WHERE " . $column . "=? ORDER BY visitDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("s", $to);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            $return = array();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    array_push($return, $row);
+                }
+                return $return;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public function get_reports ($min, $max, $column, $to)
+    {
+        if ($column == false || $to == false) {
+            $query = "SELECT * FROM reports ORDER BY reportDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            $return = array();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    array_push($return, $row);
+                }
+                return $return;
+            } else {
+                return false;
+            }
+        } else if ($column !== false && $to !== false) {
+            if (!in_array($column, array("reportId", "reportTitle", "reportDate", "reportIp", "userId"))) {
+                return false;
+            }
+            $query = "SELECT * FROM reports WHERE " . $column . "=? ORDER BY reportDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("s", $to);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            $return = array();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    array_push($return, $row);
+                }
+                return $return;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public function get_report_by_id ($id)
+    {
+        $query = "SELECT * FROM reports WHERE reportId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $row;
+            }
+        } else {
+            return false;
+        }
+        return false;
+    }
+
+
+    public function delete_report_by_id($reportId)
+    {
+
+        $query = "DELETE FROM reports WHERE reportId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $reportId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
+
+
+
+    public function create_report ($title, $text)
+    {
+        $date = time();
+        $ip = $_SERVER['REMOTE_ADDR'];
+        if ($this->is_logged_in()) {
+            $user = $_SESSION["userId"];
+        } else {
+            $user = "false";
+        }
+        $query = "INSERT INTO reports (reportTitle, reportText, reportDate, reportIp, userId) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ssiss", $title, $text, $date, $ip, $user);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
 }

@@ -1,0 +1,61 @@
+.create-report-block-form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.title {
+    border: none;
+    text-align: center;
+    padding: 1%;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.text {
+    background: none;
+    margin: auto;
+    min-width: 420px;
+    width: 58vw;
+    min-height: 180px;
+    height: 45vh;
+    max-height: 60%;
+    resize: none;
+    outline: none;
+    display: block;
+    padding: 14px 10px;
+    text-align: center;
+    color: black;
+    border-radius: 26px;
+
+
+    resize: none;
+    border: none;
+    text-align: center;
+    padding: 1%;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+
+.submit {
+    border: none;
+    text-align: center;
+    padding: 1%;
+    border-radius: 15px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    margin-bottom: 5vh;
+    
+}
+
+.submit:hover {
+    background-color: rgba(185, 185, 185, 0.5);
+}
+
+
+.submit, .text, .title {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid black;
+}

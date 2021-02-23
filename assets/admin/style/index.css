@@ -1,0 +1,73 @@
+.admin-main-block {
+    width: 80%;
+    min-height: 100%;
+    height: fit-content;
+    background-color: lightgray;
+    padding: 0%;
+    margin: 0%;
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    display: relative;
+}
+
+@media screen and (max-width: 1000px) {
+    .admin-main-block {
+        width: 100%;
+        left: 0%;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .admin-main-block {
+        width:  1000px;
+        left: 50%;
+        margin-left: -500px;
+    }
+}
+
+.admin-main-block-heading {
+    display: block;
+    color: black;
+    text-align: center;
+    width: 100%!important;
+    font-size: 40px;
+    margin-top: 10px;
+    text-decoration: underline;
+}
+
+.page-arrow {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 5px;
+}
+
+.page-arrow-left {
+    left: 5px;
+}
+
+.page-arrow-right {
+    right: 5px;
+}
+
+.page-arrow:hover {
+    width: 65px;
+    height: 65px;
+    top: 2.5px;
+    cursor: pointer;
+}
+
+.page-arrow-left:hover {
+    left: 2.5px;
+}
+
+.page-arrow-right:hover {
+    right: 2.5px;
+}
+
+
+.admin-block-heading {
+    text-align: center;
+    width: 100%;
+}

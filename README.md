@@ -97,6 +97,14 @@ Database name: forum
     7. visitUserAgent (LONGTEXT, json)
     8. visitBrowser (LONGTEXT, json, output of get_browser)
 
+13. reports:
+    1. reportId (BIGINT, UNSIGNED, ticking up)
+    2. reportTitle (TEXT)
+    3. reportText (LONGTEXT)
+    4. reportDate (BIGINT, UNIX TIMESTAMP, unsigned)
+    5. reportIp (LONGTEXT)
+    6. userId (TEXT, "false" if not logged in)
+
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
     <a href="https://icons8.com/icon/DFU1kReSUccu/heart">Heart icon by Icons8</a>

@@ -26,10 +26,15 @@
 
 .block-placeholder {
     width: 80%;
-    padding-left: 10%;
-    margin-top: min(1.5vh, 15px);
-    margin-bottom: min(1.5vh, 15px);
+    margin-top: min(0.5vh, 5px);
+    margin-bottom: min(0.5vh, 5px);
+    padding-top: min(1vh, 10px);
+    padding-bottom: min(1vh, 10px);
     float: right;
     text-decoration: none;
-    transition: all 0.1s linear;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, .3);
 }
