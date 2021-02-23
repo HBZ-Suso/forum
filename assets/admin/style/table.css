@@ -1,17 +1,26 @@
 .table-scroll {
     overflow: auto;
-    width: 100%;
+    width: min-content;
     height: 100%;
+    max-width: 15vw;
     word-wrap: none;
     white-space: nowrap;
     text-align: center;
 }
 
 tr {
-    table-layout: fixed;
     height: 35px;
 }
 
 tr:hover {
     box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, 0.1);
+}
+
+td {
+    width: min-content;
+    max-width: 30%;
+}
+td.min {
+    width: 1%;
+    white-space: nowrap;
 }

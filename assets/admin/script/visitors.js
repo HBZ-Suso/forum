@@ -8,7 +8,7 @@ var set_to = document.getElementById("visit-to").value;
 var set_visitors = function (data) {
     document.querySelector(".visitor-d-container").innerHTML = "";
     data.forEach((element, index) => {
-        document.querySelector(".visitor-d-container").innerHTML += `<tr><td><div class="table-scroll">${element["visitId"]}</div></td><td><div class="table-scroll">${element["userId"]}</div></td><td><div class="table-scroll">${element["visitIp"]}</div></td><td><div class="table-scroll">${element["visitPage"]}</div></td><td><div class="table-scroll">${element["visitDate"]}</div></td><td><div class="table-scroll">${element["visitData"]}</div></td><td><div class="table-scroll">${element["visitUserAgent"]}</div></td></tr>`;
+        document.querySelector(".visitor-d-container").innerHTML += `<tr><td><div class="table-scroll">${element["visitId"]}</div></td><td><div class="table-scroll">${element["userId"]}</div></td><td><div class="table-scroll">${element["visitIp"]}</div></td><td><div class="table-scroll">${element["visitPage"]}</div></td><td><div class="table-scroll">${timeConverter(element["visitDate"])}</div></td><td><div class="table-scroll">${element["visitData"]}</div></td><td><div class="table-scroll">${element["visitUserAgent"]}</div></td></tr>`;
     })
 }
 
