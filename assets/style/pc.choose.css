@@ -16,6 +16,7 @@
     float: right;
     text-decoration: none;
     transition: all 0.2s linear;
+    overflow-x: hidden;
 }
 
 .choose-entry:hover {

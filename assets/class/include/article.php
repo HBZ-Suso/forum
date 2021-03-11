@@ -64,9 +64,9 @@ function get_article_html ($articleId, $article_data, $data, $text, $info) {
         ' . $l2 . '
         ' . $settings . '
         ' . $settings_menu . '
-        <div class=" article-block-entry article-block-title">' . htmlspecialchars($article_data["articleTitle"]) . '</div>' . $verified . '
+        <div class="article-block-entry article-block-title">' . htmlspecialchars($article_data["articleTitle"]) . '</div>' . $verified . '
         <button id="userSubmit" class="theme-main-color-2 submitButton" style="display: none;">Save</button>
-        <a class="author-href" href="/forum/?userId=' . $article_data["userId"] . '"><div class="article-block-entry article-block-author">' . htmlspecialchars($author) . '</div></a>
+        <a class="author-href" u_id="' . $article_data["userId"] . '" id="author-href-' . $article_data["articleId"] . '" href="/forum/?userId=' . $article_data["userId"] . '"><div class="article-block-entry article-block-author">' . htmlspecialchars($author) . '</div></a>
         <div class=" article-block-entry article-block-tags">' . $text->get("article-view-tags") . htmlspecialchars(implode("; ", json_decode($article_data["articleTags"]))) . '</div>
         <div class=" article-block-entry article-block-created">' . $text->get("article-view-created") . $article_data["articleCreated"] . '</div>
     
@@ -78,7 +78,8 @@ function get_article_html ($articleId, $article_data, $data, $text, $info) {
     $return .= '<div class="comment-section theme-main-color-1" id="comment_section_articleId=' . $articleId . '">';
     
     $return .= '<h3 id="loading-comments-info">' . $text->get("comments-loading") . '</h3>';
-    
+
+
     // cur_ID and cur_username used in like, delete and verify
     if ($data->is_logged_in()) {
         $return .= '<form class="comment-form comment theme-main-color-1">';

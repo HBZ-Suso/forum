@@ -19,6 +19,7 @@ tr:hover {
 td {
     width: min-content;
     max-width: 30%;
+    text-align: center;
 }
 td.min {
     width: 1%;

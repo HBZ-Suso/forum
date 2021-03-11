@@ -116,7 +116,8 @@ if (everything_hidden) {
 }
 
 
-function view (what) {    
+function view (what) {   
+    console.log(what); 
     if (what.indexOf("articleId=") !== -1) {
         axios
         .post("/forum/assets/api/get_articleHTML.php?articleId=" + what.replace("articleId=", ""))
@@ -125,6 +126,10 @@ function view (what) {
             document.querySelector(".view-block").innerHTML = "";
             document.querySelector(".view-block").innerHTML = article_html.data.replace('<link rel="stylesheet" href="/forum/assets/style/pc.article.css">', "").replace("theme-main-color-1", "").replace("article-background-element", "") + "<div class='view-more' onclick='window.location = \"/forum/?" + what + "\";'>...</div>";
             document.getElementById("comment_section_" + what).remove();
+            document.getElementById("author-href-" + what.replace("articleId=", "")).addEventListener("click", (e) =>{
+                e.preventDefault();
+                view("userId=" + e.currentTarget.getAttribute("u_id"));
+            })
         })
         .catch(() => {
             console.debug("Prompt error");

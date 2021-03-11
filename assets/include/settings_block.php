@@ -37,6 +37,9 @@ switch ($_SESSION["language"]) {
     case "deutsch":
         $deutsch = "checked";
         break;
+    case "français":
+        $français = "checked";
+        break;
     default: 
         $english = "checked";
         break;
@@ -58,6 +61,14 @@ echo '</div></form>
                 <label for="deutsch" aria-label="deutsch">
                 <span></span>
                 Deutsch
+                </label>
+            </div>
+
+            <div class="option">
+                <input class="language_radio" type="radio" name="language" id="français" value="language" ' . $français . '>
+                <label for="français" aria-label="français">
+                <span></span>
+                Français
                 </label>
             </div>
         </div>
