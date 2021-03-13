@@ -104,6 +104,7 @@ Database name: forum
     4. reportDate (BIGINT, UNIX TIMESTAMP, unsigned)
     5. reportIp (LONGTEXT)
     6. userId (TEXT, "false" if not logged in)
+
 14. links:
     1. linkId (BIGINT, unsigned, ticking up)
     2. linkPassword (LONGTEXT, random code for authentification)
