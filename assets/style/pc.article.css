@@ -4,22 +4,6 @@
     font-family: 'Roboto', sans-serif!important;
 }
 
-body {
-    position: relative;
-}
-
-.article-block  {
-    position: absolute;
-    width: 88%;
-    top: 100px;
-    left: 5%;
-    padding: 1%;
-    margin: 0px;
-    border-radius: 1vw;
-}
-
-
-
 .article-block-entry {
     resize: none;
     color: black;
@@ -27,17 +11,15 @@ body {
     border: none;
     border: none;
     width: 100%;
-    font-size:  min(1.2vw, 30px);
-    height: min(1.4vw, 35px);
+    font-size: 20px;
     padding: 0px;
     margin: 0px;
+    margin-top: 2px;
     text-align: center;
-    overflow: hidden;
 }
 
 .article-block-title {
-    font-size:  min(3vw, 50px);
-    height:  min(3vw, 50px);
+    font-size:  30px;
     text-decoration: underline;
 }
 
@@ -48,18 +30,18 @@ body {
     height: 50vh;
     resize: none;
     color: black;
-    font-size: min(1.2vw, 20px);
+    font-size: 18px;
 }
 
 
 .like-btn {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    font-size: min(2vw, 25px);
-    margin: 1vw;
+    top: 5px;
+    right: 5px;
+    font-size: 30px;
+    margin: 5px;
     background-color: rgb(83, 83, 83);
-    padding: 0.5vw;
+    padding: 5px;
     border-radius: 10px;
     cursor: pointer;
 }
@@ -111,16 +93,14 @@ body {
 
 .verified {
     position: absolute;
-    right: min(7vw, 140px);
-    top: 1vw;
+    right: 80px;
+    top: 15px;
     padding: 0px;
     margin: 0px;
-    font-size:min(3vw, 50px);
+    font-size: 30px;
     color: rgb(45, 209, 45);
     background-color: rgb(167, 167, 167);
     border-radius: 5vw;
-    height: min(3.4vw, 55px);
-    width: min(3.4vw, 55px);
     text-align: center;
 }
 

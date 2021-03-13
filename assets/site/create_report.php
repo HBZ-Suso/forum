@@ -9,11 +9,14 @@ if (
     !isset($_POST["title"]) || 
     !isset($_POST["text"])
     ) {
+        header("LOCATION:/forum/assets/site/signup.php?error=formerror");
         exit("Formerror");
     }
 
 if ($data->create_report($filter->purify($_POST["title"], 50), $filter->purify($_POST["text"], 35))) {
+    header("LOCATION:/forum/");
     exit("success");
 } else {
+    header("LOCATION:/forum/?eror=errorwhilstcreatingreport");
     exit("error");
 }

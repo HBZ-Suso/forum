@@ -14,10 +14,10 @@ function get_article_html ($articleId, $article_data, $data, $text, $info) {
     if ($data->is_logged_in()) {
         $settings = '<img class="user-settings" src="https://img.icons8.com/material-rounded/1024/000000/settings.png"/><script>document.querySelector(".user-settings").addEventListener("click", (e) => {document.querySelector(".main-menu").style.display = "none"; if (document.querySelector(".user-settings-menu").style.display === "") {document.querySelector(".user-settings-menu").style.display = "none"} else {document.querySelector(".user-settings-menu").style.display = "";}})</script>';
         $settings_menu = '<div class="user-settings-menu theme-main-color-2" style="display: none;">';
-        if ((($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($_SESSION["userId"])) || intval($article_data["userId"]) === intval($_SESSION["userId"]))) {
+        if (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($article_data["userId"])) || intval($article_data["userId"]) === intval($_SESSION["userId"])) {
             $settings_menu .= '<div class="edit-btn hover-theme-main-color-1">' . $text->get("user-view-edit") . '</div><script src="/forum/assets/script/edit.js" defer></script>';
         }
-        if ((($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($_SESSION["userId"])) || intval($article_data["userId"]) === intval($_SESSION["userId"]))) {
+        if (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($article_data["userId"])) || ($data->is_moderator_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($article_data["userId"]) && !$data->is_moderator_by_id($article_data["userId"])) || intval($article_data["userId"]) === intval($_SESSION["userId"])) {
             $settings_menu .= '<div class="delete-btn hover-theme-main-color-1">' . $text->get("user-view-delete") . '</div><script src="/forum/assets/script/delete.js"></script>';
         }
         $settings_menu .= '</div>';
@@ -52,15 +52,16 @@ function get_article_html ($articleId, $article_data, $data, $text, $info) {
         $l1 = '<div class="like-btn ' . $liked . '" onclick="like(event)" el_Id="articleId=' . $article_data["articleId"] . '">' . $text->get("article-view-like") . '</div>';
         $l2 = '';
     } else {
+        echo '<link rel="stylesheet" href="/forum/assets/style/pc.main_view_block.css">';
         $return .= '<link rel="stylesheet" href="/forum/assets/style/pc.article.css">';
         $l1 = '';
         $l2 = '<div class="like-btn ' . $liked . '" onclick="like(event)" el_Id="articleId=' . $article_data["articleId"] . '">' . $text->get("article-view-like") . '</div>';
     }
-    
+
     
     $return .= '
         ' . $l1 . '
-        <div class="article-block theme-main-color-1 article-background-element">
+        <div class="article-block main-view-block theme-main-color-1 article-background-element">
         ' . $l2 . '
         ' . $settings . '
         ' . $settings_menu . '

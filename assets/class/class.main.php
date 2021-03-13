@@ -117,6 +117,11 @@ if (!isset($hide_frame)) {
 
     echo '<script src="/forum/assets/script/language.js"></script>';
     echo '<script src="/forum/assets/script/theme.js"></script>';
+
+    if ($info->mobile !== true) {
+        echo '<script src="/forum/assets/script/notifications.js" defer></script>';
+        echo '<link rel="stylesheet" href="/forum/assets/style/error_display_style.css"><div id="error-box"></div>';
+    }
 }
 
 if (isset($show_essentials)) {
@@ -171,6 +176,11 @@ if (isset($show_essentials)) {
     </head>';
 
     echo '<div id="theme-box"><link rel="stylesheet" href="/forum/assets/theme/' . $theme . '.css"></div>';
+
+    if ($info->mobile !== true) {
+        echo '<script src="/forum/assets/script/notifications.js" defer></script>';
+        echo '<link rel="stylesheet" href="/forum/assets/style/error_display_style.css"><div id="error-box"></div>';
+    }
 }
 
 if (isset($_SESSION["user"]) || isset($_SESSION["userId"])) {

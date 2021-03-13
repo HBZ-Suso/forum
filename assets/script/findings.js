@@ -40,6 +40,14 @@ function set_section (c_section) {
             choose_el.style.boxShadow = "inset 0px 0px 400px 110px rgba(255, 255, 255, .1)";
         }
     });
+    axios
+        .post("/forum/assets/api/set_chosen_section.php?section=" + section)
+        .then((languages) => {
+            
+        })
+        .catch(() => {
+            console.debug("Section error");
+        })
 }
 
 document.querySelectorAll(".choose-entry").forEach((element, index) => {
@@ -124,7 +132,7 @@ function view (what) {
         .then((article_html) => {
             cur_Id = what;
             document.querySelector(".view-block").innerHTML = "";
-            document.querySelector(".view-block").innerHTML = article_html.data.replace('<link rel="stylesheet" href="/forum/assets/style/pc.article.css">', "").replace("theme-main-color-1", "").replace("article-background-element", "") + "<div class='view-more' onclick='window.location = \"/forum/?" + what + "\";'>...</div>";
+            document.querySelector(".view-block").innerHTML = article_html.data.replace('<link rel="stylesheet" href="/forum/assets/style/pc.article.css">', "").replace("theme-main-color-1", "").replace("article-background-element", "").replace("main-view-block", "") + "<div class='view-more' onclick='window.location = \"/forum/?" + what + "\";'>...</div>";
             document.getElementById("comment_section_" + what).remove();
             document.getElementById("author-href-" + what.replace("articleId=", "")).addEventListener("click", (e) =>{
                 e.preventDefault();
@@ -140,7 +148,7 @@ function view (what) {
         .then((user_html) => {      
             cur_Id = what;
             document.querySelector(".view-block").innerHTML = "";
-            document.querySelector(".view-block").innerHTML = user_html.data.replace('<link rel="stylesheet" href="/forum/assets/style/pc.user.css">', "").replace("theme-main-color-1", "").replace("user-background-element", "") + "<div class='view-more' onclick='window.location = \"/forum/?" + what + "\";'>...</div>";
+            document.querySelector(".view-block").innerHTML = user_html.data.replace('<link rel="stylesheet" href="/forum/assets/style/pc.user.css">', "").replace("theme-main-color-1", "").replace("user-background-element", "").replace("main-view-block", "") + "<div class='view-more' onclick='window.location = \"/forum/?" + what + "\";'>...</div>";
             document.getElementById("comment_section_" + what).remove();
         })
         .catch(() => {

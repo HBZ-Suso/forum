@@ -46,6 +46,7 @@ function get_user_html ($userId, $user_data, $data, $text, $info) {
         $l1 = '<div class="like-btn ' . $liked . '" onclick="like(event)" el_Id="userId=' . $user_data["userId"] . '">' . $text->get("user-view-like") . '</div>';
         $l2 = '';
     } else {
+        echo '<link rel="stylesheet" href="/forum/assets/style/pc.main_view_block.css">';
         $return .= '<link rel="stylesheet" href="/forum/assets/style/pc.user.css">';
         $l1 = '';
         $l2 = '<div class="like-btn ' . $liked . '" onclick="like(event)" el_Id="userId=' . $user_data["userId"] . '">' . $text->get("user-view-like") . '</div>';
@@ -55,7 +56,7 @@ function get_user_html ($userId, $user_data, $data, $text, $info) {
     
     $return .= '
     ' . $l1 . '
-    <div class="user-block theme-main-color-1 user-background-element">
+    <div class="user-block main-view-block theme-main-color-1 user-background-element">
         ' . $l2 . '
         <script src="/forum/assets/script/like.js"></script>
         ' . $settings . '

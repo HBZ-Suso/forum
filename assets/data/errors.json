@@ -1,0 +1,42 @@
+{
+    "REQUESTERROR": {
+        "heading": "Requesterror",
+        "text": "It seems like your request didn't get through correctly or that some parts of it weren't correct."
+    },
+    "NOTEXISTENTARTICLE": {
+        "heading": "Nonexistent",
+        "text": "It seems like you are trying to access an article that no longer exists."
+    },
+    "PERMISSIONERROR": {
+        "heading": "Not allowed",
+        "text": "It seems like you are trying to access a page that you do not have sufficient permission to acces. If you believe that is an error, please submit a report."
+    },
+    "TIMEOUTERROR": {
+        "heading": "Timeout",
+        "text": "You are not allowed to write more articles / comments as you are currently under Timeout. Please wait a bit and try again."
+    },
+    "LOCKEDERROR": {
+        "heading": "Locked",
+        "text": "Your account is currently locked so you cant write any articles / comments. If you believe this is and error please submit a report detailing your problems. Possible reasons for your accont getting locked are spam and or malicious articles."
+    },
+    "FORMERROR": {
+        "heading": "Formerror",
+        "text": "It seems like you submitted a Form with insufficient Details. Please go back and  assure you got all required points."
+    },
+    "LOGINERROR": {
+        "heading": "Loginerror",
+        "text": "An error occurred whilst trying to log you in. Please try again. If this keeps happening, please submit a report."
+    },
+    "CODEERROR": {
+        "heading": "Wrong Code",
+        "text": "It seems like your code does not work. Please assure that it is correct. If it still doesn't work, submit a report."
+    },
+    "PASSWORDERROR": {
+        "heading": "Passworderror",
+        "text": "It seems like something is wrong with your entered passwords. Please take an extra look that they are the same."
+    },
+    "CREATIONERROR": {
+        "heading": "Creationerror",
+        "text": "It seems like the account could not be created from the server side. Please submit a report about this and ask for another code."
+    }
+}
