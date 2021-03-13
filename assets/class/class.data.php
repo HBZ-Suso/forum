@@ -354,7 +354,9 @@ class Data extends Connector
         $result = $stmt->get_result();
         $stmt->close();
         if ($result->num_rows > 0) {
-            return true;
+            if (!isset($_SESSION["linkLogged"])) {
+                return true;
+            }
         }
         return false;
     }
@@ -369,7 +371,9 @@ class Data extends Connector
         $result = $stmt->get_result();
         $stmt->close();
         if ($result->num_rows > 0) {
-            return true;
+            if (!isset($_SESSION["linkLogged"])) {
+                return true;
+            }
         }
         return false;
     }
@@ -1299,7 +1303,6 @@ class Data extends Connector
     }
 
 
-
     public function create_report ($title, $text)
     {
         $date = time();
@@ -1316,4 +1319,84 @@ class Data extends Connector
         $stmt->close();
         return true;
     }
+
+
+    public function create_link ($userid, $linkinfo)
+    {
+        $query = "SELECT MAX(linkId) AS 'lastId' FROM links;";
+        $result = $this->connId->query($query);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $lastId = $row["lastId"];
+            }
+        }
+        if (!isset($lastId)) {
+            $lastId = "0";
+        }
+        $date = time();
+        $auth_unhashed = $this->generateRandomString(10);
+        $auth = $lastId . "-|-" . $this->get_user_by_id($userid)["userName"] . "-|-" . $userid . "-|-" . password_hash($auth_unhashed, PASSWORD_DEFAULT);
+        $query = "INSERT INTO links (linkPassword, userId, linkCreated, linkInfo) VALUES (?, ?, ?, ?)";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("siis", $auth, $userid, $date, $linkinfo);
+        $stmt->execute();
+        $stmt->close();
+        return $auth;
+    }
+
+
+    private function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+
+    public function delete_link_by_id ($linkId)
+    {
+        $query = "DELETE FROM links WHERE linkId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $linkId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
+
+
+
+    public function check_linkauth ($linkauth)
+    {
+        if (!$this->check_entry_exists("links", "linkPassword", $linkauth)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+
+    public function get_user_by_linkauth ($linkauth)
+    {
+        if (!$this->check_entry_exists("links", "linkPassword", $linkauth)) {
+            return false;
+        }
+        $query = "SELECT userId FROM links WHERE linkPassword=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("s", $linkauth);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $this->get_user_by_id($row["userId"]);
+            }
+        } else {
+            return false;
+        }
+    }
+
 }

@@ -18,6 +18,9 @@ if (!isset($rargs["change_data"])) {
 $change = json_decode($rargs["change_data"], true);
 
 if (isset($change["userPassword"])) {
+    if (isset($_SESSION["linkLogged"])) {
+        exit("Not allowed");
+    }
     $data->add_password_change($_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userPassword", password_hash($change["userPassword"], PASSWORD_DEFAULT));
 }
@@ -34,6 +37,9 @@ if (isset($change["userEmployment"])) {
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userEmployment", $filter->purify($change["userEmployment"], 25));
 }
 if (isset($change["userMail"])) {
+    if (isset($_SESSION["linkLogged"])) {
+        exit("Not allowed");
+    }
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userMail", $filter->purify($change["userMail"], 25));
 }
 if (isset($change["userPhone"])) {

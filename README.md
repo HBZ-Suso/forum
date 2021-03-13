@@ -92,7 +92,7 @@ Database name: forum
     2. userId (TEXT, "false" if not logged in)
     3. visitIp (LONGTEXT)
     4. visitDate (BIGINT, UNIX TIMESTAMP)
-    5. visitPage (LONGTEXT)
+    5. visitPage (LONGTEXT)X
     6. visitData (LONGTEXT, json of $rargs)
     7. visitUserAgent (LONGTEXT, json)
     8. visitBrowser (LONGTEXT, json, output of get_browser)
@@ -104,6 +104,12 @@ Database name: forum
     4. reportDate (BIGINT, UNIX TIMESTAMP, unsigned)
     5. reportIp (LONGTEXT)
     6. userId (TEXT, "false" if not logged in)
+14. links:
+    1. linkId (BIGINT, unsigned, ticking up)
+    2. linkPassword (LONGTEXT, random code for authentification)
+    3. userId (MEDIUMINT, unsigned)
+    4. linkCreated (BIGINT, UNIX TIMESTAMP, unsigned)
+    5. linkInfo (LONGTEXT)
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>

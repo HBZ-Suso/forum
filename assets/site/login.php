@@ -8,6 +8,7 @@ if (isset($_GET["logout"])) {
     unset($_SESSION["user"]);
     unset($_SESSION["userId"]);
     unset($_SESSION["userIp"]);
+    unset($_SESSION["linkLogged"]);
     header("LOCATION: /forum/");
     exit($text->get("login-logged-out"));
 }
