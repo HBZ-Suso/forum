@@ -3,6 +3,11 @@ session_start();
 $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
+if (!isset($_SESSION["userId"])) {
+    $data->create_error("Requesterror", $_SERVER["SCRIPT_NAME"]);
+    exit("Requesterror");
+}
+
 if (isset($rargs["search"])) {
     $phrase = $rargs["search"];
 } else {

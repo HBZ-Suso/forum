@@ -14,7 +14,9 @@ if (isset($rargs["userId"])) {
         $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
         exit("Permissionerror");
     }
-
+    if (isset($_SESSION["linkLogged"])) {
+        exit("Not allowed");
+    }
     $data->delete_user_by_id($rargs["userId"]);;
     exit("Success");
 } else if (isset($rargs["articleId"])) {
