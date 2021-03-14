@@ -120,7 +120,7 @@ if (!isset($hide_frame)) {
 
     if ($info->mobile !== true) {
         echo '<script src="/forum/assets/script/notifications.js" defer></script>';
-        echo '<link rel="stylesheet" href="/forum/assets/style/error_display_style.css"><div id="error-box"></div>';
+        echo '<link rel="stylesheet" href="/forum/assets/style/error_display_style.css"><div id="error-box" style="height: 0px; width: 0px;"></div>';
     }
 }
 
@@ -179,7 +179,7 @@ if (isset($show_essentials)) {
 
     if ($info->mobile !== true) {
         echo '<script src="/forum/assets/script/notifications.js" defer></script>';
-        echo '<link rel="stylesheet" href="/forum/assets/style/error_display_style.css"><div id="error-box"></div>';
+        echo '<link rel="stylesheet" href="/forum/assets/style/error_display_style.css"><div id="error-box" style="height: 0px; width: 0px;"></div>';
     }
 }
 

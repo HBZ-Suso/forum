@@ -1399,4 +1399,28 @@ class Data extends Connector
         }
     }
 
+
+    public function create_error ($name, $file)
+    {
+        $date = time();
+        $ip = $_SERVER['REMOTE_ADDR'];
+        if ($this->is_logged_in()) {
+            $user = $_SESSION["userId"];
+        } else {
+            $user = "false";
+        }
+        $query = "INSERT INTO errors (errorName, errorDate, errorIp, userId, errorFile) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("sisss", $name, $date, $ip, $user, $file);
+        $stmt->execute();
+        $stmt->close();
+
+        $query = "SELECT MAX(errorId) AS 'lastId' FROM errors;";
+        $result = $this->connId->query($query);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $row["lastId"];
+            }
+        }
+    }
 }

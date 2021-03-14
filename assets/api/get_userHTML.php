@@ -6,6 +6,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 if (isset($rargs["userId"])) {
     $userId = $rargs["userId"];
     if (isset($rargs["userName"]) && intval($data->get_user_id_by_name($rargs["userName"])) !== intval($rargs["userId"])) {
+        $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
         die("Requesterror");
     }
 } else {
@@ -15,7 +16,8 @@ if (isset($rargs["userId"])) {
 
 $user_data = $data->get_user_by_id($userId);
 if ($user_data === false) {
-    die("nonexistentusererror");
+    $data->create_error("Nonexistentusererror",  $_SERVER["SCRIPT_NAME"]);
+    die("Nonexistentusererror");
 }
 
 

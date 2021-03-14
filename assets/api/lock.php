@@ -15,9 +15,12 @@ if ($data->is_logged_in() && isset($rargs["userId"])) {
         }
         exit("success");
     } else {
+        $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
         exit("Permissionerror");
     }
 } else {
+    $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Permissionerror");
 }
+$data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
 exit("Requesterror");

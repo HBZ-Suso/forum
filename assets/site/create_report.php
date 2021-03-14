@@ -9,7 +9,7 @@ if (
     !isset($_POST["title"]) || 
     !isset($_POST["text"])
     ) {
-        header("LOCATION:/forum/assets/site/signup.php?error=formerror");
+        header("LOCATION:/forum/assets/site/signup.php?error=formerror&errorId=" . $data->create_error("Formerror", $_SERVER["SCRIPT_NAME"]));
         exit("Formerror");
     }
 

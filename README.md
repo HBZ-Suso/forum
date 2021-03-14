@@ -112,6 +112,14 @@ Database name: forum
     4. linkCreated (BIGINT, UNIX TIMESTAMP, unsigned)
     5. linkInfo (LONGTEXT)
 
+15. errors:
+    1. errorId (u BIGINT, ticking up)
+    2. errorName (TEXT)
+    3. errorDate (BIGINT, UNIX TIMESTAMP, unsigned)
+    4. errorIp (LONGTEXT)
+    5. userId (TEXT, "false" if not logged in)
+    6. errorFile (TEXT)
+
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
     <a href="https://icons8.com/icon/DFU1kReSUccu/heart">Heart icon by Icons8</a>

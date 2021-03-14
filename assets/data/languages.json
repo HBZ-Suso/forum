@@ -96,7 +96,9 @@
         "choose-block-administration": "Administration",
         "frame-menu-create-report": "Create Report",
         "create-report-title": "Report-Titel",
-        "create-report-text": "Report-Text"
+        "create-report-text": "Report-Text",
+        "error-report-text": "Space to make some comments about what happened.",
+        "error-report-submit": "Send"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -195,7 +197,9 @@
         "choose-block-administration": "Administration",
         "frame-menu-create-report": "Rückmeldung schreiben",
         "create-report-title": "Meldungstitel",
-        "create-report-text": "Meldungstext"
+        "create-report-text": "Meldungstext",
+        "error-report-text": "Anmerkungen",
+        "error-report-submit": "Absenden"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",
@@ -294,6 +298,8 @@
         "choose-block-administration": "Administration",
         "frame-menu-create-report": "Rédiger des commentaires",
         "create-report-title": "Titre du message",
-        "create-report-text": "Texte du message"
+        "create-report-text": "Texte du message",
+        "error-report-text": "Le texte du report",
+        "error-report-submit": "Faire le report"
     }
 }

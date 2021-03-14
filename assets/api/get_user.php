@@ -4,6 +4,7 @@ $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (!isset($rargs["userId"]) && !isset($rargs["userName"])) {
+    $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
     exit("Requesterror");
 }
 

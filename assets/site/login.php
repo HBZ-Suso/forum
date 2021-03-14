@@ -44,7 +44,7 @@ if (!isset($_GET["form"])) {
     ';
 } else {
     if (!isset($_POST["submit"])) {
-        header("LOCATION:/forum/assets/site/login.php?error=formerror");
+        header("LOCATION:/forum/assets/site/login.php?error=formerror&errorId=" . $data->create_error("Formerror", $_SERVER["SCRIPT_NAME"]));
         exit("Formerror, please do not change the request data...");
     }
     if (!isset($_POST["username"]) || !isset($_POST["password"])) {
@@ -59,7 +59,7 @@ if (!isset($_GET["form"])) {
         header("LOCATION: /forum/");
         exit("Successfully logged in...");
     } else {
-        header("LOCATION: /forum/assets/site/login.php?error=loginerror");
+        header("LOCATION: /forum/assets/site/login.php?error=loginerror&errorId=" . $data->create_error("Loginerror", $_SERVER["SCRIPT_NAME"]));
         exit("Error whilst login...");
     }
 

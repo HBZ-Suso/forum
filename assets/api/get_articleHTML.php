@@ -6,6 +6,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 if (isset($rargs["articleId"])) {
     $articleId = $rargs["articleId"];
     if (isset($rargs["articleTitle"]) && intval($data->get_article_id_by_title($rargs["articleTitle"])) !== intval($rargs["articleId"])) {
+        $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
         die("Requesterror");
     }
 } else {
@@ -14,7 +15,8 @@ if (isset($rargs["articleId"])) {
 
 $article_data = $data->get_article_by_id($articleId);
 if ($article_data === false) {
-    die("nonexistentarticleerror");
+    $data->create_error("Nonexistentarticleerror",  $_SERVER["SCRIPT_NAME"]);
+    die("Nonexistentarticleerror");
 }
 
 

@@ -5,6 +5,7 @@ $require_purifier = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (!isset($rargs["error_argument"])) {
+    $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
     exit("Requesterror");
 }
 

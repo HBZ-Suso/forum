@@ -13,7 +13,9 @@ if ($data->is_logged_in()) {
         exit("Success");
     }
 } else {
+    $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Permissionerror");
 }
 
+$data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
 exit("Requesterror");

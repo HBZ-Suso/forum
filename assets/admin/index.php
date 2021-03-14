@@ -5,10 +5,12 @@ $show_essentials = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (!$data->is_logged_in()) {
+    $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Permissionerror");
 }
 
 if (!$data->is_admin_by_id($_SESSION["userId"])) {
+    $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Permissionerror");
 }
 ?>

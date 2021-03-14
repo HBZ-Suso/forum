@@ -4,6 +4,7 @@ $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (!isset($rargs["articleId"]) && !isset($rargs["userId"])) {
+    $data->create_error("Formerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Formerror");
 }
 

@@ -50,19 +50,19 @@ if (!isset($_GET["form"])) {
         !isset($_POST["password_2"]) ||
         !isset($_POST["code"])
         ) {
-            header("LOCATION:/forum/assets/site/signup.php?error=formerror");
+            header("LOCATION:/forum/assets/site/signup.php?error=formerror&errorId=" . $data->create_error("Formerror", $_SERVER["SCRIPT_NAME"]));
             exit("Formerror");
         }
 
     $code_query = $data->use_code($_POST["code"]);
 
     if ($code_query === false) {
-        header("LOCATION:/forum/assets/site/signup.php?error=codeerror");
+        header("LOCATION:/forum/assets/site/signup.php?error=codeerror&errorId=" . $data->create_error("Codeerror", $_SERVER["SCRIPT_NAME"]));
         exit("Codeerror");
     }
 
     if ($_POST["password"] !== $_POST["password_2"]) {
-        header("LOCATION:/forum/assets/site/signup.php?error=passworderror");
+        header("LOCATION:/forum/assets/site/signup.php?error=passworderror&errorId=" . $data->create_error("Passworderror", $_SERVER["SCRIPT_NAME"]));
         exit("Passworderror");
     }
 
@@ -70,7 +70,7 @@ if (!isset($_GET["form"])) {
         header("LOCATION:/forum/?success=true");
         exit("Successfully created account...");
     } else {
-        header("LOCATION:/forum/assets/site/signup.php?error=creationerror");
+        header("LOCATION:/forum/assets/site/signup.php?error=creationerror&errorId=" . $data->create_error("Creationerror", $_SERVER["SCRIPT_NAME"]));
         exit("Error whilst trying to create account");
     }
 

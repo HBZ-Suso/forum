@@ -4,6 +4,7 @@ $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (!isset($rargs["linkauth"])) {
+    $data->create_error("Formerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Formerror");
 }
 
@@ -15,5 +16,6 @@ if ($data->check_linkauth($rargs["linkauth"])) {
     $_SESSION["linkLogged"] = true;
     exit("Success");
 } else {
+    $data->create_error("Loginerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Loginerror");
 }

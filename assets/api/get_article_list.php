@@ -12,6 +12,7 @@ if (isset($rargs["search"])) {
 if (isset($rargs["max"]) && $rargs["max"] < 1000) {
     $max = $rargs["max"];
 } else if (isset($rargs["max"]) && $rargs["max"] >= 1000) {
+    $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
     exit("Requesterror");
 } else {
     $max = 100;

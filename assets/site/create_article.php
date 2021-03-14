@@ -14,18 +14,18 @@ $show_essentials = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (!isset($_SESSION["user"]) || !$data->is_logged_in()) {
-    header("LOCATION:/forum/assets/site/signup.php?error=permissionerror");
+    header("LOCATION:/forum/assets/site/signup.php?error=permissionerror&errorId=" . $data->create_error("Permissionerror", $_SERVER["SCRIPT_NAME"]));
     exit("Permissionerror");
 }
 
 
 if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastArticle"]) < 60*60*24) && !($data->is_admin_by_id($_SESSION["userId"])) && !($data->is_moderator_by_id($_SESSION["userId"]))) {
-    header("LOCATION: /forum/?error=timeouterror");
+    header("LOCATION: /forum/?error=timeouterror&errorId=" . $data->create_error("Timeouterror", $_SERVER["SCRIPT_NAME"]));
     exit("Timeouterror");
 }
 
 if (strval($data->get_user_lock($_SESSION["userId"])) === "1") {
-    header("LOCATION: /forum/?error=lockederror");
+    header("LOCATION: /forum/?error=lockederror&errorId=" . $data->create_error("Lockederror", $_SERVER["SCRIPT_NAME"]));
     exit("Lockederror");
 }
 
@@ -64,7 +64,7 @@ if (!isset($_POST["form"]) && !isset($_POST["submit"])) {
         !isset($_POST["title"]) || 
         !isset($_POST["text"])
         ) {
-            header("LOCATION:/forum/assets/site/signup.php?error=formerror");
+            header("LOCATION:/forum/assets/site/signup.php?error=formerror&errorId=" . $data->create_error("Formerror", $_SERVER["SCRIPT_NAME"]));
             exit("Formerror");
         }
 

@@ -4,6 +4,7 @@ $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 if (!$data->is_logged_in() || !$data->is_admin_by_id($_SESSION["userId"])) {
+    $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Permissionerror");
 }
 
@@ -13,5 +14,5 @@ if (isset($rargs["userId"])) {
     exit("Success");
 }
 
-
+$data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
 exit("Requesterror");

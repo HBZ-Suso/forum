@@ -3,7 +3,7 @@
 if (isset($_GET["articleId"])) {
     $articleId = $_GET["articleId"];
     if (isset($_GET["articleTitle"]) && intval($data->get_article_id_by_title($_GET["articleTitle"])) !== intval($_GET["articleId"])) {
-        header("LOCATION:/forum/?error=requesterror");
+        header("LOCATION:/forum/?error=requesterror&errorId=" . $data->create_error("Requesterror", $_SERVER["SCRIPT_NAME"]));
         die("<script>window.location='/forum/?error=requesterror';</script>");
     }
 } else {
@@ -12,7 +12,7 @@ if (isset($_GET["articleId"])) {
 
 $article_data = $data->get_article_by_id($articleId);
 if ($article_data === false) {
-    header("LOCATION:/forum/?error=notexistentarticle");
+    header("LOCATION:/forum/?error=notexistentarticle&errorId=" . $data->create_error("Nonexistentarticleerror", $_SERVER["SCRIPT_NAME"]));
     die("<script>window.location='/forum/?error=notexistentarticle';</script>");
 }
 

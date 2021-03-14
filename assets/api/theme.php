@@ -9,8 +9,10 @@ if (isset($rargs["theme"])) {
         $_SESSION["theme"] = $rargs["theme"];
         exit ($rargs["theme"]);
     } else {
-        exit ("Themenotfounderror");
+        $data->create_error("Themenotfounderror",  $_SERVER["SCRIPT_NAME"]);
+        exit("Themenotfounderror");
     } 
 } else {
-    exit ("Requesterror");
+    $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
+    exit("Requesterror");
 } 

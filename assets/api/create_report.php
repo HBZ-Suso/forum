@@ -6,9 +6,10 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 
 if (
-    !isset($_POST["title"]) || 
-    !isset($_POST["text"])
+    !isset($rargs["title"]) || 
+    !isset($rargs["text"])
     ) {
+        $data->create_error("Formerror",  $_SERVER["SCRIPT_NAME"]);
         exit("Formerror");
     }
 
