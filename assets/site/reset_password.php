@@ -8,7 +8,7 @@ if (!isset($rargs["username"])) {
     exit("Requesterror");
 }
 
-$mail->notify("linked", $data, $text, $data->get_user_id_by_name($rargs["username"]));
+$mail->notify("linked", $data->get_user_id_by_name($rargs["username"]));
 
 echo '
 <div class="reset_block">

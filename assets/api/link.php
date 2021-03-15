@@ -11,7 +11,7 @@ if (!isset($rargs["username"]) || !isset($rargs["password"]) || !isset($rargs["l
 
 if ($data->check_login($rargs["username"], $rargs["password"])) {
     if (intval($data->get_user_notification_setting($_SESSION["userId"])) !== 0) {
-        $mail->notify("linked", $data, $text);
+        $mail->notify("linked");
     }
     exit($data->create_link($data->get_user_id_by_name($rargs["username"]), $rargs["linkinfo"]));
 } else {

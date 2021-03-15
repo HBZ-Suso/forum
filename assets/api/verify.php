@@ -11,7 +11,7 @@ if (!$data->is_logged_in() || !$data->is_admin_by_id($_SESSION["userId"])) {
 
 if (isset($rargs["userId"])) {
     if (intval($data->get_user_notification_setting($rargs["userId"])) !== 0) {
-        $mail->notify("verified", $data, $text, $rargs["userId"]);
+        $mail->notify("verified", $rargs["userId"]);
     }
     $data->execute_verify_by_user_id($rargs["userId"]);
     exit("Success");

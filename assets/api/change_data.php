@@ -24,7 +24,7 @@ if (isset($change["userPassword"])) {
         exit("Not allowed");
     }
     if (intval($data->get_user_notification_setting($_SESSION["userId"])) !== 0) {
-        $mail->notify("passwordchanged", $data, $text);
+        $mail->notify("passwordchanged");
     } else {
         exit($data->get_user_notification_setting($_SESSION["userId"]));
     }

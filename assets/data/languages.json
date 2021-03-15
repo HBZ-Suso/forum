@@ -110,7 +110,9 @@
         "reset-password-info": "Forgot password...",
         "reset-block-text": "Your password was reset. Please check your email for your new password. If you didn't recieve the email, try it again. If it still doesn't work, use the report form to contact an administrator. <a href='/forum/'>Back</a>",
         "mail-reset-password": "Your password was reset. It is now {Pwd}. You can change it normally by going to your account page. If you have any problems with logging in, please contact an administrator.",
-        "mail-reset-password-subject": "Password reset"
+        "mail-reset-password-subject": "Password reset",
+        "mail-created-account": "Hello {userName}.<br> Your account was successfully created!<br> Your details are as following: <br>- {userPhone}<br>- {userMail}<br>- {userDescription} <br>- userEmployment<br>We hope you enjoy this site. If you have any problems, contact us via our report form.<br>Your HBZ-Forum Team",
+        "mail-created-account-subject": "Account Created - Welcome!"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -223,7 +225,9 @@
         "reset-password-info": "Passwort vergessen...",
         "reset-block-text": "Dein Passwort wurde zurückgesetzt. Bitte schaue in deine Emails um es zu finden. Wenn du keine Email bekommen hast, warte kurz und probiere es erneut. Wenn das Problem weiter besteht kontaktiere einen Administrator über das Report Formular. <a href='/forum/'>Zurück</a>",
         "mail-reset-password": "Dein Forum-Passwort wurde zurückgesetzt. Es ist jetzt: {Pwd}. Du kannst es wie immer über die Account seite ändern. Wenn du probleme beim Einloggen hast kontaktiere einen Administrator.",
-        "mail-reset-password-subject": "Password zurückgesetzt"
+        "mail-reset-password-subject": "Password zurückgesetzt",
+        "mail-created-account": "Hallo {userName}.<br> Dein Account wurde erfolgreich erstellt!<br> Deine Angaben sind wie folgend: <br>- {userPhone}<br>- {userMail}<br>- {userDescription} <br>- userEmployment<br>Wir hoffen, dass sie ihren Aufenthalt genießen. Wenn Sie irgendwelche Probleme haben, kontakieren sie uns über unser Report Formular.<br>Ihr HBZ-Forum Team",
+        "mail-created-account-subject": "Account Erstellt - Wilkommen!"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",
@@ -334,6 +338,8 @@
         "reset-password-info": "Forgot password...",
         "reset-block-text": "Your password was reset. Please check your email for your new password. If you didn't recieve the email, try it again. If it still doesn't work, use the report form to contact an administrator. <a href='/forum/'>Back</a>",
         "mail-reset-password": "Your password was reset. It is now {Pwd}. You can change it normally by going to your account page. If you have any problems with logging in, please contact an administrator.",
-        "mail-reset-password-subject": "Password reset"
+        "mail-reset-password-subject": "Password reset",
+        "mail-created-account": "Hello {userName}.<br> Your account was successfully created!<br> Your details are as following: <br>- {userPhone}<br>- {userMail}<br>- {userDescription} <br>- userEmployment<br>We hope you enjoy this site. If you have any problems, contact us via our report form.<br>Your HBZ-Forum Team",
+        "mail-created-account-subject": "Account Created - Welcome!"
     }
 }

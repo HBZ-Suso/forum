@@ -11,7 +11,7 @@ if ($data->is_logged_in() && isset($rargs["userId"])) {
         if ($data->get_user_lock($userId) == "0") {
             $data->toggle_user_lock($userId, "1");
             if (intval($data->get_user_notification_setting($rargs["userId"])) !== 0) {
-                $mail->notify("locked", $data, $text, $rargs["userId"]);
+                $mail->notify("locked", $rargs["userId"]);
             }
         } else {
             $data->toggle_user_lock($userId, "0");

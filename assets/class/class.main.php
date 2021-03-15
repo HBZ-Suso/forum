@@ -58,7 +58,7 @@ if (isset($require_purifier)) {
 }
 
 
-$mail = new Mail();
+$mail = new Mail($data, $text);
 if (!isset($hide_frame)) {
 
     echo '
