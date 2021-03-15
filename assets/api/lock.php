@@ -10,6 +10,9 @@ if ($data->is_logged_in() && isset($rargs["userId"])) {
     if (($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($userId)) || ($data->is_moderator_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($userId) && !$data->is_moderator_by_id($userId)) || intval($userId) === intval($_SESSION["userId"])) {
         if ($data->get_user_lock($userId) == "0") {
             $data->toggle_user_lock($userId, "1");
+            if (intval($data->get_user_notification_setting($rargs["userId"])) !== 0) {
+                $mail->notify("locked", $data, $text, $rargs["userId"]);
+            }
         } else {
             $data->toggle_user_lock($userId, "0");
         }

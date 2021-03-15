@@ -30,6 +30,7 @@ if (!isset($_GET["form"])) {
             <a class="signup" href="/forum/assets/site/signup.php">' . $text->get("login-signup") . '</a><br>
             <input type="text" name="username" placeholder="' . $text->get("login-username") . '" class="username">
             <input type="password" name="password" placeholder="' . $text->get("login-pwd") . '" class="password">
+            <a href="#" class="forgot-password">' . $text->get("reset-password-info") . '</a>
             <input type="submit" name="submit" value="submit" class="submit">
         </form>
         
@@ -40,6 +41,14 @@ if (!isset($_GET["form"])) {
         document.querySelector(".home").addEventListener("click", (e) => {
             window.location = "/forum";
         });
+        document.querySelector(".forgot-password").addEventListener("click", (e) => {
+            e.preventDefault();
+            if (document.querySelector(".username").value.length < 1) {
+                alert("Please enter a username");
+            } else {
+                window.location="/forum/assets/site/reset_password.php?username=" + document.querySelector(".username").value;
+            }
+        })
     </script>
     ';
 } else {

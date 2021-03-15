@@ -31,6 +31,7 @@ $rargs = array_merge($_GET, $_POST);
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.info.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.data.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.text.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.mail.php";
 $data = new Data();
 if (isset($_SESSION["userId"])) {
     $user_v_v = $_SESSION["userId"];
@@ -57,7 +58,7 @@ if (isset($require_purifier)) {
 }
 
 
-
+$mail = new Mail();
 if (!isset($hide_frame)) {
 
     echo '

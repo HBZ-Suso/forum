@@ -49,6 +49,7 @@
     color: white;
     border-radius: 26px;
     transition: 0.25s;
+    margin-bottom: 10px;
 }
 
 .submit {
@@ -63,6 +64,7 @@
     border-radius: 26px;
     transition: 0.25s;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .main-form input[type = "text"]:focus,.main-form input[type = "password"]:focus {
@@ -102,4 +104,15 @@
     background-color: #19232cc9;
     border-right: 3px solid #3498db;
     border-bottom: 3px solid #3498db;
+}
+
+
+
+.forgot-password {
+    display: inline-block;
+    text-align: center;
+    color: #3498db;
+    width: 350px;
+    margin: 0px;
+    padding: 0px;
 }

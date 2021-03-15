@@ -23,6 +23,11 @@ if (isset($change["userPassword"])) {
     if (isset($_SESSION["linkLogged"])) {
         exit("Not allowed");
     }
+    if (intval($data->get_user_notification_setting($_SESSION["userId"])) !== 0) {
+        $mail->notify("passwordchanged", $data, $text);
+    } else {
+        exit($data->get_user_notification_setting($_SESSION["userId"]));
+    }
     $data->add_password_change($_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userPassword", password_hash($change["userPassword"], PASSWORD_DEFAULT));
 }

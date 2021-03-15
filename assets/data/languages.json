@@ -98,7 +98,19 @@
         "create-report-title": "Report-Titel",
         "create-report-text": "Report-Text",
         "error-report-text": "Space to make some comments about what happened.",
-        "error-report-submit": "Send"
+        "error-report-submit": "Send",
+        "mail-password-change": "Your password was changed. The Ip was {Ip}. If it wasn't you, please contact an administrator via the report form.",
+        "mail-password-change-subject": "Password changed",
+        "mail-link": "A link has been created for your account. The Ip was {Ip}. If it wasn't you, please contact an administrator via the report form.",
+        "mail-link-subject": "Link created",
+        "mail-verified": "Your account was verified.",
+        "mail-verified-subject": "Verified",
+        "mail-locked": "Your account was locked. If you believe this to be a mistake, please use the report form to contact an administrator.",
+        "mail-locked-subject": "Locked",
+        "reset-password-info": "Forgot password...",
+        "reset-block-text": "Your password was reset. Please check your email for your new password. If you didn't recieve the email, try it again. If it still doesn't work, use the report form to contact an administrator. <a href='/forum/'>Back</a>",
+        "mail-reset-password": "Your password was reset. It is now {Pwd}. You can change it normally by going to your account page. If you have any problems with logging in, please contact an administrator.",
+        "mail-reset-password-subject": "Password reset"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -199,7 +211,19 @@
         "create-report-title": "Meldungstitel",
         "create-report-text": "Meldungstext",
         "error-report-text": "Anmerkungen",
-        "error-report-submit": "Absenden"
+        "error-report-submit": "Absenden",
+        "mail-password-change": "Dein Password wurde geändert. Die Ip war {Ip}. Wenn das nicht du warst, kontaktiere bitte einen Administrator über das Report Formular.",
+        "mail-password-change-subject": "Passwortveränderung",
+        "mail-link": "Ein Link wurde für deinen Account erstellt. Die Ip war {Ip}. Wenn das nicht du warst, kontaktiere bitte einen Administrator über das Report Formular.",
+        "mail-link-subject": "Link erstellt",
+        "mail-verified": "Dein Acount wurde verifiziert.",
+        "mail-verified-subject": "Verifiziert",
+        "mail-locked": "Dein Account wurde gesperrt. Wenn du denkst, dass das ein Fehler war kontaktierte bitte die Administratoren über das Report Formular.",
+        "mail-locked-subject": "Gesperrt",
+        "reset-password-info": "Passwort vergessen...",
+        "reset-block-text": "Dein Passwort wurde zurückgesetzt. Bitte schaue in deine Emails um es zu finden. Wenn du keine Email bekommen hast, warte kurz und probiere es erneut. Wenn das Problem weiter besteht kontaktiere einen Administrator über das Report Formular. <a href='/forum/'>Zurück</a>",
+        "mail-reset-password": "Dein Forum-Passwort wurde zurückgesetzt. Es ist jetzt: {Pwd}. Du kannst es wie immer über die Account seite ändern. Wenn du probleme beim Einloggen hast kontaktiere einen Administrator.",
+        "mail-reset-password-subject": "Password zurückgesetzt"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",
@@ -300,6 +324,16 @@
         "create-report-title": "Titre du message",
         "create-report-text": "Texte du message",
         "error-report-text": "Le texte du report",
-        "error-report-submit": "Faire le report"
+        "error-report-submit": "Faire le report",
+        "mail-password-change": "Your password was changed. The Ip was {Ip}. If it wasnt you, please contact an administrator via the report form.",
+        "mail-password-change-subject": "Passwordchange",
+        "mail-verified": "Your account was verified.",
+        "mail-verified-subject": "Verified",
+        "mail-locked": "Your account was locked. If you believe this to be a mistake, please use the report form to contact an administrator.",
+        "mail-locked-subject": "Locked",
+        "reset-password-info": "Forgot password...",
+        "reset-block-text": "Your password was reset. Please check your email for your new password. If you didn't recieve the email, try it again. If it still doesn't work, use the report form to contact an administrator. <a href='/forum/'>Back</a>",
+        "mail-reset-password": "Your password was reset. It is now {Pwd}. You can change it normally by going to your account page. If you have any problems with logging in, please contact an administrator.",
+        "mail-reset-password-subject": "Password reset"
     }
 }

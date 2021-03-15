@@ -12,7 +12,7 @@ Database name: forum
     7. userCreated (timestamp)
     8. userMail (TEXT)
     9. userPhone (TEXT)
-    10. userSettings (JSON)
+    10. userSettings (JSON, privacy (notifications, 2=everything, 1=improtant, 0=nothing), public (displayed, true=public, false=hidden [NOT IMPLEMENTED]))
     11. userType (TEXT, administrator / user / moderator, comes from code)
     12. userIntended (TINYTEXT, from codeIntended)
     13. userVerified (TINYINT / BOOLEAN, 1 or 0)

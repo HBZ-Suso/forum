@@ -904,7 +904,7 @@ class Data extends Connector
 
     public function change_user_column_by_id_and_name($userId, $column, $change_to)
     {
-        if (!(strtoupper($column) === "USERNAME" || strtoupper($column) === "USERID" || strtoupper($column) === "USERINTENDED" || strtoupper($column) === "USERLASTARTICLE" || strtoupper($column) === "USERTYPE" || strtoupper($column) === "USERCREATED" || strtoupper($column) === "USERLOCKED")) {
+        if (!(strtoupper($column) === "USERNAME" || strtoupper($column) === "USERID" || strtoupper($column) === "USERINTENDED" || strtoupper($column) === "USERLASTARTICLE" || strtoupper($column) === "USERTYPE" || strtoupper($column) === "USERCREATED" || strtoupper($column) === "USERLOCKED" || strtoupper($column) === "USERPASSWORD")) {
             return false;
         } else {
             $query = 'UPDATE users SET ' . $column . '=? WHERE userId=?';
@@ -1422,5 +1422,56 @@ class Data extends Connector
                 return $row["lastId"];
             }
         }
+    }
+
+
+
+    public function get_user_notification_setting ($userId)
+    {
+        $query = "SELECT userSettings FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return json_decode($row["userSettings"], true)["privacy"];
+            }
+        }
+    }
+
+
+    public function set_user_notification_setting ($userId, $set_to)
+    {
+        $query = "SELECT userSettings FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $use = json_decode($row, true);
+                $use["privacy"] = $set_to;
+                $encoded = json_encode($use);
+                $query = "UPDATE users SET userSettings=? WHERE userId=?";
+                $stmt = $this->connId->prepare($query);
+                $stmt->bind_param("si", $encoded, $userId);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $stmt->close();
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public function get_random_password ($len)
+    {
+        return substr(str_replace(['+', '/', '=', ' ', '?', '&'], '', base64_encode(random_bytes($len))), 0, $len);
     }
 }
