@@ -80,7 +80,12 @@
     margin-bottom: 0.3vw;
     cursor: pointer;
     border-top-right-radius: 5px;
+    transition: 0.25ss all linear;
     border-bottom-right-radius: 5px;
+}
+
+.block-entry:hover {
+    width: 96%;
 }
 
 @media screen and (max-width: 1500px) {

@@ -1,5 +1,7 @@
 <?php
 
+require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/comment_block.php";
+
 function get_user_html ($userId, $user_data, $data, $text, $info) {
     $return = "";
 
@@ -70,35 +72,12 @@ function get_user_html ($userId, $user_data, $data, $text, $info) {
     
         <textarea disabled class="user-block-description">' . htmlspecialchars($user_data["userDescription"]) . '</textarea>';
     
-    $comments = $data->get_user_comments_by_id($userId);
-    
-    $return .= '<div class="comment-section theme-main-color-1" id="comment_section_userId=' . $user_data["userId"] . '">';
-    
-    $return .= "<h3 id='loading-comments-info'>" . $text->get("comments-loading") . "</h3>";
-    
-    if ($data->is_logged_in()) {
-        $return .= '<form class="comment-form comment theme-main-color-1">';
-        $return .= '<input class="comment-title theme-main-color-1" name="title" placeholder="' . $text->get("comments-title") . '">';
-        $return .= '<h3 class="comment-author theme-main-color-1">' . $data->get_username_by_id($_SESSION["userId"]) . '</h3>';
-        $return .= '<input class="comment-text theme-main-color-1" name="text" placeholder="' . $text->get("comments-comment") . '"></input>';
-        $return .= '<input type="submit" name="submit" class="comment-form-submit theme-main-color-1" id="submit-comment" value="' . $text->get("comments-submit") . '">';
-        $return .= '</form>
-        <script>var cur_Id = "userId=" + "' . $userId . '";</script>
-        <script>var cur_username = "' . $_SESSION["user"] . '";</script>
-        <script async defer src="/forum/assets/script/comment.js"></script>
-        <div id="js_comments"></div>
-        ';
-    } else {
-        $return .= '<script>var cur_Id = "userId=" + "' . $userId . '";</script>
-        <script>var cur_username = false;</script>
-        <script async defer src="/forum/assets/script/comment.js"></script>
-        <div id="js_comments"></div>';
-    }
+    $return .= get_comment_block($data, $text, "userId", $userId);
     
     
     
     $return .= '
-    </div></div>
+    </div>
     ';
 
     return $return;

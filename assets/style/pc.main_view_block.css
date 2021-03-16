@@ -5,8 +5,10 @@
     left: 5%;
     padding: 1%;
     margin: 0px;
-    bottom: 0px;
     padding-top: 10px;
+    height: max-content;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 @media screen and (min-width: 1200px) {
