@@ -6,15 +6,18 @@ $one_set = false;
 foreach($args as $value) {
     if (isset($_GET[$value])) {
         $set[$value] = "checked";
+        $set_c[$value] = "refined-search-icon-checked";
         $one_set = true;
     } else {
         $set[$value] = "";
+        $set_c[$value] = "";
     }
 }
 
 if ($one_set === false) {
     foreach($args as $value) {
         $set[$value] = "checked";
+        $set_c[$value] = "refined-search-icon-checked";
     }
 }
 
@@ -54,35 +57,43 @@ echo '
                 <th><label for="text" class="refined-search-label">' . $text->get("refined-employment") . '</label><br></th>
             </tr>
             <tr>
-                <td><div class="checkbox-div theme-main-color-2" id="1"><input type="checkbox" name="title" ' . $set["title"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <td><div class="checkbox-div theme-main-color-2" id="2"><input type="checkbox" name="text" ' . $set["text"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <!--<td><div class="checkbox-div theme-main-color-2" id="3"><input type="checkbox" name="author" ' . $set["author"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>-->
+                <td><img ' . $set["title"] . ' class="refined-search-icon ' . $set_c["title"] . '" id="title" src="/forum/assets/img/icon/title.png"></td>
+                <td><img ' . $set["text"] . ' class="refined-search-icon ' . $set_c["text"] . '" id="text" src="/forum/assets/img/icon/text.png"></td>
                 <td><p></p></td>
-                <td><div class="checkbox-div theme-main-color-2" id="4"><input type="checkbox" name="name" ' . $set["name"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <td><div class="checkbox-div theme-main-color-2" id="5"><input type="checkbox" name="mail" ' . $set["mail"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <td><div class="checkbox-div theme-main-color-2" id="6"><input type="checkbox" name="description" ' . $set["description"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <td><div class="checkbox-div theme-main-color-2" id="7"><input type="checkbox" name="phone" ' . $set["phone"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
-                <td><div class="checkbox-div theme-main-color-2" id="8"><input type="checkbox" name="employment" ' . $set["employment"] . ' autocomplete="off" class="refined-search-checkbox"></div></td>
+                <td><img ' . $set["name"] . ' class="refined-search-icon ' . $set_c["name"] . '" id="name" src="/forum/assets/img/icon/name.png"></td>
+                <td><img ' . $set["mail"] . ' class="refined-search-icon ' . $set_c["mail"] . '" id="mail" src="/forum/assets/img/icon/mail.png"></td>
+                <td><img ' . $set["description"] . ' class="refined-search-icon ' . $set_c["description"] . '" id="description" src="/forum/assets/img/icon/description.png"></td>
+                <td><img ' . $set["phone"] . ' class="refined-search-icon ' . $set_c["phone"] . '" id="phone" src="/forum/assets/img/icon/phone.png"></td>
+                <td><img ' . $set["employment"] . ' class="refined-search-icon ' . $set_c["employment"] . '" id="employment" src="/forum/assets/img/icon/employment.png"></td>
             </tr>
         </table>
+
+        <div style="display: none;">
+            <input type="checkbox" name="title" id="cb-title" ' . $set["title"] . '>
+            <input type="checkbox" name="text" id="cb-text" ' . $set["text"] . '>
+            <input type="checkbox" name="name" id="cb-name" ' . $set["name"] . '> 
+            <input type="checkbox" name="description" id="cb-description" ' . $set["description"] . '>
+            <input type="checkbox" name="phone" id="cb-phone" ' . $set["phone"] . '>
+            <input type="checkbox" name="employment" id="cb-employment" ' . $set["employment"] . '>
+            <input type="checkbox" name="mail" id="cb-mail" ' . $set["mail"] . '>
+        </div>
     </form>   
 ';
 
-for ($i = 1; $i < 9; $i++) {
-    if ($i === 3) {continue;}
-    echo '
-    <script>
-        document.getElementById("' . $i . '").addEventListener("click", event => {
-            if (document.getElementById("' . $i . '").children[0].checked) {
-                document.getElementById("' . $i . '").classList.add("refined-search-color");
+
+echo '
+<script>
+    document.querySelectorAll(".refined-search-icon").forEach((element, index) => {
+        element.addEventListener("click", (e) => {
+            if (e.target.classList.contains("refined-search-icon-checked") || e.target.hasAttribute("checked")) {
+                e.target.classList.remove("refined-search-icon-checked");
+                e.target.removeAttribute("checked");
+                document.getElementById("cb-" + e.target.id).removeAttribute("checked");
             } else {
-                document.getElementById("' . $i . '").classList.remove("refined-search-color");
+                e.target.classList.add("refined-search-icon-checked");
+                e.target.setAttribute("checked", "");
+                document.getElementById("cb-" + e.target.id).setAttribute("checked", "");
             }
-        });
-        if (document.getElementById("' . $i . '").children[0].checked) {
-            document.getElementById("' . $i . '").classList.add("refined-search-color");
-        } else {
-            document.getElementById("' . $i . '").classList.remove("refined-search-color");
-        }
-    </script>';
-}
+        })
+    });
+</script>';
