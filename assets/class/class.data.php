@@ -1452,8 +1452,51 @@ class Data extends Connector
         $stmt->close();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $use = json_decode($row, true);
+                $use = json_decode($row["userSettings"], true);
                 $use["privacy"] = $set_to;
+                $encoded = json_encode($use);
+                $query = "UPDATE users SET userSettings=? WHERE userId=?";
+                $stmt = $this->connId->prepare($query);
+                $stmt->bind_param("si", $encoded, $userId);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $stmt->close();
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+
+    public function get_user_setting ($setting, $userId)
+    {
+        $query = "SELECT userSettings FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return json_decode($row["userSettings"], true)[$setting];
+            }
+        }
+    }
+
+
+    public function set_user_setting ($setting, $userId, $set_to)
+    {
+        $query = "SELECT userSettings FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $use = json_decode($row["userSettings"], true);
+                $use[$setting] = $set_to;
                 $encoded = json_encode($use);
                 $query = "UPDATE users SET userSettings=? WHERE userId=?";
                 $stmt = $this->connId->prepare($query);

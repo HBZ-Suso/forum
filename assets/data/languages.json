@@ -112,7 +112,14 @@
         "mail-reset-password": "Your password was reset. It is now {Pwd}. You can change it normally by going to your account page. If you have any problems with logging in, please contact an administrator.",
         "mail-reset-password-subject": "Password reset",
         "mail-created-account": "Hello {userName}.<br> Your account was successfully created!<br> Your details are as following: <br>- {userPhone}<br>- {userMail}<br>- {userDescription} <br>- userEmployment<br>We hope you enjoy this site. If you have any problems, contact us via our report form.<br>Your HBZ-Forum Team",
-        "mail-created-account-subject": "Account Created - Welcome!"
+        "mail-created-account-subject": "Account Created - Welcome!",
+        "public-setting-heading": "Profile-Publicity",
+        "public-setting-hidden": "Invisible",
+        "public-setting-public": "Public",
+        "notification-setting-high": "All",
+        "notification-setting-medium": "Some",
+        "notification-setting-low": "None",
+        "notification-setting-heading": "Notifications"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -227,7 +234,14 @@
         "mail-reset-password": "Dein Forum-Passwort wurde zurückgesetzt. Es ist jetzt: {Pwd}. Du kannst es wie immer über die Account seite ändern. Wenn du probleme beim Einloggen hast kontaktiere einen Administrator.",
         "mail-reset-password-subject": "Password zurückgesetzt",
         "mail-created-account": "Hallo {userName}.<br> Dein Account wurde erfolgreich erstellt!<br> Deine Angaben sind wie folgend: <br>- {userPhone}<br>- {userMail}<br>- {userDescription} <br>- userEmployment<br>Wir hoffen, dass sie ihren Aufenthalt genießen. Wenn Sie irgendwelche Probleme haben, kontakieren sie uns über unser Report Formular.<br>Ihr HBZ-Forum Team",
-        "mail-created-account-subject": "Account Erstellt - Wilkommen!"
+        "mail-created-account-subject": "Account Erstellt - Wilkommen!",
+        "public-setting-heading": "Profil-Öffentlichkeit",
+        "public-setting-hidden": "Versteckt",
+        "public-setting-public": "Öffentlich",
+        "notification-setting-high": "Alle",
+        "notification-setting-medium": "Manche",
+        "notification-setting-low": "Keine",
+        "notification-setting-heading": "Benachrichtigungen"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",
@@ -340,6 +354,13 @@
         "mail-reset-password": "Your password was reset. It is now {Pwd}. You can change it normally by going to your account page. If you have any problems with logging in, please contact an administrator.",
         "mail-reset-password-subject": "Password reset",
         "mail-created-account": "Hello {userName}.<br> Your account was successfully created!<br> Your details are as following: <br>- {userPhone}<br>- {userMail}<br>- {userDescription} <br>- userEmployment<br>We hope you enjoy this site. If you have any problems, contact us via our report form.<br>Your HBZ-Forum Team",
-        "mail-created-account-subject": "Account Created - Welcome!"
+        "mail-created-account-subject": "Account Created - Welcome!",
+        "public-setting-heading": "Profile-Publicity",
+        "public-setting-hidden": "Invisible",
+        "public-setting-public": "Public",
+        "notification-setting-high": "All",
+        "notification-setting-medium": "Some",
+        "notification-setting-low": "None",
+        "notification-setting-heading": "Notifications"
     }
 }

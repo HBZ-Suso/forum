@@ -126,6 +126,7 @@ Icons:
     <a href="https://icons8.com/icon/83214/settings">Settings icon by Icons8</a>
     <a href="https://icons8.com/icon/70738/drop-down">Drop Down icon by Icons8</a>
     <a href="https://icons8.com/icon/AqDEb8mCIrk9/macos-close">MacOS Close icon by Icons8</a>
+    <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 Administrator:
     Password: forum_admin

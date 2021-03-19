@@ -20,6 +20,10 @@ if ($user_data === false) {
     die("Nonexistentusererror");
 }
 
+if ($data->get_user_setting("public", $user_data["userId"]) === false && !($data->is_logged_in() && (($_SESSION["userId"] === $user_data["userId"]) || $data->is_admin_by_id($_SESSION["userId"]) || $data->is_moderator_by_id($_SESSION["userId"])))) {
+    $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
+    die("Permissionerror");
+}
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/include/user.php";
 exit(get_user_html($userId, $user_data, $data, $text, $info));

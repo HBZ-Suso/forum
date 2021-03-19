@@ -58,6 +58,10 @@ foreach ($user_list as $value) {
         $self = "";
     }
 
+    if ($data->get_user_setting("public", $value["userId"]) === false && !($data->is_logged_in() && (($_SESSION["userId"] === $value["userId"]) || $data->is_admin_by_id($_SESSION["userId"]) || $data->is_moderator_by_id($_SESSION["userId"])))) {
+        continue;
+    }
+
     if ($value["userVerified"] == "1") {
         $verified = '<p class="verified">&#10003</p>';
     } else {
