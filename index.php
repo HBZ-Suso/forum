@@ -17,8 +17,8 @@ if (isset($_GET["show"])) {
             break;
         case "about":
             if ($info->mobile !== true) {
-                header("LOCATION:/forum?select=about");
-                exit("<script>window.location='/forum?select=about';</script>");
+                header("LOCATION:/forum?select=about-block-heading");
+                exit("<script>window.location='/forum?select=about-block-heading';</script>");
             } else {
                 include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/about.php";
             }

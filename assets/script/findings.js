@@ -43,11 +43,11 @@ function set_section (c_section) {
     axios
         .post("/forum/assets/api/set_chosen_section.php?section=" + section)
         .then((languages) => {
-            
         })
         .catch(() => {
             console.debug("Section error");
         })
+    document.cookie = "selected_section=" + section + "; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
 }
 
 document.querySelectorAll(".choose-entry").forEach((element, index) => {
@@ -58,7 +58,7 @@ document.querySelectorAll(".choose-entry").forEach((element, index) => {
             choose_el.style.boxShadow = "";
         });
         e.target.style.width = "83%";
-        e.target.style.boxShadow = "inset 0px 0px 400px 110px rgba(255, 255, 255, .1";
+        e.target.style.boxShadow = "inset 0px 0px 400px 110px rgba(255, 255, 255, .1)";
         if (blocks[e.target.getAttribute("show")] !== undefined && blocks[e.target.getAttribute("show")] !== null) {
             for (let key in blocks) {
                 let el = blocks[key];
@@ -82,9 +82,7 @@ document.querySelectorAll(".choose-entry").forEach((element, index) => {
     });
 })
 
-if (window.location.toString().indexOf("select=create_article") !== -1) {
-    set_section("frame-menu-create");
-} else if (window.location.toString().indexOf("select=about") !== -1) {
+if (window.location.toString().indexOf("select=about") !== -1) {
     set_section("about-block-heading");
 } else if (getCookie("selected_section").length > 3 && getCookie("selected_section") !== undefined && blocks[getCookie("selected_section")] !== null && blocks[getCookie("selected_section")] !== undefined) {
     set_section(getCookie("selected_section"));
@@ -105,6 +103,12 @@ if (window.location.toString().indexOf("select=create_article") !== -1) {
     .catch(() => {
         console.debug("Prompt error");
     })
+}
+if (window.location.toString().indexOf("?select=") !== -1) {
+    let select_name = window.location.toString().slice(0, window.location.toString().indexOf("?select=")).slice(window.location.toString().indexOf("&"));
+    if (select_name in blocks) {
+        set_section(select_name);
+    }
 }
 
 let everything_hidden = true;

@@ -33,7 +33,7 @@ if (strval($data->get_user_lock($_SESSION["userId"])) === "1") {
 
 if (!isset($_POST["form"]) && !isset($_POST["submit"])) { 
     if ($info->mobile !== true) {
-        header("LOCATION: /forum/?select=create_article");
+        header("LOCATION: /forum/?select=frame-menu-create");
         exit("<script>window.location='/forum/?show=create_article';</script>");
     } else {
         echo '<link rel="stylesheet" href="/forum/assets/style/mobile.create_article.css">';

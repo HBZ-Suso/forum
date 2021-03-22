@@ -379,7 +379,7 @@ class Data extends Connector
     }
 
 
-    public function search_articles($phrase, $min = 1, $max = 100, $mode = ["articleTitle", "articleTags", "articleText"], $order = "articleCreated DESC")
+    public function search_articles($phrase, $min = 0, $max = 100, $mode = ["articleTitle", "articleTags", "articleText"], $order = "articleCreated DESC")
     {
         if (strlen($phrase) || count($mode) < 1) {
             $q_str = ' WHERE ';

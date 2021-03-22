@@ -112,3 +112,91 @@ function timeConverter(UNIX_timestamp){
     var time = date + '.' + month + '.' + year + ' ' + hour + ':' + min + ':' + sec ;
     return time;
 }
+
+
+
+
+function editDistance(s1, s2) {
+    s1 = s1.toLowerCase();
+    s2 = s2.toLowerCase();
+  
+    var costs = new Array();
+    for (var i = 0; i <= s1.length; i++) {
+        var lastValue = i;
+        for (var j = 0; j <= s2.length; j++) {
+            if (i == 0)
+                costs[j] = j;
+            else {
+                if (j > 0) {
+                    var newValue = costs[j - 1];
+                    if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                    newValue = Math.min(Math.min(newValue, lastValue),
+                        costs[j]) + 1;
+                    costs[j - 1] = lastValue;
+                    lastValue = newValue;
+                }
+            }
+        }
+        if (i > 0) {
+            costs[s2.length] = lastValue;
+        }
+    }
+    return costs[s2.length];
+}
+
+function similarity(s1, s2) {
+    var longer = s1;
+    var shorter = s2;
+    if (s1.length < s2.length) {
+        longer = s2;
+        shorter = s1;
+    }
+    var longerLength = longer.length;
+    if (longerLength == 0) {
+        return 1.0;
+    }
+    if (s2.indexOf(s1) !== -1) {
+        return 0.9;
+    }
+    if (s1 == s2) {
+        return 1;
+    }
+    return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
+}
+
+
+
+// USES FUNCTIONS FROM TOP - Working, but could be improved
+function find_matching (string, string_array, amount, special_args=[]) {
+    let found = [{"string": "Placeholder", "prox": 0}];
+    let smallest = 0;
+    for (let i = 0; i < string_array.length; i++) {
+        if (string_array[i].length < 1) {
+            continue;
+        }
+        let prox = similarity(string, string_array[i]);
+
+        if (smallest < prox || found.length < amount) {
+            if (prox < smallest) {
+                smallest = prox;
+            }
+            if (special_args.length === string_array.length) {
+                found.push({"string": string_array[i], "prox": prox, "special": special_args[i]});
+            } else {
+                found.push({"string": string_array[i], "prox": prox});
+            }
+            
+            if (found.length > amount) {
+                found.sort((a, b) => (a.prox > b.prox) ? 1 : (a.prox === b.prox) ? ((a.string > b.string) ? 1 : -1) : -1 );
+                found.shift();
+                smallest = found[0]["prox"];
+            }
+        }
+    }
+    found.sort((a, b) => (a.prox > b.prox) ? 1 : (a.prox === b.prox) ? ((a.string > b.string) ? 1 : -1) : -1 );
+    found.reverse();
+    if (found[found.length - 1]["string"] == "Placeholder") {
+        found.pop()
+    }
+    return found;
+}

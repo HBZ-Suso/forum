@@ -13,7 +13,6 @@
     align-items: center;
     justify-content: space-between;
     z-index: 2;
-    overflow: hidden;
 }
 
 .main-menu-icon {
@@ -78,6 +77,53 @@
 }
 
 
+.main-heading-search-preview {
+    position: absolute;
+    left: 0px;
+    top: 67px;
+    width: 104.6%;
+    font-size: min(1.4vw, 20px);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.3);
+    border: 0px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 0px;
+    height: min-content;
+    outline: none;
+    z-index: 2;
+    display: none;
+    overflow: none;
+}
+
+.main-heading-search-preview-line {
+    cursor: pointer;
+    padding: 2px;
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding-left: 5px;
+}
+
+.main-heading-search-preview-line-last {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.main-heading-search-preview-line:hover {
+    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.5);
+}
+
+.main-heading-search:focus-within > .main-heading-search-text {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.main-heading-search:focus-within > .main-heading-search-preview {
+    display: block;
+}
 
 
 
