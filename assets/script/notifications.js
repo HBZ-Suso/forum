@@ -28,8 +28,8 @@ function show_error (error_argument, error_data) {
     get_text("error-report-submit").then((er_rep_submit) => {
         document.getElementById("error-box").innerHTML = `s
             <div class="error-display theme-main-color-1">
-                <img class="error-display-implode error-display-implode-rotate" alt="|" src="https://img.icons8.com/metro/64/000000/down-squared.png"/>
-                <img class="error-display-close" alt="X" src="https://img.icons8.com/windows/64/000000/macos-close.png"/>
+                <img class="error-display-implode error-display-implode-rotate" alt="|" src="/forum/assets/img/icon/down-squared.png"/>
+                <img class="error-display-close" alt="X" src="/forum/assets/img/icon/macos-close.png"/>
                 <h1 class="error-display-heading">${error_data["heading"]}</h1>
                 <div class="error-display-text error-display-hide-on-implode" style="display: none;">${error_data["text"]}</div>
                 
@@ -38,7 +38,7 @@ function show_error (error_argument, error_data) {
                     <input type="submit" class="error-display-hide-until-mail error-display-report-submit theme-main-color-2 hover-theme-main-color-2" style="display: none;" value='${er_rep_submit}'>
                 </div>
 
-                <img class="error-display-report-icon error-display-hide-on-implode" style="display: none;" alt="M"  src="https://img.icons8.com/ios/50/000000/apple-mail.png"/>
+                <img class="error-display-report-icon error-display-hide-on-implode" style="display: none;" alt="M"  src="/forum/assets/img/icon/apple-mail.png"/>
             </div>
         `;
 

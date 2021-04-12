@@ -31,7 +31,7 @@
 
 .refined-search-icon-checked {
     padding-bottom: 4px;
-    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0px 0px 400px 110px var(--main-accent-color-transparent);
     border-bottom: 6px solid black;
 }
 

@@ -168,7 +168,7 @@ function similarity(s1, s2) {
 
 // USES FUNCTIONS FROM TOP - Working, but could be improved
 function find_matching (string, string_array, amount, special_args=[]) {
-    let found = [{"string": "Placeholder", "prox": 0}];
+    let found = [{"string": "Placeholder", "prox": -1}];
     let smallest = 0;
     for (let i = 0; i < string_array.length; i++) {
         if (string_array[i].length < 1) {

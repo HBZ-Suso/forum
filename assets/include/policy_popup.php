@@ -18,6 +18,7 @@ echo '
         z-index: 5;
         font-size: 15px;
         border-top-right-radius: 10px;
+        background-color: var(--main-background-lighter-ten);
     }
 
     .policy-popup > button {
@@ -26,6 +27,11 @@ echo '
         margin-top: 4px;
         font-size: 15px;
         border-radius: 5px;
+        background-color: var(--main-background-lighter-six);
+    }
+
+    .policy-popup > button:hover {
+        background-color: var(--main-background-lighter-eleven);
     }
 </style>
 

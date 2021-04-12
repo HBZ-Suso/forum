@@ -1,0 +1,23 @@
+:root {
+    --main-background: #ffffff;
+    --main-background-lighter: #f9f9fa;
+    --main-background-lighter-two: #eff0f2;
+    --main-background-lighter-three: #bbbbbb;
+    --main-background-lighter-four: #d3d3d3;
+    --main-background-lighter-five: #dadada;
+    --main-background-lighter-six: #d1d1d1;
+    --main-background-lighter-seven: #b8b8b8;
+    --main-background-lighter-eight: #c0c0c0;
+    --main-background-lighter-nine: #cfcfcf;
+    --main-background-lighter-ten: #aaaaaa;
+    --main-background-lighter-eleven: #858585;
+    --main-background-lighter-twelve: #929292;
+    --main-font-extreme: rgb(19, 19, 19);
+    --main-font-color: #121212;
+    --main-font-color-two: rgb(58, 58, 58);
+    --main-font-color-light: #a1a1a1;
+}
+
+html {
+    background-color: var(--main-background-lighter-three);
+}

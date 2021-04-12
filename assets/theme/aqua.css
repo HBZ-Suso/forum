@@ -1,5 +1,15 @@
+:root {
+    --main-accent-color: #2A9D8F;
+    --main-accent-color-g: #2a9d90d8;
+    --main-accent-color-g-s: #218074d8;
+    --main-accent-color-transparent: #2a9d9088;
+    --main-accent-color-two: #264653;
+    --side-accent-color: #E9C46A;
+    --side-accent-color-two: #F4A261;
+}
 
 
+/*
 .theme-main-color-1 {
     color: black;
     background-color: #2A9D8F;
@@ -87,7 +97,7 @@
 .side-bar-max-fix {
     background-image: linear-gradient(to bottom, #204f61, #204f61);
 }
-
+*/
 
 
 :root{

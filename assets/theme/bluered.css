@@ -1,5 +1,14 @@
+:root {
+    --main-accent-color: #e63946;
+    --main-accent-color-g: #d33643;
+    --main-accent-color-g-s: #af2e39;
+    --main-accent-color-transparent: #e639477e;
+    --main-accent-color-two: #e63946;
+    --side-accent-color: #457b9d;
+    --side-accent-color-two: #1d3557;
+}
 
-
+/*
 .theme-main-color-1 {
     color: black;
     background-color: #457b9d;
@@ -50,3 +59,4 @@
 .refined-search {
     background-color: #EE6C4D!important;
 }
+*/

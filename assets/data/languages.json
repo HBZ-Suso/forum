@@ -119,7 +119,8 @@
         "notification-setting-high": "All",
         "notification-setting-medium": "Some",
         "notification-setting-low": "None",
-        "notification-setting-heading": "Notifications"
+        "notification-setting-heading": "Notifications",
+        "theme-setting-scheme": "Accents"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -241,7 +242,8 @@
         "notification-setting-high": "Alle",
         "notification-setting-medium": "Manche",
         "notification-setting-low": "Keine",
-        "notification-setting-heading": "Benachrichtigungen"
+        "notification-setting-heading": "Benachrichtigungen",
+        "theme-setting-scheme": "Akzente"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",
@@ -361,6 +363,7 @@
         "notification-setting-high": "All",
         "notification-setting-medium": "Some",
         "notification-setting-low": "None",
-        "notification-setting-heading": "Notifications"
+        "notification-setting-heading": "Notifications",
+        "theme-setting-scheme": "Accents"
     }
 }

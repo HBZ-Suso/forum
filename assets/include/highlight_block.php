@@ -52,13 +52,13 @@ foreach (array_reverse($highlight_data) as $value) {
 
 
     if ($info->mobile === true) {
-        $like_text = '<img class="like-icon-heart" src="https://img.icons8.com/fluent/48/000000/like.png"/>';
+        $like_text = '<img class="like-icon-heart" src="/forum/assets/img/icon/like.png"/>';
     } else {
         $like_text = $text->get("highlight-block-like");
     }
 
     if ($info->mobile === true) {
-        $view_text = '<img class="view-icon-eye" src="https://img.icons8.com/material-sharp/24/000000/visible.png"/>';
+        $view_text = '<img class="view-icon-eye" src="/forum/assets/img/icon/visible.png"/>';
     } else {
         $view_text = $text->get("highlight-block-views");
     }
@@ -109,9 +109,9 @@ foreach (array_reverse($highlight_data) as $value) {
 
 echo '
 </div>
-<img alt="<-" id="hwr" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+<img alt="<-" id="hwr" class="page-arrow page-arrow-right" src="/forum/assets/img/icon/arrow--v1.png"/>
 <script>document.getElementById("hwr").addEventListener("click", () => {axios.post("/forum/assets/api/set_highlightPage.php?highlightPage=" + (parseInt(document.getElementById("hpc").innerText))).then((result) => {reset_highlights(); document.getElementById("hpc").innerText = parseInt(document.getElementById("hpc").innerText) + 1}).catch((e) => {console.debug(e);})})</script>
 <p class="highlightPage" id="hpc">' . (intval($_SESSION["highlightPage"]) + 1) . '</p>
-<img alt="<-" id="hwl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+<img alt="<-" id="hwl" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="/forum/assets/img/icon/arrow--v1.png"/>
 <script>document.getElementById("hwl").addEventListener("click", () => {axios.post("/forum/assets/api/set_highlightPage.php?highlightPage=" + (parseInt(document.getElementById("hpc").innerText - 2))).then((result) => {if (parseInt(document.getElementById("hpc").innerText) - 1  > 0) {reset_highlights(); document.getElementById("hpc").innerText = parseInt(document.getElementById("hpc").innerText) - 1}}).catch((e) => {console.debug(e);})})</script>
 </div>';

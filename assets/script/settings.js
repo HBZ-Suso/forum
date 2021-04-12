@@ -113,3 +113,29 @@ function s_check_changes () {
 document.querySelector(".settings-reload").addEventListener("click", (e) => {s_check_changes(); window.location.reload();})
 
 document.querySelectorAll(".option").forEach((element, index) => {element.addEventListener("click", (e) =>  {s_check_changes();})});
+
+
+
+document.querySelector(".scheme-switch").addEventListener("click", (e) => {
+    if (document.querySelector(".scheme-switch-box").checked) {
+        document.querySelector(".scheme-box").innerHTML = "";
+        document.querySelector(".scheme-box").innerHTML = '<link rel="stylesheet" href="/forum/assets/style/scheme-dark-file.css">';
+        axios
+            .post("/forum/assets/api/scheme.php", "scheme=dark")
+            .then((response) => {
+            })
+            .catch((error) => {
+                throw new Error(error);
+            })
+    } else {
+        document.querySelector(".scheme-box").innerHTML = "";
+        document.querySelector(".scheme-box").innerHTML = '<link rel="stylesheet" href="/forum/assets/style/scheme-light-file.css">';
+        axios
+            .post("/forum/assets/api/scheme.php", "scheme=light")
+            .then((response) => {
+            })
+            .catch((error) => {
+                throw new Error(error);
+            })
+    }
+})

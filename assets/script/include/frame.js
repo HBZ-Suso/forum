@@ -34,3 +34,8 @@ if (window.mobileCheck() !== true) {
     window.onresize = size_heading;
     window.onload = size_heading;
 }
+
+
+document.querySelector(".main-heading-search-submit").addEventListener("click", (e) => {
+    window.location = "/forum/?search=" + document.querySelector(".main-heading-search-text").value;
+})

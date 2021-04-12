@@ -14,6 +14,10 @@
 }
 
 
+.comment-form {
+    background-color: white;
+}
+
 .comment {
     border-bottom: 1px solid black;
     display: grid;
@@ -109,6 +113,7 @@
     width: min-content;
     margin: 0px;
     padding: 0px;
+    background-color: white;
 }
 
 .author-href {
@@ -141,19 +146,19 @@
 }
 
 .comment:hover, .comment:hover > .comment-form-submit, .comment:hover > input, .comment:hover > textarea, .comment:hover > h3, .comment:hover > a > h3, .comment:hover > div {
-    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, 0.3);
     color: black;
 }
 
 #userSubmit:hover {
     cursor: pointer;
     color: white;
-    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 2055, 0.3);
 }
 
 .comment-form-submit {
     position: absolute;
-    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.7)!important;
+    box-shadow: inset 0px 0px 400px 110px rgba(0, 0, 0, 0.7)!important;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     width: 20%;

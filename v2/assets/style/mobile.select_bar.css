@@ -1,0 +1,128 @@
+.selectbar-container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    background-color: var(--side-accent-color-two)
+}
+
+@media screen and (max-width: 1300px) {
+    .selectbar-container {
+        right: 0px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .selectbar-container {
+        right: 40%;
+    }
+}
+
+.selectbar-page {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: min-content;
+}
+
+.selectbar-page-heading {
+    font-size: 90px;
+    margin: 40px;
+    margin-left: 150px;
+    margin-top: 10px;
+    margin-right: 5px;
+    height: min-content;
+}
+
+.selectbar-page-tools {
+    width: 40%;
+    margin: 0px;
+    height: 90px;
+    margin-top: 20px;
+}
+
+.selectbar-page-create + .selectbar-page-tools {
+    position: absolute;
+    top: 180px;
+    margin-top: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: min-content;
+}
+
+
+.selectbar-page-search-box {
+    width: 100%;
+}
+
+.selectbar-page-create + .selectbar-page-search-box {
+    width: 60%;
+    height: 80px;
+    margin-right: 10%;
+}
+
+.selectbar-page-search {
+    width: 90%;
+    height: 100%;
+    font-size: 45px;
+    border-bottom: 4px solid var(--main-accent-color);
+}
+
+.selectbar-page-create + .selectbar-page-search {
+    width: 100%!important;
+    font-size: 50px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    margin: 0px!important;
+    border-bottom: 4px solid var(--main-accent-color);
+}
+
+.selectbar-page-search-logo {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    left: -0px;
+    top: 10px;
+}
+
+.selectbar-page-create + .selectbar-page-search-logo {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    left: -0px;
+    top: 10px;
+}
+
+.selectbar-page-create {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    background-color: var(--main-accent-color-two);
+    height: 60px;
+    margin-left: 10px;
+    font-size: 50px;
+    padding: 16px;
+    border-radius: 8px;
+    line-height: 60px;
+    cursor: pointer;
+}
+
+.selectbar-page-create:hover {
+    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.2);
+}
+
+.selectbar-page-create > img {
+    width: 60px;
+    height: 60px;
+    padding-right: 10px;
+}

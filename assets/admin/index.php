@@ -25,8 +25,8 @@ if (!$data->is_admin_by_id($_SESSION["userId"])) {
     <?php include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/admin/include/visit_block.php"; ?>
     <?php include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/admin/include/user_block.php"; ?>
 
-    <img alt="<-" id="ar" class="page-arrow page-arrow-right" src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
-    <img alt="<-" id="al" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="https://img.icons8.com/flat_round/64/000000/arrow--v1.png"/>
+    <img alt="<-" id="ar" class="page-arrow page-arrow-right" src="/forum/assets/img/icon/arrow--v1.png"/>
+    <img alt="<-" id="al" class="page-arrow page-arrow-left" style="transform: rotate(180deg); " src="/forum/assets/img/icon/arrow--v1.png"/>
 </div>
 
 <script src="/forum/assets/admin/script/index.js" async defer></script>

@@ -56,13 +56,13 @@ foreach ($article_list as $value) {
     }
 
     if ($info->mobile === true) {
-        $like_text = '<img class="like-icon-heart" alt="Likes: " src="https://img.icons8.com/fluent/1000/000000/like.png"/>';
+        $like_text = '<img class="like-icon-heart" alt="Likes: " src="/forum/assets/img/icon/like.png"/>';
     } else {
         $like_text = $text->get("article-block-like");
     }
 
     if ($info->mobile === true) {
-        $view_text = '<img class="view-icon-eye" alt="Views: " src="https://img.icons8.com/material-sharp/1000/000000/visible.png"/>';
+        $view_text = '<img class="view-icon-eye" alt="Views: " src="/forum/assets/img/icon/visible.png"/>';
     } else {
         $view_text = $text->get("article-block-views");
     }
