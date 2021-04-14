@@ -11,15 +11,17 @@ if (window.location.hash.toString().length > 0) {
 
 document.querySelectorAll(".category-header").forEach((element, index) => {
     element.addEventListener("click", (e) => {
-        console.log(e.target.getAttribute("link"))
         e.preventDefault(); 
-        window.location.hash = e.target.getAttribute("link"); 
+        window.location.hash = e.target.parentElement.getAttribute("link"); 
         if (window.location.hash.toString().length > 0) {
-            if (categories.indexOf(window.location.hash.toString().slice(1)) != -1) {
-                selected_category = window.location.hash.toString().slice(1);
+            if (categories.indexOf(window.location.hash.slice(1)) != -1) {
+                selected_category = window.location.hash.slice(1);
             }
         }
-        console.log(selected_category)
+        if (window.location.hash.slice(1) == "null") {
+            console.debug("Fallback");
+            window.location.hash = "Home";
+        }
         check_selected_category();
     });
 })
@@ -72,3 +74,20 @@ function update_sidebar_visibility () {
         document.querySelector(".sidebar-container").style.display = "none";
     }
 }
+
+
+// Button Stuff
+
+document.querySelector(".userview-logout").addEventListener("click", (e) => {
+    axios
+        .post("/forum/assets/api/logout.php")
+        .then((resolve) => {window.location.reload()}, (reject) => {console.debug(reject)})
+})
+
+document.querySelector(".userview-login").addEventListener("click", (e) => {
+    window.location.hash = "Login"
+})
+
+document.querySelector(".userview-settings").addEventListener("click", (e) => {
+    window.location.hash = "Settings";
+})

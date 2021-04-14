@@ -69,8 +69,20 @@ if (!isset($_SESSION["colorscheme"])) {
 }
 
 echo '<div class="scheme-box"><link rel="stylesheet" href="/forum/assets/style/scheme-' . $scheme . '-file.css"></div>';
+echo '<div class="scheme-box"><link rel="stylesheet" href="/forum/v2/assets/style/colors.css"></div>';
 echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
+echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>';
 echo '<script src="/forum/assets/script/functions.js"></script>';
+echo '<script src="/forum/v2/assets/script/hashmanagement.js"></script>';
+echo '<script src="/forum/v2/assets/script/login.js"></script>';
+echo '<script src="/forum/v2/assets/script/settings.js"></script>';
+echo '<script src="/forum/v2/assets/script/settings_functions.js"></script>';
+
+if ($data->is_logged_in()) {
+    echo "<script>var logged_in = true;</script>";
+} else {
+    echo "<script>var logged_in = false;</script>";
+}
 
 if (isset($_SESSION["theme"])) {
     $theme = $_SESSION["theme"];

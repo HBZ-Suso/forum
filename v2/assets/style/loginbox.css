@@ -1,0 +1,66 @@
+.loginbox-container {
+    z-index: 4;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginbox-innerContainer {
+    width: 300px;
+    height: 400px;
+    background-color: var(--side-dark-color);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.loginbox-close {
+    position: absolute;
+    top: 10px;
+    right: 13px;
+    cursor: pointer;
+    font-size: 25px;
+    color: var(--dark-color);
+}
+
+.loginbox-innerContainer > input {
+    border-radius: 5px;
+    width: 250px;
+    height: 40px;
+    color: var(--dark-color);
+    border: 1px solid var(--dark-color);
+    padding: 5px;
+    background-color: var(--side-user-color)
+}
+
+.loginbox-heading {
+    color: var(--dark-color);
+    font-size: 25px;
+    margin: 0px;
+}
+
+.loginbox-description {
+    width: 225px;
+    color: var(--dark-color);
+}
+
+.loginbox-username {
+    margin-bottom: 5px;
+}
+
+.loginbox-password {
+    margin-bottom: 5px;
+}
+
+.loginbox-submit {
+    color: var(--dark-color);
+    cursor: pointer;
+}

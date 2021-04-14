@@ -5,9 +5,16 @@
     bottom: 0px;
     width: 320px;
     display: relative;
-    border-right: 1px solid black;
-    background-image: linear-gradient(to top, var(--main-accent-color) 90%, var(--main-accent-color-g-s) 10%);
+    background-color: var(--side-main-color);
     z-index: 2;
+}
+
+.sidebar-gradient-div {
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    z-index: 2;
+    background-image: linear-gradient(to top, var(--side-main-color), var(--side-dark-color));
 }
 
 .sidebar-toggle {
@@ -18,7 +25,7 @@
     padding-right: 10px;
     cursor: pointer;
     z-index: 3;
-    background-color: var(--main-accent-color);
+    background-color: var(--side-main-color);
     border-bottom-right-radius: 5px;
 }
 
@@ -34,7 +41,7 @@
     padding: 5px;
     height: 30px;
     width: 30px;
-    background-color: var(--main-accent-color);
+    background-color: var(--side-user-color);
     border-bottom-left-radius: 5px;
     cursor: pointer;
 }
@@ -44,8 +51,11 @@
 .userview-container {
     width: 100%;
     height: 180px;
-    border-bottom: 1px solid black;
-    background-color: var(--side-accent-color);
+    background-color: var(--side-user-color);
+}
+
+.sidebar-not-logged-in > .userview-container {
+    height: 130px;
 }
 
 .userview-user {
@@ -74,14 +84,23 @@
     width: 130px;
     height: 130px;
     float: left;
+    position: relative;
 }
 
 .userview-image > img {
-    width: 100px;
-    height: 100px;
+    top: 25px;
+    left: 25px;
+    position: absolute;
+    width: 60px;
+    height: 60px;
     margin-left: 20px;
     margin-top: 20px;
-    border-radius: 65px;
+    border: 1px solid var(--light-color);
+    border-radius: 1px;
+}
+
+.userview-details > div > a {
+    color: var(--dark-color);
 }
 
 .userview-name {
@@ -99,6 +118,7 @@
     height: 35px;
     margin-top: 5px;
 }
+
 
 .userview-bar > div {
     border-radius: 22px;
@@ -136,19 +156,20 @@
 
 .category-header {
     margin-left: 20px;
-    padding-left: 15px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
     width: 260px;
     padding-top: 15px;
     padding-bottom: 5px;
     font-size: 30px;
-    color: black;
-    border-bottom: 2px solid black;
+    color: var(--light-color);
+    border-bottom: 1px solid var(--side-border-color);
     text-decoration: none;
     position: relative;
     height: 40px;
     cursor: pointer;
-    transition: all 0.2s linear;
+    font-family: sans-serif;
+    font-weight: 500;
 }
 
 
@@ -169,23 +190,17 @@
     top: 0px;
     bottom: 0px;
     left: -300px;
-    right: -300px;
+    width: 570px;
+    border-radius: 5px;
     display: none;
 }
 
-/*
 .category-selected {
-    margin-left: 35px;
-    padding-left: 0px;
-    padding-right: -5px;   
-}
-*/
-
-.category-selected {
-    border-bottom: 2px solid white;
+    font-weight: 600;
 }
 
-.category-selected > .bicu {
+
+.category-header:hover > .bicu {
     background-color: rgba(255, 255, 255, 0.1);
     display: block;
 }
@@ -197,11 +212,11 @@
 .category-selected > .scdb {
     position: absolute;
     width: 5px;
-    height: 20px;
+    height: 40px;
     background-color: white;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-    top: 20px;
+    top: 10px;
     left: -20px;
 }
 
@@ -213,8 +228,7 @@
 /* INFO */
 
 .information-container {
-    border-top: 1px solid black;
-    background-color: var(--side-accent-color);
+    background-color: var(--side-main-color);
     position: absolute;
     height: 50px;
     bottom: 0px;

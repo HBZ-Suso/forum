@@ -84,7 +84,7 @@ function escapeHtml(text) {
 }
 
 
-function getCookie(cname) {
+function getCookie (cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');

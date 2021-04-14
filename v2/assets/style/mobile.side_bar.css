@@ -49,7 +49,7 @@
 .userview-image > img {
     width: 200px;
     height: 200px;
-    margin-left: 40px;
+    margin-left: 10px;
     margin-top: 40px;
     border-radius: 130px;
 }
@@ -112,14 +112,45 @@
     left: -26px;
 }
 
+/*
 .category-selected {
-    
+    margin-left: 35px;
+    padding-left: 0px;
+    padding-right: -5px;   
+}
+*/
+
+.category-selected {
+    border-bottom: 2px solid white;
+}
+
+.category-header:hover > .bicu {
+    background-color: rgba(255, 255, 255, 0.1);
+    display: block;
+    width: 875px;
+    border-radius: 15px;
 }
 
 .category-selected > img {
-    
+    display: block;
 }
 
+.category-selected > .scdb {
+    position: absolute;
+    width: 8px;
+    height: 73px;
+    background-color: white;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    top: 20px;
+    left: -40px;
+}
+
+
+
+.sidebar-not-logged-in > .userview-container {
+    height: 290px;
+}
 
 
 

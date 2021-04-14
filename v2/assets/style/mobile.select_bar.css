@@ -1,9 +1,5 @@
 .selectbar-container {
-    position: absolute;
     left: 0px;
-    top: 0px;
-    bottom: 0px;
-    background-color: var(--side-accent-color-two)
 }
 
 @media screen and (max-width: 1300px) {
@@ -14,7 +10,7 @@
 
 @media screen and (min-width: 1300px) {
     .selectbar-container {
-        right: 40%;
+        right: 0px;
     }
 }
 
@@ -44,7 +40,7 @@
     margin-top: 20px;
 }
 
-.selectbar-page-create + .selectbar-page-tools {
+.selectbar-page-tools-create-visible {
     position: absolute;
     top: 180px;
     margin-top: 3px;
@@ -62,7 +58,7 @@
     width: 100%;
 }
 
-.selectbar-page-create + .selectbar-page-search-box {
+.selectbar-page-search-box-create-visible {
     width: 60%;
     height: 80px;
     margin-right: 10%;
@@ -75,7 +71,7 @@
     border-bottom: 4px solid var(--main-accent-color);
 }
 
-.selectbar-page-create + .selectbar-page-search {
+.selectbar-page-search-create-visible {
     width: 100%!important;
     font-size: 50px;
     height: 100%;
@@ -94,7 +90,7 @@
     top: 10px;
 }
 
-.selectbar-page-create + .selectbar-page-search-logo {
+.selectbar-page-search-logo-create-visible {
     position: absolute;
     width: 50px;
     height: 50px;
