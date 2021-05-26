@@ -26,7 +26,7 @@ foreach ($data->get_categories() as $category) {
     <div class="selectbar-page selectbar-' . $category . '">
         <div class="selectbar-page-heading">' . $category . '</div>
         <div class="selectbar-page-tools selectbar-page-tools-create-' . $crate_post_visible . '">
-            <div class="selectbar-page-search-box selectbar-page-search-box-create-' . $crate_post_visible . '">
+            <div class="selectbar-page-search-box selectbar-page-search-box-create-' . $crate_post_visible . '" onkeyup="update_articles(\'' . $category . '\')">
                 <img class="selectbar-' . $category . '-search-logo selectbar-page-search-logo selectbar-page-search-logo-create-' . $crate_post_visible . '" src="/forum/assets/img/icon/search.svg">
                 <input class="selectbar-' . $category . '-search selectbar-page-search selectbar-page-search-create-' . $crate_post_visible . '" type="text" placeholder="Search topic">
             </div>

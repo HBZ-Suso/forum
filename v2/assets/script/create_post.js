@@ -65,7 +65,7 @@ function send_createpost_ajax_request (title, text, tags, category) {
     axios
         .post("/forum/assets/site/create_article.php", "form=true&title=" + title + "&text=" +  text + "&tags=" + tags + "&category=" + category)
         .then((response) => {
-            window.location.hash = "Article?articleId=" + response.data;
+            //window.location.hash = "Article?articleId=" + response.data; DOESNT WORK, LOL
         })
         .catch((error) => {
             throw new Error(error);

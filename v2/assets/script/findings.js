@@ -66,9 +66,14 @@ function update_articles (category) {
     })
     let listed = find_matching(search, use_array, 120, special_args=special_array);
 
+    container.innerHTML = "";
+
     listed.forEach((element, index) => {
-        container.innerHTML += get_article_entry_html(articleList[element.special]);
+        if (index < 30) {
+            container.innerHTML += get_article_entry_html(articleList[element.special]);
+        }
     })
+
     try {update_authors();} catch (e) {console.debug(e);}
 }
 
