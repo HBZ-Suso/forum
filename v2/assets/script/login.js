@@ -64,3 +64,13 @@ function show_login_and_logout () {
             console.debug("Error whilst trying to logout.")
         })
 }
+
+
+function close_login_window () {
+    let counter = -2;
+    while (window.location.hash === "#Login") {
+        window.location.hash = hash_history[hash_history.length + counter]["state"].slice(1);
+        counter--;
+    }
+    document.querySelector(".loginbox-container").remove();
+}

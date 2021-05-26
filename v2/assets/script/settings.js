@@ -117,38 +117,67 @@ function show_settings () {
     axios
         .post("/forum/assets/api/get_settings.php")
         .then((resolve) => {
-            if ("language" in resolve.data) {
-                document.getElementById(resolve.data.language).checked = true;
-            }
-            if ("privacy" in resolve.data) {
-                if (resolve.data.privacy == "0") {
-                    document.getElementById("low").checked = true;
+            try {
+                if ("language" in resolve.data) {
+                    document.getElementById(resolve.data.language).checked = true;
                 }
-                if (resolve.data.privacy == "1") {
-                    document.getElementById("medium").checked = true;
+                if ("privacy" in resolve.data) {
+                    if (resolve.data.privacy == "0") {
+                        document.getElementById("low").checked = true;
+                    }
+                    if (resolve.data.privacy == "1") {
+                        document.getElementById("medium").checked = true;
+                    }
+                    if (resolve.data.privacy == "2") {
+                        document.getElementById("high").checked = true;
+                    }
                 }
-                if (resolve.data.privacy == "2") {
-                    document.getElementById("high").checked = true;
+                if ("public" in resolve.data) {
+                    if (resolve.data.public === true) {
+                        document.getElementById("i-public").checked = true;
+                    }
+                    if (resolve.data.public == false) {
+                        document.getElementById("i-hidden").checked = true;
+                    }
                 }
-            }
-            if ("public" in resolve.data) {
-                if (resolve.data.public === true) {
-                    document.getElementById("i-public").checked = true;
-                }
-                if (resolve.data.public == false) {
-                    document.getElementById("i-hidden").checked = true;
-                }
-            }
+            } catch (e) {console.debug(e);}
         })
+
+    if (window.mobileCheck() === true) {
+        settings_window.innerHTML += "<link rel='stylesheet' href='/forum/v2/assets/style/mobile.settingsbox.css'></link>"
+    }
 
     set_settings_stuff();
 
     document.querySelector(".settingsbox-close").addEventListener("click", (e) => {
         let counter = -2;
-        while (window.location.hash === "#Settings") {
-            window.location.hash = hash_history[hash_history.length + counter]["state"].slice(1);
-            counter--;
+        try {
+            while (window.location.hash === "#Settings") {
+                window.location.hash = hash_history[hash_history.length + counter]["state"].slice(1);
+                counter--;
+                if (hash_history.length + counter < 1) { // Fallback
+                    window.location.hash = "Home";
+                }
+            }
+        } catch (e) {
+            console.debug(e);
         }
         settings_window.remove();
     })
+}
+
+function close_settings_window () {
+    let counter = -2;
+        try {
+            while (window.location.hash === "#Settings") {
+                window.location.hash = hash_history[hash_history.length + counter]["state"].slice(1);
+                counter--;
+                if (hash_history.length + counter < 1) { // Fallback
+                    window.location.hash = "Home";
+                }
+            }
+        } catch (e) {
+            console.debug(e);
+        }
+        settings_window.remove();
 }

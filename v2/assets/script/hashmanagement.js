@@ -4,6 +4,8 @@ if (getCookie("vprhe").length > 0) {
     var hash_history = [];
 }
 
+var full_pages = ["Home", "About", "Discussion", "Projects", "Help"];
+
 
 function add_hash_to_history () {
     hash_history.push({"time": Date.now(), "state": window.location.hash})
@@ -15,12 +17,33 @@ function add_hash_to_history () {
 }
 
 function check_hash_usage () {
-    if (hash_history[hash_history.length - 1]["state"] != hash_history[hash_history.length - 2]["state"]) {
-        issue_commands_after_hash(hash_history[hash_history.length - 1]["state"])
+    try {
+        if (hash_history[hash_history.length - 1]["state"] !== hash_history[hash_history.length - 2]["state"]) {
+            issue_commands_after_hash(hash_history[hash_history.length - 1]["state"])
+        }
+    } catch (e) {
+        console.debug(e)
     }
 }
 
+function find_last_category () {
+    for (let i=0; true; i++) {
+        if (i + 1 > hash_history.length) {
+            console.debug("No usable page found... Setting to default (Home)")
+            return "Home";
+        }
+
+        if (full_pages.indexOf(hash_history[hash_history.length - 1 - i]["state"].replace("#", "")) !== -1) {
+            return hash_history[hash_history.length - 1 - i]["state"].replace("#", "");
+        }
+    }
+}
+
+
 function issue_commands_after_hash (hash) {
+    if (hash.indexOf("?") !== -1) {
+        hash = hash.slice(0, (hash.indexOf("?")));
+    }
     switch (hash) {
         case "#Login":
             try {
@@ -36,6 +59,31 @@ function issue_commands_after_hash (hash) {
                 console.debug("Error whilst issuing internal Settings command, Error: " + e)
             }
             break;
+        case "#Article":
+            try {
+                show_article();
+            } catch (e) {
+                console.debug("Error whilst issuing internal Article command, Error: " + e)
+            }
+            break;
+        case "#Profile":
+            try {
+            } catch (e) {
+                console.debug("Error whilst issuing internal Article command, Error: " + e)
+            }
+            break;
+        case "#CreatePost":
+            try {
+                show_create_post(find_last_category());
+            } catch (e) {
+                console.debug("Error whilst issuing internal Article command, Error: " + e)
+            }
+            break;
+        default:
+            try {close_login_window();} catch (e) {console.debug(e)}
+            try {close_settings_window();} catch (e) {console.debug(e)}
+            try {close_article_if_not_side_by_side();} catch (e) {console.debug(e)}
+            try {close_createpost_window();} catch (e) {console.debug(e)}
     }
 }
 

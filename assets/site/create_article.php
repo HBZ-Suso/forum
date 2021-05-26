@@ -70,10 +70,18 @@ if (!isset($_POST["form"]) && !isset($_POST["submit"])) {
 
 
     $tags = explode("-", clean($filter->purify($_POST["tags"], 15)));
-    
-    if ($data->create_article($_SESSION["userId"], $filter->purify($_POST["title"], 50), $filter->purify($_POST["text"], 35), $tags)) {
-        header("LOCATION: /forum/?articleTitle=" . $filter->purify($_POST["title"], 50));
-        exit("<script>window.location='/forum/?articleTitle=" . $filter->purify($_POST["title"], 50) . "'</script>");
+    if (isset($_POST["category"])) {
+        if (in_array($_POST["category"], ["Home", "About", "Discussion", "Projects", "Help"])) {
+            $category = $_POST["category"];
+        } else {
+            $category = "Home";
+        }
+    } else {
+        $category = "Home";
+    }
+
+    if ($data->create_article($_SESSION["userId"], $filter->purify($_POST["title"], 50), $filter->purify($_POST["text"], 35), $tags, $category)) {
+        exit($data->get_article_id_by_title($filter->purify($_POST["title"], 50)));
     } else {
         exit("error");
     }

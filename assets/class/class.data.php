@@ -116,15 +116,15 @@ class Data extends Connector
     }
 
 
-    public function create_article($userId, $title, $text, $tags)
+    public function create_article($userId, $title, $text, $tags, $category)
     {
         if ($this->check_entry_exists("articles", "articleTitle", $title)) {
             return false;
         }
 
-        $query = "INSERT INTO articles (userId, articleTitle, articleText, articleTags) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO articles (userId, articleTitle, articleText, articleTags, articleCategory) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("isss", $userId, $title, $text, json_encode($tags));
+        $stmt->bind_param("issss", $userId, $title, $text, json_encode($tags), $category);
         $stmt->execute();
         $stmt->close();
 

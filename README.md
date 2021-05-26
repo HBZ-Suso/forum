@@ -27,6 +27,7 @@ Database name: forum
     4. articleText (formatet text, LONGTEXT)
     5. articleTags (used for search, JSON (array))
     6. articleCreated (timestamp, CURRENT_TIMESTAMP)
+    7. articleCategory ("Home", "About", "Discussion", "Projects", "Help", TEXT)
 
 3. articleLikes:
     1. likeId (number, ticking up, DOUBLEINT, unsigned)

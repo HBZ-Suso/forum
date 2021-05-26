@@ -5,10 +5,14 @@
     --side-border-color: #d2e9e9;
     --select-main-color: #64828A;
     --select-icon-color: #AEE0B8;
-    --article-text-color: #597880;
+    --select-line-color: #79969c;
+    --article-text-color: #456B71;
+    --article-text-color-darker: #395458;
     --article-icon-color: #49A6A2;
     --dark-color: #2A3949;
     --light-color: #ECF7F7;
+
+    --overlay-window-color: #498583;
 
     --accent-color: #B7094C;
 }

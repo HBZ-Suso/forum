@@ -16,5 +16,9 @@ if (isset($rargs["articleTitle"]) && !isset($rargs["articleId"])) {
 
 $article_data = $data->get_article_by_id($id);
 
+if ($article_data != false) {
+    $article_data["userName"] = $data->get_user_by_id($article_data["userId"])["userName"];
+}
+
 header("Content-Type: application/json");
 exit(json_encode($article_data));

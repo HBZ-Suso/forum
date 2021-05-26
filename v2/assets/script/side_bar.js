@@ -1,7 +1,7 @@
 // HANDLE CATEGORY DISPLAY
 
 
-var selected_category = "Home";
+var selected_category = find_last_category();
 var categories = ["Home", "About", "Discussion", "Projects", "Help"]
 if (window.location.hash.toString().length > 0) {
     if (categories.indexOf(window.location.hash.toString().slice(1)) != -1) {
@@ -12,7 +12,11 @@ if (window.location.hash.toString().length > 0) {
 document.querySelectorAll(".category-header").forEach((element, index) => {
     element.addEventListener("click", (e) => {
         e.preventDefault(); 
-        window.location.hash = e.target.parentElement.getAttribute("link"); 
+        if (e.target.parentElement.getAttribute("link") !== null && e.target.parentElement.getAttribute("link") !== undefined) {
+            window.location.hash = e.target.parentElement.getAttribute("link");
+        } else {
+            window.location.hash = e.target.getAttribute("link");
+        }
         if (window.location.hash.toString().length > 0) {
             if (categories.indexOf(window.location.hash.slice(1)) != -1) {
                 selected_category = window.location.hash.slice(1);
