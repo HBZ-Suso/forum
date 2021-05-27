@@ -33,7 +33,7 @@ function show_article () {
             document.querySelector(".viewbar-content").innerHTML = `
                 <div class="viewbar-content-heading">${resolve.data.articleTitle}</div>
                 <div class="viewbar-content-author">
-                    <img src="/forum/assets/img/manexample.jpeg">
+                    <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-${resolve.data.userColor}">
                     <div class="viewbar-content-author-info">
                         Created by <a href="#Profile?userId=1">${resolve.data.userName}</a><br>
                         on <p>${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}</p>
@@ -41,11 +41,10 @@ function show_article () {
                 </div>
                 <div class="viewbar-content-text">${resolve.data.articleText}</div>
                 <div class="viewbar-content-toolbar">
-                    <button class="viewbar-content-toolbar-share" onclick="copy_handler('.copy-share-button-${resolve.data.articleId}')">Copy Link<input class="copy-share-button-${resolve.data.articleId}" type="text" style="display: none;" value="${window.location}"/></button>
+                    <button class="viewbar-content-toolbar-share" onclick="article_copy_handler('Article?articleId=${resolve.data.articleId}')"/>Copy Link</button>
                     <button class="viewbar-content-toolbar-report">Report</button>
                 </div>
-                <div class="viewbar-content-comments">
-                    ${get_comment_html()}
+                <div class="viewbar-content-comments comment-section-id-${resolve.data.articleId}">
                 </div>
             `;
             if (window.innerWidth < 1500 || window.mobileCheck() == true) {
@@ -56,26 +55,16 @@ function show_article () {
                 document.querySelector(".viewbar-container").style.display = "";
                 content_displayed = false;
             }
+            set_comment_html(resolve.data.articleId)
         }, (reject) => {
             console.debug("Error whilst trying to get article data from api.");
         })
 }
 
 
-function get_comment_html () {
-    return '';
-}
 
-function copy_handler (sel) {
-    try {
-        let copyText = document.querySelector(sel);
-        copyText.select();
-        copyText.setSelectionRange(0, 99999);
-        document.execCommand("copy");
-        console.debug("Copied to clipboard")
-    } catch (e) {
-        console.debug(e);
-    }
+function article_copy_handler (hash) {
+    copyToClipboard(window.location.toString().replace(window.location.hash, "") + "#" + hash)
 }
 
 function close_article () {

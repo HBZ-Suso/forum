@@ -1,6 +1,7 @@
 var language = "";
 var publicity = "";
 var notifications = "";
+var color = "";
 
 function set_settings_stuff () {
     document.querySelectorAll(".snb-element").forEach((element, index) => {
@@ -32,12 +33,10 @@ function select_settings_page (snb_element) {
 
 
 function s_check_changes () {
-    let c_language = false;
-    let c_publicity = false;
-    let c_notifications = false;
     let n_language = "";
     let n_publicity = "";
     let n_notifications = "";
+    let n_color = "";
     document.querySelectorAll(".language_radio").forEach((element, index) => {
         if (element.checked) {
             n_language = element.id;
@@ -51,6 +50,11 @@ function s_check_changes () {
     document.querySelectorAll(".notification_radio").forEach((element, index) => {
         if (element.checked) {
             n_notifications = element.id;
+        }
+    })
+    document.querySelectorAll(".user_color_radio").forEach((element, index) => {
+        if (element.checked) {
+            n_color = element.id;
         }
     })
 
@@ -89,5 +93,20 @@ function s_check_changes () {
                 throw new Error(error);
             })
         notifications = n_notifications;
+    }
+
+    if (n_color !== color) {
+        axios
+            .post("/forum/assets/api/set_color.php?color=" + n_color)
+            .then((response) => {
+            })
+            .catch((error) => {
+                throw new Error(error);
+            })
+        document.querySelectorAll(".user-profile-color-overlay-" + color).forEach((element, index) => {
+            element.classList.remove("user-profile-color-overlay-" + color);
+            element.classList.add("user-profile-color-overlay-" + n_color);
+        })
+        color = n_color;
     }
 }

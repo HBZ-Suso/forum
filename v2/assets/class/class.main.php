@@ -79,6 +79,7 @@ echo '<script src="/forum/v2/assets/script/settings.js"></script>';
 echo '<script src="/forum/v2/assets/script/settings_functions.js"></script>';
 echo '<script src="/forum/v2/assets/script/create_post.js"></script>';
 echo '<script src="/forum/v2/assets/script/findings.js"></script>';
+echo '<script src="/forum/v2/assets/script/comment.js"></script>'; 
 echo '<script src="/forum/v2/assets/script/show_article.js"></script>'; 
 
 if ($data->is_logged_in()) {

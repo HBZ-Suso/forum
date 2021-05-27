@@ -15,7 +15,8 @@ if ($rargs["articleId"]) {
     if (isset($comments)) {
         for ($iter = 0; $iter < count($comments); $iter++) {
             if (!isset($comments[$iter]["userId"])) {continue;}
-            $comments[$iter]["username"] = $data->get_username_by_id($comments[$iter]["userId"]);
+            $comments[$iter]["userName"] = $data->get_username_by_id($comments[$iter]["userId"]);
+            $comments[$iter]["userColor"] = $data->get_user_setting("color", $comments[$iter]["userId"]);
         }
     }
     exit(json_encode($comments));
@@ -26,7 +27,8 @@ if ($rargs["userId"]) {
     if (isset($comments)) {
         for ($iter = 0; $iter < count($comments); $iter++) {
             if (!isset($comments[$iter]["userId"])) {continue;}
-            $comments[$iter]["username"] = $data->get_username_by_id($comments[$iter]["userId"]);
+            $comments[$iter]["userName"] = $data->get_username_by_id($comments[$iter]["userId"]);
+            $comments[$iter]["userColor"] = $data->get_user_setting("color", $comments[$iter]["userId"]);
         }
     }
     exit(json_encode($comments));

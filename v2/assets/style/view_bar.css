@@ -100,7 +100,17 @@
     cursor: pointer;
     border: none;
     background-color: white;
+    border-radius: 2px;
+    transition: background-color 0.2s linear;
+    padding: 0 5px;
+    margin: 0 10px;
 }
+
+.viewbar-content-toolbar > button:active {
+    transition: background-color 0s linear;
+    background-color: var(--viewbar-click-background-overlay-color);
+}
+
 
 
 .viewbar-content-author {
@@ -134,4 +144,108 @@
 .viewbar-content-author-info > p {
     color: var(--dark-color);
     font-weight: 600;
+}
+
+
+
+.viewbar-content-comments {
+    width: 100%;
+    height: min-content;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--side-border-color);
+}
+
+.createcomment-container {
+    width: 100%;
+    border-bottom: 2px solid var(--side-border-color);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.createcomment-title {
+    width: 25%;
+    border: none;
+    border-right: 2px solid var(--side-border-color);
+    color: var(--article-text-color-darker);
+    padding-right: 5px;
+    font-size: 17px;
+}
+
+.createcomment-text {
+    width: 65%;
+    resize: none;
+    border: none;
+    padding-left: 15px;
+    font-size: 14px;
+    color: var(--article-text-color);
+}
+
+.createcomment-send-container {
+    width: 4%;
+    padding: 3%;
+    cursor: pointer;
+}
+
+.createcomment-send {
+    filter: invert(65%) sepia(30%) saturate(662%) hue-rotate(128deg) brightness(84%) contrast(87%);
+    width: 100%;
+}
+
+
+
+.comment-container {
+    padding: 10px 0;
+    width: 100%;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.comment-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-author {
+    width: min-content;
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.comment-author > img {
+    height: 50px;
+}
+
+.comment-author-info {
+    width: fit-content;
+    margin-left: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 180px;
+}
+
+.comment-author-info > a, .comment-author-info > p {
+    display: inline;
+    font-size: 16px;
+    color: var(--article-icon-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.comment-author-info > p {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+
+.comment-title {
+    color: var(--article-text-color-darker);
+    font-size: 20px;
+    margin-bottom: 5px;
+    height: min-content;
 }

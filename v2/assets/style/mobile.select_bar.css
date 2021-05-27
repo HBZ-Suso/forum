@@ -138,7 +138,7 @@
     width: 92%;
     margin: 0 auto;
     position: relative;
-    height: 170px;
+    height: 170px!important;
     border-bottom: 3px solid var(--select-line-color);
     cursor: pointer;
 }
@@ -158,6 +158,8 @@
     font-size: 60px;
     color: var(--light-color);
     font-weight: 500;
+    overflow: hidden;
+    height: 70px;
 }
 
 .selectbar-article-element > div {

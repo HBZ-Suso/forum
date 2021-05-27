@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/forum/v2/assets/style/side_bar.css">
+<link rel="stylesheet" href="/forum/v2/assets/style/user-profile.css">
 <?php 
 if ($info->mobile === true) {
     echo '<link rel="stylesheet" href="/forum/v2/assets/style/mobile.side_bar.css">';
@@ -7,7 +8,7 @@ if ($info->mobile === true) {
 // Set display of elements when logged in
 if (isset($_SESSION["userId"])) {
     $user_data = $data->get_user_by_id($_SESSION["userId"]);
-    $user_image_element = '<img src="/forum/assets/img/icon/user.svg" alt="U" onclick="window.location.hash = \"Login\"">';
+    $user_image_element = '<img src="/forum/assets/img/icon/user.svg" alt="U" class="user-profile-picture user-profile-color-overlay-' . $data->get_user_setting("color", $_SESSION["userId"]) . '">';
     $logged_out_show = "style=\"display: none;\"";
 } else {
     $user_data = [

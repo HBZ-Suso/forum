@@ -51,7 +51,7 @@ var refresh_comments = async () => {
             document.getElementById("js_comments").innerHTML = "";
             for (let key in comments) {
                 let element = comments[key];
-                create_new_comment(element["commentTitle"], element["commentText"], element["commentId"], element["username"])
+                create_new_comment(element["commentTitle"], element["commentText"], element["commentId"], element["userName"])
             }
             return true;
         })

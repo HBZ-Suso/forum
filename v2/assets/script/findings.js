@@ -46,9 +46,9 @@ function get_article_entry_html (article_data) {
         <img src="/forum/assets/img/icon/article.svg">
         <h1>${article_data["articleTitle"]}</h1>
         <div>
-            <p>Geschrieben von <a onclick="event.stopPropagation();" href="#Profile?userId=${article_data["userId"]}" class="findings-article-author" authorId="${article_data["userId"]}">${article_data["userName"]}</a> •</p>
-            <p>14 Kommentare</a> •</p>
-            <p>Letzte Antwort um 17 Uhr</p>
+            <p>Geschrieben von <a onclick="event.stopPropagation();" href="#Profile?userId=${article_data["userId"]}" class="findings-article-author" authorId="${article_data["userId"]}">${article_data["userName"]}</a></p>
+            <!--TOO COMPLICATED????<p>14 Kommentare</a> •</p>
+            <p>Letzte Antwort um 17 Uhr</p>-->
         </div>
     </div>
     `;
@@ -65,14 +65,15 @@ function update_articles (category) {
         special_array.push(element["articleId"])
     })
     let listed = find_matching(search, use_array, 120, special_args=special_array);
-
     container.innerHTML = "";
 
     listed.forEach((element, index) => {
-        if (index < 30) {
+        if (index < 30 && element["prox"] > 0.2) {
             container.innerHTML += get_article_entry_html(articleList[element.special]);
         }
     })
+
+    // Performance improvement: only check best results of last search?
 
     try {update_authors();} catch (e) {console.debug(e);}
 }

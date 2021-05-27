@@ -18,7 +18,7 @@
     background-color: var(--overlay-window-color);
     border-radius: 5px;
     position: relative;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
 .settingsbox-close {

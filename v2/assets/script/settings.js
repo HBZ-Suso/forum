@@ -4,8 +4,11 @@ function show_settings () {
     document.body.appendChild(settings_window);
 
     if(logged_in === true) {
-        var logged_img = `<img src="/forum/assets/img/icon/padlock.png" class="snb-element snb-public" open="settings-page-public">
-        <img src="/forum/assets/img/icon/notification.png" class="snb-element snb-notification" open="settings-page-notification">`;
+        var logged_img = `
+        <img src="/forum/assets/img/icon/padlock.png" class="snb-element snb-public" open="settings-page-public">
+        <img src="/forum/assets/img/icon/notification.png" class="snb-element snb-notification" open="settings-page-notification">
+        <img src="/forum/assets/img/icon/theme.png" class="snb-element snb-theme" open="settings-page-theme">
+        `;
     } else {
         var logged_img = "";
     }
@@ -21,6 +24,77 @@ function show_settings () {
             ${logged_img}
         </div>
         <img src="/forum/assets/img/icon/reload.png" class="settings-reload" alt="Reload Page">
+
+            <div class="settings-page settings-page-theme" style="display: none;">
+                <form class="setting">
+                    <h1 class="setting-heading">Theme</h1>
+                    <div class="container">
+                        <div class="option">
+                            <input class="user_color_radio" type="radio" name="user-color" id="red" value="user-color">
+                            <label for="red" aria-label="red">
+                            <span></span>
+                            Red
+                            </label>
+                        </div>
+                    
+                        <div class="option">
+                            <input class="user_color_radio" type="radio" name="user-color" id="purple" value="user-color">
+                            <label for="purple" aria-label="purple">
+                            <span></span>
+                            Purple
+                            </label>
+                        </div>
+
+                        <div class="option">
+                            <input class="user_color_radio" type="radio" name="user-color" id="pink" value="user-color">
+                            <label for="pink" aria-label="pink">
+                            <span></span>
+                            Pink
+                            </label>
+                        </div>
+
+                        <div class="option">
+                            <input class="user_color_radio" type="radio" name="user-color" id="green" value="user-color">
+                            <label for="green" aria-label="green">
+                            <span></span>
+                            Green
+                            </label>
+                        </div>
+
+                        <div class="option">
+                            <input class="user_color_radio" type="radio" name="user-color" id="yellow" value="user-color">
+                            <label for="yellow" aria-label="yellow">
+                            <span></span>
+                            Yellow
+                            </label>
+                        </div>
+
+                        <div class="option">
+                            <input class="user_color_radio" type="radio" name="user-color" id="black" value="user-color">
+                            <label for="black" aria-label="black">
+                            <span></span>
+                            Black
+                            </label>
+                        </div>
+
+                        <div class="option">
+                            <input class="user_color_radio" type="radio" name="user-color" id="blue" value="user-color">
+                            <label for="blue" aria-label="blue">
+                            <span></span>
+                            Blue
+                            </label>
+                        </div>
+
+                        <div class="option">
+                            <input class="user_color_radio" type="radio" name="user-color" id="turquoise" value="user-color">
+                            <label for="turquoise" aria-label="turquoise">
+                            <span></span>
+                            Turquoise
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
             <div class="settings-page settings-page-language" style="">
                 <form class="setting">
@@ -139,6 +213,9 @@ function show_settings () {
                     if (resolve.data.public == false) {
                         document.getElementById("i-hidden").checked = true;
                     }
+                }
+                if ("color" in resolve.data) {
+                    document.getElementById(resolve.data.color).checked = true;
                 }
             } catch (e) {console.debug(e);}
         })

@@ -259,3 +259,36 @@ function get_month_name (i) {
             return "January";
     }
 }
+
+
+const copyToClipboard = str => {
+    const el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    const selected =
+      document.getSelection().rangeCount > 0
+        ? document.getSelection().getRangeAt(0)
+        : false;
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    if (selected) {
+      document.getSelection().removeAllRanges();
+      document.getSelection().addRange(selected);
+    }
+  };
+
+
+function get_user_picture_color () {
+    let all_classes = document.querySelector(".user-profile-picture").classList;
+    let to_return = false;
+    all_classes.forEach((element, index) => {
+        if (element.indexOf("user-profile-color-overlay") !== -1) {
+            to_return = element.replace("user-profile-color-overlay-", "");
+        }
+    });
+    return to_return;
+}
