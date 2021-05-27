@@ -5,13 +5,15 @@ function set_comment_html (articleId) {
             if (document.querySelector(".viewbar-content-comments").classList.contains("comment-section-id-" + articleId)) {
                 document.querySelector(".viewbar-content-comments").innerHTML = "";
 
-                document.querySelector(".viewbar-content-comments").innerHTML += `
+                if (logged_in) {
+                    document.querySelector(".viewbar-content-comments").innerHTML += `
                     <div class="createcomment-container">
                         <input class="createcomment-title" type="text" placeholder="Title"></input>
                         <textarea class="createcomment-text" placeholder="Your comment..."></textarea>
                         <div class="createcomment-send-container"><img src="/forum/assets/img/icon/send.png" class="createcomment-send"></div>
                     </div>
                 `;
+                }
 
                 if (resolve.data !== false) {
                     resolve.data.forEach((element, index) => {

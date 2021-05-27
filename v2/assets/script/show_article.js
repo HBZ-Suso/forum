@@ -41,7 +41,8 @@ function show_article () {
                 </div>
                 <div class="viewbar-content-text">${resolve.data.articleText}</div>
                 <div class="viewbar-content-toolbar">
-                    <button class="viewbar-content-toolbar-share" onclick="article_copy_handler('Article?articleId=${resolve.data.articleId}')"/>Copy Link</button>
+                    <button class="viewbar-content-toolbar-share" onclick="share('HBZ-Forum: ${resolve.data.articleTitle}', '${window.location.toString().replace(window.location.hash, "") + "#Article?articleId=" + resolve.data.articleId}')">Share</button>
+                    <button class="viewbar-content-toolbar-copy" onclick="article_copy_handler('Article?articleId=${resolve.data.articleId}')"/>Copy Link</button>
                     <button class="viewbar-content-toolbar-report">Report</button>
                 </div>
                 <div class="viewbar-content-comments comment-section-id-${resolve.data.articleId}">
