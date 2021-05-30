@@ -17,7 +17,7 @@ function show_settings () {
     <div class="settingsbox-innerContainer">
         <a class="settingsbox-close">X</a>
 
-        <h3 class="settingsbox-heading">Settings</h3>
+        <h3 class="settingsbox-heading">${language_data["v2-settings-heading"]}</h3>
         
         <div class="settings-navigation-bar">
             <img src="/forum/assets/img/icon/translation.png" class="snb-element snb-language snb-element-selected" open="settings-page-language">
@@ -27,13 +27,13 @@ function show_settings () {
 
             <div class="settings-page settings-page-theme" style="display: none;">
                 <form class="setting">
-                    <h1 class="setting-heading">Theme</h1>
+                    <h1 class="setting-heading">${language_data["v2-settings-theme-heading"]}</h1>
                     <div class="container">
                         <div class="option">
                             <input class="user_color_radio" type="radio" name="user-color" id="red" value="user-color">
                             <label for="red" aria-label="red">
                             <span></span>
-                            Red
+                            ${language_data["v2-red"]}
                             </label>
                         </div>
                     
@@ -41,7 +41,7 @@ function show_settings () {
                             <input class="user_color_radio" type="radio" name="user-color" id="purple" value="user-color">
                             <label for="purple" aria-label="purple">
                             <span></span>
-                            Purple
+                            ${language_data["v2-purple"]}
                             </label>
                         </div>
 
@@ -49,7 +49,7 @@ function show_settings () {
                             <input class="user_color_radio" type="radio" name="user-color" id="pink" value="user-color">
                             <label for="pink" aria-label="pink">
                             <span></span>
-                            Pink
+                            ${language_data["v2-pink"]}
                             </label>
                         </div>
 
@@ -57,7 +57,7 @@ function show_settings () {
                             <input class="user_color_radio" type="radio" name="user-color" id="green" value="user-color">
                             <label for="green" aria-label="green">
                             <span></span>
-                            Green
+                            ${language_data["v2-green"]}
                             </label>
                         </div>
 
@@ -65,7 +65,7 @@ function show_settings () {
                             <input class="user_color_radio" type="radio" name="user-color" id="yellow" value="user-color">
                             <label for="yellow" aria-label="yellow">
                             <span></span>
-                            Yellow
+                            ${language_data["v2-yellow"]}
                             </label>
                         </div>
 
@@ -73,7 +73,7 @@ function show_settings () {
                             <input class="user_color_radio" type="radio" name="user-color" id="black" value="user-color">
                             <label for="black" aria-label="black">
                             <span></span>
-                            Black
+                            ${language_data["v2-black"]}
                             </label>
                         </div>
 
@@ -81,7 +81,7 @@ function show_settings () {
                             <input class="user_color_radio" type="radio" name="user-color" id="blue" value="user-color">
                             <label for="blue" aria-label="blue">
                             <span></span>
-                            Blue
+                            ${language_data["v2-blue"]}
                             </label>
                         </div>
 
@@ -89,7 +89,7 @@ function show_settings () {
                             <input class="user_color_radio" type="radio" name="user-color" id="turquoise" value="user-color">
                             <label for="turquoise" aria-label="turquoise">
                             <span></span>
-                            Turquoise
+                            ${language_data["v2-turquoise"]}
                             </label>
                         </div>
                     </div>
@@ -98,13 +98,13 @@ function show_settings () {
 
             <div class="settings-page settings-page-language" style="">
                 <form class="setting">
-                    <h1 class="setting-heading">Sprache</h1>
+                    <h1 class="setting-heading">${language_data["v2-settings-language-heading"]}</h1>
                     <div class="container">
                         <div class="option">
                             <input class="language_radio" type="radio" name="language" id="english" value="language">
                             <label for="english" aria-label="english">
                             <span></span>
-                            English
+                            ${language_data["v2-english"]}
                             </label>
                         </div>
                     
@@ -112,8 +112,7 @@ function show_settings () {
                             <input class="language_radio" type="radio" name="language" id="deutsch" value="language">
                             <label for="deutsch" aria-label="deutsch">
                             <span></span>
-                    
-                            Deutsch
+                            ${language_data["v2-german"]}
                             </label>
                         </div>
 
@@ -121,7 +120,7 @@ function show_settings () {
                             <input class="language_radio" type="radio" name="language" id="français" value="language">
                             <label for="français" aria-label="français">
                             <span></span>
-                            Français
+                            ${language_data["v2-french"]}
                             </label>
                         </div>
                     </div>
@@ -131,13 +130,13 @@ function show_settings () {
 
             <div class="settings-page settings-page-public" style="display: none;">
                 <form class="setting">
-                    <h1 class="setting-heading">Profil-Öffentlichkeit</h1>
+                    <h1 class="setting-heading">${language_data["v2-settings-public-heading"]}</h1>
                     <div class="container">
                         <div class="option">
                             <input class="public_radio" type="radio" name="public" id="i-hidden" value="public">
                             <label for="i-hidden" aria-label="i-hidden">
                             <span></span>
-                            Versteckt
+                            ${language_data["v2-hidden"]}
                             </label>
                         </div>
                     
@@ -145,7 +144,7 @@ function show_settings () {
                             <input class="public_radio" type="radio" name="public" id="i-public" value="public">
                             <label for="i-public" aria-label="i-public">
                             <span></span>
-                            Öffentlich
+                            ${language_data["v2-public"]}
                             </label>
                         </div>
                     </div>
@@ -154,13 +153,13 @@ function show_settings () {
 
             <div class="settings-page settings-page-notification" style="display: none;">
                 <form class="setting">
-                    <h1 class="setting-heading">Benachrichtigungen</h1>
+                    <h1 class="setting-heading">${language_data["v2-settings-notification-heading"]}</h1>
                     <div class="container">
                         <div class="option">
                             <input class="notification_radio" type="radio" name="notification" id="low" value="low">
                             <label for="low" aria-label="low">
                             <span></span>
-                            Keine
+                            ${language_data["v2-none"]}
                             </label>
                         </div>
                     
@@ -168,7 +167,7 @@ function show_settings () {
                             <input class="notification_radio" type="radio" name="notification" id="medium" value="medium">
                             <label for="medium" aria-label="medium">
                             <span></span>
-                            Manche
+                            ${language_data["v2-some"]}
                             </label>
                         </div>
 
@@ -176,7 +175,7 @@ function show_settings () {
                             <input class="notification_radio" type="radio" name="notification" id="high" value="high">
                             <label for="high" aria-label="high">
                             <span></span>
-                            Alle
+                            ${language_data["v2-all"]}
                             </label>
                         </div>
                     </div>

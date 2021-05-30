@@ -46,7 +46,7 @@ function get_article_entry_html (article_data) {
         <img src="/forum/assets/img/icon/article.svg">
         <h1>${article_data["articleTitle"]}</h1>
         <div>
-            <p>Geschrieben von <a onclick="event.stopPropagation();" href="#Profile?userId=${article_data["userId"]}" class="findings-article-author" authorId="${article_data["userId"]}">${article_data["userName"]}</a></p>
+            <p>${language_data["v2-article-by"]}<a onclick="event.stopPropagation();" href="#Profile?userId=${article_data["userId"]}" class="findings-article-author" authorId="${article_data["userId"]}">${article_data["userName"]}</a></p>
             <!--TOO COMPLICATED????<p>14 Kommentare</a> •</p>
             <p>Letzte Antwort um 17 Uhr</p>-->
         </div>

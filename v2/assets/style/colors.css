@@ -17,4 +17,9 @@
     --accent-color: #B7094C;
 
     --viewbar-click-background-overlay-color: #66b9b775;
+
+    --moderator-font-color: green;
+    --administrator-font-color: red;
+
+    --profile-main-background: lightcyan;
 }

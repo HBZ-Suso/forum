@@ -15,12 +15,12 @@ function show_login_and_logout () {
             login_window.innerHTML = `
             <div class="loginbox-innerContainer">
                 <a class="loginbox-close">X</a>
-                <h3 class="loginbox-heading">Login</h3>
-                <p class="loginbox-description">Enter your username and password. They will be sent to the server and you will be logged in. If the Login was successfull, this page will be reloaded.</p>
+                <h3 class="loginbox-heading">${language_data["v2-login-heading"]}</h3>
+                <p class="loginbox-description">${language_data["v2-login-message"]}</p>
 
-                <input type="text" placeholder="Username" class="loginbox-username"></input>
-                <input type="password" placeholder="Password" class="loginbox-password"></input>
-                <input type="submit" value="Login" class="loginbox-submit">
+                <input type="text" placeholder="${language_data["v2-login-username"]}" class="loginbox-username"></input>
+                <input type="password" placeholder="${language_data["v2-login-password"]}" class="loginbox-password"></input>
+                <input type="submit" value="${language_data["v2-login-submit"]}" class="loginbox-submit">
 
                 <link rel="stylesheet" href="/forum/v2/assets/style/loginbox.css">
                 ${add_mobile_loginbox_stylesheet}
@@ -48,7 +48,7 @@ function show_login_and_logout () {
                             }
                         }, (reject) => {console.debug(reject)})
                 } else {
-                    alert("Please enter a Username and Password.")
+                    alert(language_data["v2-login-alert"])
                 }
             })
 

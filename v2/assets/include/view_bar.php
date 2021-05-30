@@ -3,7 +3,7 @@
 <div class="viewbar-container" style="display: none;">
     <img class="viewbar-close" src="/forum/assets/img/icon/close.svg"><script></script>
     <div class="viewbar-empty">
-        <p>Please open an article...</p>
+        <p><?php echo $text->get("v2-open-article-first");?></p>
     </div>
     <div class="viewbar-content"></div>
 </div>

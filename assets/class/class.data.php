@@ -644,6 +644,66 @@ class Data extends Connector
     }
 
 
+    public function get_articles_by_user_id($userId)
+    {
+        $query = "SELECT * FROM articles WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+        } else {
+            return $return;
+        }
+        return $return;
+    }
+
+
+    public function get_user_comments_by_user_id($userId)
+    {
+        $query = "SELECT * FROM userComments WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+        } else {
+            return $return;
+        }
+        return $return;
+    }
+
+
+    public function get_article_comments_by_user_id ($userId)
+    {
+        $query = "SELECT * FROM articleComments WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+        } else {
+            return $return;
+        }
+        return $return;
+    }
+
+
 
     public function get_username_by_id($code)
     {
@@ -769,6 +829,18 @@ class Data extends Connector
     public function get_user_likes_by_targetUserId($userId)
     {
         $query = "SELECT likeId FROM userLikes WHERE targetUserId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows;
+    }
+
+
+    public function get_user_comments_by_targetUserId($userId)
+    {
+        $query = "SELECT commentId FROM userComments WHERE targetUserId=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", $userId);
         $stmt->execute();

@@ -8,8 +8,8 @@ function set_comment_html (articleId) {
                 if (logged_in) {
                     document.querySelector(".viewbar-content-comments").innerHTML += `
                     <div class="createcomment-container">
-                        <input class="createcomment-title" type="text" placeholder="Title"></input>
-                        <textarea class="createcomment-text" placeholder="Your comment..."></textarea>
+                        <input class="createcomment-title" type="text" placeholder="${language_data["v2-comment-title"]}"></input>
+                        <textarea class="createcomment-text" placeholder="${language_data["v2-comment-text"]}"></textarea>
                         <div class="createcomment-send-container"><img src="/forum/assets/img/icon/send.png" class="createcomment-send"></div>
                     </div>
                 `;
@@ -47,8 +47,8 @@ function convert_comment_data_to_html (data) {
             <div class="comment-author">
                 <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-${data.userColor}">
                 <div class="comment-author-info">
-                    Created by <a href="#Profile?userId=1">${data.userName}</a><br>
-                    on <p>${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}</p>
+                    ${language_data["v2-author-message-1"]}<a href="#Profile?userId=1">${data.userName}</a><br>
+                    ${language_data["v2-author-message-2"]}<p>${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}</p>
                 </div>
             </div>
         </div>

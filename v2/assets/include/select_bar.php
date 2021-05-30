@@ -4,7 +4,7 @@
 <?php
 foreach ($data->get_categories() as $category) {
     if (isset($_SESSION["userId"])) {
-        $create_post = '<div class="selectbar-page-create selectbar-' . $category . '-create"><img src="/forum/assets/img/icon/create_post.svg">New Post</div>';
+        $create_post = '<div class="selectbar-page-create selectbar-' . $category . '-create"><img src="/forum/assets/img/icon/create_post.svg">' . $text->get("v2-create-post") . '</div>';
         $crate_post_visible = 'visible';
     }
 
@@ -28,7 +28,7 @@ foreach ($data->get_categories() as $category) {
         <div class="selectbar-page-tools selectbar-page-tools-create-' . $crate_post_visible . '">
             <div class="selectbar-page-search-box selectbar-page-search-box-create-' . $crate_post_visible . '" onkeyup="update_articles(\'' . $category . '\')">
                 <img class="selectbar-' . $category . '-search-logo selectbar-page-search-logo selectbar-page-search-logo-create-' . $crate_post_visible . '" src="/forum/assets/img/icon/search.svg">
-                <input class="selectbar-' . $category . '-search selectbar-page-search selectbar-page-search-create-' . $crate_post_visible . '" type="text" placeholder="Search topic">
+                <input class="selectbar-' . $category . '-search selectbar-page-search selectbar-page-search-create-' . $crate_post_visible . '" type="text" placeholder="' . $text->get("v2-search-topic") . '">
             </div>
             ' . $create_post . '
         </div>

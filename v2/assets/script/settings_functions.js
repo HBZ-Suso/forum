@@ -64,7 +64,7 @@ function s_check_changes () {
             .post("/forum/assets/api/language.php?language=" + n_language)
             .then((response) => {
                 if (response.data.indexOf("error") === -1) {
-                    
+                    axios.post("/forum/assets/api/get_language.php").then((resolve) => {language_data = resolve.data;}, (reject) => {throw new Error()}).catch(console.debug)
                 }
             })
             .catch((error) => {

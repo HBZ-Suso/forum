@@ -16,15 +16,32 @@ if (isset($rargs["userName"]) && !isset($rargs["userId"])) {
 
 $user_data = $data->get_user_by_id($id);
 
+
+$user_data["userLikes"] = count($data->get_user_likes_by_targetUserId($id));
+$user_data["articleLikes"] = count($data->get_article_likes_by_user_Id($id));
+$user_data["userComments"] = count($data->get_user_comments_by_targetUserId($id));
+$user_data["articleComments"] = count($data->get_article_comments_by_user_id($id));
+$user_data["userViews"] = count($data->get_user_views_by_targetUserId($id));
+$user_data["articleViews"] = count($data->get_article_views_by_user_id($id));
+$user_data["articles"] = count($data->get_articles_by_user_id($id));
+
+
 unset($user_data["userPassword"]);
 unset($user_data["userIntended"]);
 unset($user_data["userSettings"]);
 
-if (isset($rargs["transformVerified"])) {
+if (isset($rargs["transformVerified"]) || isset($rargs["transformBoolean"])) {
     if ($user_data["userVerified"] == "1") {
         $user_data["userVerified"] = true;
     } else {
         $user_data["userVerified"] = false;
+    }
+}
+if (isset($rargs["transformBoolean"])) {
+    if ($user_data["userLocked"] == "1") {
+        $user_data["userLocked"] = true;
+    } else {
+        $user_data["userLocked"] = false;
     }
 }
 if (isset($_GET["transformNull"])) {

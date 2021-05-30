@@ -35,15 +35,15 @@ function show_article () {
                 <div class="viewbar-content-author">
                     <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-${resolve.data.userColor}">
                     <div class="viewbar-content-author-info">
-                        Created by <a href="#Profile?userId=1">${resolve.data.userName}</a><br>
-                        on <p>${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}</p>
+                        ${language_data["v2-author-message-1"]}<a href="#Profile?userId=1">${resolve.data.userName}</a><br>
+                        ${language_data["v2-author-message-2"]}<p>${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}</p>
                     </div>
                 </div>
                 <div class="viewbar-content-text">${resolve.data.articleText}</div>
                 <div class="viewbar-content-toolbar">
-                    <button class="viewbar-content-toolbar-share" onclick="share('HBZ-Forum: ${resolve.data.articleTitle}', '${window.location.toString().replace(window.location.hash, "") + "#Article?articleId=" + resolve.data.articleId}')">Share</button>
-                    <button class="viewbar-content-toolbar-copy" onclick="article_copy_handler('Article?articleId=${resolve.data.articleId}')"/>Copy Link</button>
-                    <button class="viewbar-content-toolbar-report">Report</button>
+                    <button class="viewbar-content-toolbar-share" onclick="share('HBZ-Forum: ${resolve.data.articleTitle}', '${window.location.toString().replace(window.location.hash, "") + "#Article?articleId=" + resolve.data.articleId}')">${language_data["v2-share-share"]}</button>
+                    <button class="viewbar-content-toolbar-copy" onclick="article_copy_handler('Article?articleId=${resolve.data.articleId}')"/>${language_data["v2-share-link"]}</button>
+                    <button class="viewbar-content-toolbar-report">${language_data["v2-share-report"]}</button>
                 </div>
                 <div class="viewbar-content-comments comment-section-id-${resolve.data.articleId}">
                 </div>

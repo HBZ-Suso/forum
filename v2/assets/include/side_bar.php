@@ -12,9 +12,9 @@ if (isset($_SESSION["userId"])) {
     $logged_out_show = "style=\"display: none;\"";
 } else {
     $user_data = [
-        "userName" => "<a href='#Login'>Log in</a>!",
-        "userAge" => "In order to access all features",
-        "userEmployment" => "<a href='#Login'>log in</a>!"
+        "userName" => "<a href='#Login'>" . $text->get("v2-user-login-promt") . "</a>!",
+        "userAge" => $text->get("v2-user-login-effect"),
+        "userEmployment" => "<a href='#Login'>" . $text->get("v2-user-login-effect-2") . "</a>!"
     ];
     $user_image_element = '<img src="/forum/assets/img/icon/user.svg" alt="U" style="cursor:pointer;" onclick="window.location.hash = \'Login\'">';
     $hide_l_bar = "style=\"display: none;\"";
@@ -55,7 +55,7 @@ if (isset($_SESSION["userId"])) {
     <div class="category-container">
         <?php foreach ($data->get_categories() as $category) {echo '
             <a class="category-header" link="' . $category . '">
-            ' . $category . '
+            ' . $text->get("v2-category-" . $category) . '
             <!--<img src="/forum/assets/img/icon/arrow.svg" alt="">-->
             <div class="bicu"></div>
             <div class="scdb"></div>

@@ -110,7 +110,7 @@
 
 .selectbar-article-container {
     position: absolute;
-    top: 12%;
+    top: max(12%, 75px);
     left: 0px;
     right: 0px;
     bottom: 0px;

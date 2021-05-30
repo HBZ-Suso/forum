@@ -10,15 +10,15 @@ function show_create_post (category) {
     create_post_window.innerHTML = `
     <div class="createpost-innerContainer">
         <a class="createpost-close">X</a>
-        <h3 class="createpost-heading">Write Post</h3>
-        <p class="createpost-category">Post-Category is ${category}</p>
+        <h3 class="createpost-heading">${language_data["v2-createpost-heading"]}</h3>
+        <p class="createpost-category">${language_data["v2-createpost-category"]}${category}</p>
         
 
-        <input class="createpost-title" placeholder="The title of the article...">
+        <input class="createpost-title" placeholder="${language_data["v2-createpost-title"]}">
 
-        <textarea class="createpost-text" placeholder="Type here..."></textarea>
+        <textarea class="createpost-text" placeholder="${language_data["v2-createpost-text"]}"></textarea>
 
-        <input class="createpost-tags" placeholder="Descriptive tags, seperated by comma...">
+        <input class="createpost-tags" placeholder="${language_data["v2-createpost-heading"]}">
 
         <div class="createpost-submit-container"><input type="submit" class="createpost-submit"></div>
         
