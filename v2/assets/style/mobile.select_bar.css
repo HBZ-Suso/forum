@@ -155,11 +155,11 @@
     top: 12px;
     left: 80px;
     margin: 0px;
-    font-size: 60px;
+    font-size: 50px;
     color: var(--light-color);
     font-weight: 500;
     overflow: hidden;
-    height: 70px;
+    height: 80px;
 }
 
 .selectbar-article-element > div {

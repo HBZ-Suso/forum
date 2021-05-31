@@ -26,7 +26,7 @@ $user_data = $data->get_user_by_id($_GET["userId"]);
             <div class="profile-age"><?php echo $user_data["userAge"];?> years old</div>
             <textarea class="profile-description" disabled><?php echo $user_data["userDescription"];?></textarea>
 
-            <p class="profile-click-tip">(Click on this)</p>
+            <p class="profile-click-tip"><?php echo $text->get("v2-profile-click-here-tip") ?></p>
 
             <div class="profile-middle-column-click-barrier"></div>
         </div>
@@ -34,8 +34,8 @@ $user_data = $data->get_user_by_id($_GET["userId"]);
         <div class="profile-right-column profile-side-column">
             <div class="userCreated"></div>
             <div class="articles"></div>
-            <div class="userEmail">Emailaddress: <?php echo $user_data["userMail"];?></div>
-            <div class="userPhone">Phonenumber: <?php echo $user_data["userPhone"];?></div>
+            <div class="userEmail"><?php echo $text->get("v2-profile-email-heading") ?><?php echo $user_data["userMail"];?></div>
+            <div class="userPhone"><?php echo $text->get("v2-profile-phone-heading") ?><?php echo $user_data["userPhone"];?></div>
             <div class="lastArticle"></div>
             <div class="lastComment"></div>
         </div>

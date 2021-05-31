@@ -52,6 +52,7 @@
     width: 550px;
     color: var(--dark-color);
     font-size: 40px;
+    line-height: 55px;
 }
 
 .loginbox-username {

@@ -23,30 +23,30 @@ axios
     .catch(console.debug)
 
 function set_data_columns (data) {
-    document.querySelector(".articles").innerText = "Author of " + data.articles + " articles";
-    document.querySelector(".articleViews").innerText = "Has opened " + data.articleViews + " articles";
-    document.querySelector(".articleLikes").innerText = "Has liked " + data.articleLikes + " articles";
-    document.querySelector(".articleComments").innerText = "Has commented "+ data.articleComments + " times on articles";
+    document.querySelector(".articles").innerText = language_data["v2-profile-author-of-1"] + data.articles + language_data["v2-profile-author-of-2"];
+    document.querySelector(".articleViews").innerText = language_data["v2-profile-opened-articles-1"] + data.articleViews + language_data["v2-profile-articles"];
+    document.querySelector(".articleLikes").innerText = language_data["v2-profile-liked-articles-1"] + data.articleLikes + language_data["v2-profile-articles"];
+    document.querySelector(".articleComments").innerText = language_data["v2-profile-commented-1"] + data.articleComments + language_data["v2-profile-commented-2"];
     
-    document.querySelector(".userCreated").innerText = "The account is " + get_days_old(data.userCreated) + " days old";
+    document.querySelector(".userCreated").innerText = language_data["v2-profile-created-1"] + get_days_old(data.userCreated) + language_data["v2-profile-days-old"];
     if (get_days_old(data.userCreated) == 1) {
-        document.querySelector(".userCreated").innerText = "The account is " + get_days_old(data.userCreated) + " day old";
+        document.querySelector(".userCreated").innerText = language_data["v2-profile-created-1"] + get_days_old(data.userCreated) + language_data["v2-profile-day-old"];
     }
 
-    document.querySelector(".lastArticle").innerText = "Last article posted " + get_days_old(data.userLastArticle * 1000) + " days ago";
+    document.querySelector(".lastArticle").innerText = language_data["v2-profile-article-created"] + get_days_old(data.userLastArticle * 1000) + language_data["v2-profile-days-ago"];
     if (get_days_old(data.userLastArticle * 1000) == 1) {
-        document.querySelector(".lastArticle").innerText = "Last comment written " + get_days_old(data.userLastArticle * 1000) + " day ago";
+        document.querySelector(".lastArticle").innerText = language_data["v2-profile-article-created"] + get_days_old(data.userLastArticle * 1000) + language_data["v2-profile-day-ago"];
     }
 
-    document.querySelector(".lastComment").innerText = "Last comment written " + get_days_old(data.userLastComment * 1000) + " days ago";
+    document.querySelector(".lastComment").innerText = language_data["v2-profile-comment-created"]  + get_days_old(data.userLastComment * 1000) + language_data["v2-profile-days-ago"];
     if (get_days_old(data.userLastComment * 1000) == 1) {
-        document.querySelector(".lastComment").innerText = "Last comment written " + get_days_old(data.userLastComment * 1000) + " day ago";
+        document.querySelector(".lastComment").innerText = language_data["v2-profile-comment-created"]  + get_days_old(data.userLastComment * 1000) + language_data["v2-profile-day-ago"];
     }
 
 
-    document.querySelector(".userViews").innerText = "The profile was opened " + data.userViews + " times";
-    document.querySelector(".userLikes").innerText = "The profile was liked " + data.userLikes + " times";
-    document.querySelector(".userComments").innerText = "There are " + data.userComments + " comments on the profile";
+    document.querySelector(".userViews").innerText = language_data["v2-profile-opened-1"] + data.userViews + language_data["v2-profile-opened-2"];
+    document.querySelector(".userLikes").innerText = language_data["v2-profile-liked-1"] + data.userLikes + language_data["v2-profile-liked-2"];
+    document.querySelector(".userComments").innerText = language_data["v2-profile-comments-1"] + data.userComments + language_data["v2-profile-comments-2"];
 }
 
 function get_days_old (creation_date) {

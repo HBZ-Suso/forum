@@ -11,26 +11,26 @@
 }
 
 .profile-innerContainer {
-    width: 600px;
-    height: 600px;
+    width: 100%;
+    height: 100%;
     background-color: var(--side-main-color);
     position: relative;
     border-radius: 2px;
+    overflow: hidden;
 }
 
 
 .profile-middle-column {
-    width: 150px;
+    width: 400px;
     padding: 25px;
     position: absolute;
-    left: 200px;
+    right: 0px;
     top: 50px;
-    height: 500px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     background-color: var(--profile-main-background);
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
+    border-top-left-radius: 15px;
 
     transition: 0.3s all ease-in;
 
@@ -40,20 +40,10 @@
 }
 
 
-.profile-middle-column-toggled {
-    width: 150px;
-    padding: 35px;
-    position: absolute;
-    left: 190px;
-    top: 30px;
-    height: 500px;
-    cursor: initial;
-}
-
-
 .profile-image {
-    height: 150px;
-    width: 150px;
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
 }
 
 .profile-image > img {
@@ -63,10 +53,10 @@
 
 
 .profile-username {
-    margin-top: 10px;
+    margin-top: 20px;
     width: 100%;
     text-align: center;
-    font-size: 18px;
+    font-size: 45px;
 }
 
 .profile-user-type-moderator {
@@ -79,18 +69,18 @@
 
 .profile-employment, .profile-age {
     width: 100%;
-    font-size: 16px;
+    font-size: 40px;
     text-align: center;
+    line-height: 45px;
 }
 
 .profile-description {
-    margin-top: 5px;
-    margin-left: -7.5%;
-    width: 115%;
-    font-size: 11px;
+    margin-top: 15px;
+    width: 400px;
+    font-size: 30px;
     height: 250px;
     resize: none;
-    border: 1px solid var(--dark-color);
+    border: none;
     padding: 2.5%;
     background-color: var(--profile-main-background);
     color: var(--dark-color);
@@ -108,51 +98,45 @@
 
 .profile-side-column {
     position: absolute;
-    left: 200px;
-    width: 150px;
+    left: 0px;
+    width: 400px;
     padding: 25px;
-    top: 50px;
-    height: 500px;
+    top: 0px;
+    height: 50%;
     transition: 0.7s all ease-in;
     display: flex;
     flex-direction: column;
+    margin-left: -460px;
+}
+
+.profile-right-column {
+    top: 50%;
 }
 
 
 .profile-side-column > div {
-    width: 150px;
-    font-size: 14px;
+    width: 400px;
+    font-size: 36px;
     background-color: var(--select-icon-color);
-    border-radius: 3px;
-    margin-top: 25px;
-    padding: 7px;
+    border-radius: 6px;
+    margin-top: 50px;
+    padding: 14px;
+    padding-left: 20px;
+    line-height: 40px;
 }
 
 
-.profile-right-column-toggled {
-    left: 380px; /* slightly inside of the middle thing */
-}
-
-.profile-right-column-toggled > div {
-    padding-left: 15px;
-}
-
-.profile-left-column-toggled {
-    left: 5px; /* slightly inside of the middle thing */
-    padding-right: 15px;
-}
-
-.profile-left-column-toggled > div {
-    width: 152px;
-    padding-right: 13px;
+.profile-right-column-toggled, .profile-left-column-toggled {
+    margin-left: -30px;
 }
 
 .profile-click-tip {
     position: absolute;
-    bottom: 7px;
+    bottom: 10%;
     margin: 0 auto;
-    width: 150px;
+    left: 0px;
+    width: 100%;
     text-align: center;
     font-style: italic;
-    font-size: 12px;
+    font-size: 35px;
 }

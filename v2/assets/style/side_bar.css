@@ -6,14 +6,14 @@
     width: 320px;
     display: relative;
     background-color: var(--side-main-color);
-    z-index: 2;
+    z-index: 4;
 }
 
 .sidebar-gradient-div {
     position: absolute;
     height: 20px;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
     background-image: linear-gradient(to top, var(--side-main-color), var(--side-dark-color));
 }
 
@@ -24,7 +24,7 @@
     padding: 5px;
     padding-right: 10px;
     cursor: pointer;
-    z-index: 3;
+    z-index: 5;
     background-color: var(--side-main-color);
     border-bottom-right-radius: 5px;
 }
@@ -106,7 +106,7 @@
     text-decoration: underline;
     width: 95%;
     overflow: hidden;
-    height: 20px;
+    height: 30px;
 }
 
 .userview-employment {

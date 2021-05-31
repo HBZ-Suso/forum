@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap');
+
 :root {
     --side-main-color: #61B2AF;
     --side-dark-color: #5CA7A5;
@@ -22,4 +25,6 @@
     --administrator-font-color: red;
 
     --profile-main-background: lightcyan;
+
+    font-family: "Cairo", sans-serif;
 }
