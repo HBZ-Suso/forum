@@ -28,7 +28,7 @@ $user_data = $data->get_user_by_id($_GET["userId"]);
 
             <p class="profile-click-tip"><?php echo $text->get("v2-profile-click-here-tip") ?></p>
 
-            <div class="profile-middle-column-click-barrier"></div>
+            <!--<div class="profile-middle-column-click-barrier"></div>-->
         </div>
 
         <div class="profile-right-column profile-side-column">
@@ -42,5 +42,5 @@ $user_data = $data->get_user_by_id($_GET["userId"]);
     </div>
 </div>
 
-<link rel="stylesheet" href="/forum/v2/assets/style/profile.css">
+
 <script src="/forum/v2/assets/script/profile.js"></script>

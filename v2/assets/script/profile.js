@@ -1,5 +1,3 @@
-document.querySelector(".profile-middle-column").addEventListener("click", toggle_profile_view);
-
 function toggle_profile_view () {
     if (document.querySelector(".profile-middle-column").classList.contains("profile-middle-column-toggled")) {
         document.querySelector(".profile-middle-column").classList.remove("profile-middle-column-toggled");
@@ -64,3 +62,13 @@ function get_days_old (creation_date) {
 function get_day_of_year (date_obj) {
     return (Date.UTC(date_obj.getFullYear(), date_obj.getMonth(), date_obj.getDate()) - Date.UTC(date_obj.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
 }
+
+
+if (window.mobileCheck() === true) {
+    document.body.innerHTML += `<link rel="stylesheet" href="/forum/v2/assets/style/mobile.profile.css">`;
+} else {
+    document.body.innerHTML += `<link rel="stylesheet" href="/forum/v2/assets/style/profile.css">`;
+}
+
+
+document.querySelector(".profile-middle-column").addEventListener("click", toggle_profile_view);

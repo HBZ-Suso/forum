@@ -26,5 +26,8 @@
 
     --profile-main-background: lightcyan;
 
+    --createpost-background-color: #66b9b76c;
+    --createpost-border-color: #2a394985;
+
     font-family: "Cairo", sans-serif;
 }

@@ -45,7 +45,8 @@
     font-size: 25px;
     font-style: italic;
     text-align: center;
-    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-top: 10px;
 }
 
 
@@ -57,9 +58,10 @@
 
 .createpost-text, .createpost-tags, .createpost-title, .createpost-submit {
     border-radius: 5px;
-    border: 1px solid black;
+    border: 1px solid var(--createpost-border-color);
     padding: 5px;
-    background-color: var(--side-user-color);
+    background-color: none;
+    box-shadow: inset 0px 0px 400px 110px var(--createpost-background-color);
     font-size: 16px;
 }
 

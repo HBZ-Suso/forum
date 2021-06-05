@@ -50,10 +50,10 @@
 }
 
 .settings-navigation-bar {
-    width: 50%;
+    width: 80%;
     min-width: 200px;
     margin: 0px;
-    margin-left: 25%;
+    margin-left: 10%;
     padding-bottom: 10px;
     height: min-content;
     display: flex;
@@ -75,6 +75,7 @@
     margin-right: 15px;
     margin-top: 15px;
     transition: 0.25s all linear;
+    box-shadow: inset 0px 0px 400px 110px rgba(93, 93, 93, 0.4);
 }
 
 .snb-element:hover {
@@ -88,6 +89,7 @@
     box-shadow: none;
 }
 
+/*
 .settings-reload {
     width: 3%;
     min-width: 30px;
@@ -106,7 +108,7 @@
     cursor: pointer;
     background-color: var(--accent-color);
 }
-
+*/
 
 .settings-page {
     width: 50%;
@@ -123,7 +125,7 @@
 
 .setting-heading {
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
     color: var(--dark-color);
 }
 
@@ -233,7 +235,7 @@ input:checked+.slider:before {
 [type="radio"]:checked~label {
     border-color: #4062f6;
     background-color: rgba(97, 154, 234, 0.16);
-    color: #fff;
+    /*color: #fff;*/
 }
 
 [type="radio"]:checked~label:before {

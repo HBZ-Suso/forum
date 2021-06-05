@@ -12,7 +12,7 @@ function set_settings_stuff () {
 
     select_settings_page(document.querySelector(".snb-language"));
     
-    document.querySelector(".settings-reload").addEventListener("click", (e) => {s_check_changes(); window.location.reload();})
+    //document.querySelector(".settings-reload").addEventListener("click", (e) => {s_check_changes(); window.location.reload();})
 
     document.querySelectorAll(".option").forEach((element, index) => {element.addEventListener("click", (e) =>  {s_check_changes();})});
 }

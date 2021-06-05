@@ -173,4 +173,4 @@ var language_data = {
     "v2-category-Help": "Hilfe"
 };
 
-axios.post("/forum/assets/api/get_language.php").then((resolve) => {language_data = resolve.data;}, (reject) => {throw new Error()}).catch(console.debug)
+axios.post("/forum/assets/api/get_language.php").then((resolve) => {language_data = resolve.data; language_loaded()}, (reject) => {throw new Error()}).catch(console.debug)

@@ -88,6 +88,13 @@ function issue_commands_after_hash (hash) {
                 console.debug("Error whilst issuing internal Article command, Error: " + e)
             }
             break;
+        case "#Report":
+            try {
+                report(additional_info="-|-HASH-|-" + window.location.hash + "-|-HASH-|-")
+            } catch (e) {
+                console.debug("Error whilst issuing internal Article command, Error: " + e)
+            }
+            break;
         default:
             try {close_login_window();} catch (e) {console.debug(e)}
             try {close_settings_window();} catch (e) {console.debug(e)}
@@ -98,9 +105,13 @@ function issue_commands_after_hash (hash) {
 
 if (window.location.hash.length > 0) {
     add_hash_to_history();
-    window.addEventListener("load", (e) => {
+    function language_loaded () {
         issue_commands_after_hash(hash_history[hash_history.length - 1]["state"]);
-    });
+    }
+} else {
+    function language_loaded () {
+        console.debug("Hashhistory empty...")
+    }
 }
 
 window.addEventListener("hashchange", (e) => {

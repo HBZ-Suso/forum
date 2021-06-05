@@ -2,9 +2,10 @@ function show_login_and_logout () {
     axios
         .post("/forum/assets/api/logout.php")
         .then((resolve) => {
+            /*
             let login_window = document.createElement("div");
             login_window.classList.add("loginbox-container")
-            document.body.appendChild(login_window);
+            document.body.appendChild(login_window);*/
 
             if (window.mobileCheck() == true) {
                 var add_mobile_loginbox_stylesheet = '<link rel="stylesheet" href="/forum/v2/assets/style/mobile.loginbox.css">';
@@ -12,10 +13,8 @@ function show_login_and_logout () {
                 var add_mobile_loginbox_stylesheet = "";
             }
 
-            login_window.innerHTML = `
-            <div class="loginbox-innerContainer">
-                <a class="loginbox-close">X</a>
-                <h3 class="loginbox-heading">${language_data["v2-login-heading"]}</h3>
+            show_article(custum_html=true, heading=language_data["v2-login-heading"], content_html=`
+                <div class="loginbox">
                 <p class="loginbox-description">${language_data["v2-login-message"]}</p>
 
                 <input type="text" placeholder="${language_data["v2-login-username"]}" class="loginbox-username"></input>
@@ -24,8 +23,7 @@ function show_login_and_logout () {
 
                 <link rel="stylesheet" href="/forum/v2/assets/style/loginbox.css">
                 ${add_mobile_loginbox_stylesheet}
-            </div>
-                `;
+                </div>`);
 
             
 
@@ -52,14 +50,14 @@ function show_login_and_logout () {
                 }
             })
 
-            document.querySelector(".loginbox-close").addEventListener("click", (e) => {
+            /*document.querySelector(".loginbox-close").addEventListener("click", (e) => {
                 let counter = -2;
                 while (window.location.hash === "#Login") {
                     window.location.hash = hash_history[hash_history.length + counter]["state"].slice(1);
                     counter--;
                 }
                 login_window.remove();
-            })
+            })*/
         }, (reject) => {
             console.debug("Error whilst trying to logout.")
         })

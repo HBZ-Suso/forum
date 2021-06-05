@@ -1,5 +1,5 @@
 .profile-container {
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     right: 0px;
@@ -11,26 +11,26 @@
 }
 
 .profile-innerContainer {
-    width: 100%;
-    height: 100%;
+    width: 600px;
+    height: 600px;
     background-color: var(--side-main-color);
     position: relative;
     border-radius: 2px;
-    overflow: hidden;
 }
 
 
 .profile-middle-column {
-    width: 400px;
+    width: 150px;
     padding: 25px;
     position: absolute;
-    right: 0px;
+    left: 200px;
     top: 50px;
-    height: 100%;
+    height: 500px;
     display: flex;
     flex-direction: column;
     background-color: var(--profile-main-background);
-    border-top-left-radius: 15px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 
     transition: 0.3s all ease-in;
 
@@ -40,10 +40,20 @@
 }
 
 
+.profile-middle-column-toggled {
+    width: 150px;
+    padding: 35px;
+    position: absolute;
+    left: 190px;
+    top: 30px;
+    height: 500px;
+    cursor: initial;
+}
+
+
 .profile-image {
-    height: 300px;
-    width: 300px;
-    margin: 0 auto;
+    height: 150px;
+    width: 150px;
 }
 
 .profile-image > img {
@@ -53,10 +63,10 @@
 
 
 .profile-username {
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
     text-align: center;
-    font-size: 45px;
+    font-size: 18px;
 }
 
 .profile-user-type-moderator {
@@ -69,24 +79,29 @@
 
 .profile-employment, .profile-age {
     width: 100%;
-    font-size: 40px;
+    font-size: 16px;
     text-align: center;
-    line-height: 45px;
 }
 
 .profile-description {
-    margin-top: 15px;
-    width: 400px;
-    font-size: 30px;
+    margin-top: 5px;
+    margin-left: -7.5%;
+    width: 115%;
+    font-size: 11px;
     height: 250px;
     resize: none;
-    border: none;
+    border: 1px solid var(--dark-color);
     padding: 2.5%;
     background-color: var(--profile-main-background);
     color: var(--dark-color);
 }
 
-.profile-middle-column-click-barrier {
+.profile-middle-column > .profile-middle-column-click-barrier {
+    display: none;
+}
+
+.profile-middle-column-toggled > .profile-middle-column-click-barrier {
+    display: initial;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -98,45 +113,52 @@
 
 .profile-side-column {
     position: absolute;
-    left: 0px;
-    width: 400px;
+    left: 200px;
+    width: 150px;
     padding: 25px;
-    top: 0px;
-    height: 50%;
+    top: 50px;
+    height: 500px;
     transition: 0.7s all ease-in;
     display: flex;
     flex-direction: column;
-    margin-left: -460px;
-}
-
-.profile-right-column {
-    top: 50%;
 }
 
 
 .profile-side-column > div {
-    width: 400px;
-    font-size: 36px;
+    width: 150px;
+    font-size: 14px;
     background-color: var(--select-icon-color);
-    border-radius: 6px;
-    margin-top: 50px;
-    padding: 14px;
-    padding-left: 20px;
-    line-height: 40px;
+    border-radius: 3px;
+    margin-top: 25px;
+    padding: 7px;
+    line-height: 20px;
 }
 
 
-.profile-right-column-toggled, .profile-left-column-toggled {
-    margin-left: -30px;
+.profile-right-column-toggled {
+    left: 380px; /* slightly inside of the middle thing */
+}
+
+.profile-right-column-toggled > div {
+    padding-left: 15px;
+}
+
+.profile-left-column-toggled {
+    left: 5px; /* slightly inside of the middle thing */
+    padding-right: 15px;
+}
+
+.profile-left-column-toggled > div {
+    width: 152px;
+    padding-right: 13px;
 }
 
 .profile-click-tip {
     position: absolute;
-    bottom: 10%;
+    bottom: 7px;
     margin: 0 auto;
-    left: 0px;
-    width: 100%;
+    width: 150px;
     text-align: center;
     font-style: italic;
-    font-size: 35px;
+    font-size: 12px;
 }

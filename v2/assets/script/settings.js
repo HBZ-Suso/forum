@@ -1,7 +1,9 @@
 function show_settings () {
+    /*
     let settings_window = document.createElement("div");
     settings_window.classList.add("settingsbox-container")
     document.body.appendChild(settings_window);
+    */
 
     if(logged_in === true) {
         var logged_img = `
@@ -13,17 +15,12 @@ function show_settings () {
         var logged_img = "";
     }
 
-    settings_window.innerHTML = `
-    <div class="settingsbox-innerContainer">
-        <a class="settingsbox-close">X</a>
-
-        <h3 class="settingsbox-heading">${language_data["v2-settings-heading"]}</h3>
-        
+    show_article(custum_html=true, heading=language_data["v2-settings-heading"], content_html=`  
         <div class="settings-navigation-bar">
             <img src="/forum/assets/img/icon/translation.png" class="snb-element snb-language snb-element-selected" open="settings-page-language">
             ${logged_img}
         </div>
-        <img src="/forum/assets/img/icon/reload.png" class="settings-reload" alt="Reload Page">
+        <!--<img src="/forum/assets/img/icon/reload.png" class="settings-reload" alt="Reload Page">-->
 
             <div class="settings-page settings-page-theme" style="display: none;">
                 <form class="setting">
@@ -116,13 +113,13 @@ function show_settings () {
                             </label>
                         </div>
 
-                        <div class="option">
+                        <!--<div class="option">
                             <input class="language_radio" type="radio" name="language" id="français" value="language">
                             <label for="français" aria-label="français">
                             <span></span>
                             ${language_data["v2-french"]}
                             </label>
-                        </div>
+                        </div>-->
                     </div>
                 </form>
             </div>
@@ -184,8 +181,7 @@ function show_settings () {
         </div>
 
         <link rel="stylesheet" href="/forum/v2/assets/style/settingsbox.css">
-    </div>
-        `;
+        `);
 
     axios
         .post("/forum/assets/api/get_settings.php")
@@ -219,12 +215,13 @@ function show_settings () {
             } catch (e) {console.debug(e);}
         })
 
-    if (window.mobileCheck() === true) {
-        settings_window.innerHTML += "<link rel='stylesheet' href='/forum/v2/assets/style/mobile.settingsbox.css'></link>"
+    if (window.mobileCheck() === true && document.body.innerHTML.indexOf("<link rel='stylesheet' href='/forum/v2/assets/style/mobile.settingsbox.css'></link>") === -1) {
+        document.body.innerHTML += "<link rel='stylesheet' href='/forum/v2/assets/style/mobile.settingsbox.css'></link>"
     }
 
-    set_settings_stuff();
+    set_settings_stuff()
 
+    /*
     document.querySelector(".settingsbox-close").addEventListener("click", (e) => {
         let counter = -2;
         try {
@@ -240,6 +237,7 @@ function show_settings () {
         }
         settings_window.remove();
     })
+    */
 }
 
 function close_settings_window () {

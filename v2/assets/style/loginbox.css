@@ -31,14 +31,23 @@
     color: var(--dark-color);
 }
 
-.loginbox-innerContainer > input {
+.loginbox-innerContainer > input, .loginbox-username, .loginbox-password, .loginbox-submit {
     border-radius: 5px;
     width: 250px;
     height: 40px;
     color: var(--dark-color);
     border: 1px solid var(--dark-color);
     padding: 5px;
-    background-color: var(--side-user-color)
+    background-color: var(--side-user-color);
+}
+
+.loginbox {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .loginbox-heading {

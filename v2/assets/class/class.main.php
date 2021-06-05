@@ -76,6 +76,7 @@ echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollup
 echo '<script src="/forum/v2/assets/script/language_management.js"></script>';
 echo '<script src="/forum/assets/script/functions.js"></script>';
 echo '<script src="/forum/v2/assets/script/share.js"></script>';
+echo '<script src="/forum/v2/assets/script/report.js"></script>'; 
 if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
     echo '<script src="/forum/v2/assets/script/hashmanagement.js"></script>';
     echo '<script src="/forum/v2/assets/script/login.js"></script>';
