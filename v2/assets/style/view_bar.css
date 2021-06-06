@@ -235,6 +235,7 @@
     color: var(--article-icon-color);
     font-weight: 600;
     text-decoration: none;
+    line-height: 11px;
 }
 
 .comment-author-info > p {
@@ -248,4 +249,9 @@
     font-size: 20px;
     margin-bottom: 5px;
     height: min-content;
+}
+
+.comment-text {
+    line-height: 20px;
+    font-size: 17px;
 }

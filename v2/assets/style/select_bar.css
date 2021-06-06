@@ -106,11 +106,60 @@
 
 
 
+
+
+
+.selectbar-sort-container {
+    position: absolute;
+    top: max(13%, 95px);
+    right: 0px;
+    left: 0px;
+    height: max(2%, 45px);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selectbar-sort-container > div {
+    width: min-content;
+    font-size: 15px;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    padding: 1px;
+    min-width: 0;
+    margin: 2px 15px;
+}
+
+.selectbar-sort-container > div > p {
+    margin: 0px;
+    line-height: 20px;
+    height: 20px;
+}
+
+.selectbar-sort-container > div > img {
+    height: 40%;
+    margin-right: 5px;
+}
+
+.selectbar-sort-up > img {
+    transform: rotate(180deg);
+}
+
+.selectbar-sort-toggled {
+    background-color: var(--select-icon-color);
+}
+
 /* Articles */
 
 .selectbar-article-container {
     position: absolute;
-    top: max(12%, 75px);
+    top: max(17%, 150px);
     left: 0px;
     right: 0px;
     bottom: 0px;
@@ -143,11 +192,12 @@
     font-size: 20px;
     color: var(--light-color);
     font-weight: 400;
+    line-height: 25px;
 }
 
 .selectbar-article-element > div {
     position: absolute;
-    top: 32px;
+    top: 24px;
     left: 40px;
 }
 

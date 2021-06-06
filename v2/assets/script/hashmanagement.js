@@ -96,10 +96,10 @@ function issue_commands_after_hash (hash) {
             }
             break;
         default:
-            try {close_login_window();} catch (e) {console.debug(e)}
-            try {close_settings_window();} catch (e) {console.debug(e)}
-            try {close_article_if_not_side_by_side();} catch (e) {console.debug(e)}
-            try {close_createpost_window();} catch (e) {console.debug(e)}
+            try {close_login_window();} catch (e) {}
+            try {close_settings_window();} catch (e) {}
+            try {close_article_if_not_side_by_side();} catch (e) {}
+            try {close_createpost_window();} catch (e) {}
     }
 }
 

@@ -116,7 +116,7 @@ class Data extends Connector
     }
 
 
-    public function create_article($userId, $title, $text, $tags, $category)
+    public function create_article ($userId, $title, $text, $tags, $category)
     {
         if ($this->check_entry_exists("articles", "articleTitle", $title)) {
             return false;
@@ -134,7 +134,7 @@ class Data extends Connector
         $stmt->bind_param("ss", $time, $userId);
         $stmt->execute();
         $stmt->close();
-        return true;
+        return $this->get_article_id_by_title($title);
     }
 
 
@@ -762,7 +762,7 @@ class Data extends Connector
     }*/
 
 
-    public function get_article_id_by_title($title)
+    public function get_article_id_by_title ($title)
     {
         $query = "SELECT articleId FROM articles WHERE articleTitle=?";
         $stmt = $this->connId->prepare($query);
@@ -772,7 +772,7 @@ class Data extends Connector
         $stmt->close();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                return intval($row["articleId"]);
+                return $row["articleId"];
             }
         } else {
             return false;
@@ -824,7 +824,7 @@ class Data extends Connector
         $stmt->close();
         return $result->num_rows;
     }
-
+    
 
     public function get_user_likes_by_targetUserId($userId)
     {
@@ -1091,6 +1091,22 @@ class Data extends Connector
                 array_push($return, $row);
             }
             return $return;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function get_article_comment_number_by_id($articleId)
+    {
+        $query = "SELECT commentId FROM articleComments WHERE articleId=? ORDER BY commentCreated desc";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $articleId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            return $result->num_rows;
         } else {
             return false;
         }

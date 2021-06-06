@@ -24,7 +24,7 @@ function set_comment_html (articleId) {
                 document.querySelector(".createcomment-send-container").addEventListener("click", (e) => {
                     axios
                         .post("/forum/assets/api/comment.php?articleId=" + articleId + "&title=" + document.querySelector(".createcomment-title").value + "&text=" + document.querySelector(".createcomment-text").value)
-                        .then((resolve) => {set_comment_html(articleId)}, (reject) => {throw new Error()})
+                        .then((resolve) => {set_comment_html(articleId); articleList[articleId].articleComments += 1;}, (reject) => {throw new Error()})
                         .catch((error) => {console.debug(error);})
                 })
             } else {

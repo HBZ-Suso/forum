@@ -25,6 +25,12 @@ foreach ($data->get_categories() as $category) {
     echo '
     <div class="selectbar-page selectbar-' . $category . '">
         <div class="selectbar-page-heading">' . $category . '</div>
+        <div class="selectbar-sort-container selectbar-' . $category . '-sort-container">
+            <div sortname="created" class="selectbar-sort-toggled selectbar-sort-down selectbar-sort-created selectbar-' . $category . '-sort-created selectbar-' . $category . '-sort" onclick="set_sort(this, \'' . $category . '\')"><img src="/forum/assets/img/icon/downarrow.png"><p>' . $text->get("v2-sort-created") . '</p></div>
+            <div sortname="comments" class="selectbar-sort-down selectbar-sort-comments selectbar-' . $category . '-sort-comments selectbar-' . $category . '-sort" onclick="set_sort(this, \'' . $category . '\')"><img src="/forum/assets/img/icon/downarrow.png"><p>' . $text->get("v2-sort-comments") . '</p></div>
+            <div sortname="views" class="selectbar-sort-down selectbar-sort-views selectbar-' . $category . '-sort-views selectbar-' . $category . '-sort" onclick="set_sort(this, \'' . $category . '\')"><img src="/forum/assets/img/icon/downarrow.png"><p>' . $text->get("v2-sort-views") . '</p></div>
+            <div sortname="likes" class="selectbar-sort-down selectbar-sort-likes selectbar-' . $category . '-sort-likes selectbar-' . $category . '-sort" onclick="set_sort(this, \'' . $category . '\')"><img src="/forum/assets/img/icon/downarrow.png"><p>' . $text->get("v2-sort-likes") . '</p></div>
+        </div>
         <div class="selectbar-page-tools selectbar-page-tools-create-' . $crate_post_visible . '">
             <div class="selectbar-page-search-box selectbar-page-search-box-create-' . $crate_post_visible . '" onkeyup="update_articles(\'' . $category . '\')">
                 <img class="selectbar-' . $category . '-search-logo selectbar-page-search-logo selectbar-page-search-logo-create-' . $crate_post_visible . '" src="/forum/assets/img/icon/search.svg">

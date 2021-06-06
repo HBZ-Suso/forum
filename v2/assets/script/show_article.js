@@ -31,6 +31,12 @@ function show_article (custum_html=false, heading="", content_html="") {
 
             let creation_date = new Date(resolve.data.articleCreated);
 
+            let logged_in_tools = "";
+
+            if (logged_in) {
+                logged_in_tools += `<button class="viewbar-content-toolbar-like" onclick="like_article('${articleId}')">${language_data["v2-share-like"]}</button>`;
+            }
+
             document.querySelector(".viewbar-empty").style.display = "none";
             document.querySelector(".viewbar-content").innerHTML = `
                 <div class="viewbar-content-heading">${resolve.data.articleTitle}</div>
@@ -43,6 +49,7 @@ function show_article (custum_html=false, heading="", content_html="") {
                 </div>
                 <div class="viewbar-content-text">${resolve.data.articleText}</div>
                 <div class="viewbar-content-toolbar">
+                    ${logged_in_tools}
                     <button class="viewbar-content-toolbar-share" onclick="share('HBZ-Forum: ${resolve.data.articleTitle}', '${window.location.toString().replace(window.location.hash, "") + "#Article?articleId=" + resolve.data.articleId}')">${language_data["v2-share-share"]}</button>
                     <button class="viewbar-content-toolbar-copy" onclick="article_copy_handler('Article?articleId=${resolve.data.articleId}')"/>${language_data["v2-share-link"]}</button>
                     <button class="viewbar-content-toolbar-report" onclick="window.location.hash='#Report?articleId=${resolve.data.articleId}';">${language_data["v2-share-report"]}</button>
@@ -50,6 +57,7 @@ function show_article (custum_html=false, heading="", content_html="") {
                 <div class="viewbar-content-comments comment-section-id-${resolve.data.articleId}">
                 </div>
             `;
+
             if (window.innerWidth < 1500 || window.mobileCheck() == true) {
                 document.querySelector(".viewbar-container").style.display = "";
                 content_displayed = true;
@@ -58,7 +66,16 @@ function show_article (custum_html=false, heading="", content_html="") {
                 document.querySelector(".viewbar-container").style.display = "";
                 content_displayed = false;
             }
-            set_comment_html(resolve.data.articleId)
+
+            if (logged_in) {
+                if (resolve.data.liked) {
+                    document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = "var(--liked-color)";
+                }
+            }
+
+            axios.post("/forum/v2/assets/api/view.php?articleId=" + articleId).then((resolve) => {if (resolve.data.indexOf("error") === -1) {articleList[articleId].articleViews += 1;}}, (reject) => {throw new Error(reject)}).catch((e) => console.debug)
+
+            set_comment_html(resolve.data.articleId);
         }, (reject) => {
             console.debug("Error whilst trying to get article data from api.");
         })
@@ -158,3 +175,12 @@ window.addEventListener("load", () => {
 
     document.querySelector(".viewbar-close").addEventListener("click", (e) => {close_article();});
 });
+
+
+
+
+function like_article (articleId) {
+    axios
+        .post("/forum/assets/api/like.php?articleId=" + articleId)
+        .then((resolve) => {if (document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor == "var(--liked-color)") {document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = ""; articleList[articleId].articleLikes -= 1;} else {document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = "var(--liked-color)"; articleList[articleId].articleLikes += 1;};})
+}

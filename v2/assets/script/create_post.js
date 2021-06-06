@@ -45,11 +45,19 @@ function show_create_post (category) {
         }
 
         try {
+            if (window.innerWidth < 1500 || window.mobileCheck() == true) {
+                document.querySelector(".viewbar-close").click()
+            }
+            
+        } catch (e) {console.debug(e)}
+        /*
+        try {
             window.location.hash = find_last_category();
         } catch (e) {
             console.debug(e);
         }
-        create_post_window.remove();
+        
+        create_post_window.remove();*/
     })
 }
 
@@ -60,9 +68,11 @@ function close_createpost_window () {
 
 function send_createpost_ajax_request (title, text, tags, category) {
     axios
-        .post("/forum/assets/site/create_article.php", "form=true&title=" + title + "&text=" +  text + "&tags=" + tags + "&category=" + category)
+        .post("/forum/v2/assets/api/create_article.php", "title=" + title + "&text=" +  text + "&tags=" + tags + "&category=" + category)
         .then((response) => {
-            //window.location.hash = "Article?articleId=" + response.data; DOESNT WORK, LOL
+            articleList[response.data.articleId] = response.data;
+            update_articles(category);
+            window.location.hash = "Article?articleId=" + response.data.articleId;
         })
         .catch((error) => {
             throw new Error(error);

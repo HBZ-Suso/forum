@@ -10,7 +10,7 @@ class DataV2 extends Data {
     public function get_articleIds_by_category ($category, $limit=100000)
     {
         $query = '
-        SELECT articleId, articleTitle, userId
+        SELECT articleId, articleTitle, userId, articleCreated
         FROM articles
         WHERE articleCategory=?
         ORDER BY articleCreated DESC
@@ -26,7 +26,7 @@ class DataV2 extends Data {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 if (!in_array($row, $return)) {
-                    array_push($return, $row);
+                    array_push($return, array_merge($row, ["articleViews" => $this->get_article_views_by_article_id($row["articleId"]), "articleComments" => $this->get_article_comment_number_by_id($row["articleId"]), "articleLikes" => $this->get_article_likes_by_article_id($row["articleId"])]));
                 }
             }
         }
