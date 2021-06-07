@@ -19,6 +19,7 @@ $article_data = $data->get_article_by_id($id);
 if ($article_data != false) {
     $article_data["userName"] = $data->get_user_by_id($article_data["userId"])["userName"];
     $article_data["userColor"] = $data->get_user_setting("color", $article_data["userId"]);
+    $article_data["userLocked"] = $data->get_user_lock($article_data["userId"]);
     if (isset($_SESSION["userId"])) {
         $article_data["liked"] = $data->check_if_article_liked_by_user($_SESSION["userId"], $id);
     } else {

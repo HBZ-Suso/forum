@@ -34,9 +34,10 @@ function show_article (custum_html=false, heading="", content_html="") {
             let logged_in_tools = "";
 
             if (logged_in) {
-                logged_in_tools += `<button class="viewbar-content-toolbar-like" onclick="like_article('${articleId}')">${language_data["v2-share-like"]}</button>`;
+                logged_in_tools += `<button class="viewbar-content-toolbar-like" onclick="like_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-like"]}</button>`;
                 if (user_type === "moderator" || user_type === "administrator") {
                     logged_in_tools += `<button class="viewbar-content-toolbar-pin" onclick="pin_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-pin"]}</button>`;
+                    logged_in_tools += `<button class="viewbar-content-toolbar-lock" onclick="lock_user('${resolve.data.userId}')">${language_data["v2-share-lock"]}</button>`;
                 }
                 if (logged_in_user_id === resolve.data.userId || user_type === "administrator") {
                     logged_in_tools += `<button class="viewbar-content-toolbar-delete" onclick="delete_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-delete"]}</button>`;
@@ -86,10 +87,13 @@ function show_article (custum_html=false, heading="", content_html="") {
                     if (resolve.data.articlePinned === 1) {
                         document.querySelector(".viewbar-content-toolbar-pin").style.backgroundColor = "var(--pinned-color)";
                     }
+                    if (resolve.data.userLocked === 1) {
+                        document.querySelector(".viewbar-content-toolbar-lock").style.backgroundColor = "var(--locked-color)";
+                    }
                 }
             }
 
-            axios.post("/forum/v2/assets/api/view.php?articleId=" + articleId).then((resolve) => {if (resolve.data.indexOf("error") === -1) {articleList[articleId].articleViews += 1;}}, (reject) => {throw new Error(reject)}).catch((e) => console.debug)
+            axios.post("/forum/v2/assets/api/view.php?articleId=" + articleId).then((resolve) => {if (resolve.data.indexOf("error") === -1) {articleList[articleId].articleViews += 1; update_articles(resolve.data["articleCategory"]);}}, (reject) => {throw new Error(reject)}).catch((e) => console.debug)
 
             set_comment_html(resolve.data.articleId);
         }, (reject) => {
@@ -195,10 +199,10 @@ window.addEventListener("load", () => {
 
 
 
-function like_article (articleId) {
+function like_article (articleId, category) {
     axios
         .post("/forum/assets/api/like.php?articleId=" + articleId)
-        .then((resolve) => {if (document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor == "var(--liked-color)") {document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = ""; articleList[articleId].articleLikes -= 1;} else {document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = "var(--liked-color)"; articleList[articleId].articleLikes += 1;};})
+        .then((resolve) => {if (document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor == "var(--liked-color)") {document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = ""; articleList[articleId].articleLikes -= 1;; update_articles(category);} else {document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = "var(--liked-color)"; articleList[articleId].articleLikes += 1; update_articles(category);};})
 }
 
 function pin_article (articleId, category) {
@@ -211,6 +215,12 @@ function delete_article (articleId, category) {
     if (window.confirm(language_data["v2-share-delete-prompt"]) === true) {
         axios
             .post("/forum/assets/api/delete.php?articleId=" + articleId)
-            .then((resolve) => {window.location.hash = category; delete articleList[articleId]; console.log(articleList); update_articles(category);})
+            .then((resolve) => {window.location.hash = category; delete articleList[articleId];  update_articles(category);})
     }
+}
+
+function lock_user (userId) {
+    axios
+        .post("/forum/assets/api/lock.php?userId=" + userId)
+        .then((resolve) => {if (document.querySelector(".viewbar-content-toolbar-lock").style.backgroundColor == "var(--locked-color)") {document.querySelector(".viewbar-content-toolbar-lock").style.backgroundColor = "";} else {document.querySelector(".viewbar-content-toolbar-lock").style.backgroundColor = "var(--locked-color)";};})
 }

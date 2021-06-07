@@ -31,7 +31,7 @@
     color: var(--dark-color);
 }
 
-.loginbox-innerContainer > input {
+.loginbox-innerContainer > input, .loginbox-username, .loginbox-password, .loginbox-submit {
     border-radius: 10px;
     width: 600px;
     height: 80px;
@@ -51,8 +51,8 @@
 .loginbox-description {
     width: 550px;
     color: var(--dark-color);
-    font-size: 40px;
-    line-height: 55px;
+    font-size: 45px;
+    line-height: 60px;
 }
 
 .loginbox-username {

@@ -174,6 +174,7 @@
         "v2-share-delete": "Delete",
         "v2-share-pin": "Pin",
         "v2-share-delete-prompt": "Do you really want to delete this article? It is advised to reload the page after deleting articles.",
+        "v2-share-lock": "Lock user",
         "v2-category-Home": "Home",
         "v2-category-About": "About",
         "v2-category-Discussion": "Discussion",
@@ -205,7 +206,8 @@
         "v2-sort-created": "Age",
         "v2-sort-comments": "Comments",
         "v2-sort-views": "Views",
-        "v2-sort-likes": "Likes"
+        "v2-sort-likes": "Likes",
+        "v2-comment-delete": "Do you really want to delete this comment?"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -382,6 +384,7 @@
         "v2-share-delete": "Löschen",
         "v2-share-delete-prompt": "Willst du diesen Artikel wirklich löschen? Es wird empfohlen, nach dem Löschen die Seite neuzuladen.",
         "v2-share-pin": "Anpinnen",
+        "v2-share-lock": "Benutzer sperren",
         "v2-category-Home": "Home",
         "v2-category-About": "Über",
         "v2-category-Discussion": "Diskussion",
@@ -413,7 +416,8 @@
         "v2-sort-created": "Alter",
         "v2-sort-comments": "Kommentare",
         "v2-sort-views": "Klicks",
-        "v2-sort-likes": "Likes"
+        "v2-sort-likes": "Likes",
+        "v2-comment-delete": "Willst du wirklich diesen Kommentar löschen?"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",

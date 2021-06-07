@@ -20,12 +20,12 @@ if (isset($_SESSION["userId"])) {
     $hide_l_bar = "style=\"display: none;\"";
 }
 ?>
-<div class="sidebar-toggle">
+<div class="sidebar-toggle" onclick='opened = true; document.querySelector(".sidebar-toggle").style.display = "none"; update_sidebar_visibility();'>
     <img src="/forum/assets/img/icon/menu.svg" alt="M">
 </div>
 <div class="sidebar-container <?php echo $hide_l_bar_css_shorten_block; ?>">
     <div class="userview-container">
-    <img class="sidebar-close" src="/forum/assets/img/icon/close.svg" alt="">
+    <img class="sidebar-close" src="/forum/assets/img/icon/close.svg" alt="" onclick='opened = false; document.querySelector(".sidebar-toggle").style.display = ""; update_sidebar_visibility();'>
         <div class="userview-user">
             <div class="userview-image">
                 <?php echo $user_image_element; ?>

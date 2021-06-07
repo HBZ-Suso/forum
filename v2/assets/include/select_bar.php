@@ -22,8 +22,12 @@ foreach ($data->get_categories() as $category) {
     </div>
     ';*/
 
+    if (isset($_SESSION["userId"])) {
+        $logged_space = "selectbar-logged";
+    }
+
     echo '
-    <div class="selectbar-page selectbar-' . $category . '">
+    <div class="selectbar-page selectbar-' . $category . ' ' . $logged_space . '">
         <div class="selectbar-page-heading">' . $category . '</div>
         <div class="selectbar-sort-container selectbar-' . $category . '-sort-container">
             <div sortname="created" class="selectbar-sort-toggled selectbar-sort-down selectbar-sort-created selectbar-' . $category . '-sort-created selectbar-' . $category . '-sort" onclick="set_sort(this, \'' . $category . '\')"><img src="/forum/assets/img/icon/downarrow.png"><p>' . $text->get("v2-sort-created") . '</p></div>

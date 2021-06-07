@@ -56,6 +56,7 @@ var opened = true;
 if (mobileCheck() === true) {
     document.querySelector(".sidebar-container").style.display = "none";
     opened = false;
+    /* NOT WORKING, MOVED TO INLINE
     document.querySelector(".sidebar-toggle").addEventListener("click", (e) => {
         opened = true;
         document.querySelector(".sidebar-toggle").style.display = "none";
@@ -65,7 +66,7 @@ if (mobileCheck() === true) {
         opened = false;
         document.querySelector(".sidebar-toggle").style.display = "";
         update_sidebar_visibility();
-    })
+    })*/
 } else {
     document.querySelector(".sidebar-toggle").style.display = "none";
     document.querySelector(".sidebar-close").style.display = "none";

@@ -119,7 +119,6 @@
     flex-direction: row;
     justify-content: left;
     align-items: center;
-    cursor: pointer;
     padding-left: 15px;
 }
 
@@ -135,6 +134,7 @@
     padding: 2px 5px;
     min-width: 0;
     margin: 2px 15px;
+    cursor: pointer;
 }
 
 .selectbar-sort-container > div > p {

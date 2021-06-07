@@ -60,7 +60,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    border-bottom: 4px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 4px solid var(--settings-navigation-bar-bottom-color);
 }
 
 
@@ -84,7 +84,7 @@
 }
 
 .snb-element-selected {
-    background-color: var(--accent-color);
+    background-color: var(--accent-color-light);
     transform: scale(1.2) !important;
     box-shadow: none;
 }
@@ -127,6 +127,7 @@
     text-align: center;
     font-size: 25px;
     color: var(--dark-color);
+    text-decoration: underline;
 }
 
 

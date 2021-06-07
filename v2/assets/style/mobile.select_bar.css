@@ -31,6 +31,7 @@
     margin-right: 5px;
     height: min-content;
     margin-bottom: 5px;
+    line-height: 100px;
 }
 
 .selectbar-page-tools {
@@ -133,6 +134,9 @@
     overflow-y: auto;
 }
 
+.selectbar-logged > .selectbar-article-container {
+    top: 400px;
+}
 
 .selectbar-article-element {
     width: 92%;
@@ -152,7 +156,8 @@
 
 .selectbar-article-element > h1 {
     position: absolute;
-    top: 12px;
+    top: 18px;
+    line-height: 45px;
     left: 80px;
     margin: 0px;
     font-size: 50px;
@@ -166,6 +171,8 @@
     position: absolute;
     top: 77px;
     left: 80px;
+    font-size: 25px;
+    line-height: 32px;
 }
 
 .selectbar-article-element > div > p {
@@ -178,4 +185,60 @@
 
 .selectbar-article-element > div > p > a {
     color: var(--select-icon-color);
+}
+
+
+
+
+
+
+
+.selectbar-sort-container {
+    position: absolute;
+    top: 150px;
+    right: 0px;
+    left: 0px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.selectbar-logged > .selectbar-sort-container {
+    top: 300px;
+}
+
+.selectbar-sort-container > div {
+    width: min-content;
+    font-size: 40px;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    padding: 4px 10px;
+    min-width: 0;
+    margin: 4px 30px;
+    cursor: pointer;
+}
+
+.selectbar-sort-container > div > p {
+    margin: 0px;
+    line-height: 40px;
+    height: 40px;
+}
+
+.selectbar-sort-container > div > img {
+    height: 40%;
+    margin-right: 10px;
+}
+
+.selectbar-sort-up > img {
+    transform: rotate(180deg);
+}
+
+.selectbar-sort-toggled {
+    background-color: var(--select-icon-color);
 }

@@ -97,7 +97,6 @@
     margin-right: 5%;
     cursor: pointer;
     border: none;
-    background-color: white;
     border-radius: 2px;
     transition: background-color 0.2s linear;
     padding: 0 5px;
@@ -198,6 +197,7 @@
 
 
 .comment-container {
+    position: relative;
     padding: 10px 0;
     width: 100%;
     border-bottom: 1px solid var(--accent-color);
@@ -255,4 +255,30 @@
 .comment-text {
     line-height: 20px;
     font-size: 17px;
+}
+
+
+.comment-delete {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+    bottom: 15px;
+    width: 40px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor: pointer;
+
+    background-color: var(--accent-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-delete > img {
+    width: 80%;
+}
+
+.comment-delete:hover {
+    transition: all 0.1s linear;
+    box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.4);
 }

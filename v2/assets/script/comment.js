@@ -40,6 +40,10 @@ function set_comment_html (articleId) {
 
 function convert_comment_data_to_html (data) {
     let creation_date = new Date(data.commentCreated);
+    let comment_delete = ``;
+    if (logged_in && user_type == "administrator") {
+        comment_delete = `<div class="comment-delete" onclick="delete_comment('${data.articleId}', '${data.commentId}')"><img src="/forum/assets/img/icon/delete.png"></div>`
+    }
     return `
     <div class="comment-container">
         <div class="comment-header">
@@ -53,6 +57,18 @@ function convert_comment_data_to_html (data) {
             </div>
         </div>
         <div class="comment-text">${data.commentText}</div>
+        ${comment_delete}
     </div>
     `;
+}
+
+
+function delete_comment (articleId, commentId) {
+    // ArticleId is only to show that the comment is meant for articles and not users
+    if (confirm(language_data["v2-comment-delete"])) {
+        axios
+            .post("/forum/assets/api/delete_comment.php?articleId=1&commentId=" + commentId)
+            .then((resolve) => {set_comment_html(articleId);}, (reject) => {throw new Error(reject)})
+            .catch((e) => console.debug)
+    }
 }

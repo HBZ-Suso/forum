@@ -18,6 +18,7 @@
     --overlay-window-color: #498583;
 
     --accent-color: #B7094C;
+    --accent-color-light: #c3507c;
 
     --share-button-default-background: #d9f1f1;
     --viewbar-click-background-overlay-color: #2e959475;
@@ -34,4 +35,7 @@
 
     --liked-color: #ec95b6b0;
     --pinned-color: #10f59688;
+    --locked-color: #e69ec888;
+
+    --settings-navigation-bar-bottom-color: #49A6A2;
 }
