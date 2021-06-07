@@ -35,6 +35,17 @@ function show_article (custum_html=false, heading="", content_html="") {
 
             if (logged_in) {
                 logged_in_tools += `<button class="viewbar-content-toolbar-like" onclick="like_article('${articleId}')">${language_data["v2-share-like"]}</button>`;
+                if (user_type === "moderator" || user_type === "administrator") {
+                    logged_in_tools += `<button class="viewbar-content-toolbar-pin" onclick="pin_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-pin"]}</button>`;
+                }
+                if (logged_in_user_id === resolve.data.userId || user_type === "administrator") {
+                    logged_in_tools += `<button class="viewbar-content-toolbar-delete" onclick="delete_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-delete"]}</button>`;
+                }
+            }
+
+            let mobile_tools = "";
+            if (window.mobileCheck() == true) {
+                mobile_tools = `<button class="viewbar-content-toolbar-share" onclick="share('HBZ-Forum: ${resolve.data.articleTitle}', '${window.location.toString().replace(window.location.hash, "") + "#Article?articleId=" + resolve.data.articleId}')">${language_data["v2-share-share"]}</button>`;
             }
 
             document.querySelector(".viewbar-empty").style.display = "none";
@@ -50,7 +61,7 @@ function show_article (custum_html=false, heading="", content_html="") {
                 <div class="viewbar-content-text">${resolve.data.articleText}</div>
                 <div class="viewbar-content-toolbar">
                     ${logged_in_tools}
-                    <button class="viewbar-content-toolbar-share" onclick="share('HBZ-Forum: ${resolve.data.articleTitle}', '${window.location.toString().replace(window.location.hash, "") + "#Article?articleId=" + resolve.data.articleId}')">${language_data["v2-share-share"]}</button>
+                    ${mobile_tools}
                     <button class="viewbar-content-toolbar-copy" onclick="article_copy_handler('Article?articleId=${resolve.data.articleId}')"/>${language_data["v2-share-link"]}</button>
                     <button class="viewbar-content-toolbar-report" onclick="window.location.hash='#Report?articleId=${resolve.data.articleId}';">${language_data["v2-share-report"]}</button>
                 </div>
@@ -70,6 +81,11 @@ function show_article (custum_html=false, heading="", content_html="") {
             if (logged_in) {
                 if (resolve.data.liked) {
                     document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = "var(--liked-color)";
+                }
+                if (user_type === "moderator" || user_type === "administrator") {
+                    if (resolve.data.articlePinned === 1) {
+                        document.querySelector(".viewbar-content-toolbar-pin").style.backgroundColor = "var(--pinned-color)";
+                    }
                 }
             }
 
@@ -127,7 +143,7 @@ function close_article () {
         if (element.state !== current_hash && found === false) {
             let usable = false;
             categories.concat(["Article"]).forEach((category, c_index) => {
-                if (element.state.replace("#", "").indexOf(category) !== -1) {
+                if (element.state.replace("#", "").indexOf(category) !== -1 &&  !(window.location.hash.indexOf("Article") !== -1 && element["state"].indexOf("Article") !== -1)) {
                     usable = true;
                 }
             })
@@ -183,4 +199,18 @@ function like_article (articleId) {
     axios
         .post("/forum/assets/api/like.php?articleId=" + articleId)
         .then((resolve) => {if (document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor == "var(--liked-color)") {document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = ""; articleList[articleId].articleLikes -= 1;} else {document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = "var(--liked-color)"; articleList[articleId].articleLikes += 1;};})
+}
+
+function pin_article (articleId, category) {
+    axios
+        .post("/forum/v2/assets/api/pin.php?articleId=" + articleId)
+        .then((resolve) => {if (document.querySelector(".viewbar-content-toolbar-pin").style.backgroundColor == "var(--pinned-color)") {document.querySelector(".viewbar-content-toolbar-pin").style.backgroundColor = ""; articleList[articleId].articlePinned = 0; update_articles(category);} else {document.querySelector(".viewbar-content-toolbar-pin").style.backgroundColor = "var(--pinned-color)"; articleList[articleId].articlePinned = 1; update_articles(category);};})
+}
+
+function delete_article (articleId, category) {
+    if (window.confirm(language_data["v2-share-delete-prompt"]) === true) {
+        axios
+            .post("/forum/assets/api/delete.php?articleId=" + articleId)
+            .then((resolve) => {window.location.hash = category; delete articleList[articleId]; console.log(articleList); update_articles(category);})
+    }
 }

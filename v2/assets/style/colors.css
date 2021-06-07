@@ -19,7 +19,8 @@
 
     --accent-color: #B7094C;
 
-    --viewbar-click-background-overlay-color: #66b9b775;
+    --share-button-default-background: #d9f1f1;
+    --viewbar-click-background-overlay-color: #2e959475;
 
     --moderator-font-color: green;
     --administrator-font-color: red;
@@ -31,5 +32,6 @@
 
     font-family: "Cairo", sans-serif;
 
-    --liked-color: #B7094C;
+    --liked-color: #ec95b6b0;
+    --pinned-color: #10f59688;
 }

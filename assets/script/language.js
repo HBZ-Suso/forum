@@ -8,7 +8,7 @@ function set_language () {
                 } else {
                     var language_str = languages.data.join("");
                 }
-                window.prompt(result, language_str).then(() => {
+                window.c_prompt(result, language_str).then(() => {
                 var language_prompt_answer = document.getElementById("q-input").value;
 
                 if (language_prompt_answer.length > 0) {

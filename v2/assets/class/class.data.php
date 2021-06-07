@@ -7,18 +7,24 @@ class DataV2 extends Data {
         return array("Home", "About", "Discussion", "Projects", "Help");
     }
 
-    public function get_articleIds_by_category ($category, $limit=100000)
+    public function get_articleIds_by_category ($category, $orderby="articleCreated", $dir="DESC", $start=0, $limit=100000)
     {
+        if (!in_array($dir, ["DESC", "ASC"])) {
+            $dir = "ASC";
+        }
+        if (!in_array($orderby, ["articleCreated", "articleId", "userId", "articleTitle", "articleText"])) {
+            $orderby = "articleCreated";
+        }
         $query = '
-        SELECT articleId, articleTitle, userId, articleCreated
+        SELECT articleId, articleTitle, userId, articleCreated, articlePinned
         FROM articles
         WHERE articleCategory=?
-        ORDER BY articleCreated DESC
-        LIMIT 0, 
+        ORDER BY ' . $orderby . ' ' . $dir . '
+        LIMIT ?, 
         ?;
         ';
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("si", $category, $limit);
+        $stmt->bind_param("sii", $category, $start, $limit);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
@@ -61,6 +67,34 @@ class DataV2 extends Data {
             return $return;
         } else {
             return false;
+        }
+    }
+
+
+    public function toggle_article_pin ($articleId) {
+        if ($this->check_article_pin($articleId)) {
+            $this->change_article_column_by_id_and_name($articleId, "articlePinned", 0);
+        } else {
+            $this->change_article_column_by_id_and_name($articleId, "articlePinned", 1);
+        }
+    }
+
+
+    public function check_article_pin ($articleId) {
+        $query = '
+        SELECT articlePinned
+        FROM articles
+        WHERE articleId=?;
+        ';
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $articleId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return (strval($row["articlePinned"]) == "1");
+            }
         }
     }
 }

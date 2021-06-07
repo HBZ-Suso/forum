@@ -41,12 +41,23 @@ window.onload = () => {
 
 
 function get_article_entry_html (article_data) {
+    if (article_data === undefined || article_data == null) {
+        return "";
+    }
+
     if (article_data["articleComments"] == false) {
         article_data["articleComments"] = 0;
     }
+    
+    let icon = ``;
+    if (article_data["articlePinned"] == 1) {
+        icon = `<img src="/forum/assets/img/icon/pinned.png">`;
+    } else {
+        icon = `<img src="/forum/assets/img/icon/article.svg">`;
+    }
     return `
     <div class="selectbar-article-element selectbar-article-element-${article_data["articleId"]}" onclick="window.location.hash=\'#Article?articleId=${article_data["articleId"]}\'">
-        <img src="/forum/assets/img/icon/article.svg">
+        ${icon}
         <h1>${article_data["articleTitle"]}</h1>
         <div>
             <p>${language_data["v2-article-by"]}<a onclick="event.stopPropagation();" href="#Profile?userId=${article_data["userId"]}" class="findings-article-author" authorId="${article_data["userId"]}">${article_data["userName"]}</a> •</p>
@@ -66,28 +77,42 @@ function update_articles (category, max=500) {
     let special_array = [];
     articleIds[category].forEach((element, index) => {
         use_array.push(element["articleTitle"]);
-        special_array.push([element["articleId"], element["articleCreated"]]);
+        special_array.push([element["articleId"], element["articleCreated"], element["articlePinned"]]);
     })
     let listed = find_matching(search, use_array, 120, special_args=special_array);
     container.innerHTML = "";
     let final_array = [];
     listed.forEach((element, index) => {
-        final_array.push({"prox": element["prox"], "articleTitle": element["string"], "articleCreated": element["special"][1], "articleId": element["special"][0]})
+        final_array.push({"prox": element["prox"], "articleTitle": element["string"], "articleCreated": element["special"][1], "articleId": element["special"][0], "articlePinned": element["special"][2]})
     })
     final_array = final_array.filter((element, index) => {return element["prox"] >= 0.4;});
     final_array.sort((a, b) => {
-        if (get_sort(category)["conv"] == "articleCreated") {
-            a = new Date(a["articleCreated"]).getTime()
-            b = new Date(b["articleCreated"]).getTime();
-        } else {
-            a = articleList[a["articleId"]][get_sort(category)["conv"]];
-            b = articleList[b["articleId"]][get_sort(category)["conv"]];
-        }5
-        if (get_sort(category)["down"]) {
-            return b - a;
-        } else {
-            return a - b;
+        try {
+            if (a["articlePinned"] == 1 && !b["articlePinned"] == 1) {
+                return -1;
+            } else if (b["articlePinned"] == 1 && !a["articlePinned"] == 1) {
+                return 1;
+            } else if (b["articlePinned"] == 1 && a["articlePinned"] == 1) {
+                return 0;
+            }
+
+
+            if (get_sort(category)["conv"] == "articleCreated") {
+                a = new Date(a["articleCreated"]).getTime()
+                b = new Date(b["articleCreated"]).getTime();
+            } else {
+                a = articleList[a["articleId"]][get_sort(category)["conv"]];
+                b = articleList[b["articleId"]][get_sort(category)["conv"]];
+            }
+            if (get_sort(category)["down"]) {
+                return b - a;
+            } else {
+                return a - b;
+            }
+        } catch (e) {
+            return 1;
         }
+        
     })
     final_array.splice(max);
 

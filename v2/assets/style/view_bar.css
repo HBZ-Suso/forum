@@ -85,13 +85,11 @@
 
 .viewbar-content-toolbar {
     width: 100%;
-    height: 30px;
-    display: flex;
-    justify-content: left;
+    height: auto;
 }
 
 .viewbar-content-toolbar > button {
-    height: 100%;
+    height: 30px;
     width: fit-content;
     color: var(--article-icon-color);
     font-size: 20px;
@@ -103,7 +101,10 @@
     border-radius: 2px;
     transition: background-color 0.2s linear;
     padding: 0 5px;
-    margin: 0 10px;
+    margin: 0 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    background-color: var(--share-button-default-background);
 }
 
 .viewbar-content-toolbar > button:active {

@@ -90,9 +90,21 @@ if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
 
 if ($data->is_logged_in()) {
     echo "<script>var logged_in = true;</script>";
+    if ($data->is_moderator_by_id($_SESSION["userId"])) {
+        echo "<script>var user_type = 'moderator';</script>";
+    } else if ($data->is_admin_by_id($_SESSION["userId"])) {
+        echo "<script>var user_type = 'administrator';</script>";
+    } else {
+        echo "<script>var user_type = 'user';</script>";
+    }
+    echo "<script>var logged_in_user_id = " . $_SESSION["userId"] . ";</script>"; 
 } else {
     echo "<script>var logged_in = false;</script>";
+    echo "<script>var user_type = 'notlogged';</script>";
 }
+
+
+
 
 if (isset($_SESSION["theme"])) {
     $theme = $_SESSION["theme"];

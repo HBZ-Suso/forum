@@ -111,15 +111,16 @@
 
 .selectbar-sort-container {
     position: absolute;
-    top: max(13%, 95px);
+    top: 95px;
     right: 0px;
     left: 0px;
-    height: max(2%, 45px);
+    height: 45px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: left;
     align-items: center;
     cursor: pointer;
+    padding-left: 15px;
 }
 
 .selectbar-sort-container > div {
@@ -131,7 +132,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 2px;
-    padding: 1px;
+    padding: 2px 5px;
     min-width: 0;
     margin: 2px 15px;
 }
@@ -159,12 +160,20 @@
 
 .selectbar-article-container {
     position: absolute;
-    top: max(17%, 150px);
+    top: 150px;
     left: 0px;
     right: 0px;
     bottom: 0px;
     overflow-y: auto;
     overflow-x: hidden;
+
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+
+.selectbar-article-container::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Chrome/Safari/Webkit */
 }
 
 

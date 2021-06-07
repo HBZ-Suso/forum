@@ -28,6 +28,7 @@ Database name: forum
     5. articleTags (used for search, JSON (array))
     6. articleCreated (timestamp, CURRENT_TIMESTAMP)
     7. articleCategory ("Home", "About", "Discussion", "Projects", "Help", TEXT)
+    8. articlePinned (UNSIGNED TINYINT, 1 for true or 0 for false)
 
 3. articleLikes:
     1. likeId (number, ticking up, DOUBLEINT, unsigned)
@@ -120,6 +121,18 @@ Database name: forum
     4. errorIp (LONGTEXT)
     5. userId (TEXT, "false" if not logged in)
     6. errorFile (TEXT)
+
+16. archivedArticles:
+    1. archivedArticleId (MEDIUMINT, unsigned, ticking up)
+    2. articleId (MEDIUMINT, unsigned)
+    3. userId (MEDIUMINT, unsigned)
+    4. articleTitle (TEXT)
+    5. articleText (formatet text, LONGTEXT)
+    6. articleTags (used for search, JSON (array))
+    7. articleCreated (timestamp)
+    8. articleCategory ("Home", "About", "Discussion", "Projects", "Help", TEXT)
+    9. articlePinned (UNSIGNED TINYINT, 1 for true or 0 for false)
+    10. articleArchived (timestamp, CURRENT_TIMESTAMP)
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>

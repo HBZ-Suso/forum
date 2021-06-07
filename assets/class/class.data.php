@@ -257,9 +257,12 @@ class Data extends Connector
 
 
 
-    public function delete_article_by_id($articleId)
+    public function delete_article_by_id($articleId, $archive=true)
     {
-
+        if ($archive === true) {
+            $ad = $this->get_article_by_id($articleId);
+            $this->archiveArticle($ad["articleId"], $ad["userId"], $ad["articleTitle"], $ad["articleText"], $ad["articleTags"], $ad["articleCreated"], $ad["articleCategory"], $ad["articlePinned"]);
+        }
         $query = "DELETE FROM articles WHERE articleId=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", $articleId);
@@ -990,7 +993,7 @@ class Data extends Connector
 
     public function change_article_column_by_id_and_name($articleId, $column, $change_to)
     {
-        if (!(strtoupper($column) === "ARTICLETEXT" || strtoupper($column) === "ARTICLETAGS" || strtoupper($column) === "ARTICLETITLE")) {
+        if (!(strtoupper($column) === "ARTICLETEXT" || strtoupper($column) === "ARTICLETAGS" || strtoupper($column) === "ARTICLETITLE" || strtoupper($column) === "ARTICLEPINNED")) {
             return false;
         } else {
             $query = 'UPDATE articles SET ' . $column . '=? WHERE articleId=?';
@@ -1604,5 +1607,20 @@ class Data extends Connector
     public function get_random_password ($len)
     {
         return substr(str_replace(['+', '/', '=', ' ', '?', '&'], '', base64_encode(random_bytes($len))), 0, $len);
+    }
+
+
+
+    public function archiveArticle ($articleId, $userId, $articleTitle, $articleText, $articleTags, $articleCreated, $articleCategory, $articlePinned) {
+        if ($this->check_entry_exists("archivedArticles", "articleId", $articleId)) {
+            return false;
+        }
+
+        $query = "INSERT INTO archivedArticles (articleId, userId, articleTitle, articleText, articleTags, articleCreated, articleCategory, articlePinned) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("iisssssi", $articleId, $userId, $articleTitle, $articleText, json_encode($articleTags), $articleCreated, $articleCategory, $articlePinned);
+        $stmt->execute();
+        $stmt->close();
+        return true;
     }
 }
