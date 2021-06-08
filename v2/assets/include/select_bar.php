@@ -45,6 +45,13 @@ foreach ($data->get_categories() as $category) {
         <div class="selectbar-article-container selectbar-' . $category . '-article-container">
             ' . $articles . '
         </div>
+        <div class="selectbar-page-container">
+            <div class="selectbar-page-left selectbar-' . $category . '-page-left" pageCategory="' . $category . '"><img pageCategory="' . $category . '" src="/forum/assets/img/icon/downarrow.png"></div>
+
+            <div class="selectbar-page-display selectbar-' . $category . '-page-display">1</div>
+
+            <div class="selectbar-page-right selectbar-' . $category . '-page-right" pageCategory="' . $category . '"><img pageCategory="' . $category . '" src="/forum/assets/img/icon/downarrow.png"></div>
+        </div>
     </div>
     ';
 }

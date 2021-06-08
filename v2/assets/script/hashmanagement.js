@@ -68,6 +68,8 @@ function issue_commands_after_hash (hash) {
             break;
         case "#Profile":
             try {
+                show_profile(window.location.toString().slice(window.location.toString().indexOf("?userId=") + 8));
+                /*
                 window.open("/forum/v2/?site=profile&" + window.location.toString().slice(window.location.toString().indexOf("?userId=") + 1), "Profile", "width=800,height=800,fullscreen=false,location=false,menubar=false,resizable=false,status=false,titlebar=false,toolbar=false", false)
 
                 // Sets hash back to last before article view 
@@ -76,7 +78,7 @@ function issue_commands_after_hash (hash) {
                         window.location.hash = hash_history[i]["state"];
                         break;
                     }
-                }
+                }*/
             } catch (e) {
                 console.debug("Error whilst issuing internal Article command, Error: " + e)
             }

@@ -1,6 +1,13 @@
 var articleIds = {};
 var articleList = {};
+if (localStorage.getItem("articleList") !== null) {
+    articleList = JSON.parse(localStorage.getItem("articleList"));
+    window.onload = function () {categories.forEach((element, index) => {update_articles(element, index);})}
+}
 var users = {};
+var pageList = {};
+
+
 
 window.onload = () => {
     categories.forEach((element, index) => {
@@ -20,6 +27,21 @@ window.onload = () => {
             .catch((e) => {
                 console.debug(e);
             })
+
+
+        pageList[element] = 1;
+        document.querySelector(".selectbar-" + element + "-page-left").addEventListener("click", (e) => {
+            if (pageList[element] > 1) {
+                pageList[element] -= 1;
+            }
+            document.querySelector(".selectbar-" + element + "-page-display").innerHTML = pageList[element];
+            update_pages(e.target.getAttribute("pageCategory"));
+        })
+        document.querySelector(".selectbar-" + element + "-page-right").addEventListener("click", (e) => {
+            pageList[element] += 1;
+            document.querySelector(".selectbar-" + element + "-page-display").innerHTML = pageList[element];
+            update_pages(e.target.getAttribute("pageCategory"));
+        })
     })
 
     axios
@@ -40,7 +62,7 @@ window.onload = () => {
 }
 
 
-function get_article_entry_html (article_data) {
+function get_article_entry_html (category, article_data, page=1) {
     if (article_data === undefined || article_data == null) {
         return "";
     }
@@ -56,7 +78,7 @@ function get_article_entry_html (article_data) {
         icon = `<img src="/forum/assets/img/icon/article.svg">`;
     }
     return `
-    <div class="selectbar-article-element selectbar-article-element-${article_data["articleId"]}" onclick="window.location.hash=\'#Article?articleId=${article_data["articleId"]}\'">
+    <div class="selectbar-article-element selectbar-article-element-page-${page} selectbar-article-element-${article_data["articleId"]} selectbar-${category}-article-element" onclick="window.location.hash=\'#Article?articleId=${article_data["articleId"]}\'">
         ${icon}
         <h1>${article_data["articleTitle"]}</h1>
         <div>
@@ -71,6 +93,10 @@ function get_article_entry_html (article_data) {
 
 
 function update_articles (category, max=500) {
+    localStorage.setItem("articleList", JSON.stringify(articleList));
+
+
+
     let search = document.querySelector(".selectbar-" + category + "-search").value;
     let container = document.querySelector(".selectbar-" + category + "-article-container");
     let use_array = [];
@@ -114,11 +140,38 @@ function update_articles (category, max=500) {
         }
         
     })
-    final_array.splice(max);
+
+
+    let container_height = document.querySelector(".selectbar-article-container").clientHeight - 10; //10 is puffer for security, can probably be removed
+    let current_page_count = 1;
+    let current_article_count = 0;
+    let average_element_height = 55;
+    if (average_element_height > container_height) {average_element_height = container_height - 1;}
+    /*if (final_array.length > 0) {
+        document.querySelector(".selectbar-" + category + "-article-container").innerHTML = get_article_entry_html(category, articleList[element["articleId"]]);
+        average_element_height = document.querySelector(".selectbar-" + category + "-article-container").childNodes[0].clientHeight;
+    }*/
+    final_array.forEach((element, index) => {
+        current_article_count += 1;
+        if (current_article_count * average_element_height < container_height) {
+            element["page"] = current_page_count;
+        } else {
+            current_page_count += 1;
+            current_article_count = 1;
+            element["page"] = current_page_count;
+        }
+    })
 
     document.querySelector(".selectbar-" + category + "-article-container").innerHTML = "";
+    final_array.map((element) => {document.querySelector(".selectbar-" + category + "-article-container").innerHTML += get_article_entry_html(category, articleList[element["articleId"]], page=element["page"]);})
 
-    final_array.map((element) => {document.querySelector(".selectbar-" + category + "-article-container").innerHTML += get_article_entry_html(articleList[element["articleId"]]);})
+    document.querySelectorAll(`.selectbar-${category}-article-element`).forEach((element, index) => {
+        if (!element.classList.contains("selectbar-article-element-page-" + pageList[category])) {
+            element.style.display = "none";
+        } else {
+            element.style.display = "";
+        }
+    })
 
     // Performance improvement: only check best results of last search?
 
@@ -155,4 +208,30 @@ function get_sort (category) {
     document.querySelectorAll(".selectbar-" + category + "-sort").forEach((element, index) => {if (element.classList.contains("selectbar-sort-toggled")) {sort = element.getAttribute("sortname"); down = element.classList.contains("selectbar-sort-down")}})
     let sort_conv = {"created": "articleCreated", "comments": "articleComments", "views": "articleViews", "likes": "articleLikes"}[sort];
     return {"sort": sort, "down": down, "conv": sort_conv};
+}
+
+
+function checkVerticalOverflow (el)
+{
+   var curOverflow = el.style.overflow;
+
+   if ( !curOverflow || curOverflow === "visible" )
+      el.style.overflow = "hidden";
+
+   var isOverflowing =  el.clientHeight < el.scrollHeight;
+
+   el.style.overflow = curOverflow;
+
+   return isOverflowing;
+}
+
+
+function update_pages (category) {
+    document.querySelectorAll(`.selectbar-${category}-article-element`).forEach((element, index) => {
+        if (!element.classList.contains("selectbar-article-element-page-" + pageList[category])) {
+            element.style.display = "none";
+        } else {
+            element.style.display = "";
+        }
+    })
 }

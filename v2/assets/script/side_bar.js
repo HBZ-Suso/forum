@@ -2,7 +2,6 @@
 
 
 var selected_category = find_last_category();
-var categories = ["Home", "About", "Discussion", "Projects", "Help"]
 if (window.location.hash.toString().length > 0) {
     if (categories.indexOf(window.location.hash.toString().slice(1)) != -1) {
         selected_category = window.location.hash.toString().slice(1);

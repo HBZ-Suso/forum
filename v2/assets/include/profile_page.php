@@ -43,4 +43,4 @@ $user_data = $data->get_user_by_id($_GET["userId"]);
 </div>
 
 
-<script src="/forum/v2/assets/script/profile.js"></script>
+<script src="/forum/v2/assets/script/profile-page.js"></script>

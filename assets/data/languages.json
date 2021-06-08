@@ -417,7 +417,8 @@
         "v2-sort-comments": "Kommentare",
         "v2-sort-views": "Klicks",
         "v2-sort-likes": "Likes",
-        "v2-comment-delete": "Willst du wirklich diesen Kommentar löschen?"
+        "v2-comment-delete": "Willst du wirklich diesen Kommentar löschen?",
+        "v2-profilebox-heading": "Profile"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",

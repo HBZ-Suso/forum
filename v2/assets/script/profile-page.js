@@ -72,3 +72,9 @@ if (window.mobileCheck() === true) {
 
 
 document.querySelector(".profile-middle-column").addEventListener("click", toggle_profile_view);
+
+
+axios
+    .post("/forum/v2/assets/api/view.php?userId=" + document.getElementById("profile-userId").innerText)
+    .then((resolve) => {if (resolve.data.indexOf("error") === -1) {document.querySelector(".userViews").innerText = parseInt(document.querySelector(".userViews").innerText) + 1}}, (reject) => {throw new Error(reject)})
+    .catch((e) => console.debug)

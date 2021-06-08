@@ -73,6 +73,8 @@ echo '<div class="scheme-box"><link rel="stylesheet" href="/forum/v2/assets/styl
 echo '<div class="scheme-box"><link rel="stylesheet" href="/forum/v2/assets/style/user-profile.css"></div>';
 echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
 echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>';
+echo '<script>var categories = ["Home", "About", "Discussion", "Projects", "Help"];</script>';
+echo '<script src="/forum/v2/assets/script/connection.js"></script>';
 echo '<script src="/forum/v2/assets/script/language_management.js"></script>';
 echo '<script src="/forum/assets/script/functions.js"></script>';
 echo '<script src="/forum/v2/assets/script/share.js"></script>';
@@ -86,6 +88,7 @@ if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
     echo '<script src="/forum/v2/assets/script/findings.js"></script>';
     echo '<script src="/forum/v2/assets/script/comment.js"></script>'; 
     echo '<script src="/forum/v2/assets/script/show_article.js"></script>'; 
+    echo '<script src="/forum/v2/assets/script/show_profile.js"></script>'; 
 }
 
 if ($data->is_logged_in()) {
