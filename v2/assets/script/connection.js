@@ -75,7 +75,6 @@ function MeasureConnectionSpeed() {
         if (connection.speed < 100000) {
             connection.slow = true;
         }
-        console.debug({"bps": speedBps, "kbps": speedKbps, "mbps": speedMbps});
     }
 }
 

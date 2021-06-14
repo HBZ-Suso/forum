@@ -207,7 +207,13 @@
         "v2-sort-comments": "Comments",
         "v2-sort-views": "Views",
         "v2-sort-likes": "Likes",
-        "v2-comment-delete": "Do you really want to delete this comment?"
+        "v2-comment-delete": "Do you really want to delete this comment?",
+        "v2-webpageinfo": "Website information",
+        "v2-webpageinfo-info-heading": "Information",
+        "v2-webpageinfo-info-text": "This webpage was created to allow for contact between alumnus and current members of the HBZ, thus giving the opportunity for exchange of thoughts and situations. As such alumnus can, for example, get in contact with their former teachers and present students whilst those are able to ask the alumnus about their life and what they did after school. ",
+        "v2-webpageinfo-impressum-heading": "Impressum",
+        "v2-webpageinfo-impressum-text": "This page was created by Nathan Zumbusch for the Heinrich Suso Gymnasium Konstanz. Usage of the code is not permitted without written permission by Nathan Zumbusch. Please report any bugs or mistakes on the webpage as soon as discovered in order to allow a timely response.<br>Contact via the button below or:<br>n.zumbusch@gmx.de<br>Nathan Zumbusch",
+        "v2-webpageinfo-contact": "Contact"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -418,7 +424,13 @@
         "v2-sort-views": "Klicks",
         "v2-sort-likes": "Likes",
         "v2-comment-delete": "Willst du wirklich diesen Kommentar löschen?",
-        "v2-profilebox-heading": "Profile"
+        "v2-profilebox-heading": "Profile",
+        "v2-webpageinfo": "Website Informationen",
+        "v2-webpageinfo-info-heading": "Informationen",
+        "v2-webpageinfo-info-text": "Diese Seite soll der HBZ-Gemeinschaft, bestehend aus ehemaligen und derzeitigen Mitgliedern ebenso wie aus den Lehrern, eine Möglichkeit geben, sich auszutauschen. So können Ehemalige im Kontakt mit Schülern und den Lehrern bleiben und die Schüler können Ehemalige fragen und mit ihnen über ihr Leben nach der Schule reden. ",
+        "v2-webpageinfo-impressum-heading": "Impressum",
+        "v2-webpageinfo-impressum-text": "Diese Website wurde von Nathan Zumbusch geschrieben. Eine Verwendung des Quellcodes ist ohne schriftliche Erlaubniss von diesem nicht erlaubt. <br> Falls Fehler an der Seite entdeckt werden, kontaktieren Sie uns bitte schnellstmoeglich, damit wir diese beheben koennen. Fuer den Kontakt verwenden Sie entweder den untenstehenden Kontaktknopf oder schreiben Sie eine Email an: <br>Nathan Zumbusch<br>n.zumbusch@gmx.de",
+        "v2-webpageinfo-contact": "Kontakt"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",

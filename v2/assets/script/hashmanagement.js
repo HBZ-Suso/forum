@@ -44,6 +44,7 @@ function issue_commands_after_hash (hash) {
     if (hash.indexOf("?") !== -1) {
         hash = hash.slice(0, (hash.indexOf("?")));
     }
+    console.log(hash)
     switch (hash) {
         case "#Login":
             try {
@@ -80,21 +81,28 @@ function issue_commands_after_hash (hash) {
                     }
                 }*/
             } catch (e) {
-                console.debug("Error whilst issuing internal Article command, Error: " + e)
+                console.debug("Error whilst issuing internal Profile command, Error: " + e)
             }
             break;
         case "#CreatePost":
             try {
                 show_create_post(find_last_category());
             } catch (e) {
-                console.debug("Error whilst issuing internal Article command, Error: " + e)
+                console.debug("Error whilst issuing internal Createpost command, Error: " + e)
             }
             break;
         case "#Report":
             try {
                 report(additional_info="-|-HASH-|-" + window.location.hash + "-|-HASH-|-")
             } catch (e) {
-                console.debug("Error whilst issuing internal Article command, Error: " + e)
+                console.debug("Error whilst issuing internal Report command, Error: " + e)
+            }
+            break;
+        case "#Information":
+            try {
+                show_webpage_info();
+            } catch (e) {
+                console.debug("Error whilst issuing internal Information command, Error: " + e)
             }
             break;
         default:

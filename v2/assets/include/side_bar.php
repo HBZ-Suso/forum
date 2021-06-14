@@ -68,7 +68,7 @@ if (isset($_SESSION["userId"])) {
             <img src="/forum/assets/img/icon/contact.svg" alt="Contact">
         </div>
         <div class="information-element">
-            <img src="/forum/assets/img/icon/information.png" alt="Info">
+            <img src="/forum/assets/img/icon/information.png" alt="Info" onclick="window.location.hash='Information';">
         </div>
     </div>
 </div>
