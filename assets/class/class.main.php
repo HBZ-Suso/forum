@@ -13,6 +13,8 @@ if (!isset($_SESSION["res_x"]) || !isset($_SESSION["res_y"])) {
 */
 
 
+
+
 // Setting languages before including classes because class.text.php needs language on construct
 if (!isset($_SESSION["language"])) {
     if (isset($_COOKIE["language"])) {
@@ -219,5 +221,18 @@ if (isset($_SESSION["user"]) || isset($_SESSION["userId"])) {
         unset($_SESSION["userIp"]);
         header("LOCATION: /forum/?forced_logout=differentIp");
         exit("As your ip changed, you were logged out.");
+    }
+}
+
+
+if (!($data->is_logged_in() && ($data->is_moderator_by_id($_SESSION["userId"] || $data->is_admin_by_id($_SESSION["userId"])))) && !strpos(substr($_SERVER["REQUEST_URI"], 0, 20), "forum/assets/api/")) {
+    header("LOCATION: /forum/v2");
+    exit("<script>window.location = '/forum/v2/?redirected=/forum/';</script>");
+}
+
+if ($data->is_logged_in() && ($data->is_moderator_by_id($_SESSION["userId"] || $data->is_admin_by_id($_SESSION["userId"])))) {
+    if (!isset($_COOKIE["wVers"]) && !$_COOKIE["wVers"] === "version-old" && !strpos(substr($_SERVER["REQUEST_URI"], 0, 20), "forum/assets/api/")) {
+        header("LOCATION: /forum/v2");
+        exit("<script>window.location = '/forum/v2/?redirected=/forum/';</script>");
     }
 }

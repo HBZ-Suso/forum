@@ -4,6 +4,18 @@ document.querySelectorAll(".snb-element").forEach((element, index) => {
     })
 })
 
+function select_settings_page (snb_element) {
+    document.querySelectorAll(".snb-element").forEach((element, index) => {
+        if (element.classList.contains("snb-element-selected")) {
+            element.classList.remove("snb-element-selected");
+            document.querySelector("." + element.getAttribute("open")).style.display = "none";
+        }
+    })
+    snb_element.classList.add("snb-element-selected");
+    document.querySelector("." + snb_element.getAttribute("open")).style.display = "";
+}
+
+
 
 
 

@@ -219,7 +219,10 @@
         "v2-settings-profile-phone": "Phonenumber",
         "v2-settings-profile-age": "Age",
         "v2-settings-profile-description": "Description",
-        "v2-settings-profile-employment": "Employment"
+        "v2-settings-profile-employment": "Employment",
+        "v2-settings-version-heading": "Website-Version",
+        "v2-version-old": "Old & Outdated",
+        "v2-version-2": "New and shiny"
     },
     "deutsch": {
         "frame-pc-heading": "HBZ-Forum",
@@ -442,7 +445,10 @@
         "v2-settings-profile-phone": "Telefonnummer",
         "v2-settings-profile-age": "Alter",
         "v2-settings-profile-description": "Beschreibung",
-        "v2-settings-profile-employment": "Anstellung"
+        "v2-settings-profile-employment": "Anstellung",
+        "v2-settings-version-heading": "Website Version",
+        "v2-version-old": "Alt & Outdated",
+        "v2-version-2": "Neu und glaenzend"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",

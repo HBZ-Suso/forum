@@ -52,11 +52,10 @@
     left: 5px;
     cursor: pointer;
     border-radius: 100px;
-    filter: invert(0%) sepia(6%) saturate(25%) hue-rotate(261deg) brightness(111%) contrast(105%);
 }
 
 .profilebox-bar-liked {
-    filter: none!important;1
+    filter:  invert(14%) sepia(73%) saturate(7441%) hue-rotate(4deg) brightness(94%) contrast(133%)!important;
 }
 
 

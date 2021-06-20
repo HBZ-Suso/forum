@@ -12,6 +12,30 @@ function show_settings () {
         <img src="/forum/assets/img/icon/theme.png" class="snb-element snb-theme" open="settings-page-theme">
         <img src="/forum/assets/img/icon/user.png" class="snb-element snb-profile" open="settings-page-profile">
         `;
+        if (user_type === "moderator" || user_type === "administrator") {
+            var theme_allowed = `
+            <form class="setting">
+                <h1 class="setting-heading">${language_data["v2-settings-version-heading"]}</h1>
+                <div class="container">
+                    <div class="option option-version">
+                        <input class="version_radio" type="radio" name="version" id="version-old" value="version">
+                        <label for="version-old" aria-label="version-old">
+                        <span></span>
+                        ${language_data["v2-version-old"]}
+                        </label>
+                    </div>
+                
+                    <div class="option">
+                        <input class="version_radio" type="radio" name="version" id="version-2" value="version">
+                        <label for="version-2" aria-label="version-2">
+                        <span></span>
+                        ${language_data["v2-version-2"]}
+                        </label>
+                    </div>
+                </div>
+            </form>
+            `;
+        }
     } else {
         var logged_img = "";
     }
@@ -24,6 +48,8 @@ function show_settings () {
         <!--<img src="/forum/assets/img/icon/reload.png" class="settings-reload" alt="Reload Page">-->
 
             <div class="settings-page settings-page-theme" style="display: none;">
+                ${theme_allowed}
+
                 <form class="setting">
                     <h1 class="setting-heading">${language_data["v2-settings-theme-heading"]}</h1>
                     <div class="container">

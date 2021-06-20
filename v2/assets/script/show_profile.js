@@ -25,7 +25,7 @@ function show_profile (userId) {
                     <div class="profilebox-bar">
                         <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-${resolve.data.color}">
                         <div class="profilebox-bar-bar">
-                            <img src="/forum/assets/img/icon/like.png" class="profilebox-bar-like">
+                            <img src="/forum/assets/img/icon/favorite_border_black_24dp.svg" class="profilebox-bar-like">
                             <h1>${resolve.data.userName}</h1>
                         </div>
                     </div>
@@ -56,6 +56,7 @@ function show_profile (userId) {
 
                 if (resolve.data.liked) {
                     document.querySelector(".profilebox-bar-like").classList.add("profilebox-bar-liked");
+                    document.querySelector(".profilebox-bar-like").src = "/forum/assets/img/icon/favorite_black_24dp.svg";
                 }
 
                 document.querySelector(".profilebox-bar-like").addEventListener("click", (e) => {
@@ -64,9 +65,11 @@ function show_profile (userId) {
                         .then((resolve) => {
                             if (document.querySelector(".profilebox-bar-like").classList.contains("profilebox-bar-liked")) {
                                 document.querySelector(".profilebox-bar-like").classList.remove("profilebox-bar-liked");
+                                document.querySelector(".profilebox-bar-like").src = "/forum/assets/img/icon/favorite_border_black_24dp.svg";
                                 document.querySelector('.profilebox-info-column-userlikes').innerHTML = parseInt(document.querySelector('.profilebox-info-column-userlikes').innerHTML) - 1;
                             } else {
                                 document.querySelector(".profilebox-bar-like").classList.add("profilebox-bar-liked");
+                                document.querySelector(".profilebox-bar-like").src = "/forum/assets/img/icon/favorite_black_24dp.svg";
                                 document.querySelector('.profilebox-info-column-userlikes').innerHTML = parseInt(document.querySelector('.profilebox-info-column-userlikes').innerHTML) + 1;
                             }
                         })

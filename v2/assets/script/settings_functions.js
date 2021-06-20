@@ -2,6 +2,7 @@ var language = "";
 var publicity = "";
 var notifications = "";
 var color = "";
+var wVersClickCount = 0;
 
 var settings_tab_loaded = false;
 
@@ -27,6 +28,8 @@ function set_settings_stuff () {
             setTimeout(send_profile_axios, inverted_internet_speed * 200);
         })
     })
+
+
 }
 
 function select_settings_page (snb_element) {
@@ -126,6 +129,15 @@ function s_check_changes () {
     }
 
 
+    if (logged_in && (user_type === "administrator" || user_type === "moderator")) {
+        let w_version = "version-2";
+        if (getCookie("wVers") === "version-old" && document.getElementById("version-old").checked && !document.getElementById("version-2").checked && wVersClickCount > 1) {
+            window.location = "/forum/";
+        }
+        if (document.getElementById("version-2").checked) {w_version = "version-2"; wVersClickCount += 1;};
+        if (document.getElementById("version-old").checked) {w_version = "version-old"; wVersClickCount += 1;};
+        document.cookie = "wVers=" + w_version + "; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+    }
 }
 
 
@@ -167,6 +179,19 @@ function on_settings_window_open () {
                 document.querySelector(".settings-profile-description").disabled = false;
             }, (reject) => {throw new Error(reject)})
             .catch(console.debug)
+
+        if (user_type === "moderator" || user_type === "administrator") {
+            if (getCookie("wVers").length > 0) {
+                if (getCookie("wVers") === "version-2") {
+                    document.getElementById("version-2").checked = true;
+                } else if (getCookie("wVers") === "version-old") {
+                    document.getElementById("version-old").checked = true;
+                }
+            } else {
+                document.getElementById("version-2").checked = true;
+                document.cookie = "wVers=" + w_version + "; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+            }
+        }
     }
 }
 
