@@ -10,6 +10,7 @@ function show_settings () {
         <img src="/forum/assets/img/icon/padlock.png" class="snb-element snb-public" open="settings-page-public">
         <img src="/forum/assets/img/icon/notification.png" class="snb-element snb-notification" open="settings-page-notification">
         <img src="/forum/assets/img/icon/theme.png" class="snb-element snb-theme" open="settings-page-theme">
+        <img src="/forum/assets/img/icon/user.png" class="snb-element snb-profile" open="settings-page-profile">
         `;
     } else {
         var logged_img = "";
@@ -178,6 +179,21 @@ function show_settings () {
                     </div>
                 </form>
             </div>
+
+
+            <div class="settings-page settings-page-profile" style="display: none;">
+                <form class="setting">
+                    <h1 class="setting-heading">${language_data["v2-settings-profile-heading"]}</h1>
+                    <div class="settings-profile-container">
+                        <input class="settings-profile-element settings-profile-employment" placeholder="${language_data["v2-settings-profile-employment"]}" type="text" disabled elementName="userEmployment">
+                        <input class="settings-profile-element settings-profile-age" placeholder="${language_data["v2-settings-profile-age"]}" type="number" disabled elementName="userAge">
+                        <input class="settings-profile-element settings-profile-mail" placeholder="${language_data["v2-settings-profile-mail"]}" type="text" disabled elementName="userMail">
+                        <input class="settings-profile-element settings-profile-phone" placeholder="${language_data["v2-settings-profile-phone"]}" type="text" disabled elementName="userPhone">
+
+                        <textarea class="settings-profile-element settings-profile-description" placeholder="${language_data["v2-settings-profile-description"]}" disabled elementName="userDescription"></textarea>
+                    </div>
+                </form>
+            </div>
         </div>
 
         <link rel="stylesheet" href="/forum/v2/assets/style/settingsbox.css">
@@ -220,6 +236,8 @@ function show_settings () {
     }
 
     set_settings_stuff()
+
+    on_settings_window_open();
 
     /*
     document.querySelector(".settingsbox-close").addEventListener("click", (e) => {

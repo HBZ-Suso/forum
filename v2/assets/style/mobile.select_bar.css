@@ -242,3 +242,57 @@
 .selectbar-sort-toggled {
     background-color: var(--select-icon-color);
 }
+
+
+
+
+
+
+.selectbar-page-container {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-left: 30px;
+    padding: 10px;
+}
+
+.selectbar-page-right, .selectbar-page-left {
+   height: 60px;
+   width: 60px;
+   padding: 10px;
+   margin: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   border-radius: 40px;
+   background-color: var(--select-icon-color);
+   box-shadow: 0px 0px 16px -4px var(--select-icon-color);
+}
+
+
+.selectbar-page-left > img, .selectbar-page-right > img {
+    width: 60px;
+}
+
+.selectbar-page-display {
+    color: var(--light-color);
+    font-size: 50qpx;
+    text-decoration: underline;
+}
+
+.selectbar-page-left > img {
+    transform: rotate(90deg);
+    margin-left: -10px;
+}
+
+.selectbar-page-right > img {
+    transform: rotate(270deg);
+    margin-right: -10px;
+}

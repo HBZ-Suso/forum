@@ -61,7 +61,7 @@
     border: 1px solid var(--createpost-border-color);
     padding: 5px;
     background-color: none;
-    box-shadow: inset 0px 0px 400px 110px var(--createpost-background-color);
+    box-shadow: inset 0px 0px 400px 1100000px var(--createpost-background-color);
     font-size: 16px;
 }
 

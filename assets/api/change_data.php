@@ -54,4 +54,4 @@ if (isset($change["userPhone"])) {
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userPhone", $filter->purify($change["userPhone"], 25));
 }
 
-exit();
+exit("Success");

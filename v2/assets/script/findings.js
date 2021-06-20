@@ -235,3 +235,7 @@ function update_pages (category) {
         }
     })
 }
+
+window.addEventListener("resize", () => {
+    categories.forEach((element, index) => {update_articles(element);})
+});

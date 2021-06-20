@@ -27,6 +27,7 @@ function check_hash_usage () {
 }
 
 function find_last_category () {
+    console.debug("Using find_last_category")
     for (let i=0; true; i++) {
         if (i + 1 > hash_history.length) {
             console.debug("No usable page found... Setting to default (Home)")
@@ -44,7 +45,6 @@ function issue_commands_after_hash (hash) {
     if (hash.indexOf("?") !== -1) {
         hash = hash.slice(0, (hash.indexOf("?")));
     }
-    console.log(hash)
     switch (hash) {
         case "#Login":
             try {

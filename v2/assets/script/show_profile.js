@@ -2,6 +2,13 @@ function show_profile (userId) {
     axios
         .post("/forum/assets/api/get_user.php?userId=" + userId)
         .then((resolve) => {
+            try {
+                if (resolve.data.indexOf("Permissionerror") !== -1) {
+                    window.location.hash = find_last_category();
+                    return;
+                }
+            } catch (e) {}; // Data is JSON
+
             /*
             let login_window = document.createElement("div");
             login_window.classList.add("loginbox-container")

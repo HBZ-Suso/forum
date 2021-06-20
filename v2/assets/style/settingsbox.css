@@ -234,7 +234,7 @@ input:checked+.slider:before {
 }
 
 [type="radio"]:checked~label {
-    border-color: #4062f6;
+    border-color: var(--settings-selected-border-color);
     background-color: rgba(97, 154, 234, 0.16);
     /*color: #fff;*/
 }
@@ -304,7 +304,7 @@ input:checked+.slider:before {
 }
 
 .option>label:hover {
-    border-color: #4062f6;
+    border-color: var(--settings-selected-border-color);
     background-color: rgba(97, 154, 234, 0.16);
 }
 
@@ -498,4 +498,39 @@ input:checked+.slider:before {
 
 .option>label {
     cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+.settings-profile-element {
+    width: 100%;
+    padding: 2.5%;
+    height: 35px;
+    border: 2px solid var(--settings-selected-border-color);
+    border-radius: 3px;
+    margin-bottom: 10px;
+    -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.settings-profile-element::-webkit-outer-spin-button, 
+.settings-profile-element::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.settings-profile-description {
+    height: 300px;
+    resize: none;
+    font-size: 15px;
 }

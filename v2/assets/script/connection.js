@@ -2,9 +2,9 @@ var connection = {
     online: true,
     offline: false,
     slow: false,
-    speed: 1000000,
-    speedmbps: 1000000,
-    speedkbps: 100000000
+    speed: 6000000,
+    speedmbps: 6,
+    speedkbps: 6000
 }
 
 window.onload = function () {

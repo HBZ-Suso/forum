@@ -43,4 +43,15 @@
     --profilebox-bar-background-color-light: rgb(99, 153, 151);
 
     --profilebox-column-border-color: #49A6A2;
+
+
+    --settings-selected-border-color: #4062f6;
+
+    /* Sets text cursor color */
+    caret-color: #c3507c;
+}
+
+::selection {
+    background-color: #AEE0B8;
+    color: currentColor;
 }

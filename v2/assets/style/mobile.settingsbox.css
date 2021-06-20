@@ -60,7 +60,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    border-bottom: 4px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 7px solid var(--settings-navigation-bar-bottom-color);
 }
 
 
@@ -238,7 +238,7 @@ input:checked+.slider:before {
 [type="radio"]:checked~label {
     border-color: #4062f6;
     background-color: rgba(97, 154, 234, 0.16);
-    color: #fff;
+    color: var(--dark-color);
 }
 
 [type="radio"]:checked~label:before {
@@ -500,4 +500,47 @@ input:checked+.slider:before {
 
 .option>label {
     cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.settings-profile-element {
+    width: 100%;
+    padding: 2.5%;
+    height: 70px;
+    border: 4px solid var(--settings-selected-border-color);
+    border-radius: 6px;
+    margin-bottom: 20px;
+    -webkit-appearance: textfield;
+     -moz-appearance: textfield;
+          appearance: textfield;
+    font-size: 32px;
+    line-height: 46px;
+}
+
+.settings-profile-element::-webkit-outer-spin-button, 
+.settings-profile-element::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.settings-profile-description {
+    height: 600px;
+    resize: none;
+    font-size: 30px;
+}
+
+.settings-page-profile {
+    width: 90%;
+    margin-left: 5%;
 }

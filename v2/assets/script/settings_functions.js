@@ -3,6 +3,8 @@ var publicity = "";
 var notifications = "";
 var color = "";
 
+var settings_tab_loaded = false;
+
 function set_settings_stuff () {
     document.querySelectorAll(".snb-element").forEach((element, index) => {
         element.addEventListener("click", (e) => {
@@ -15,9 +17,22 @@ function set_settings_stuff () {
     //document.querySelector(".settings-reload").addEventListener("click", (e) => {s_check_changes(); window.location.reload();})
 
     document.querySelectorAll(".option").forEach((element, index) => {element.addEventListener("click", (e) =>  {s_check_changes();})});
+
+
+    document.querySelectorAll(".settings-profile-element").forEach((element, index) => {
+        element.addEventListener("keyup", (e) => {
+            changed = true;
+            let inverted_internet_speed = 20 - connection.speedmbps;
+            inverted_internet_speed = Math.min(...[10, inverted_internet_speed]);
+            setTimeout(send_profile_axios, inverted_internet_speed * 200);
+        })
+    })
 }
 
 function select_settings_page (snb_element) {
+    if (snb_element === null) {return;}
+    if (settings_tab_loaded) {localStorage.setItem("SettingsTab", snb_element.getAttribute("open").replace("settings-page-", ""));};
+    
     document.querySelectorAll(".snb-element").forEach((element, index) => {
         if (element.classList.contains("snb-element-selected")) {
             element.classList.remove("snb-element-selected");
@@ -108,5 +123,72 @@ function s_check_changes () {
             element.classList.add("user-profile-color-overlay-" + n_color);
         })
         color = n_color;
+    }
+
+
+}
+
+
+function on_settings_window_open () {
+    if (localStorage.getItem("SettingsTab") !== null) {
+        select_settings_page(document.querySelector(".snb-" + localStorage.getItem("SettingsTab")));
+        settings_tab_loaded = true;
+    }
+
+    if (logged_in) {
+        axios
+            .post("/forum/v2/assets/api/get_settings_profile.php")
+            .then((resolve) => {
+                try {
+                    if (resolve.data.indexOf("error") !== -1) {
+                        throw new Error(resolve.data)
+                    }
+                } catch (e) {};//JSON
+                
+                if (resolve.data.userMail !== undefined) {
+                    document.querySelector(".settings-profile-mail").value = resolve.data.userMail;
+                }
+                if (resolve.data.userPhone !== undefined) {
+                    document.querySelector(".settings-profile-phone").value = resolve.data.userPhone;
+                }
+                if (resolve.data.userEmployment !== undefined) {
+                    document.querySelector(".settings-profile-employment").value = resolve.data.userEmployment;
+                }
+                if (resolve.data.userAge !== undefined) {
+                    document.querySelector(".settings-profile-age").value = resolve.data.userAge;
+                }
+                if (resolve.data.userDescription !== undefined) {
+                    document.querySelector(".settings-profile-description").value = resolve.data.userDescription;
+                }
+                document.querySelector(".settings-profile-mail").disabled = false;
+                document.querySelector(".settings-profile-phone").disabled = false;
+                document.querySelector(".settings-profile-age").disabled = false;
+                document.querySelector(".settings-profile-employment").disabled = false;
+                document.querySelector(".settings-profile-description").disabled = false;
+            }, (reject) => {throw new Error(reject)})
+            .catch(console.debug)
+    }
+}
+
+
+function get_profile_json_string () {
+    let json = {};
+    document.querySelectorAll(".settings-profile-element").forEach((element, index) => {
+        json[element.getAttribute("elementName")] = element.value;
+    })
+    return JSON.stringify(json);
+}
+
+var changed = false;
+
+
+function send_profile_axios () {
+    if (changed === true) {
+        changed = false;
+        let post_req = "change_data=" + get_profile_json_string();
+        axios
+            .post("/forum/assets/api/change_data.php", post_req)
+            .then((resolve) => {}, (reject) => {throw new Error(reject)})
+            .catch((e) => console.debug)
     }
 }

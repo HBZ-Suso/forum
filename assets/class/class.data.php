@@ -979,7 +979,7 @@ class Data extends Connector
 
     public function change_user_column_by_id_and_name($userId, $column, $change_to)
     {
-        if (!(strtoupper($column) === "USERNAME" || strtoupper($column) === "USERID" || strtoupper($column) === "USERINTENDED" || strtoupper($column) === "USERLASTARTICLE" || strtoupper($column) === "USERTYPE" || strtoupper($column) === "USERCREATED" || strtoupper($column) === "USERLOCKED" || strtoupper($column) === "USERPASSWORD")) {
+        if (!in_array(strtoupper($column), ["USERNAME", "USERPASSWORD", "USERMAIL", "USERPHONE", "USERDESCRIPTION", "USERAGE", "USERLOCKED", "USERLASTARTICLE", "USERSETTINGS", "USEREMPLOYMENT", "USERVERIFIED"])) {
             return false;
         } else {
             $query = 'UPDATE users SET ' . $column . '=? WHERE userId=?';
