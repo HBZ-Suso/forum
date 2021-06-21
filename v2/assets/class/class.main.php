@@ -94,6 +94,8 @@ if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
 if ($data->is_logged_in() && ($data->is_admin_by_id($_SESSION["userId"]))) {
     echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
     echo '<script src="/forum/v2/assets/script/show_administration.js"></script>'; 
+    echo '<script src="/forum/v2/assets/script/administration/graph_functions.js"></script>'; 
+    echo '<script src="/forum/v2/assets/script/administration/code_functions.js"></script>'; 
 }
 
 if ($data->is_logged_in()) {

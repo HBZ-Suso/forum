@@ -1,6 +1,25 @@
 .viewbar-content > p {
     line-height: 24px;
     font-size: 18px;
+    margin: 2px;
+}
+
+
+.viewbar-content > h2 {
+    border-top: 1px solid var(--settings-navigation-bar-bottom-color);
+    margin: 2px;
+    padding-top: 10px;
+    font-size: 25px;
+    line-height: 30px;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.danger-warning {
+    height: 25px;
+    padding-left: 7px;
+    filter: invert(21%) sepia(98%) saturate(4422%) hue-rotate(326deg) brightness(71%) contrast(105%);
 }
 
 
@@ -34,11 +53,6 @@
     background-color: var(--viewbar-click-background-overlay-color);
 }
 
-.chart-gallery-left {
-}
-.chart-gallery-right {
-}
-
 
 .chart-gallery-number {
     width: 90px;
@@ -60,4 +74,80 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+.code-box {
+    padding-top: 8px;
+    padding-bottom: 2px;
+    border-top: 1px solid var(--settings-navigation-bar-bottom-color);
+    border-bottom: 1px solid var(--settings-navigation-bar-bottom-color);
+}
+
+.create-code-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-code-container > input, .create-code-container > button {
+    margin-top: 10px;
+}
+
+.create-code-container > input {
+    border: 1px solid var(--article-icon-color);
+    padding: 4px;
+    color: var(--article-icon-color);
+}
+
+.create-code-container > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.code-box > button, .create-code-create, .create-code-cancel {
+    height: 30px;
+    width: fit-content;
+    color: var(--article-icon-color);
+    font-size: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    transition: background-color 0.2s linear;
+    padding: 0 5px;
+    margin: 0 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    background-color: var(--share-button-default-background);
+}
+
+.create-code-create, .create-code-cancel {
+    margin-top: 7px;
+}
+
+.create-code-create:active, .create-code-cancel:active {
+    transition: background-color 0s linear;
+    background-color: var(--viewbar-click-background-overlay-color);
+}
+
+
+.code-new-list {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    line-height: 18px;
 }

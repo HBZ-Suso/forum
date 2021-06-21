@@ -977,6 +977,28 @@ class Data extends Connector
 
 
 
+    public function create_code ($codeType, $codeIntended, $length=10)
+    {
+        $char_array = "abcdefghijklmnopqrstuvwxyzABZDEFGHIJKLMNOPQRSTUVWXYZ12345678901234567890dd";
+        $code = '';
+        for ($i = 0; $i < $length; $i++) {
+            $code = $code . substr($char_array, random_int(0, strlen($char_array) - 2), 1);
+        }
+
+        if ($this->check_entry_exists("codes", "codeName", $code)) {
+            return false;
+        }
+
+        $query = "INSERT INTO codes (codeName, codeType, codeIntended) VALUES (?, ?, ?);";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("sss", $code, $codeType, $codeIntended);
+        $stmt->execute();
+        $stmt->close();
+        return $code;
+    }
+
+
+
     public function change_user_column_by_id_and_name($userId, $column, $change_to)
     {
         if (!in_array(strtoupper($column), ["USERNAME", "USERPASSWORD", "USERMAIL", "USERPHONE", "USERDESCRIPTION", "USERAGE", "USERLOCKED", "USERLASTARTICLE", "USERSETTINGS", "USEREMPLOYMENT", "USERVERIFIED"])) {
@@ -1140,6 +1162,27 @@ class Data extends Connector
     public function get_user_collaborators()
     {
         $query = "SELECT * FROM collaborators";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            $return = [];
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+            return $return;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public function get_codes ()
+    {
+        $query = "SELECT * FROM codes";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("");
         $stmt->execute();

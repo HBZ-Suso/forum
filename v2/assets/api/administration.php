@@ -32,6 +32,12 @@ switch ($rargs["epnt"]) {
     case "newVisitorsGraph":
         exit(json_encode(get_visits_new($data)));
         break;
+    case "createCode":
+        exit(json_encode(create_code($data)));
+        break;
+    case "getCodes":
+        exit(json_encode(get_codes($data)));
+        break;
     default:
         exit("Requesterror");
         break;
@@ -122,4 +128,22 @@ function get_visits_new ($data)
     }
     header("Content-Type: application/json");
     exit(json_encode($visits_per_week));
+}
+
+
+function create_code ($data) {
+    $rargs = array_merge($_GET, $_POST); //Doesnt keep the variable in this scope??? Therefore also $data as argument
+
+
+    if (!isset($rargs["codeIntended"]) || !isset($rargs["codeType"]) || !in_array($rargs["codeType"], ["user", "moderator"])) {
+        exit("Requesterror");
+    } else {
+        return [$data->create_code($rargs["codeType"], $rargs["codeIntended"])];
+    }
+}
+
+
+
+function get_codes ($data) {
+    return $data->get_codes();
 }
