@@ -94,7 +94,7 @@ Database name: forum
     2. userId (TEXT, "false" if not logged in)
     3. visitIp (LONGTEXT)
     4. visitDate (BIGINT, UNIX TIMESTAMP)
-    5. visitPage (LONGTEXT)X
+    5. visitPage (LONGTEXT)
     6. visitData (LONGTEXT, json of $rargs)
     7. visitUserAgent (LONGTEXT, json)
     8. visitBrowser (LONGTEXT, json, output of get_browser)

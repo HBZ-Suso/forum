@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="/forum/v2/assets/style/side_bar.css">
 <link rel="stylesheet" href="/forum/v2/assets/style/user-profile.css">
 <?php 
+session_start();
+
 if ($info->mobile === true) {
     echo '<link rel="stylesheet" href="/forum/v2/assets/style/mobile.side_bar.css">';
 } 
@@ -67,6 +69,15 @@ if (isset($_SESSION["userId"])) {
         <div class="information-element">
             <img src="/forum/assets/img/icon/contact.svg" alt="Contact" onclick="window.location.hash = 'Report?type=Overall';">
         </div>
+        <?php 
+        if ($data->is_logged_in() && ($data->is_admin_by_id($_SESSION["userId"]))) {
+            echo '
+                <div class="information-element">
+                    <img src="/forum/assets/img/icon/admin_panel_settings_black_24dp.svg" alt="Admin" onclick="window.location.hash = \'Administration\';">
+                </div>
+                ';
+        };
+        ?>
         <div class="information-element">
             <img src="/forum/assets/img/icon/information.png" alt="Info" onclick="window.location.hash='Information';">
         </div>

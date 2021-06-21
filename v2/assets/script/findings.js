@@ -101,6 +101,9 @@ function update_articles (category, max=500) {
     let container = document.querySelector(".selectbar-" + category + "-article-container");
     let use_array = [];
     let special_array = [];
+    if (articleIds[category] === undefined) {
+        return;
+    }
     articleIds[category].forEach((element, index) => {
         use_array.push(element["articleTitle"]);
         special_array.push([element["articleId"], element["articleCreated"], element["articlePinned"]]);

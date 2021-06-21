@@ -1319,6 +1319,112 @@ class Data extends Connector
 
 
 
+    public function get_visit_dates ($min, $max) {
+        $query = "SELECT visitDate FROM visits ORDER BY visitDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+            return $return;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function get_visit_dates_clean ($min, $max) {
+        $query = "SELECT visitDate, visitPage, visitIp FROM visits ORDER BY visitDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        $last_ip_accessed = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if (strpos($row["visitPage"], "/api/") === false) {
+                    if (!isset($last_ip_accessed[$row["visitIp"]]) || $row["visitDate"] - $last_ip_accessed[$row["visitIp"]] > 60*60) {
+                        array_push($return, $row);
+                        $last_ip_accessed[$row["visitIp"]] = $row["visitDate"];
+                    }
+                }
+            }
+            return $return;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function get_visit_dates_new ($min, $max) {
+        $query = "SELECT visitDate, visitIp FROM visits ORDER BY visitDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        $last_ip_accessed = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if (!isset($last_ip_accessed[$row["visitIp"]])) {
+                    array_push($return, $row);
+                    $last_ip_accessed[$row["visitIp"]] = $row["visitDate"];
+                }
+            }
+            return $return;
+        } else {
+            return false;
+        }
+    }
+
+    
+    public function get_error_dates ($min, $max) {
+        $query = "SELECT errorDate FROM errors ORDER BY errorDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+            return $return;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function get_report_dates ($min, $max) {
+        $query = "SELECT reportDate FROM reports ORDER BY reportDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+            return $return;
+        } else {
+            return false;
+        }
+    }
+
+
+
     public function get_reports ($min, $max, $column, $to)
     {
         if ($column == false || $to == false) {

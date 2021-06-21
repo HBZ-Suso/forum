@@ -1,0 +1,63 @@
+.viewbar-content > p {
+    line-height: 24px;
+    font-size: 18px;
+}
+
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+    overflow-x: auto;
+}
+
+.chart-gallery-control {
+    height: 30px;
+    width: fit-content;
+    color: var(--article-icon-color);
+    font-size: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    transition: background-color 0.2s linear;
+    padding: 0 5px;
+    margin: 0 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    background-color: var(--share-button-default-background);
+}
+
+
+.chart-gallery-control:active {
+    transition: background-color 0s linear;
+    background-color: var(--viewbar-click-background-overlay-color);
+}
+
+.chart-gallery-left {
+}
+.chart-gallery-right {
+}
+
+
+.chart-gallery-number {
+    width: 90px;
+}
+.chart-gallery-number:active {
+    background-color: var(--share-button-default-background);
+}
+.chart-gallery-start {
+    cursor: auto;
+}
+.chart-gallery-stop {
+    cursor: auto;
+}
+
+
+.chart-control-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

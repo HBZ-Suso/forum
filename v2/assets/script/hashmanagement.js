@@ -105,6 +105,13 @@ function issue_commands_after_hash (hash) {
                 console.debug("Error whilst issuing internal Information command, Error: " + e)
             }
             break;
+        case "#Administration":
+            try {
+                show_administration();
+            } catch (e) {
+                console.debug("Error whilst issuing internal Administration command, Error: " + e)
+            }
+            break;
         default:
             try {close_login_window();} catch (e) {}
             try {close_settings_window();} catch (e) {}
