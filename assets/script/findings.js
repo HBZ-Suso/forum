@@ -82,7 +82,15 @@ document.querySelectorAll(".choose-entry").forEach((element, index) => {
     });
 })
 
-if (window.location.toString().indexOf("select=about") !== -1) {
+if (window.location.toString().indexOf("?select=") !== -1) {
+    let select_name = window.location.toString().slice(window.location.toString().indexOf("?select=") + 8);
+    if (select_name.indexOf("&") !== -1) {
+        select_name = select_name.slice(0, window.location.toString().indexOf("&"))
+    }
+    if (select_name in blocks) {
+        set_section(select_name);
+    }
+} else if (window.location.toString().indexOf("select=about") !== -1) {
     set_section("about-block-heading");
 } else if (getCookie("selected_section").length > 3 && getCookie("selected_section") !== undefined && blocks[getCookie("selected_section")] !== null && blocks[getCookie("selected_section")] !== undefined) {
     set_section(getCookie("selected_section"));
@@ -104,12 +112,7 @@ if (window.location.toString().indexOf("select=about") !== -1) {
         console.debug("Prompt error");
     })
 }
-if (window.location.toString().indexOf("?select=") !== -1) {
-    let select_name = window.location.toString().slice(0, window.location.toString().indexOf("?select=")).slice(window.location.toString().indexOf("&"));
-    if (select_name in blocks) {
-        set_section(select_name);
-    }
-}
+
 
 let everything_hidden = true;
 for (let key in blocks) {

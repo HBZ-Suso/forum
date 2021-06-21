@@ -1,0 +1,217 @@
+.viewbar-container {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    background-color: white;
+}
+
+
+.viewbar-close {
+    position: absolute;
+    top: 20px;
+    cursor: pointer;
+    right: 20px;
+    width: 80px;
+    filter: invert(43%) sepia(36%) saturate(280%) hue-rotate(145deg) brightness(95%) contrast(89%);
+    color: var(--article-text-color);
+    z-index: 3;
+}
+
+
+.viewbar-content {
+    color: var(--article-text-color);
+    width: 90%;
+    height: 85%;
+    z-index: 2;
+    position: absolute;
+    top: 5%;
+    left: 0%;
+    padding: 5%;
+    overflow-y: auto;
+}
+
+.viewbar-content-heading {
+    color: var(--article-text-color-darker);
+
+    font-size: 60px;
+    font-weight: 400;
+    line-height: 70px;
+    margin-bottom: 40px;
+}
+
+.viewbar-content-text {
+    color: var(--article-text-color);
+    font-size: 35px;
+    font-weight: 400;
+    line-height: 48px;
+    margin-bottom: 40px;
+}
+
+
+.viewbar-content-toolbar {
+    width: 100%;
+    height: auto;
+}
+
+.viewbar-content-toolbar > button {
+    height: 80px;
+    width: fit-content;
+    color: var(--article-icon-color);
+    font-size: 50px;
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--share-button-default-background);
+}
+
+
+.viewbar-content-author {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    margin-bottom: 40px;
+    align-items: center;
+}
+
+.viewbar-content-author > img {
+    height: 150px;
+}
+
+.viewbar-content-author-info {
+    width: 550px;
+    margin-left: 50px;
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.viewbar-content-author-info > a, .viewbar-content-author-info > p {
+    display: inline;
+    font-size: 40px;
+    color: var(--article-icon-color);
+    font-weight: 600;
+    text-decoration: none;
+    line-height: 48px;
+}
+
+.viewbar-content-author-info > p {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+.viewbar-content-comments {
+    width: 100%;
+    height: min-content;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--side-border-color);
+}
+
+.createcomment-container {
+    width: 100%;
+    border-bottom: 4px solid var(--side-border-color);
+    padding-bottom: 60px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: row;
+}
+
+.createcomment-title {
+    width: 25%;
+    border: none;
+    border-right: 4px solid var(--side-border-color);
+    color: var(--article-text-color-darker);
+    padding-right: 10px;
+    font-size: 34px;
+}
+
+.createcomment-text {
+    width: 65%;
+    resize: none;
+    border: none;
+    padding-left: 30px;
+    font-size: 28px;
+    color: var(--article-text-color);
+}
+
+.createcomment-send-container {
+    width: 4%;
+    padding: 3%;
+    cursor: pointer;
+}
+
+.createcomment-send {
+    filter: invert(65%) sepia(30%) saturate(662%) hue-rotate(128deg) brightness(84%) contrast(87%);
+    width: 100%;
+}
+
+
+
+.comment-container {
+    padding: 20px 0;
+    width: 100%;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.comment-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-author {
+    width: min-content;
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.comment-author > img {
+    height: 100px;
+}
+
+.comment-author-info {
+    width: fit-content;
+    margin-left: 30px;
+    font-size: 28px;
+    font-weight: 500;
+    min-width: 360px;
+    line-height: 50px;
+}
+
+.comment-author-info > a, .comment-author-info > p {
+    display: inline;
+    font-size: 32px;
+    color: var(--article-icon-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.comment-author-info > p {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+
+.comment-title {
+    color: var(--article-text-color-darker);
+    font-size: 40px;
+    margin-bottom: 10px;
+    height: min-content;
+}
+
+.comment-text {
+    font-size: 35px;
+    line-height: 43px;
+}

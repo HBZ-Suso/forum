@@ -52,6 +52,7 @@ echo '
                     <input class="language_radio" type="radio" name="language" id="deutsch" value="language" ' . $deutsch . '>
                     <label for="deutsch" aria-label="deutsch">
                     <span></span>
+               
                     Deutsch
                     </label>
                 </div>
@@ -71,14 +72,15 @@ echo '
 
 
 
-
+if ($_SESSION["colorscheme"] === "dark") {
+    $scheme_checked = "checked";
+}
 
 
 echo '
     <div class="settings-page settings-page-theme" style="display: none;">
-
         <form class="setting">
-            <h1 class="setting-heading">' . $text->get("theme-setting-heading") . '</h1>
+            <h1 class="setting-heading">' . $text->get("theme-setting-scheme") . '</h1>
             <div class="container">';
                 foreach($info->get_themes() as $value) {
                     if ($_SESSION["theme"] === $value) {
@@ -98,6 +100,13 @@ echo '
                     </div>';
                 }   
         echo '</div>
+        </form>
+        <form class="setting">
+            <h1 class="setting-heading">' . $text->get("theme-setting-heading") . '</h1>
+            <label class="switch scheme-switch">
+                <input type="checkbox" class="scheme-switch-box" ' . $scheme_checked  . '>
+                <span class="slider round"></span>
+            </label>
         </form>
     </div>
 ';

@@ -9,6 +9,11 @@
     height: max-content;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    background-color: var(--main-background-lighter-eleven)
+}
+
+.author-href {
+    color: black;
 }
 
 @media screen and (min-width: 1200px) {

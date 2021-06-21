@@ -1,0 +1,148 @@
+.profile-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--select-main-color);
+}
+
+.profile-innerContainer {
+    width: 100%;
+    height: 100%;
+    background-color: var(--side-main-color);
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+
+.profile-middle-column {
+    width: 400px;
+    padding: 25px;
+    position: absolute;
+    right: 0px;
+    top: 50px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--profile-main-background);
+    border-top-left-radius: 15px;
+
+    transition: 0.3s all ease-in;
+
+    z-index: 2;
+
+    cursor: pointer;
+}
+
+
+.profile-image {
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.profile-image > img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.profile-username {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 45px;
+}
+
+.profile-user-type-moderator {
+    color: var(--moderator-font-color);
+}
+
+.profile-user-type-administrator {
+    color: var(--administrator-font-color);
+}
+
+.profile-employment, .profile-age {
+    width: 100%;
+    font-size: 40px;
+    text-align: center;
+    line-height: 45px;
+}
+
+.profile-description {
+    margin-top: 15px;
+    width: 400px;
+    font-size: 30px;
+    height: 250px;
+    resize: none;
+    border: none;
+    padding: 2.5%;
+    background-color: var(--profile-main-background);
+    color: var(--dark-color);
+}
+
+
+.profile-middle-column > .profile-middle-column-click-barrier {
+    display: none;
+}
+
+.profile-middle-column-toggled > .profile-middle-column-click-barrier {
+    display: initial;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 3;
+}
+
+
+.profile-side-column {
+    position: absolute;
+    left: 0px;
+    width: 400px;
+    padding: 25px;
+    top: 0px;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-left: -460px;
+}
+
+.profile-right-column {
+    top: 50%;
+}
+
+
+.profile-side-column > div {
+    width: 400px;
+    font-size: 36px;
+    background-color: var(--select-icon-color);
+    border-radius: 6px;
+    margin-top: 25px;
+    padding: 14px;
+    padding-left: 20px;
+    line-height: 40px;
+}
+
+
+.profile-right-column-toggled, .profile-left-column-toggled {
+    margin-left: -30px;
+    transition: 0.7s all ease-in;
+}
+
+.profile-click-tip {
+    position: absolute;
+    bottom: 10%;
+    margin: 0 auto;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    font-size: 35px;
+}

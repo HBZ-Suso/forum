@@ -1,0 +1,255 @@
+.sidebar-container {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 320px;
+    display: relative;
+    background-color: var(--side-main-color);
+    z-index: 4;
+}
+
+.sidebar-gradient-div {
+    position: absolute;
+    height: 20px;
+    width: 100%;
+    z-index: 3;
+    background-image: linear-gradient(to top, var(--side-main-color), var(--side-dark-color));
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 5px;
+    padding-right: 10px;
+    cursor: pointer;
+    z-index: 5;
+    background-color: var(--side-main-color);
+    border-bottom-right-radius: 5px;
+}
+
+.sidebar-toggle > img {
+    width: 50px;
+    height: 50px;
+}
+
+.sidebar-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+    background-color: var(--side-user-color);
+    border-bottom-left-radius: 5px;
+    cursor: pointer;
+}
+
+/* USER INFO */
+
+.userview-container {
+    width: 100%;
+    height: 180px;
+    background-color: var(--side-user-color);
+}
+
+.sidebar-not-logged-in > .userview-container {
+    height: 130px;
+}
+
+.userview-user {
+    width: 100%;
+    height: 130px;
+}
+
+.userview-bar {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.userview-details {
+    float: right;
+    width: 170px;
+    margin-top: 45px;
+    padding-right: 20px;
+}
+
+.userview-image {
+    width: 130px;
+    height: 130px;
+    float: left;
+    position: relative;
+}
+
+.userview-image > img {
+    top: 25px;
+    left: 25px;
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.userview-details > div > a {
+    color: var(--dark-color);
+}
+
+.userview-name {
+    font-size: 18px;
+    text-decoration: underline;
+    width: 95%;
+    overflow: hidden;
+    height: 30px;
+}
+
+.userview-employment {
+    font-size: 15px;
+    width: 95%;
+    overflow: hidden;
+    height: 35px;
+    margin-top: 5px;
+}
+
+
+.userview-bar > div {
+    border-radius: 22px;
+    padding: 6px;
+}
+
+.userview-bar > div > img {
+    width: 30px;
+    height: 30px;
+}
+
+.userview-bar > div:hover {
+    cursor: pointer;
+}
+
+.userview-bar > div:active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+/* CATEGORIES */
+
+.category-container {
+    position: absolute;
+    top: 180px;
+    bottom: 50px;
+    right: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.category-header {
+    margin-left: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 260px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    font-size: 30px;
+    color: var(--light-color);
+    border-bottom: 1px solid var(--side-border-color);
+    text-decoration: none;
+    position: relative;
+    height: 40px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: 500;
+}
+
+
+.category-header > img {
+    display: none;
+    transform: rotate(270deg);
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 23px;
+    left: -26px;
+}
+
+.category-header > .bicu {
+    background-color: rgba(255, 255, 255, 0);
+    position: absolute;
+    transition: all 0.5s linear;
+    top: 0px;
+    bottom: 0px;
+    left: -300px;
+    width: 570px;
+    border-radius: 5px;
+    display: none;
+}
+
+.category-selected {
+    font-weight: 600;
+}
+
+
+.category-header:hover > .bicu {
+    background-color: rgba(255, 255, 255, 0.1);
+    display: block;
+}
+
+.category-selected > img {
+    display: block;
+}
+
+.category-selected > .scdb {
+    position: absolute;
+    width: 5px;
+    height: 40px;
+    background-color: white;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    top: 10px;
+    left: -20px;
+}
+
+
+
+
+
+
+/* INFO */
+
+.information-container {
+    background-color: var(--side-main-color);
+    position: absolute;
+    height: 50px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    -ms-flex-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.information-element {
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 24px;
+}
+
+.information-element > img {
+    width: 30px;
+    height: 30px;
+}
+
+.information-element:active {
+    background-color: rgba(255, 255, 255, 0.1);
+}

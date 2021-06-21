@@ -71,13 +71,13 @@ foreach (array_reverse($highlight_data) as $value) {
 
 
     if ($info->mobile === true) {
-        $like_text = '<img class="like-icon-heart" src="https://img.icons8.com/fluent/48/000000/like.png"/>';
+        $like_text = '<img class="like-icon-heart" src="/forum/assets/img/icon/like.png"/>';
     } else {
         $like_text = $text->get("highlight-block-like");
     }
 
     if ($info->mobile === true) {
-        $view_text = '<img class="view-icon-eye" src="https://img.icons8.com/material-sharp/24/000000/visible.png"/>';
+        $view_text = '<img class="view-icon-eye" src="/forum/assets/img/icon/visible.png"/>';
     } else {
         $view_text = $text->get("highlight-block-views");
     }

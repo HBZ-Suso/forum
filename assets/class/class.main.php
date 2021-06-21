@@ -13,6 +13,8 @@ if (!isset($_SESSION["res_x"]) || !isset($_SESSION["res_y"])) {
 */
 
 
+
+
 // Setting languages before including classes because class.text.php needs language on construct
 if (!isset($_SESSION["language"])) {
     if (isset($_COOKIE["language"])) {
@@ -58,6 +60,28 @@ if (isset($require_purifier)) {
 }
 
 
+
+if (isset($_SESSION["colorscheme"])) {
+    $theme = $_SESSION["colorscheme"];
+    if (!isset($_COOKIE["colorscheme"]) || $_COOKIE["colorscheme"] !== $_SESSION["colorscheme"]) {
+        setcookie("colorscheme", $_SESSION["colorscheme"], time() + 60*60*24*365, "/");
+    }
+} else if (isset($_COOKIE["colorscheme"])) {
+    if (in_array($_COOKIE["colorscheme"], array("dark", "light"))) {
+        $_SESSION["colorscheme"] = $_COOKIE["colorscheme"];
+    }
+    $theme = $_SESSION["colorscheme"];
+} else {
+    $_SESSION["colorscheme"] = "light";
+    setcookie("colorscheme", $_SESSION["colorscheme"], time() + 60*60*24*365, "/");
+    $theme = $_SESSION["light"];
+}
+
+if (!isset($_SESSION["colorscheme"])) {
+    $_SESSION["colorscheme"] = "light";
+    setcookie("colorscheme", $_SESSION["colorscheme"], time() + 60*60*24*365, "/");
+}
+
 $mail = new Mail($data, $text);
 if (!isset($hide_frame)) {
 
@@ -91,6 +115,12 @@ if (!isset($hide_frame)) {
     </style>";
     echo "<div class='script-warning'>This site is relying on Javascript, please switch to a browser that supports JS or activate it.</div>";
     echo '<script src="/forum/assets/script/include/resolution.js"></script>';
+
+
+
+    
+    echo '<div class="scheme-box"><link rel="stylesheet" href="/forum/assets/style/scheme-' . $theme . '-file.css"></div>';
+
 
     if (isset($_SESSION["theme"])) {
         $theme = $_SESSION["theme"];
@@ -191,5 +221,18 @@ if (isset($_SESSION["user"]) || isset($_SESSION["userId"])) {
         unset($_SESSION["userIp"]);
         header("LOCATION: /forum/?forced_logout=differentIp");
         exit("As your ip changed, you were logged out.");
+    }
+}
+
+
+if (!($data->is_logged_in() && ($data->is_moderator_by_id($_SESSION["userId"] || $data->is_admin_by_id($_SESSION["userId"])))) && !strpos(substr($_SERVER["REQUEST_URI"], 0, 20), "forum/assets/api/")) {
+    header("LOCATION: /forum/v2");
+    exit("<script>window.location = '/forum/v2/?redirected=/forum/';</script>");
+}
+
+if ($data->is_logged_in() && ($data->is_moderator_by_id($_SESSION["userId"] || $data->is_admin_by_id($_SESSION["userId"])))) {
+    if (!isset($_COOKIE["wVers"]) && !$_COOKIE["wVers"] === "version-old" && !strpos(substr($_SERVER["REQUEST_URI"], 0, 20), "forum/assets/api/")) {
+        header("LOCATION: /forum/v2");
+        exit("<script>window.location = '/forum/v2/?redirected=/forum/';</script>");
     }
 }

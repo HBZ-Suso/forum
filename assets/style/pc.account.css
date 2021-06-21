@@ -15,6 +15,7 @@
     border-radius: 0.3vw;
     min-height: 60%;
     height: min-content;
+    background-color: var(--main-background-lighter-twelve);
 }
 
 .flex-container {
@@ -34,6 +35,7 @@
     margin: 0.2%;
     border: 2px solid black;
     border-radius: 2px;
+    background-color: var(--main-background-lighter-twelve);
 }
 
 .flex-container > input {
@@ -44,6 +46,7 @@
     margin: 0.2%;
     border: 2px solid black;
     border-radius: 2px;
+    background-color: var(--main-background-lighter-twelve);
 }
 
 .flex-container > #userChangePassword {
@@ -57,6 +60,11 @@
     cursor: pointer;
     text-align: center;
     line-height: 35px;
+    transition: 0.25s all linear;
+}
+
+.flex-container > #userChangePassword:hover {
+    background-color: var(--main-background-lighter-eleven);
 }
 
 #title {
@@ -89,6 +97,7 @@
     transition: 0.2s all ease-in;
     border-radius: 5px;
     padding: 5px;
+    background-color: var(--main-font-color-two);
 }
 
 #userSubmit:hover {

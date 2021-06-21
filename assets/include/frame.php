@@ -22,7 +22,12 @@ if ($info->mobile === false) {
 
 echo '
 <div class="main-heading-container theme-main-color-1">
-    <img class="main-menu-icon" alt="Menu" src="https://img.icons8.com/material-rounded/1000/000000/menu.png"/>
+    <svg width="100" height="100" class="main-menu-icon" alt="Menu">
+    <rect x="10" y="15" rx="3" ry="3" width="70" height="10" style="" />
+    <rect x="10" y="35" rx="3" ry="3" width="70" height="10" style="" />
+    <rect x="10" y="55" rx="3" ry="3" width="70" height="10" style="" />
+    </svg>
+    <!--<img class="main-menu-icon" alt="Menu" src="/forum/assets/img/icon/menu.png"/>-->
 
     <h1 class="main-heading-text">' . $text->get("frame-pc-heading") . '</h1>';
 
@@ -38,7 +43,7 @@ if ($info->mobile === false) {
         <script src="/forum/assets/script/preview.js"></script>
         <div class="theme-main-color-2 main-heading-search-preview"></div>
         
-        <input type="submit" class="main-heading-search-submit theme-main-color-2" value="&#x1F50E;">
+        <svg class="main-heading-search-submit theme-main-color-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.145 18.29c-5.042 0-9.145-4.102-9.145-9.145s4.103-9.145 9.145-9.145 9.145 4.103 9.145 9.145-4.102 9.145-9.145 9.145zm0-15.167c-3.321 0-6.022 2.702-6.022 6.022s2.702 6.022 6.022 6.022 6.023-2.702 6.023-6.022-2.702-6.022-6.023-6.022zm9.263 12.443c-.817 1.176-1.852 2.188-3.046 2.981l5.452 5.453 3.014-3.013-5.42-5.421z"/></svg>
     </form>
     
     </div>

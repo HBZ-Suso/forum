@@ -1,0 +1,99 @@
+/* Change viewbar styles in order to get full width */
+.viewbar-content {
+    width: 100%!important;
+    padding: 0%!important;
+    height: 100%!important;
+}
+
+.viewbar-content-heading {
+    padding-left: 5%;
+    padding-top: 5%;
+}
+
+.profilebox-bar {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    background-image: linear-gradient(to right, var(--profilebox-bar-background-color-light), var(--profilebox-bar-background-color-dark), var(--profilebox-bar-background-color-light))
+}
+
+.profilebox-bar > img {
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    height: 500px;
+    width: 500px;
+    left: 50%;
+    margin-left: -250px;
+}
+
+.profilebox-bar-bar {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 120px;
+    background-color: hsla(0, 0%, 100%, 0.9);
+    margin: 0px; 
+}
+
+.profilebox-bar-bar > h1 {
+    text-align: center;
+    margin: 0px;
+    line-height: 110px;
+    font-size: 90px;
+    height: 110px;
+}
+
+.profilebox-bar-bar > img {
+    position: absolute;
+    top: 10px;
+    height: 100px;
+    left: 10px;
+    cursor: pointer;
+    border-radius: 200px;
+    filter: invert(0%) sepia(6%) saturate(25%) hue-rotate(261deg) brightness(111%) contrast(105%);
+}
+
+.profilebox-bar-liked {
+    filter: none!important;
+}
+
+
+.profilebox-column {
+    width: 49%;
+    display: inline-block;
+    min-height: 800px;
+    margin: 40px 0;
+    height: min-content;
+}
+
+.profilebox-column-left {
+    float: left;
+    border-right: 4px solid var(--profilebox-column-border-color);
+}
+
+.profilebox-column-right {
+    float: right;
+    font-size: 35px;
+    line-height: 40px;
+}
+
+.profilebox-info-column {
+    margin: 0px;
+    margin-left:30px;
+    padding-left: 20px;
+    width: 90%;
+    text-align: left;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 40px;
+    margin-top: 12px;
+}
+
+.profilebox-info-column > p {
+    margin: 0px;
+    width: 100%;
+    display: inline;
+    font-weight: normal;
+}

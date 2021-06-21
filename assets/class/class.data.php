@@ -116,15 +116,15 @@ class Data extends Connector
     }
 
 
-    public function create_article($userId, $title, $text, $tags)
+    public function create_article ($userId, $title, $text, $tags, $category)
     {
         if ($this->check_entry_exists("articles", "articleTitle", $title)) {
             return false;
         }
 
-        $query = "INSERT INTO articles (userId, articleTitle, articleText, articleTags) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO articles (userId, articleTitle, articleText, articleTags, articleCategory) VALUES (?, ?, ?, ?, ?)";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("isss", $userId, $title, $text, json_encode($tags));
+        $stmt->bind_param("issss", $userId, $title, $text, json_encode($tags), $category);
         $stmt->execute();
         $stmt->close();
 
@@ -134,7 +134,7 @@ class Data extends Connector
         $stmt->bind_param("ss", $time, $userId);
         $stmt->execute();
         $stmt->close();
-        return true;
+        return $this->get_article_id_by_title($title);
     }
 
 
@@ -257,9 +257,12 @@ class Data extends Connector
 
 
 
-    public function delete_article_by_id($articleId)
+    public function delete_article_by_id($articleId, $archive=true)
     {
-
+        if ($archive === true) {
+            $ad = $this->get_article_by_id($articleId);
+            $this->archiveArticle($ad["articleId"], $ad["userId"], $ad["articleTitle"], $ad["articleText"], $ad["articleTags"], $ad["articleCreated"], $ad["articleCategory"], $ad["articlePinned"]);
+        }
         $query = "DELETE FROM articles WHERE articleId=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", $articleId);
@@ -644,6 +647,66 @@ class Data extends Connector
     }
 
 
+    public function get_articles_by_user_id($userId)
+    {
+        $query = "SELECT * FROM articles WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+        } else {
+            return $return;
+        }
+        return $return;
+    }
+
+
+    public function get_user_comments_by_user_id($userId)
+    {
+        $query = "SELECT * FROM userComments WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+        } else {
+            return $return;
+        }
+        return $return;
+    }
+
+
+    public function get_article_comments_by_user_id ($userId)
+    {
+        $query = "SELECT * FROM articleComments WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+        } else {
+            return $return;
+        }
+        return $return;
+    }
+
+
 
     public function get_username_by_id($code)
     {
@@ -702,7 +765,7 @@ class Data extends Connector
     }*/
 
 
-    public function get_article_id_by_title($title)
+    public function get_article_id_by_title ($title)
     {
         $query = "SELECT articleId FROM articles WHERE articleTitle=?";
         $stmt = $this->connId->prepare($query);
@@ -712,7 +775,7 @@ class Data extends Connector
         $stmt->close();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                return intval($row["articleId"]);
+                return $row["articleId"];
             }
         } else {
             return false;
@@ -764,11 +827,23 @@ class Data extends Connector
         $stmt->close();
         return $result->num_rows;
     }
-
+    
 
     public function get_user_likes_by_targetUserId($userId)
     {
         $query = "SELECT likeId FROM userLikes WHERE targetUserId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->num_rows;
+    }
+
+
+    public function get_user_comments_by_targetUserId($userId)
+    {
+        $query = "SELECT commentId FROM userComments WHERE targetUserId=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("i", $userId);
         $stmt->execute();
@@ -904,7 +979,7 @@ class Data extends Connector
 
     public function change_user_column_by_id_and_name($userId, $column, $change_to)
     {
-        if (!(strtoupper($column) === "USERNAME" || strtoupper($column) === "USERID" || strtoupper($column) === "USERINTENDED" || strtoupper($column) === "USERLASTARTICLE" || strtoupper($column) === "USERTYPE" || strtoupper($column) === "USERCREATED" || strtoupper($column) === "USERLOCKED" || strtoupper($column) === "USERPASSWORD")) {
+        if (!in_array(strtoupper($column), ["USERNAME", "USERPASSWORD", "USERMAIL", "USERPHONE", "USERDESCRIPTION", "USERAGE", "USERLOCKED", "USERLASTARTICLE", "USERSETTINGS", "USEREMPLOYMENT", "USERVERIFIED"])) {
             return false;
         } else {
             $query = 'UPDATE users SET ' . $column . '=? WHERE userId=?';
@@ -918,7 +993,7 @@ class Data extends Connector
 
     public function change_article_column_by_id_and_name($articleId, $column, $change_to)
     {
-        if (!(strtoupper($column) === "ARTICLETEXT" || strtoupper($column) === "ARTICLETAGS" || strtoupper($column) === "ARTICLETITLE")) {
+        if (!(strtoupper($column) === "ARTICLETEXT" || strtoupper($column) === "ARTICLETAGS" || strtoupper($column) === "ARTICLETITLE" || strtoupper($column) === "ARTICLEPINNED")) {
             return false;
         } else {
             $query = 'UPDATE articles SET ' . $column . '=? WHERE articleId=?';
@@ -1019,6 +1094,22 @@ class Data extends Connector
                 array_push($return, $row);
             }
             return $return;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function get_article_comment_number_by_id($articleId)
+    {
+        $query = "SELECT commentId FROM articleComments WHERE articleId=? ORDER BY commentCreated desc";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $articleId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            return $result->num_rows;
         } else {
             return false;
         }
@@ -1516,5 +1607,20 @@ class Data extends Connector
     public function get_random_password ($len)
     {
         return substr(str_replace(['+', '/', '=', ' ', '?', '&'], '', base64_encode(random_bytes($len))), 0, $len);
+    }
+
+
+
+    public function archiveArticle ($articleId, $userId, $articleTitle, $articleText, $articleTags, $articleCreated, $articleCategory, $articlePinned) {
+        if ($this->check_entry_exists("archivedArticles", "articleId", $articleId)) {
+            return false;
+        }
+
+        $query = "INSERT INTO archivedArticles (articleId, userId, articleTitle, articleText, articleTags, articleCreated, articleCategory, articlePinned) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("iisssssi", $articleId, $userId, $articleTitle, $articleText, json_encode($articleTags), $articleCreated, $articleCategory, $articlePinned);
+        $stmt->execute();
+        $stmt->close();
+        return true;
     }
 }

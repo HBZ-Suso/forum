@@ -8,7 +8,7 @@ function set_theme () {
                 } else {
                     var theme_str = themes.data.join("");
                 }
-                window.prompt(result, theme_str).then(() => {
+                window.c_prompt(result, theme_str).then(() => {
                     var theme_prompt_answer = document.getElementById("q-input").value;
         
                     if (theme_prompt_answer !== "") {

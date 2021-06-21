@@ -48,6 +48,7 @@
     width: 70%;
     overflow-y: auto;
     position: relative;
+    background-color: var(--main-background-lighter-eleven)
 }
 
 .scroll-el {
@@ -70,6 +71,7 @@
     margin-bottom: min(3%, 20px);
     font-weight: bold;
     padding: 0px;
+    color: var(--main-font-extreme);
 }
 
 .block-entry {
@@ -82,10 +84,20 @@
     border-top-right-radius: 5px;
     transition: 0.25s all linear;
     border-bottom-right-radius: 5px;
+    background-color: var(--main-background-lighter-twelve);
 }
 
 .block-entry:hover {
     width: 96%;
+    background-color: var(--main-accent-color);
+}
+
+.owned {
+    background-color: var(--side-accent-color-two);
+}
+
+.owned:hover {
+    background-color: var(--side-accent-color);
 }
 
 @media screen and (max-width: 1500px) {
@@ -186,6 +198,7 @@
     left: 7.4%;
     width: 18.82%;
     z-index: -2;
+    background-color: var(--main-background-lighter-eleven);
 }
 
 .big-top ~ .side-bar-max-fix-fix {
@@ -195,7 +208,7 @@
     width: 20%;
     z-index: -1;
     background-image: none!important;
-    background-color: white!important;
+    background-color: var(--main-background-lighter-three)!important;
 }
 
 @media screen and (max-width: 1570px) {
@@ -223,6 +236,6 @@
         width: 29%;
         z-index: -1;
         background-image: none!important;
-        background-color: white!important;
+        background-color: var(--main-background-lighter-three)!important;
     }
 }
