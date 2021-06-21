@@ -16,6 +16,7 @@ echo '
         width: 200px;
         padding: 10px;
         z-index: 5;
+        line-height: 18px;
         font-size: 15px;
         border-top-right-radius: 10px;
         background-color: var(--main-background-lighter-ten);

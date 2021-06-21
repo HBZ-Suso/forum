@@ -27,7 +27,7 @@ if ($type === "article") {
     }
     $data->delete_article_comment_by_id($rargs["commentId"]);
 } else if ($type === "user") {
-    if (!$data->is_admin_by_id($_SESSION["userId"]) && ($data->get_user_comment_by_id($rargs["commentId"])["userId"] !== $_SESSION["userId"])  && (intval($rargs["userId"]) !== intval($_SESSION["userId"]))) {
+    if (!$data->is_admin_by_id($_SESSION["userId"]) && ($data->get_user_comment_by_id($rargs["commentId"])["userId"] !== $_SESSION["userId"])) {
         $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
         exit("Permissionerror");
     }

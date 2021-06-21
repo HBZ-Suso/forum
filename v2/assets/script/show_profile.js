@@ -60,7 +60,8 @@ function show_profile (userId) {
                 }
 
                 document.querySelector(".profilebox-bar-like").addEventListener("click", (e) => {
-                    axios
+                    if (logged_in) {
+                        axios
                         .post("/forum/assets/api/like.php?targetUserId=" + userId)
                         .then((resolve) => {
                             if (document.querySelector(".profilebox-bar-like").classList.contains("profilebox-bar-liked")) {
@@ -73,6 +74,9 @@ function show_profile (userId) {
                                 document.querySelector('.profilebox-info-column-userlikes').innerHTML = parseInt(document.querySelector('.profilebox-info-column-userlikes').innerHTML) + 1;
                             }
                         })
+                    } else {
+                        window.location.hash = "Login";
+                    }
                 })
 
                 axios

@@ -1,0 +1,11 @@
+.policy-popup {
+    background-color: var(--side-dark-color)!important;
+    color: var(--dark-color); 
+    border-top: 1px solid var(--dark-color);
+    border-right: 1px solid var(--dark-color);  
+}
+
+#hide-policy-popup {
+    background-color: var(--side-user-color);
+    color: var(--dark-color);
+}

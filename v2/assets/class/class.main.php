@@ -133,6 +133,7 @@ include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/loading.html";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/ask_question.html";
 if (!isset($_COOKIE["policy-agreed"]) || $_COOKIE["policy-agreed"] !== "true") {
     include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/policy_popup.php";
+    echo '<link rel="stylesheet" href="/forum/v2/assets/style/privacyinfo.css">';
 }
 
 if (isset($_SESSION["user"]) || isset($_SESSION["userId"])) {
