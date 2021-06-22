@@ -13,7 +13,7 @@ function add_hash_to_history () {
         hash_history.reverse().pop();
         hash_history.reverse();
     }
-    document.cookie = "vprhe=" + JSON.stringify(hash_history) + "; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+    document.cookie = "vprhe=" + JSON.stringify(hash_history) + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
 }
 
 function check_hash_usage () {

@@ -1,6 +1,5 @@
 var content_displayed = false;
 function show_article (custum_html=false, heading="", content_html="") {
-
     if (custum_html == false) {
         document.querySelectorAll(".selectbar-article-element").forEach((element, index) => {
             try {
@@ -21,84 +20,89 @@ function show_article (custum_html=false, heading="", content_html="") {
         }
         
         axios
-        .post("/forum/assets/api/get_article.php?articleId=" + articleId)
-        .then((resolve) => {
-            try {
-                document.querySelector(".selectbar-article-element-" + articleId).classList.add("selectbar-article-element-selected");
-            } catch (e) {
-                console.debug(e);
-            }
-
-            let creation_date = new Date(resolve.data.articleCreated);
-
-            let logged_in_tools = "";
-
-            if (logged_in) {
-                logged_in_tools += `<button class="viewbar-content-toolbar-like" onclick="like_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-like"]}</button>`;
-                if (user_type === "moderator" || user_type === "administrator") {
-                    logged_in_tools += `<button class="viewbar-content-toolbar-pin" onclick="pin_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-pin"]}</button>`;
-                    logged_in_tools += `<button class="viewbar-content-toolbar-lock" onclick="lock_user('${resolve.data.userId}')">${language_data["v2-share-lock"]}</button>`;
+            .post("/forum/assets/api/get_article.php?articleId=" + articleId)
+            .then((resolve) => {
+                try {
+                    document.querySelector(".selectbar-article-element-" + articleId).classList.add("selectbar-article-element-selected");
+                } catch (e) {
+                    console.debug(e);
                 }
-                if (logged_in_user_id === resolve.data.userId || user_type === "administrator") {
-                    logged_in_tools += `<button class="viewbar-content-toolbar-delete" onclick="delete_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-delete"]}</button>`;
+
+                let creation_date = new Date(resolve.data.articleCreated);
+
+                let logged_in_tools = "";
+
+                if (logged_in) {
+                    logged_in_tools += `<button class="viewbar-content-toolbar-like" onclick="like_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-like"]}</button>`;
+                    if (user_type === "moderator" || user_type === "administrator") {
+                        logged_in_tools += `<button class="viewbar-content-toolbar-pin" onclick="pin_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-pin"]}</button>`;
+                        logged_in_tools += `<button class="viewbar-content-toolbar-lock" onclick="lock_user('${resolve.data.userId}')">${language_data["v2-share-lock"]}</button>`;
+                    }
+                    if (logged_in_user_id === resolve.data.userId || user_type === "administrator") {
+                        logged_in_tools += `<button class="viewbar-content-toolbar-delete" onclick="delete_article('${articleId}', '${resolve.data["articleCategory"]}')">${language_data["v2-share-delete"]}</button>`;
+                    }
                 }
-            }
 
-            let mobile_tools = "";
-            if (window.mobileCheck() == true) {
-                mobile_tools = `<button class="viewbar-content-toolbar-share" onclick="share('HBZ-Forum: ${resolve.data.articleTitle}', '${window.location.toString().replace(window.location.hash, "") + "#Article?articleId=" + resolve.data.articleId}')">${language_data["v2-share-share"]}</button>`;
-            }
+                let mobile_tools = "";
+                if (window.mobileCheck() == true) {
+                    mobile_tools = `<button class="viewbar-content-toolbar-share" onclick="share('HBZ-Forum: ${resolve.data.articleTitle}', '${window.location.toString().replace(window.location.hash, "") + "#Article?articleId=" + resolve.data.articleId}')">${language_data["v2-share-share"]}</button>`;
+                }
 
-            document.querySelector(".viewbar-empty").style.display = "none";
-            document.querySelector(".viewbar-content").innerHTML = `
-                <div class="viewbar-content-heading">${resolve.data.articleTitle}</div>
-                <div class="viewbar-content-author">
-                    <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-${resolve.data.userColor}">
-                    <div class="viewbar-content-author-info">
-                        ${language_data["v2-author-message-1"]}<a href="#Profile?userId=1">${resolve.data.userName}</a><br>
-                        ${language_data["v2-author-message-2"]}<p>${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}</p>
+                document.querySelector(".viewbar-empty").style.display = "none";
+                document.querySelector(".viewbar-content").innerHTML = `
+                    <div class="viewbar-content-heading">${resolve.data.articleTitle}</div>
+                    <div class="viewbar-content-author">
+                        <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-${resolve.data.userColor}">
+                        <div class="viewbar-content-author-info">
+                            ${language_data["v2-author-message-1"]}<a href="#Profile?userId=1">${resolve.data.userName}</a><br>
+                            ${language_data["v2-author-message-2"]}<p>${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="viewbar-content-text">${resolve.data.articleText}</div>
-                <div class="viewbar-content-toolbar">
-                    ${logged_in_tools}
-                    ${mobile_tools}
-                    <button class="viewbar-content-toolbar-copy" onclick="article_copy_handler('Article?articleId=${resolve.data.articleId}')"/>${language_data["v2-share-link"]}</button>
-                    <button class="viewbar-content-toolbar-report" onclick="window.location.hash='#Report?articleId=${resolve.data.articleId}';">${language_data["v2-share-report"]}</button>
-                </div>
-                <div class="viewbar-content-comments comment-section-id-${resolve.data.articleId}">
-                </div>
-            `;
+                    <div class="viewbar-content-text">${resolve.data.articleText}</div>
+                    <div class="viewbar-content-toolbar">
+                        ${logged_in_tools}
+                        ${mobile_tools}
+                        <button class="viewbar-content-toolbar-copy" onclick="article_copy_handler('Article?articleId=${resolve.data.articleId}')"/>${language_data["v2-share-link"]}</button>
+                        <button class="viewbar-content-toolbar-report" onclick="window.location.hash='#Report?articleId=${resolve.data.articleId}';">${language_data["v2-share-report"]}</button>
+                    </div>
+                    <div class="viewbar-content-comments comment-section-id-${resolve.data.articleId}">
+                    </div>
+                `;
 
-            if (window.innerWidth < 1500 || window.mobileCheck() == true) {
-                document.querySelector(".viewbar-container").style.display = "";
-                content_displayed = true;
-            }
-            if (window.innerWidth > 1500  && window.mobileCheck() == false) {
-                document.querySelector(".viewbar-container").style.display = "";
-                content_displayed = false;
-            }
-
-            if (logged_in) {
-                if (resolve.data.liked) {
-                    document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = "var(--liked-color)";
+                if (getCookie("autle") !== "onlyprofiles" && getCookie("autle") !== "off") {
+                    try {translate(resolve.data.articleText).then((text) => {document.querySelector(".viewbar-content-text").innerHTML = text;})} catch (e) {console.debug(e)}
+                    try {translate(resolve.data.articleTitle).then((text) => {document.querySelector(".viewbar-content-heading").innerHTML = text;})} catch (e) {console.debug(e)}
                 }
-                if (user_type === "moderator" || user_type === "administrator") {
-                    if (resolve.data.articlePinned === 1) {
-                        document.querySelector(".viewbar-content-toolbar-pin").style.backgroundColor = "var(--pinned-color)";
+
+                if (window.innerWidth < 1500 || window.mobileCheck() == true) {
+                    document.querySelector(".viewbar-container").style.display = "";
+                    content_displayed = true;
+                }
+                if (window.innerWidth > 1500  && window.mobileCheck() == false) {
+                    document.querySelector(".viewbar-container").style.display = "";
+                    content_displayed = false;
+                }
+
+                if (logged_in) {
+                    if (resolve.data.liked) {
+                        document.querySelector(".viewbar-content-toolbar-like").style.backgroundColor = "var(--liked-color)";
                     }
-                    if (resolve.data.userLocked === 1) {
-                        document.querySelector(".viewbar-content-toolbar-lock").style.backgroundColor = "var(--locked-color)";
+                    if (user_type === "moderator" || user_type === "administrator") {
+                        if (resolve.data.articlePinned === 1) {
+                            document.querySelector(".viewbar-content-toolbar-pin").style.backgroundColor = "var(--pinned-color)";
+                        }
+                        if (resolve.data.userLocked === 1) {
+                            document.querySelector(".viewbar-content-toolbar-lock").style.backgroundColor = "var(--locked-color)";
+                        }
                     }
                 }
-            }
 
-            axios.post("/forum/v2/assets/api/view.php?articleId=" + articleId).then((resolve) => {if (resolve.data.indexOf("error") === -1) {articleList[articleId].articleViews += 1; update_articles(resolve.data["articleCategory"]);}}, (reject) => {throw new Error(reject)}).catch((e) => console.debug)
+                axios.post("/forum/v2/assets/api/view.php?articleId=" + articleId).then((resolve) => {if (resolve.data.indexOf("error") === -1) {articleList[articleId].articleViews += 1; update_articles(resolve.data["articleCategory"]);}}, (reject) => {throw new Error(reject)}).catch((e) => console.debug)
 
-            set_comment_html(resolve.data.articleId);
-        }, (reject) => {
-            console.debug("Error whilst trying to get article data from api.");
-        })
+                set_comment_html(resolve.data.articleId);
+            }, (reject) => {
+                console.debug("Error whilst trying to get article data from api.");
+            })
     } else {
         document.querySelector(".viewbar-empty").style.display = "none";
         document.querySelector(".viewbar-content").innerHTML = `

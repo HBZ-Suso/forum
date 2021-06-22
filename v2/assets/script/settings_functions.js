@@ -29,7 +29,12 @@ function set_settings_stuff () {
         })
     })
 
-
+    if (getCookie("autle").length > 1) {
+        document.getElementById("autotranslate-" + getCookie("autle")).checked = true;
+    } else {
+        document.cookie = "autle=off; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+        document.getElementById("autotranslate-off").checked = true;
+    }
 }
 
 function select_settings_page (snb_element) {
@@ -138,6 +143,13 @@ function s_check_changes () {
         if (document.getElementById("version-old").checked) {w_version = "version-old"; wVersClickCount += 1;};
         document.cookie = "wVers=" + w_version + "; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
     }
+
+
+    document.querySelectorAll(".autotranslate_radio").forEach((element, index) => {
+        if (element.checked) {
+            document.cookie = "autle=" + element.getAttribute("autotranslate") + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+        }
+    })
 }
 
 

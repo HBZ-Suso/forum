@@ -28,7 +28,7 @@ foreach ($data->get_categories() as $category) {
 
     echo '
     <div class="selectbar-page selectbar-' . $category . ' ' . $logged_space . '">
-        <div class="selectbar-page-heading">' . $category . '</div>
+        <div class="selectbar-page-heading">' . $text->get("v2-category-" . $category) . '</div>
         <div class="selectbar-sort-container selectbar-' . $category . '-sort-container">
             <div sortname="created" class="selectbar-sort-toggled selectbar-sort-down selectbar-sort-created selectbar-' . $category . '-sort-created selectbar-' . $category . '-sort" onclick="set_sort(this, \'' . $category . '\')"><img src="/forum/assets/img/icon/downarrow.png"><p>' . $text->get("v2-sort-created") . '</p></div>
             <div sortname="comments" class="selectbar-sort-down selectbar-sort-comments selectbar-' . $category . '-sort-comments selectbar-' . $category . '-sort" onclick="set_sort(this, \'' . $category . '\')"><img src="/forum/assets/img/icon/downarrow.png"><p>' . $text->get("v2-sort-comments") . '</p></div>

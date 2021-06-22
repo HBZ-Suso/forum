@@ -18,6 +18,12 @@ function set_comment_html (articleId) {
                 if (resolve.data !== false) {
                     resolve.data.forEach((element, index) => {
                         document.querySelector(".viewbar-content-comments").innerHTML += convert_comment_data_to_html(element);
+
+                        /* RATELIMITED
+                        if (getCookie("autle") !== "onlyprofiles" && getCookie("autle") !== "off") {
+                            try {translate(element.commentTitle).then((text) => {document.querySelector(".comment-title-id-" + element.commentId).innerHTML = text;})} catch (e) {console.debug(e)}
+                            try {translate(element.commentText).then((text) => {document.querySelector(".comment-text-id-" + element.commentId).innerHTML = text;})} catch (e) {console.debug(e)}
+                        } */
                     })
                 }
 
@@ -47,7 +53,7 @@ function convert_comment_data_to_html (data) {
     return `
     <div class="comment-container">
         <div class="comment-header">
-            <div class="comment-title">${data.commentTitle}</div>
+            <div class="comment-title comment-title-id-${data.commentId}">${data.commentTitle}</div>
             <div class="comment-author">
                 <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-${data.userColor}">
                 <div class="comment-author-info">
@@ -56,7 +62,7 @@ function convert_comment_data_to_html (data) {
                 </div>
             </div>
         </div>
-        <div class="comment-text">${data.commentText}</div>
+        <div class="comment-text comment-text-id-${data.commentId}">${data.commentText}</div>
         ${comment_delete}
     </div>
     `;

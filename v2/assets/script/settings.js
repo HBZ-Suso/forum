@@ -149,6 +149,43 @@ function show_settings () {
                         </div>-->
                     </div>
                 </form>
+                <form class="setting">
+                    <h1 class="setting-heading">${language_data["v2-settings-autotranslate-heading"]}</h1>
+                    <p class="setting-notice">${language_data["v2-settings-autotranslate-warning"]}</p>
+                    <div class="container">
+                        <div class="option">
+                            <input class="autotranslate_radio" type="radio" name="autotranslate" id="autotranslate-off" value="autotranslate" autotranslate="off">
+                            <label for="autotranslate-off" aria-label="autotranslate-off">
+                            <span></span>
+                            ${language_data["v2-autotranslate-off"]}
+                            </label>
+                        </div>
+                    
+                        <div class="option">
+                            <input class="autotranslate_radio" type="radio" name="autotranslate" id="autotranslate-onlyarticles" value="autotranslate" autotranslate="onlyarticles">
+                            <label for="autotranslate-onlyarticles" aria-label="autotranslate-onlyarticles">
+                            <span></span>
+                            ${language_data["v2-autotranslate-onlyarticles"]}
+                            </label>
+                        </div>
+
+                        <div class="option">
+                            <input class="autotranslate_radio" type="radio" name="autotranslate" id="autotranslate-onlyprofiles" value="autotranslate" autotranslate="onlyprofiles">
+                            <label for="autotranslate-onlyprofiles" aria-label="autotranslate-onlyprofiles">
+                            <span></span>
+                            ${language_data["v2-autotranslate-onlyprofiles"]}
+                            </label>
+                        </div>
+
+                        <div class="option">
+                            <input class="autotranslate_radio" type="radio" name="autotranslate" id="autotranslate-all" value="autotranslate" autotranslate="all">
+                            <label for="autotranslate-all" aria-label="autotranslate-all">
+                            <span></span>
+                            ${language_data["v2-autotranslate-all"]}
+                            </label>
+                        </div>
+                    </div>
+                </form>
             </div>
 
 

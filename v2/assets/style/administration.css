@@ -89,8 +89,8 @@
 .code-box {
     padding-top: 8px;
     padding-bottom: 2px;
-    border-top: 1px solid var(--settings-navigation-bar-bottom-color);
-    border-bottom: 1px solid var(--settings-navigation-bar-bottom-color);
+    border-top: 1px solid var(--select-icon-color);
+    border-bottom: 1px solid var(--select-icon-color);
 }
 
 .create-code-container {

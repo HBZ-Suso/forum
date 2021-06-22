@@ -1,5 +1,6 @@
 {
     "english": {
+        "language-code": "en",
         "frame-pc-heading": "HBZ-Forum",
         "frame-pc-heading-search": "Search user or article",
         "frame-mobile-heading": "Forum",
@@ -222,9 +223,16 @@
         "v2-settings-profile-employment": "Employment",
         "v2-settings-version-heading": "Website-Version",
         "v2-version-old": "Old & Outdated",
-        "v2-version-2": "New and shiny"
+        "v2-version-2": "New and shiny",
+        "v2-settings-autotranslate-heading": "Automatically translate user-written content",
+        "v2-settings-autotranslate-warning": "ATTENTION! This functionality is still experimental and uses the Google Translation API. This API is limited and may block you after some use. Thus we advise you to only use this lightly and maybe fall back to conventional methods in the case you get temporarily or permanently blocked by the Google API. We are working on other solutions, but that may take some time.",
+        "v2-autotranslate-off": "Off",
+        "v2-autotranslate-onlyarticles": "Only articles",
+        "v2-autotranslate-onlyprofiles": "Only profiles",
+        "v2-autotranslate-all": "Everything"
     },
     "deutsch": {
+        "language-code": "de",
         "frame-pc-heading": "HBZ-Forum",
         "frame-pc-heading-search": "Suche Nutzer oder Artikel",
         "frame-mobile-heading": "Forum",
@@ -448,7 +456,13 @@
         "v2-settings-profile-employment": "Anstellung",
         "v2-settings-version-heading": "Website Version",
         "v2-version-old": "Alt & Outdated",
-        "v2-version-2": "Neu und glaenzend"
+        "v2-version-2": "Neu und glaenzend",
+        "v2-settings-autotranslate-heading": "Inhalte automatisch Uebersetzen",
+        "v2-settings-autotranslate-warning": "ACHTUNG!<br>Diese Funktion ist experimentell und verwendet noch die Translation API von Google. Diese limitiert die Anzahl der Verwendungen. Dies fuehrt dazu, dass bei vielen Zugriffen mit dieser Funktion diese temporaer oder permanent nicht mehr funktioniert. Bitte verwenden Sie diese Funktion daher nur beschraenkt. In Zukunft koennte es allerdings Loesungen fuer eine durchgaengige Verwendung dieser Funktion geben.",
+        "v2-autotranslate-off": "Aus",
+        "v2-autotranslate-onlyarticles": "Nur Artikel",
+        "v2-autotranslate-onlyprofiles": "Nur Profile",
+        "v2-autotranslate-all": "Alles"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",
