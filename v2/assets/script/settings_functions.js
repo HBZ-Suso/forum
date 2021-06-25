@@ -3,6 +3,7 @@ var publicity = "";
 var notifications = "";
 var color = "";
 var wVersClickCount = 0;
+var setting_names = ["language", "autotranslate", "public", "notification", "user_color", "version"];
 
 var settings_tab_loaded = false;
 
@@ -12,12 +13,10 @@ function set_settings_stuff () {
             select_settings_page(e.target);
         })
     })
-
-    select_settings_page(document.querySelector(".snb-language"));
     
     //document.querySelector(".settings-reload").addEventListener("click", (e) => {s_check_changes(); window.location.reload();})
 
-    document.querySelectorAll(".option").forEach((element, index) => {element.addEventListener("click", (e) =>  {s_check_changes();})});
+    document.querySelectorAll(".option").forEach((element, index) => {element.addEventListener("click", (e) =>  {s_check_changes(e.target);})});
 
 
     document.querySelectorAll(".settings-profile-element").forEach((element, index) => {
@@ -28,13 +27,6 @@ function set_settings_stuff () {
             setTimeout(send_profile_axios, inverted_internet_speed * 200);
         })
     })
-
-    if (getCookie("autle").length > 1) {
-        document.getElementById("autotranslate-" + getCookie("autle")).checked = true;
-    } else {
-        document.cookie = "autle=off; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
-        document.getElementById("autotranslate-off").checked = true;
-    }
 }
 
 function select_settings_page (snb_element) {
@@ -55,109 +47,81 @@ function select_settings_page (snb_element) {
 
 
 
-function s_check_changes () {
-    let n_language = "";
-    let n_publicity = "";
-    let n_notifications = "";
-    let n_color = "";
-    document.querySelectorAll(".language_radio").forEach((element, index) => {
-        if (element.checked) {
-            n_language = element.id;
-        }
-    })
-    document.querySelectorAll(".public_radio").forEach((element, index) => {
-        if (element.checked) {
-            n_publicity = element.id;
-        }
-    })
-    document.querySelectorAll(".notification_radio").forEach((element, index) => {
-        if (element.checked) {
-            n_notifications = element.id;
-        }
-    })
-    document.querySelectorAll(".user_color_radio").forEach((element, index) => {
-        if (element.checked) {
-            n_color = element.id;
-        }
-    })
-
-
-    if (n_language !== language) {
-        axios
-            .post("/forum/assets/api/language.php?language=" + n_language)
-            .then((response) => {
-                if (response.data.indexOf("error") === -1) {
-                    axios.post("/forum/assets/api/get_language.php").then((resolve) => {language_data = resolve.data;}, (reject) => {throw new Error()}).catch(console.debug)
+function s_check_changes (element) {
+    if (setting_names.indexOf(element.getAttribute("name")) !== -1) {
+        let name = element.getAttribute("name");
+        let value = element.getAttribute(element.getAttribute("name"));
+        switch (name) {
+            case "language":
+                axios
+                .post("/forum/assets/api/language.php?language=" + value)
+                .then((response) => {
+                    if (response.data.indexOf("error") === -1) {
+                        axios.post("/forum/assets/api/get_language.php").then((resolve) => {language_data = resolve.data;}, (reject) => {throw new Error()}).catch(console.debug)
+                    }
+                })
+                .catch((error) => {
+                    throw new Error(error);
+                })
+                break;
+            case "public":
+                axios
+                    .post("/forum/assets/api/set_public.php?public=" + value)
+                    .then((response) => {
+                    })
+                    .catch((error) => {
+                        throw new Error(error);
+                    })
+                break;
+            case "notification":
+                axios
+                    .post("/forum/assets/api/set_notifications.php?level=" + value)
+                    .then((response) => {
+                    })
+                    .catch((error) => {
+                        throw new Error(error);
+                    })
+                break;
+            case "user_color": 
+                axios
+                    .post("/forum/assets/api/set_color.php?color=" + value)
+                    .then((response) => {
+                    })
+                    .catch((error) => {
+                        throw new Error(error);
+                    })
+                    document.querySelectorAll(".user-profile-picture").forEach((element, index) => {
+                        element.className = ""; 
+                        element.classList.add("user-profile-picture");
+                        element.classList.add("user-profile-color-overlay-" + value);
+                    })
+                break;
+            case "autotranslate":
+                document.cookie = "autle=" + value + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                break;
+            case "version":
+                if (value === "old") {
+                    document.cookie = "wVers=version-old; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                } else {
+                    document.cookie = "wVers=version-2; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
                 }
-            })
-            .catch((error) => {
-                throw new Error(error);
-            })
-        language = n_language;
-    }
-
-    if (n_publicity !== publicity) {
-        axios
-            .post("/forum/assets/api/set_public.php?public=" + n_publicity.replace("i-", ""))
-            .then((response) => {
-            })
-            .catch((error) => {
-                throw new Error(error);
-            })
-        publicity = n_publicity;
-    }
-
-    if (n_notifications !== notifications) {
-        axios
-            .post("/forum/assets/api/set_notifications.php?level=" + n_notifications)
-            .then((response) => {
-            })
-            .catch((error) => {
-                throw new Error(error);
-            })
-        notifications = n_notifications;
-    }
-
-    if (n_color !== color) {
-        axios
-            .post("/forum/assets/api/set_color.php?color=" + n_color)
-            .then((response) => {
-            })
-            .catch((error) => {
-                throw new Error(error);
-            })
-        document.querySelectorAll(".user-profile-color-overlay-" + color).forEach((element, index) => {
-            element.classList.remove("user-profile-color-overlay-" + color);
-            element.classList.add("user-profile-color-overlay-" + n_color);
-        })
-        color = n_color;
-    }
-
-
-    if (logged_in && (user_type === "administrator" || user_type === "moderator")) {
-        let w_version = "version-2";
-        if (getCookie("wVers") === "version-old" && document.getElementById("version-old").checked && !document.getElementById("version-2").checked && wVersClickCount > 1) {
-            window.location = "/forum/";
+                break;
         }
-        if (document.getElementById("version-2").checked) {w_version = "version-2"; wVersClickCount += 1;};
-        if (document.getElementById("version-old").checked) {w_version = "version-old"; wVersClickCount += 1;};
-        document.cookie = "wVers=" + w_version + "; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
     }
-
-
-    document.querySelectorAll(".autotranslate_radio").forEach((element, index) => {
-        if (element.checked) {
-            document.cookie = "autle=" + element.getAttribute("autotranslate") + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
-        }
-    })
 }
+
+
+
+
 
 
 function on_settings_window_open () {
     if (localStorage.getItem("SettingsTab") !== null) {
         select_settings_page(document.querySelector(".snb-" + localStorage.getItem("SettingsTab")));
-        settings_tab_loaded = true;
+    } else {
+        select_settings_page(document.querySelector(".snb-language"));
     }
+    settings_tab_loaded = true;
 
     if (logged_in) {
         axios
@@ -192,18 +156,7 @@ function on_settings_window_open () {
             }, (reject) => {throw new Error(reject)})
             .catch(console.debug)
 
-        if (user_type === "moderator" || user_type === "administrator") {
-            if (getCookie("wVers").length > 0) {
-                if (getCookie("wVers") === "version-2") {
-                    document.getElementById("version-2").checked = true;
-                } else if (getCookie("wVers") === "version-old") {
-                    document.getElementById("version-old").checked = true;
-                }
-            } else {
-                document.getElementById("version-2").checked = true;
-                document.cookie = "wVers=" + w_version + "; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
-            }
-        }
+        
     }
 }
 

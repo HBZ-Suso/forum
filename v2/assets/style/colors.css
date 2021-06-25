@@ -46,9 +46,18 @@
 
 
     --settings-selected-border-color: #4062f6;
+    --settings-dropdown-fade-color: rgba(97, 178, 175, 0.7);
 
     /* Sets text cursor color */
     caret-color: #c3507c;
+
+
+    scrollbar-color: var(--accent-color-light) var(--side-main-color) !important;
+    scrollbar-width: thin !important;
+}
+
+.bold {
+    font-weight: bold;
 }
 
 ::selection {

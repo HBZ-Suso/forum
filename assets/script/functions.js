@@ -292,3 +292,20 @@ function get_user_picture_color () {
     });
     return to_return;
 }
+
+
+if(!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function(what, i) {
+        i = i || 0;
+        var L = this.length;
+        while (i < L) {
+            if(this[i] === what) return i;
+            ++i;
+        }
+        return -1;
+    };
+}
+
+Array.prototype.removeA = function (value) {
+    return this.filter(function(e) { return e !== value; })
+}

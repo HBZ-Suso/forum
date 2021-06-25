@@ -50,21 +50,21 @@ function issue_commands_after_hash (hash) {
             try {
                 show_login_and_logout();
             } catch (e) {
-                console.debug("Error whilst issuing internal Login command, Error: " + e)
+                console.debug("Error whilst issuing internal Login command, Error: ", e)
             }
             break;
         case "#Settings":
             try {
                 show_settings();
             } catch (e) {
-                console.debug("Error whilst issuing internal Settings command, Error: " + e)
+                console.debug("Error whilst issuing internal Settings command, Error: ", e)
             }
             break;
         case "#Article":
             try {
                 show_article();
             } catch (e) {
-                console.debug("Error whilst issuing internal Article command, Error: " + e)
+                console.debug("Error whilst issuing internal Article command, Error: ", e)
             }
             break;
         case "#Profile":
@@ -81,35 +81,35 @@ function issue_commands_after_hash (hash) {
                     }
                 }*/
             } catch (e) {
-                console.debug("Error whilst issuing internal Profile command, Error: " + e)
+                console.debug("Error whilst issuing internal Profile command, Error: ", e)
             }
             break;
         case "#CreatePost":
             try {
                 show_create_post(find_last_category());
             } catch (e) {
-                console.debug("Error whilst issuing internal Createpost command, Error: " + e)
+                console.debug("Error whilst issuing internal Createpost command, Error: ", e)
             }
             break;
         case "#Report":
             try {
                 report(additional_info="-|-HASH-|-" + window.location.hash + "-|-HASH-|-")
             } catch (e) {
-                console.debug("Error whilst issuing internal Report command, Error: " + e)
+                console.debug("Error whilst issuing internal Report command, Error: ", e)
             }
             break;
         case "#Information":
             try {
                 show_webpage_info();
             } catch (e) {
-                console.debug("Error whilst issuing internal Information command, Error: " + e)
+                console.debug("Error whilst issuing internal Information command, Error: ", e)
             }
             break;
         case "#Administration":
             try {
                 show_administration();
             } catch (e) {
-                console.debug("Error whilst issuing internal Administration command, Error: " + e)
+                console.debug("Error whilst issuing internal Administration command, Error: ", e)
             }
             break;
         default:

@@ -11,7 +11,7 @@ function setup_codes () {
         .post("/forum/v2/assets/api/administration.php?epnt=getCodes")
         .then((resolve) => {
             resolve.data.forEach((element, index) => {
-                document.querySelector(".code-box").innerHTML += '<button class="code-box-code" onclick="alert(`codeName: ' + element.codeName + '\ncodeIntended: ' + element.codeIntended + '\ncodeType: ' + element.codeType + '`);">' + element.codeType + '</button>';
+                document.querySelector(".code-box").innerHTML += '<button class="code-box-code" onclick="show_code_fully(`' + element.codeId + '`);">' + element.codeType + '</button>';
             })
         })
         .catch((e) => console.debug)
@@ -38,4 +38,18 @@ function create_new_code () {
         }
     } catch (e) {
     }
+}
+
+
+
+function show_code_fully () {
+    let container = document.createElement("div");
+    container.classList.add("code-show-container");
+    container.innerHTML = `
+        <div class="code-show-innerContainer">
+        
+        </div>
+    `;
+
+    document.querySelector(".viewbar-content").appendChild(container);
 }
