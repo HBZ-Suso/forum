@@ -6,7 +6,7 @@ if (localStorage.getItem("articleList") !== null) {
 }
 var users = {};
 var pageList = {};
-
+var current_selected = "";
 
 
 window.onload = () => {
@@ -78,7 +78,7 @@ function get_article_entry_html (category, article_data, page=1) {
         icon = `<img src="/forum/assets/img/icon/article.svg">`;
     }
     return `
-    <div class="selectbar-article-element selectbar-article-element-page-${page} selectbar-article-element-${article_data["articleId"]} selectbar-${category}-article-element" onclick="window.location.hash=\'#Article?articleId=${article_data["articleId"]}\'">
+    <div class="selectbar-article-element selectbar-article-element-page-${page} selectbar-article-element-${article_data["articleId"]} selectbar-${category}-article-element" onclick="window.location.hash=\'#Article?articleId=${article_data["articleId"]}\'" id="selectbar-article-element-id-${article_data["articleId"]}">
         ${icon}
         <h1>${article_data["articleTitle"]}</h1>
         <div>
@@ -92,9 +92,12 @@ function get_article_entry_html (category, article_data, page=1) {
 }
 
 
-function update_articles (category, max=500) {
+function update_articles (category) {
     localStorage.setItem("articleList", JSON.stringify(articleList));
-
+    if (document.querySelector(".selectbar-article-element-selected") !== undefined && document.querySelector(".selectbar-article-element-selected") !== null) {
+        current_selected = document.querySelector(".selectbar-article-element-selected").id;
+    }
+    
 
 
     let search = document.querySelector(".selectbar-" + category + "-search").value;
@@ -177,8 +180,12 @@ function update_articles (category, max=500) {
     })
 
     // Performance improvement: only check best results of last search?
-
     try {update_authors();} catch (e) {console.debug(e);}
+
+    if (current_selected.length > 1) {
+        document.querySelectorAll(".selectbar-article-element-selected").forEach((element, index) => {element.classList.remove("selectbar-article-element-selected");})
+        document.getElementById(current_selected).classList.add("selectbar-article-element-selected");
+    }
 }
 
 function update_authors () {

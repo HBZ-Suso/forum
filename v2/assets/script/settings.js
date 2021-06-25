@@ -159,7 +159,7 @@ function show_settings () {
             */
             })
 }
-s
+
 function close_settings_window () {
     let counter = -2;
         try {
