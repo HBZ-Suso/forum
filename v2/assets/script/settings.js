@@ -38,7 +38,21 @@ function show_settings () {
                 }
             } else {
                 settings.data.version = "old";
-                document.cookie = "wVers=" + w_version + "; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                document.cookie = "wVers=" + w_version + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+            }
+            if (getCookie("autle").length > 0) {
+                if (getCookie("autle") === "onlyarticles") {
+                    settings.data.autotranslate = "onlyarticles";
+                } else if (getCookie("autle") === "onlyprofiles") {
+                    settings.data.version = "onlyprofiles";
+                } else if (getCookie("autle") === "everything") {
+                    settings.data.version = "everything";
+                } else if (getCookie("autle") === "off") {
+                    settings.data.version = "off";
+                }
+            } else {
+                settings.data.version = "old";
+                document.cookie = "autle=" + w_version + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
             }
 
 
@@ -56,6 +70,7 @@ function show_settings () {
                     <form class="setting">
                         <h1 class="setting-heading">${language_data["v2-settings-version-heading"]}</h1>
                         <p class="setting-notice">${language_data["v2-settings-version-notice"]}</p>
+                        <button class="settings-link" onclick="window.location = '/forum/?redirect=${window.location}';">${language_data["v2-settings-version-visit"]}</button>
                         ${get_html("version", get_setting_values("version", settings.data))}
                     </form>
                     `;
@@ -190,7 +205,6 @@ function get_setting_values (setting, sdata) {
 
     if (setting in settings_d) {
         let data = settings_d[setting];
-        console.log(sdata)
         if (setting in sdata && data.indexOf(sdata[setting]) !== -1) {
             data = data.removeA(sdata[setting]);
             data.push(sdata[setting]);

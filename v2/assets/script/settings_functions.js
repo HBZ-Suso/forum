@@ -101,9 +101,9 @@ function s_check_changes (element) {
                 break;
             case "version":
                 if (value === "old") {
-                    document.cookie = "wVers=version-old; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                    document.cookie = "wVers=version-old; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
                 } else {
-                    document.cookie = "wVers=version-2; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                    document.cookie = "wVers=version-2; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
                 }
                 break;
         }

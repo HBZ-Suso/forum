@@ -130,7 +130,7 @@
     position: absolute;
     left: 0px;
     width: 100%;
-    bottom: 0px;
+    bottom: 100px;
     overflow-y: auto;
 }
 
@@ -283,7 +283,7 @@
 
 .selectbar-page-display {
     color: var(--light-color);
-    font-size: 50qpx;
+    font-size: 50px;
     text-decoration: underline;
 }
 

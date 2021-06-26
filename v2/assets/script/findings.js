@@ -148,12 +148,12 @@ function update_articles (category) {
     })
 
 
-    let container_height = document.querySelector(".selectbar-article-container").clientHeight - 10; //10 is puffer for security, can probably be removed
+    let container_height = document.querySelector(".selectbar-article-container").clientHeight - 10; // 10 is buffer for security, can probably be removed
     let current_page_count = 1;
     let current_article_count = 0;
     let average_element_height = 55;
     if (average_element_height > container_height) {average_element_height = container_height - 1;}
-    /*if (final_array.length > 0) {
+    /*if (final_array.length > 0) { // USED IN ORDER TO GET HEIGHT OF ELEMENTS, DOESNT WORK
         document.querySelector(".selectbar-" + category + "-article-container").innerHTML = get_article_entry_html(category, articleList[element["articleId"]]);
         average_element_height = document.querySelector(".selectbar-" + category + "-article-container").childNodes[0].clientHeight;
     }*/

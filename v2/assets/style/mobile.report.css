@@ -1,0 +1,37 @@
+
+.report-text, .report-title, .report-submit {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 20px;
+}
+
+.report-text, .report-title, .report-submit {
+    border-radius: 10px;
+    border: 3px solid var(--createpost-border-color);
+    padding: 10px;
+    background-color: none;
+    box-shadow: inset 0px 0px 400px 1500000px var(--createpost-background-color);
+    font-size: 32px;
+}
+
+.report-text {
+    height: 400px;
+    min-height: 50%;
+    resize: none;
+}
+
+.report-submit {
+    margin: 0 auto;
+    width: 30%;
+    min-width: 200px;
+    max-width: 90%;
+    display: block;
+    position: relative;
+    margin-top: 20px;
+}
+
+.report-submit:hover {
+    background-color: var(--select-icon-color);
+    cursor: pointer;
+}
+

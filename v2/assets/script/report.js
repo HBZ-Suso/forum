@@ -8,6 +8,10 @@ function report (additional_info="") {
         <input type="submit" class="report-submit">
     `);
 
+    if (window.mobileCheck() === true && document.body.innerHTML.indexOf("<link rel='stylesheet' href='/forum/v2/assets/style/mobile.report.css'></link>") === -1) {
+        document.body.innerHTML += "<link rel='stylesheet' href='/forum/v2/assets/style/mobile.report.css'></link>"
+    }
+
     document.querySelector(".report-submit").addEventListener("click", (e) => {
         axios
             .post("/forum/v2/assets/api/create_report.php?title=" + document.querySelector(".report-title").value + "&text=" + additional_info + document.querySelector(".report-text").value)

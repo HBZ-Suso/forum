@@ -149,12 +149,38 @@
     font-size: 17px;
     line-height: 23px;
     width: 180%;
+    margin: 0px;
     margin-left: -40%;
+    margin-bottom: 7px;
 }
 
 .setting > .setting-notice > span {
     font-size: 17px;
     line-height: 23px;
+}
+
+.setting > .settings-link {
+    display: block;
+    height: 30px;
+    width: fit-content;
+    color: var(--article-icon-color);
+    font-size: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    transition: background-color 0.2s linear;
+    padding: 0 5px;
+    margin: 5px auto;
+    margin-bottom: 12px;
+    text-align: center;
+    background-color: var(--share-button-default-background);
+}
+
+.setting > .settings-link:active {
+    transition: background-color 0s linear;
+    background-color: var(--viewbar-click-background-overlay-color);
 }
 
 
@@ -614,6 +640,7 @@ input:checked+.slider:before {
   background-color: #fff;
 }
 .select-box__list {
+    z-index: 1;
   position: absolute;
   width: 100%;
   padding: 0;
@@ -630,7 +657,7 @@ input:checked+.slider:before {
   -webkit-animation-timing-function: step-start;
           animation-timing-function: step-start;
 
-    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .select-box__option {

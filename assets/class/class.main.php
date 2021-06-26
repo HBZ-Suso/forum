@@ -226,13 +226,13 @@ if (isset($_SESSION["user"]) || isset($_SESSION["userId"])) {
 
 
 if (!($data->is_logged_in() && ($data->is_moderator_by_id($_SESSION["userId"] || $data->is_admin_by_id($_SESSION["userId"])))) && !strpos(substr($_SERVER["REQUEST_URI"], 0, 20), "forum/assets/api/")) {
-    header("LOCATION: /forum/v2");
-    exit("<script>window.location = '/forum/v2/?redirected=/forum/';</script>");
+    header("LOCATION: /forum/v2/?redirected=" . "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+    exit("<script>window.location = '/forum/v2/?redirected=https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]';</script>");
 }
 
 if ($data->is_logged_in() && ($data->is_moderator_by_id($_SESSION["userId"] || $data->is_admin_by_id($_SESSION["userId"])))) {
     if (!isset($_COOKIE["wVers"]) && !$_COOKIE["wVers"] === "version-old" && !strpos(substr($_SERVER["REQUEST_URI"], 0, 20), "forum/assets/api/")) {
-        header("LOCATION: /forum/v2");
-        exit("<script>window.location = '/forum/v2/?redirected=/forum/';</script>");
+        header("LOCATION: https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
+        exit("<script>window.location = '/forum/v2/?redirected=https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]';</script>");
     }
 }

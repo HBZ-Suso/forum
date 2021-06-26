@@ -46,7 +46,7 @@
 
 
     --settings-selected-border-color: #4062f6;
-    --settings-dropdown-fade-color: rgba(97, 178, 175, 0.7);
+    --settings-dropdown-fade-color: rgba(97, 178, 175, 0.4);
 
     /* Sets text cursor color */
     caret-color: #c3507c;
