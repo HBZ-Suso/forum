@@ -8,9 +8,14 @@ if (!isset($_SESSION["userId"])) {
     exit("Permissionerror");
 }
 
+
+$mail->notify($_SESSION["userId"], 0, "/forum/v2/#Settings", '{{public}}{{settingschanged}}');
+
+
 if ($rargs["public"] == "hidden") {
     $data->set_user_setting("public", $_SESSION["userId"], false);
 } else {
     $data->set_user_setting("public", $_SESSION["userId"], true);
 }
+
 exit($data->get_user_setting("public", $_SESSION["userId"]));

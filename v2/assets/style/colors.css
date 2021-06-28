@@ -54,6 +54,9 @@
 
     scrollbar-color: var(--accent-color-light) var(--side-main-color) !important;
     scrollbar-width: thin !important;
+
+
+    --side-notification-element-color: rgb(81, 221, 221);
 }
 
 .bold {

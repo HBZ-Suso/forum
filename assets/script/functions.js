@@ -309,3 +309,16 @@ if(!Array.prototype.indexOf) {
 Array.prototype.removeA = function (value) {
     return this.filter(function(e) { return e !== value; })
 }
+
+
+
+
+
+
+String.prototype.replaceAt = function(index, length, replacement) {
+    if (index + length >= this.length) {
+        return false;
+    }
+ 
+    return this.substring(0, index) + replacement + this.substring(index + 1 + length);
+}

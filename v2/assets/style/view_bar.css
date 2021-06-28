@@ -63,6 +63,12 @@
     left: 0%;
     padding: 5%;
     overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.viewbar-content::-webkit-scrollbar {
+    display: none;
 }
 
 .viewbar-content-heading {

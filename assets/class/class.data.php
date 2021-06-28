@@ -1772,4 +1772,59 @@ class Data extends Connector
         $stmt->close();
         return true;
     }
+
+
+
+    public function createNotification ($userId, $Type, $Link, $Description) {
+        $Date = time();
+        $Read = 0;
+        $query = "INSERT INTO notifications (userId, notificationType, notificationDate, notificationRead, notificationLink, notificationDescription) VALUES (?, ?, ?, ?, ?, ?)";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("iiiiss", $userId, $Type, $Date, $Read, $Link, $Description);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
+
+
+
+    public function get_notifications_by_userId ($userId) {
+        $query = "SELECT * FROM notifications WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+        }
+        return $return;
+    }
+
+
+    public function read_notification_by_id ($notificationId) {
+        $Read = 1;
+        $query = "UPDATE notifications SET notificationRead=? WHERE notificationId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ii", $Read, $notificationId);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+
+    public function notification_is_owned_by_user_id ($notificationId, $userId) {
+        $query = "SELECT * FROM notifications WHERE notificationId=? AND userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ii", $notificationId, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            return true;
+        }
+        return false;
+    }  
 }

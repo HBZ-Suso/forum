@@ -121,6 +121,7 @@
 .userview-bar > div {
     border-radius: 22px;
     padding: 6px;
+    position: relative;
 }
 
 .userview-bar > div > img {
@@ -150,6 +151,7 @@
     padding-top: 20px;
     overflow-y: auto;
     overflow-x: hidden;
+    background-color: var(--side-main-color);
 }
 
 .category-header {
@@ -217,6 +219,166 @@
     top: 10px;
     left: -20px;
 }
+
+
+
+
+/* Notification container */
+
+.notification-container {
+    position: absolute;
+    top: 200px;
+    bottom: 50px;
+    width: 90%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    left: 0px;
+    overflow-y: auto;
+    background-color: var(--select-main-color);
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    margin-left: 0px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    transition: 0.3s margin-left ease-out;
+}
+
+.notification-container::-webkit-scrollbar {
+    display: none;
+}
+
+.notification-container-hidden {
+    margin-left: -100%;
+}
+
+.notification-element {
+    width: 100%;
+    height: 80px!important;
+    background-color: var(--side-notification-element-color);
+    position:  relative;
+    margin-bottom: 5px;
+}
+
+.notification-element > p {margin: 0px; padding: 0px;}
+
+.notification-element-heading {
+    position: absolute;
+    top: 15px;
+    font-size: 17px;
+    left: 10px;
+}
+
+.notification-element-time {
+    position: absolute;
+    top: 2px;
+    left: 8px;
+    font-size: 13px;
+    border-radius: 2px;
+    padding: 2px!important;
+    line-height: 15px;
+    box-sizing: border-box;
+    background-color: var(--select-icon-color);
+}
+
+.notification-element-description {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    right: 40px;
+    bottom: 5px;
+    line-height: 16px;
+    font-size: 14px;
+}
+
+.notification-element-side {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    width: 30px;
+    background-color: var(--select-icon-color);
+    cursor: pointer;
+}
+
+.notification-element-side-new {
+    background-color: var(--accent-color);
+}
+
+.userview-notifications-new {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background-color: red;
+    color: white;
+    border-radius: 7px;
+    width: 17px;
+    font-size: 15px;
+    height: 17px;
+    margin: 0px;
+    text-align: center;
+    line-height: 17px;
+    font-weight: bold;
+    padding-left: 1px;
+}
+
+.notification-new {
+    position: fixed;
+    bottom: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    right: -400px;
+    width: 300px;
+    height: 120px;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 3;
+    background-color: var(--side-main-color);
+    transition: 0.8s right ease-out;
+    cursor: pointer;
+}
+
+.notification-new-show {
+    right: 0px;
+}
+
+.notification-new-heading {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 0px;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 27px;
+    color: var(--dark-color);
+}
+
+.notification-new-time {
+    color: var(--dark-color);
+    background-color: var(--select-icon-color);
+    border-radius: 2px;
+    padding: 1px;
+    margin: 0px;
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.notification-new-description {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    font-size: 18px;
+    line-height: 23px;
+    right: 20px;
+    bottom: 10px;
+    margin: 0px;
+    color: var(--dark-color)
+}
+
 
 
 

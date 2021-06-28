@@ -19,14 +19,21 @@ function show_profile (userId) {
                 add_mobile_profilebox_stylesheet = '<link rel="stylesheet" href="/forum/v2/assets/style/mobile.profilebox.css">';
             }
 
+            let verified = '';
+
+            if (parseInt(resolve.data.userVerified) === 1) {
+                verified = `<img src="/forum/assets/img/icon/verified_black_24dp.svg" class="profilebox-verified">`;
+            }
+            
             show_article(custum_html=true, heading=language_data["v2-profilebox-heading"], content_html=`
                 <div class="profilebox">
 
                     <div class="profilebox-bar">
-                        <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-${resolve.data.color}">
+                        <img src="/forum/assets/img/icon/user.svg" class=" author-profile-color-overlay-${resolve.data.color}">
                         <div class="profilebox-bar-bar">
                             <img src="/forum/assets/img/icon/favorite_border_black_24dp.svg" class="profilebox-bar-like">
                             <h1>${resolve.data.userName}</h1>
+                            ${verified}
                         </div>
                     </div>
 

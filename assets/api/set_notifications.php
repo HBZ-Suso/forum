@@ -8,6 +8,12 @@ if (!isset($_SESSION["userId"])) {
     exit("Permissionerror");
 }
 
+
+
+$mail->notify($_SESSION["userId"], 0, "/forum/v2/#Settings", '{{notification}}{{settingschanged}}');
+
+
+
 if ($rargs["level"] == "low") {
     $data->set_user_setting("privacy", $_SESSION["userId"], 0);
 } else if ($rargs["level"] == "medium") {

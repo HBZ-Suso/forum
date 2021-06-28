@@ -4,7 +4,9 @@ var connection = {
     slow: false,
     speed: 6000000,
     speedmbps: 6,
-    speedkbps: 6000
+    speedkbps: 6000,
+    functions: [
+    ]
 }
 
 window.onload = function () {
@@ -83,6 +85,7 @@ window.addEventListener("load", (e) => {loop_speed_test();})
 function loop_speed_test () {
     if (connection.online) {
         MeasureConnectionSpeed();
+        connection.functions.forEach((element, index) => {element();})
     }
     setTimeout(loop_speed_test, 10000);
 }

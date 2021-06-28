@@ -134,6 +134,15 @@ Database name: forum
     9. articlePinned (UNSIGNED TINYINT, 1 for true or 0 for false)
     10. articleArchived (timestamp, CURRENT_TIMESTAMP)
 
+17. notifications:
+    1. notificationId (u BIGINT, ticking up)
+    2. userId (u MEDIUMINT, user the notification is for)
+    3. notificationType (u TINYINT, 0 = article Liked, 1 = Profile Liked, 2 = articleCommented, 3 = profileCommented, 4 = liked Profile has posted an Article, 5 = Settings changed, 6 = password changed, 7 = linked, 8 = verified, 9 = locked, 10 = resetpassword, 11 = published article, 12 = account unlocked, 13 = account created, 14 = Report sent, 15 = article Deleted, 16 = articlePinned)
+    4. notificationDate (u BIGINT, UNIX TIMESTAMP)
+    5. notificationRead (u TINYINT, 0 for false 1 for true)
+    6. notificationLink (LONGTEXT, url without hostname to notification target)
+    7. notificationDescription (LONGTEXT, descriptive Text)
+
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>
     <a href="https://icons8.com/icon/DFU1kReSUccu/heart">Heart icon by Icons8</a>
@@ -159,3 +168,25 @@ layers:
     verify & like btns: 2
 
 GITHUB: github.com/HBZ-Suso/forum
+
+For notifications:
+    Codes are:
+        1. {{liked}} = " liked ", Example: "NathanZumbusch" {{liked}} "Das Kopfrechenprojekt"
+        2. {{commented}} = " commented on ", Example: "NathanZumbusch" {{commented}} "Das Kopfrechenprojekt"
+        3. {{commentedProfile}} = " commented on your profile.", Example: "NathanZumbusch" {{commented}}
+        4. {{posted}} = " posted ", Example: "NathanZumbusch" {{posted}} "Das Kopfrechenprojekt
+        5. {{settingschanged}} = "-setting was changed.", Example: {{settingschanged}}
+        6. {{passwordchanged}} = "You changed your password.", Example: {{passwordchanged}}
+        7. {{verified}} = "Your account got verified.", Example: {{verified}}
+        8. {{locked}} = "Your account got locked. ", Example: {{Locked}}
+        9. {{passwordreset}} = "Your password got reset, check your mails. ", Example: {{passwordreset}}
+        10. {{publishedarticle1}} = "Your article "
+        11. {{publishedarticle2}} = " was just published."
+        12. {{unlocked}} = "Your account was just unlocked"
+        13. {{accountcreated}} = "Your account was successfully created. Enjoy yourself!"
+        14. {{reportsent}} = "Your report was successfully sent."
+        15. {{articledeleted}} = " was successfully deleted."
+        16. {{notification}} = "Notification",
+        17. {{public}} = "Public",
+        18. {{pinned}} = " was pinned."
+    Use them in order for them to be replaced by translations.

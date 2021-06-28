@@ -10,6 +10,10 @@
     padding-top: 5%;
 }
 
+.profilebox {
+    padding-top: 15px;
+}
+
 .profilebox-bar {
     width: 100%;
     height: 300px;
@@ -45,7 +49,7 @@
     height: 55px;
 }
 
-.profilebox-bar-bar > img {
+.profilebox-bar-bar > .profilebox-bar-like {
     position: absolute;
     top: 5px;
     height: 50px;
@@ -93,4 +97,18 @@
     width: 100%;
     display: inline;
     font-weight: normal;
+}
+
+
+
+
+
+.profilebox-verified {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 50px;
+    width: 50px;
+    padding-left: 1px;
+    filter: invert(23%) sepia(93%) saturate(2067%) hue-rotate(96deg) brightness(98%) contrast(106%);
 }

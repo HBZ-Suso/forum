@@ -9,10 +9,12 @@ $filter = new Filter();
 $rargs = array_merge($_GET, $_POST);
 
 if (!($data->is_logged_in() && ($data->is_admin_by_id($_SESSION["userId"])))) {
+    $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Permissionerror");
 }
 
 if (!isset($rargs["epnt"])) {
+    $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
     exit("Requesterror");
 }
 
@@ -39,6 +41,7 @@ switch ($rargs["epnt"]) {
         exit(json_encode(get_codes($data)));
         break;
     default:
+        $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
         exit("Requesterror");
         break;
 }

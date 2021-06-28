@@ -10,7 +10,7 @@ if (!$data->is_logged_in()) {
 
 
 if (isset($rargs["userId"])) {
-    if (!($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($rargs["userId"])) && !$_SESSION["userId"] === $rargs["userId"]) {
+    if (!($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($rargs["userId"]))) {
         $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
         exit("Permissionerror");
     }
@@ -25,6 +25,9 @@ if (isset($rargs["userId"])) {
         exit("Permissionerror");
     }
 
+    if ($data->is_logged_in()) {
+        $mail->notify($_SESSION["userId"], 14, "", '"' .  $data->get_article_by_id($rargs["articleId"])["articleTitle"] . '" {{articledeleted}}');
+    }
     $data->delete_article_by_id($rargs["articleId"]);;
     exit("Success");
 }

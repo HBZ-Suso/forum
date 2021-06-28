@@ -10,9 +10,7 @@ if (!$data->is_logged_in() || !$data->is_admin_by_id($_SESSION["userId"])) {
 
 
 if (isset($rargs["userId"])) {
-    if (intval($data->get_user_notification_setting($rargs["userId"])) !== 0) {
-        $mail->notify("verified", $rargs["userId"]);
-    }
+    $mail->notify($rargs["userId"], 8, "/forum/v2/#Profile?userId=" . $rargs["userId"], '{{verified}}');
     $data->execute_verify_by_user_id($rargs["userId"]);
     exit("Success");
 }

@@ -9,18 +9,22 @@ $filter = new Filter();
 $rargs = array_merge($_GET, $_POST);
 
 if (!isset($_SESSION["userId"]) || !$data->is_logged_in()) {
+    $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Permissionerror");
 }
 
 if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastArticle"]) < 60*60*24) && !($data->is_admin_by_id($_SESSION["userId"])) && !($data->is_moderator_by_id($_SESSION["userId"]))) {
+    $data->create_error("Timeouterror",  $_SERVER["SCRIPT_NAME"]);
     exit("Timeouterror");
 }
 
 if (strval($data->get_user_lock($_SESSION["userId"])) === "1") {
+    $data->create_error("Lockederror",  $_SERVER["SCRIPT_NAME"]);
     exit("Lockederror");
 }
 
 if (!isset($rargs["title"]) || !isset($rargs["text"])) {
+    $data->create_error("Formerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Formerror");
 }
 
@@ -49,8 +53,31 @@ if ($cmd_output !== false) {
     $return_data["articleId"] = $cmd_output;
     $article_data = $data->get_article_by_id($return_data["articleId"]);
     array_merge($return_data, ["articleTitle" => $article_data["articleTitle"], "userId" => $article_data["userId"],"userName" => $data->get_username_by_id($article_data["userId"]), "articleCreated" => $article_data["articleCreated"]] ,["articleViews" => $data->get_article_views_by_article_id($cmd_output), "articleComments" => $data->get_article_comments_by_id($cmd_output), "articleLikes" => $data->get_article_likes_by_article_id($cmd_output)]);
+    
+
+
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.mail.php";
+    require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.text.php";
+    // Setting languages before including classes because class.text.php needs language on construct
+    if (!isset($_SESSION["language"])) {
+        if (isset($_COOKIE["language"])) {
+            $_SESSION["language"] = $_COOKIE["language"];
+        } else {
+            $_SESSION["language"] = "english";
+        }
+    }
+    if ($_SESSION["language"] !== $_COOKIE["language"]) {
+        setcookie("language", $_SESSION["language"], time() +24*3600*365, "/");
+    }
+    $text = new Text($_SESSION["language"]);
+    $mail = new Mail($data, $text);
+    $mail->notify($_SESSION["userId"], 11, "/forum/v2/#Article?articleId=" . $return_data["articleId"], '{{publishedarticle1}} "' . $return_data["articleTitle"] . '" {{publishedarticle2}}');
+
+
+    
     header("Content-Type: application/json");
     exit(json_encode($return_data));
 } else {
+    $data->create_error("Creationerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Creationerror");
 }

@@ -14,6 +14,9 @@ if (
     }
 
 if ($data->create_report($filter->purify($_POST["title"], 50), $filter->purify($_POST["text"], 35))) {
+    if ($data->is_logged_in()) {
+        $mail->notify($_SESSION["userId"], 14, "", '{{reportsent}}');
+    }
     exit("success");
 } else {
     exit("error");

@@ -14,9 +14,9 @@ if (isset($_SESSION["userId"])) {
     $logged_out_show = "style=\"display: none;\"";
 } else {
     $user_data = [
-        "userName" => "<a href='#Login'>" . $text->get("v2-user-login-promt") . "</a>!",
+        "userName" => "<a href='#Login'>" . $text->get('v2-user-login-promt') . "</a>!",
         "userAge" => $text->get("v2-user-login-effect"),
-        "userEmployment" => "<a href='#Login'>" . $text->get("v2-user-login-effect-2") . "</a>!"
+        "userEmployment" => "<a href='#Login'>" . $text->get('v2-user-login-effect-2') . "</a>!"
     ];
     $user_image_element = '<img src="/forum/assets/img/icon/user.svg" alt="U" style="cursor:pointer;" onclick="window.location.hash = \'Login\'">';
     $hide_l_bar = "style=\"display: none;\"";
@@ -45,8 +45,12 @@ if (isset($_SESSION["userId"])) {
             <div class="userview-login" <?php echo $logged_out_show; ?>>
                 <img src="/forum/assets/img/icon/login.svg" alt="L">
             </div>
+            <div class="userview-notifications" <?php echo $hide_l_bar; ?> onclick="toggle_notification_sidebar()">
+                <img src="/forum/assets/img/icon/notification.png" alt="S">
+                <p class="userview-notifications-new" style="display: none;">0</p>
+            </div>
             <div class="userview-settings">
-                <img src="/forum/assets/img/icon/settings.png" alt="S">
+                <img src="/forum/assets/img/icon/settings.png" alt="N">
             </div>
             <div class="userview-logout" <?php echo $hide_l_bar; ?>>
                 <img src="/forum/assets/img/icon/logout.png" alt="L">
@@ -65,6 +69,7 @@ if (isset($_SESSION["userId"])) {
         ';} // div with class bicu is background on chose, scdb is the side thing like on discord
         ?>
     </div>
+    <div class="notification-container notification-container-hidden" dataLength="0"></div>
     <div class="information-container">
         <div class="information-element">
             <img src="/forum/assets/img/icon/contact.svg" alt="Contact" onclick="window.location.hash = 'Report?type=Overall';">
@@ -83,4 +88,5 @@ if (isset($_SESSION["userId"])) {
         </div>
     </div>
 </div>
+<div class="notification-new"></div>
 <script src="/forum/v2/assets/script/side_bar.js" defer></script>

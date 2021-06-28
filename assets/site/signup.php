@@ -67,7 +67,7 @@ if (!isset($_GET["form"])) {
     }
 
     if ($data->create_user($filter->purify($_POST["username"], 25), $_POST["password"], $filter->purify($_POST["age"], 12), $filter->purify($_POST["employment"], 25), $filter->purify($_POST["description"], 50), $filter->purify($_POST["mail"], 25), $filter->purify($_POST["phone"], 15), array("public" => true), $code_query["type"], $code_query["intended"])) {
-        $mail->notify("createdaccount", $data->get_user_id_by_name($filter->purify($_POST["username"], 25)));
+        $mail->notify($data->get_user_id_by_name($filter->purify($_POST["username"], 25)), 13, "/forum/v2/#Profile?userId=" . $data->get_user_id_by_name($filter->purify($_POST["username"], 25)), '{{accountcreated}}');
         header("LOCATION:/forum/?success=true");
         exit("Successfully created account...");
     } else {

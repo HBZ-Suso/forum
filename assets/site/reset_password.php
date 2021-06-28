@@ -3,12 +3,17 @@ session_start();
 $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
+exit("DEPRECATED");
+
+
 if (!isset($rargs["username"])) {
     header("LOCATION:/forum/?error=Requesterror&errorId=" . $data->create_error("Requesterror", $_SERVER["SCRIPT_NAME"]));
     exit("Requesterror");
 }
 
-$mail->notify("linked", $data->get_user_id_by_name($rargs["username"]));
+$mail->send_mail("linked", $data->get_user_id_by_name($rargs["username"]));
+
+
 
 echo '
 <div class="reset_block">

@@ -9,11 +9,12 @@ var pageList = {};
 var current_selected = "";
 
 
-window.onload = () => {
+window.addEventListener("load", () => {
     categories.forEach((element, index) => {
         axios
             .post("/forum/v2/assets/api/get_articleIds_by_category.php?category=" + element)
             .then((resolve) => {
+                
                 if (resolve.data === false) {
                     articleIds[element] = [];
                 } else {
@@ -59,7 +60,7 @@ window.onload = () => {
         .catch((e) => {
             console.debug(e);
         })
-}
+})
 
 
 function get_article_entry_html (category, article_data, page=1) {
