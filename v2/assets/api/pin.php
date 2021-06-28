@@ -6,6 +6,8 @@ $data = new DataV2();
 
 $rargs = array_merge($_GET, $_POST);
 
+require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/include/CSRF.php";
+
 if ($data->is_logged_in() && ($data->is_moderator_by_id($_SESSION["userId"]) || $data->is_admin_by_id($_SESSION["userId"]))) {
     if (isset($rargs["articleId"])) {
         $data->toggle_article_pin($rargs["articleId"]);

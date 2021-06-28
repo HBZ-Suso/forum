@@ -29,6 +29,9 @@ if ($_SESSION["language"] !== $_COOKIE["language"]) {
 
 $rargs = array_merge($_GET, $_POST);
 
+if (!isset($_SESSION["CSRF-TOKEN"])) {
+    $_SESSION["CSRF-TOKEN"] = bin2hex(random_bytes(10));
+}
 
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.info.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.data.php";
@@ -104,6 +107,10 @@ if (!isset($hide_frame)) {
     </head>';
 
     echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
+    echo 'axios.defaults.headers.common = {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-TOKEN": "' . $_SESSION["CSRF-TOKEN"] . '"
+    }';
     echo '<script src="/forum/assets/script/functions.js"></script>';
     echo '<script src="/forum/assets/script/like.js" defer></script>';
 
@@ -163,6 +170,10 @@ if (isset($show_essentials)) {
 
     ';
     echo '<script src="https://unpkg.com/axios/dist/axios.min.js"></script>';
+    echo 'axios.defaults.headers.common = {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRF-TOKEN": "' . $_SESSION["CSRF-TOKEN"] . '"
+    }';
     echo '<script src="/forum/assets/script/like.js" defer></script>';
     echo '<script src="/forum/assets/script/functions.js"></script>';
     echo '<script src="/forum/assets/script/language.js"></script>';

@@ -8,6 +8,8 @@ $filter = new Filter();
 
 $rargs = array_merge($_GET, $_POST);
 
+require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/include/CSRF.php";
+
 if (!isset($_SESSION["userId"]) || !$data->is_logged_in()) {
     $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
     exit("Permissionerror");

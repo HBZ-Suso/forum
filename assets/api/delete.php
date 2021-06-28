@@ -2,6 +2,7 @@
 session_start();
 $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/include/CSRF.php";
 
 if (!$data->is_logged_in()) {
     $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
