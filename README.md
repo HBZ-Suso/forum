@@ -83,11 +83,14 @@ Database name: forum
     4. collaboratorDescription (LONGTEXT)
     5. collaboratorLink (LONGTEXT)
 
-11. passwordChanges:
-    1. passwordChangeId (BIGINT, UNSIGNED, ticking up, unsigned)
-    2. passwordChangeUserId (MEDIUMINT, UNSIGNED)
-    3. passwordChangeIp (LONGTEXT)
-    4. passwordChangeDate (LONGTEXT, UNIX TIMESTAMP)
+11. settingChanges:
+    1. settingChangeId (BIGINT, UNSIGNED, ticking up, unsigned)
+    2. settingChangeType (TEXT, Setting Name)
+    3. settingChangeFrom (LONGTEXT, Before)
+    4. settingChangeTo (LONGTEXT, After)
+    5. settingChangeUserId (MEDIUMINT, UNSIGNED)
+    6. settingChangeIp (LONGTEXT)
+    7. settingChangeDate (u BIGINT, UNIX TIMESTAMP)
 
 12. visitDetails:
     1. visitId (BIGINT, UNSIGNED, ticking up)
@@ -142,6 +145,15 @@ Database name: forum
     5. notificationRead (u TINYINT, 0 for false 1 for true)
     6. notificationLink (LONGTEXT, url without hostname to notification target)
     7. notificationDescription (LONGTEXT, descriptive Text)
+
+18. logs:
+    1. logId (u BIGINT)
+    2. logType (TEXT, "logs")
+    3. logContent (LONGTEXT, JSON, depends on logType)
+    4. logDate (u BIGINT, UNIX TIMESTAMP)
+    5. logIp (Text)
+    6. logBrowser (LONGTEXT)
+    7. userId (TEXT, "false" if not logged in)
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>

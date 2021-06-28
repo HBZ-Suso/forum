@@ -5,7 +5,17 @@ if (getCookie("vprhe").length > 0) {
 }
 
 var full_pages = ["Home", "About", "Discussion", "Projects", "Help"];
+if (localStorage.getItem("logs") === null) {
+    localStorage.setItem("logs", JSON.stringify([]));
+}
 
+
+function add_log (content) {
+    if (getCookie("science") === "off") {return;}
+    let log = JSON.parse(localStorage.getItem("logs"));
+    log.push({"date": Date.now(), "content": content})
+    localStorage.setItem("logs", JSON.stringify(log));
+}
 
 function add_hash_to_history () {
     hash_history.push({"time": Date.now(), "state": window.location.hash})
@@ -14,6 +24,8 @@ function add_hash_to_history () {
         hash_history.reverse();
     }
     document.cookie = "vprhe=" + JSON.stringify(hash_history) + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+
+    add_log({"type": "hash", "data": {"time": Date.now(), "state": window.location.hash}});
 }
 
 function check_hash_usage () {
@@ -27,7 +39,7 @@ function check_hash_usage () {
 }
 
 function find_last_category () {
-    console.debug("Using find_last_category")
+    console.debug("Using find_last_category...")
     for (let i=0; true; i++) {
         if (i + 1 > hash_history.length) {
             console.debug("No usable page found... Setting to default (Home)")

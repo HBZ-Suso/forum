@@ -4,10 +4,12 @@ function get_html (name, options) {
         <div class="select-box__current" tabindex="1">
         `;
     options.forEach((element, index) => {
+        let first = '';
+        if (index === 0) {first = "style='display: block;'";}
         text += `
             <div class="select-box__value">
-                <input class="select-box__input select-box__input-${name} ${name}_radio" type="radio" id="setting---${element}" value="setting---${element}" name="${name}" checked="checked"/ ${name}="${element}">
-                <p class="select-box__input-text">${language_data["v2-" + name + "-" + element]}</p>
+                <!--NOT NEEDED, COMPLETLY CUSTUM <input class="select-box__input select-box__input-${name} ${name}_radio" type="radio" id="setting---${element}" value="setting---${element}" name="${name}" checked="checked"/ ${name}="${element}">-->
+                <p class="select-box__input-text select-box__input-${name} select-box__input-${name}-${element}" ${first}>${language_data["v2-" + name + "-" + element]}</p>
             </div>`;
     })
     text += '<img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon" aria-hidden="true"/></div><ul class="select-box__list">';

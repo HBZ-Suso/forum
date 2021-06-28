@@ -97,4 +97,16 @@ class DataV2 extends Data {
             }
         }
     }
+
+
+    public function add_log ($type, $text, $ip, $browser, $userId)
+    {
+        $time = time();
+        $query = "INSERT INTO logs (logType, logContent, logDate, logIp, logBrowser, userId) VALUES (?, ?, ?, ?, ?, ?);";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ssisss", $type, $text, $time, $ip, $browser, $userId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
 }

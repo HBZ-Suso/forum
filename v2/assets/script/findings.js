@@ -45,7 +45,8 @@ window.addEventListener("load", () => {
         })
     })
 
-    axios
+    if (getCookie("loadauthors") === "on") {
+        axios
         .post("/forum/v2/assets/api/get_usernames.php")
         .then((resolve) => {
             if (resolve.data === false) {
@@ -60,6 +61,8 @@ window.addEventListener("load", () => {
         .catch((e) => {
             console.debug(e);
         })
+    }
+    
 })
 
 
@@ -94,6 +97,7 @@ function get_article_entry_html (category, article_data, page=1) {
 
 
 function update_articles (category) {
+
     localStorage.setItem("articleList", JSON.stringify(articleList));
     if (document.querySelector(".selectbar-article-element-selected") !== undefined && document.querySelector(".selectbar-article-element-selected") !== null) {
         current_selected = document.querySelector(".selectbar-article-element-selected").id;
@@ -169,6 +173,8 @@ function update_articles (category) {
         }
     })
 
+    add_log({"type": "updateArticles", "data": {"time": Date.now(), "pages": current_page_count, "sortDown": get_sort(category)["down"], "sortConv": get_sort(category)["conv"], "page": document.querySelector(".selectbar-" + category + "-page-display").innerHTML}});
+
     document.querySelector(".selectbar-" + category + "-article-container").innerHTML = "";
     final_array.map((element) => {document.querySelector(".selectbar-" + category + "-article-container").innerHTML += get_article_entry_html(category, articleList[element["articleId"]], page=element["page"]);})
 
@@ -190,9 +196,11 @@ function update_articles (category) {
 }
 
 function update_authors () {
-    document.querySelectorAll(".findings-article-author").forEach((element, index) => {
-        element.innerText = users[element.getAttribute("authorId")]["userName"];
-    })
+    if (getCookie("loadauthors") === "on") {
+        document.querySelectorAll(".findings-article-author").forEach((element, index) => {
+            element.innerText = users[element.getAttribute("authorId")]["userName"];
+        })
+    } 
 }
 
 
@@ -245,6 +253,8 @@ function update_pages (category) {
             element.style.display = "";
         }
     })
+
+    add_log({"type": "updatePages", "data": {"time": Date.now(),  "pages": pageList, "page": pageList[category]}});
 }
 
 window.addEventListener("resize", () => {

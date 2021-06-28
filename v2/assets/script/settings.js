@@ -54,6 +54,58 @@ function show_settings () {
                 settings.data.version = "old";
                 document.cookie = "autle=" + w_version + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
             }
+            if (getCookie("science").length > 0) {
+                if (getCookie("science") === "off") {
+                    settings.data.science = "off";
+                } else {
+                    settings.data.science = "on";
+                }
+            } else {
+                settings.data.science = "on";
+                document.cookie = "science=on; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+            }
+            if (getCookie("connectiontest").length > 0) {
+                if (getCookie("connectiontest") === "off") {
+                    settings.data.connectiontest = "off";
+                } else if (getCookie("connectiontest") === "slow") {
+                    settings.data.connectiontest = "slow";
+                } else {
+                    settings.data.connectiontest = "on";
+                }
+            } else {
+                settings.data.connectiontest = "on";
+                document.cookie = "connectiontest=on; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+            }
+            if (getCookie("constantrequest").length > 0) {
+                if (getCookie("constantrequest") === "off") {
+                    settings.data.constantrequest = "off";
+                } else {
+                    settings.data.constantrequest = "on";
+                }
+            } else {
+                settings.data.constantrequest = "on";
+                document.cookie = "constantrequest=on; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+            }
+            if (getCookie("loadcomments").length > 0) {
+                if (getCookie("loadcomments") === "off") {
+                    settings.data.loadcomments = "off";
+                } else {
+                    settings.data.loadcomments = "on";
+                }
+            } else {
+                settings.data.loadcomments = "on";
+                document.cookie = "loadcomments=on; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+            }
+            if (getCookie("loadauthors").length > 0) {
+                if (getCookie("loadauthors") === "off") {
+                    settings.data.loadauthors = "off";
+                } else {
+                    settings.data.loadauthors = "on";
+                }
+            } else {
+                settings.data.loadauthors = "on";
+                document.cookie = "loadauthors=on; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+            }
 
 
 
@@ -63,6 +115,7 @@ function show_settings () {
                 <img src="/forum/assets/img/icon/padlock.png" class="snb-element snb-public" open="settings-page-public">
                 <img src="/forum/assets/img/icon/notification.png" class="snb-element snb-notification" open="settings-page-notification">
                 <img src="/forum/assets/img/icon/theme.png" class="snb-element snb-theme" open="settings-page-theme">
+                <img src="/forum/assets/img/icon/connection.png" class="snb-element snb-connection" open="settings-page-connection">
                 <img src="/forum/assets/img/icon/user.png" class="snb-element snb-profile" open="settings-page-profile">
                 `;
                 if (user_type === "moderator" || user_type === "administrator") {
@@ -114,6 +167,34 @@ function show_settings () {
                             <h1 class="setting-heading">${language_data["v2-settings-public-heading"]}</h1>
                             <p class="setting-notice">${language_data["v2-settings-public-notice"]}</p>
                             ${get_html("public", get_setting_values("public", settings.data))}
+                        </form>
+                        <form class="setting">
+                            <h1 class="setting-heading">${language_data["v2-settings-science-heading"]}</h1>
+                            <p class="setting-notice">${language_data["v2-settings-science-notice"]}</p>
+                            ${get_html("science", get_setting_values("science", settings.data))}
+                        </form>
+                    </div>
+
+                    <div class="settings-page settings-page-connection" style="display: none;">
+                        <form class="setting">
+                            <h1 class="setting-heading">${language_data["v2-settings-connectiontest-heading"]}</h1>
+                            <p class="setting-notice">${language_data["v2-settings-connectiontest-notice"]}</p>
+                            ${get_html("connectiontest", get_setting_values("connectiontest", settings.data))}
+                        </form>
+                        <form class="setting">
+                            <h1 class="setting-heading">${language_data["v2-settings-constantrequest-heading"]}</h1>
+                            <p class="setting-notice">${language_data["v2-settings-constantrequest-notice"]}</p>
+                            ${get_html("constantrequest", get_setting_values("constantrequest", settings.data))}
+                        </form>
+                        <form class="setting">
+                            <h1 class="setting-heading">${language_data["v2-settings-loadcomments-heading"]}</h1>
+                            <p class="setting-notice">${language_data["v2-settings-loadcomments-notice"]}</p>
+                            ${get_html("loadcomments", get_setting_values("loadcomments", settings.data))}
+                        </form>
+                        <form class="setting">
+                            <h1 class="setting-heading">${language_data["v2-settings-loadauthors-heading"]}</h1>
+                            <p class="setting-notice">${language_data["v2-settings-loadauthors-notice"]}</p>
+                            ${get_html("loadauthors", get_setting_values("loadauthors", settings.data))}
                         </form>
                     </div>
 
@@ -200,14 +281,19 @@ function get_setting_values (setting, sdata) {
         "autotranslate": ["off", "onlyarticles", "onlyprofiles", "all"],
         "public": ["hidden", "public"],
         "notification": ["low", "medium", "high"],
-        "version": ["old", "2"]
+        "version": ["old", "2"],
+        "science": ["on", "off"],
+        "connectiontest": ["on", "slow", "off"],
+        "constantrequest": ["on", "off"],
+        "loadcomments": ["on", "off"],
+        "loadauthors": ["on", "off"]
     };
 
     if (setting in settings_d) {
         let data = settings_d[setting];
         if (setting in sdata && data.indexOf(sdata[setting]) !== -1) {
             data = data.removeA(sdata[setting]);
-            data.push(sdata[setting]);
+            data.unshift(sdata[setting]);
         }
         return data;
     } else {

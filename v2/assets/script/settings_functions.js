@@ -3,7 +3,7 @@ var publicity = "";
 var notifications = "";
 var color = "";
 var wVersClickCount = 0;
-var setting_names = ["language", "autotranslate", "public", "notification", "user_color", "version"];
+var setting_names = ["language", "autotranslate", "public", "notification", "user_color", "version", "science", "connectiontest", "constantrequest", "loadcomments", "loadauthors"];
 
 var settings_tab_loaded = false;
 
@@ -32,7 +32,8 @@ function set_settings_stuff () {
 function select_settings_page (snb_element) {
     if (snb_element === null) {return;}
     if (settings_tab_loaded) {localStorage.setItem("SettingsTab", snb_element.getAttribute("open").replace("settings-page-", ""));};
-    
+    if (localStorage.getItem("logs") !== null) {add_log({"type": "settingsPage", "data": {"time": Date.now(), "page": snb_element.getAttribute("open").replace("settings-page-", "")}});}
+
     document.querySelectorAll(".snb-element").forEach((element, index) => {
         if (element.classList.contains("snb-element-selected")) {
             element.classList.remove("snb-element-selected");
@@ -51,6 +52,11 @@ function s_check_changes (element) {
     if (setting_names.indexOf(element.getAttribute("name")) !== -1) {
         let name = element.getAttribute("name");
         let value = element.getAttribute(element.getAttribute("name"));
+        
+        // Set visible label
+        document.querySelectorAll(".select-box__input-" + name).forEach((element, index) => {element.style.display = "";})
+        document.querySelector(`.select-box__input-${name}-${value}`).style.display = "block";
+        
         switch (name) {
             case "language":
                 axios
@@ -98,6 +104,21 @@ function s_check_changes (element) {
                 break;
             case "autotranslate":
                 document.cookie = "autle=" + value + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                break;
+            case "science":
+                document.cookie = "science=" + value + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                break;
+            case "connectiontest":
+                document.cookie = "connectiontest=" + value + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                break;
+            case "constantrequest":
+                document.cookie = "constantrequest=" + value + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                break;
+            case "loadcomments":
+                document.cookie = "loadcomments=" + value + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                break;
+            case "loadauthors":
+                document.cookie = "loadauthors=" + value + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
                 break;
             case "version":
                 if (value === "old") {

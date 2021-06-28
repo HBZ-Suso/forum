@@ -1,6 +1,6 @@
 var content_displayed = false;
 function show_article (custum_html=false, heading="", content_html="") {
-    if (custum_html == false) {
+    if (custum_html === false) {
         document.querySelectorAll(".selectbar-article-element").forEach((element, index) => {
             try {
                 element.classList.remove("selectbar-article-element-selected");
@@ -99,7 +99,7 @@ function show_article (custum_html=false, heading="", content_html="") {
 
                 axios.post("/forum/v2/assets/api/view.php?articleId=" + articleId).then((resolve) => {if (resolve.data.indexOf("error") === -1) {articleList[articleId].articleViews += 1; update_articles(resolve.data["articleCategory"]);}}, (reject) => {throw new Error(reject)}).catch((e) => console.debug)
 
-                set_comment_html(resolve.data.articleId);
+                if (getCookie("loadcomments") === "on") {set_comment_html(resolve.data.articleId)};
             }, (reject) => {
                 console.debug("Error whilst trying to get article data from api.");
             })

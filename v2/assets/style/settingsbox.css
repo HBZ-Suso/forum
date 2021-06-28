@@ -85,7 +85,7 @@
 
 .snb-element-selected {
     background-color: var(--accent-color-light);
-    transform: scale(1.2) !important;
+    /*transform: scale(1.2) !important;*/
     box-shadow: none;
 }
 
@@ -111,15 +111,16 @@
 */
 
 .settings-page {
-    width: 50%;
+    width: 80%;
     min-width: 200px;
     margin: 0px;
-    margin-left: 25%;
+    margin-left: 10%;
     padding-bottom: 10px;
     height: min-content;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding-bottom: 200px;
 }
 
 
@@ -128,8 +129,8 @@
     font-size: 25px;
     color: var(--dark-color);
     text-decoration: underline;
-    width: 180%;
-    margin-left: -40%;
+    width: 120%;
+    margin-left: -10%;
     line-height: 35px;
 }
 
@@ -148,9 +149,9 @@
 .setting > .setting-notice {
     font-size: 17px;
     line-height: 23px;
-    width: 180%;
+    width: 120%;
     margin: 0px;
-    margin-left: -40%;
+    margin-left: -10%;
     margin-bottom: 7px;
 }
 
@@ -629,9 +630,9 @@ input:checked+.slider:before {
 .select-box__input {
   display: none;
 }
-.select-box__input:checked + .select-box__input-text {
+/*.select-box__input:checked + .select-box__input-text {
   display: block;
-}
+}*/
 .select-box__input-text {
   display: none;
   width: 100%;

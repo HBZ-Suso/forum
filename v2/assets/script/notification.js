@@ -54,8 +54,10 @@ function update_unread_counter () {
 
 function toggle_notification_sidebar () {
     if (document.querySelector('.notification-container').classList.contains("notification-container-hidden")) {
+        add_log({"type": "notificationSideBar", "data": {"time": Date.now(), "state": true}});
         document.querySelector('.notification-container').classList.remove("notification-container-hidden")
     } else {
+        add_log({"type": "notificationSideBar", "data": {"time": Date.now(), "state": false}});
         document.querySelector('.notification-container').classList.add("notification-container-hidden")
     };
 }
@@ -135,6 +137,8 @@ function show_notification_popup (data) {
         read_notification(data.notificationId);
         window.location = data.notificationLink;
     })
+
+    add_log({"type": "notificationPopup", "data": {"time": Date.now(), "notificationId": data.notificationId}});
 }
 
 function get_notification_title (type) {

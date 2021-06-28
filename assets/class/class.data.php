@@ -1278,12 +1278,12 @@ class Data extends Connector
     }
 
 
-    public function add_password_change ($userId, $userIp)
+    public function add_settings_change ($type, $from, $to, $userId, $ip)
     {
         $time = time();
-        $query = "INSERT INTO passwordChanges (passwordChangeUserId, passwordChangeIp, passwordChangeDate) VALUES (?, ?, ?);";
+        $query = "INSERT INTO settingChanges (settingChangeType, settingChangeFrom, settingChangeTo, settingChangeUserId, settingChangeIp, settingChangeDate) VALUES (?, ?, ?, ?, ?, ?);";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("iss", $userId, $userIp, $time);
+        $stmt->bind_param("sssisi", $type, $from, $to, $userId, $ip, $time);
         $stmt->execute();
         $stmt->close();
         return true;
