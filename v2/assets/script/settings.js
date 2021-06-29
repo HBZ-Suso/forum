@@ -38,7 +38,7 @@ function show_settings () {
                 }
             } else {
                 settings.data.version = "old";
-                document.cookie = "wVers=" + w_version + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                document.cookie = "wVers=old; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
             }
             if (getCookie("autle").length > 0) {
                 if (getCookie("autle") === "onlyarticles") {
@@ -51,8 +51,8 @@ function show_settings () {
                     settings.data.version = "off";
                 }
             } else {
-                settings.data.version = "old";
-                document.cookie = "autle=" + w_version + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                settings.data.version = "off";
+                document.cookie = "autle=off; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
             }
             if (getCookie("science").length > 0) {
                 if (getCookie("science") === "off") {
@@ -109,39 +109,40 @@ function show_settings () {
 
 
 
-
+            let logged_img = '';
+            let unlogged_hide = 'style="display: none;"';
+            let modadm = 'style="display: none;"';
             if(logged_in === true) {
-                var logged_img = `
-                <img src="/forum/assets/img/icon/padlock.png" class="snb-element snb-public" open="settings-page-public">
-                <img src="/forum/assets/img/icon/notification.png" class="snb-element snb-notification" open="settings-page-notification">
-                <img src="/forum/assets/img/icon/theme.png" class="snb-element snb-theme" open="settings-page-theme">
-                <img src="/forum/assets/img/icon/connection.png" class="snb-element snb-connection" open="settings-page-connection">
-                <img src="/forum/assets/img/icon/user.png" class="snb-element snb-profile" open="settings-page-profile">
+                logged_img = `
+                    <img src="/forum/assets/img/icon/notification.png" class="snb-element snb-notification" open="settings-page-notification">
+                    <img src="/forum/assets/img/icon/theme.png" class="snb-element snb-theme" open="settings-page-theme">
+                    <img src="/forum/assets/img/icon/user.png" class="snb-element snb-profile" open="settings-page-profile">
                 `;
+                
+
+                unlogged_hide = '';
                 if (user_type === "moderator" || user_type === "administrator") {
-                    var theme_allowed = `
-                    <form class="setting">
-                        <h1 class="setting-heading">${language_data["v2-settings-version-heading"]}</h1>
-                        <p class="setting-notice">${language_data["v2-settings-version-notice"]}</p>
-                        <button class="settings-link" onclick="window.location = '/forum/?redirect=${window.location}';">${language_data["v2-settings-version-visit"]}</button>
-                        ${get_html("version", get_setting_values("version", settings.data))}
-                    </form>
-                    `;
+                    modadm = '';
                 }
-            } else {
-                var logged_img = "";
             }
 
             show_article(custum_html=true, heading=language_data["v2-settings-heading"], content_html=`  
                 <div class="settings-navigation-bar">
                     <img src="/forum/assets/img/icon/translation.png" class="snb-element snb-language snb-element-selected" open="settings-page-language">
+                    <img src="/forum/assets/img/icon/padlock.png" class="snb-element snb-public" open="settings-page-public">
+                    <img src="/forum/assets/img/icon/connection.png" class="snb-element snb-connection" open="settings-page-connection">
                     ${logged_img}
                 </div>
                 <!--<img src="/forum/assets/img/icon/reload.png" class="settings-reload" alt="Reload Page">-->
 
                     <div class="settings-page settings-page-theme" style="display: none;">
-                        ${theme_allowed}
-                        <form class="setting">
+                        <form class="setting" ${modadm}>
+                            <h1 class="setting-heading">${language_data["v2-settings-version-heading"]}</h1>
+                            <p class="setting-notice">${language_data["v2-settings-version-notice"]}</p>
+                            <button class="settings-link" onclick="window.location = '/forum/?redirect=${window.location}';">${language_data["v2-settings-version-visit"]}</button>
+                            ${get_html("version", get_setting_values("version", settings.data))}
+                        </form>
+                        <form class="setting" ${unlogged_hide}>
                             <h1 class="setting-heading">${language_data["v2-settings-theme-heading"]}</h1>
                             <p class="setting-notice">${language_data["v2-settings-theme-notice"]}</p>
                             ${get_html("user_color", get_setting_values("user_color", settings.data))}
@@ -163,7 +164,7 @@ function show_settings () {
 
 
                     <div class="settings-page settings-page-public" style="display: none;">
-                        <form class="setting">
+                        <form class="setting" ${unlogged_hide}>
                             <h1 class="setting-heading">${language_data["v2-settings-public-heading"]}</h1>
                             <p class="setting-notice">${language_data["v2-settings-public-notice"]}</p>
                             ${get_html("public", get_setting_values("public", settings.data))}
@@ -173,6 +174,13 @@ function show_settings () {
                             <p class="setting-notice">${language_data["v2-settings-science-notice"]}</p>
                             ${get_html("science", get_setting_values("science", settings.data))}
                         </form>
+                        <form class="setting">
+                            <h1 class="setting-heading">${language_data["v2-settings-personaldatadownload-heading"]}</h1>
+                            <p class="setting-notice">${language_data["v2-settings-personaldatadownload-notice"]}</p>
+                            <button class="button-simple-clickable settings-download-personal-data-prepare" onclick="this.innerHTML = '...'; download_personal_data()">${language_data["v2-settings-personaldatadownload-prepare"]}</button>
+                            <button class="button-simple-clickable settings-download-personal-data" style="display: none;">${language_data["v2-settings-personaldatadownload-collect"]}</button>
+                        </form>
+                        
                     </div>
 
                     <div class="settings-page settings-page-connection" style="display: none;">
@@ -199,7 +207,7 @@ function show_settings () {
                     </div>
 
                     <div class="settings-page settings-page-notification" style="display: none;">
-                        <form class="setting">
+                        <form class="setting" ${unlogged_hide}>
                             <h1 class="setting-heading">${language_data["v2-settings-notification-heading"]}</h1>
                             <p class="setting-notice">${language_data["v2-settings-notification-notice"]}</p>
                             ${get_html("notification", get_setting_values("notification", settings.data))}
@@ -208,7 +216,7 @@ function show_settings () {
 
 
                     <div class="settings-page settings-page-profile" style="display: none;">
-                        <form class="setting">
+                        <form class="setting" ${unlogged_hide}>
                             <h1 class="setting-heading">${language_data["v2-settings-profile-heading"]}</h1>
                             <p class="setting-notice">${language_data["v2-settings-profile-notice"]}</p>
                             <div class="settings-profile-container">

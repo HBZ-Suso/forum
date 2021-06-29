@@ -74,6 +74,10 @@ if (!isset($_SESSION["CSRF-TOKEN"])) {
 
 echo '<div class="scheme-box"><link rel="stylesheet" href="/forum/assets/style/scheme-' . $scheme . '-file.css"></div>';
 echo '<div class="scheme-box"><link rel="stylesheet" href="/forum/v2/assets/style/colors.css"></div>';
+if ($info->mobile === true) {
+    echo '<div class="scheme-box"><link rel="stylesheet" href="/forum/v2/assets/style/mobile.colors.css"></div>';
+}
+echo '<div class="scheme-box"><link rel="stylesheet" href="/forum/v2/assets/style/colors.css"></div>';
 echo '<div class="scheme-box"><link rel="stylesheet" href="/forum/v2/assets/style/user-profile.css"></div>';
 echo '<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>';
 echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>';

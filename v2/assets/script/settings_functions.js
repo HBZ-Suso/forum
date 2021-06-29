@@ -27,6 +27,8 @@ function set_settings_stuff () {
             setTimeout(send_profile_axios, inverted_internet_speed * 200);
         })
     })
+
+
 }
 
 function select_settings_page (snb_element) {
@@ -202,4 +204,27 @@ function send_profile_axios () {
             .then((resolve) => {}, (reject) => {throw new Error(reject)})
             .catch((e) => console.debug)
     }
+}
+
+
+
+
+
+
+function download_personal_data () {
+    axios
+        .post("/forum/v2/assets/api/get_data.php")
+        .then((resolve) => {
+            document.querySelector('.settings-download-personal-data').style.display = ''; 
+            document.querySelector('.settings-download-personal-data-prepare').style.display = 'none';
+            document.querySelector('.settings-download-personal-data').addEventListener("click", () => {
+                window.download(resolve.data);
+                delete resolve.data;
+                document.querySelector('.settings-download-personal-data-prepare').style.display = ''; 
+                document.querySelector('.settings-download-personal-data-prepare').innerHTML = language_data["v2-settings-personaldatadownload-prepare"];
+                document.querySelector('.settings-download-personal-data').style.display = 'none';
+            });
+        }, (reject) => {throw new Error(reject)})
+        .catch((e) => console.debug)
+    
 }
