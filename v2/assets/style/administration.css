@@ -157,7 +157,7 @@
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 100%;
+    bottom: 0px;
     position: absolute;
     z-index: 4;
     background-color: rgba(128, 128, 128, 0.383);
@@ -169,6 +169,54 @@
 .code-show-innerContainer {
     background-color: white;
     border: 1px solid rgb(216, 216, 216);
-    width: 600px;
-    height: 300px;
+    width: 300px;
+    height: 140px;
+}
+
+
+.code-show-innerContainer > p {
+    width: 100%;
+    text-align: center;
+    margin: 0px;
+    color: var(--dark-color);
+}
+
+
+.code-show-type {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 37px;
+}
+
+.code-show-intended, .code-show-name {
+    font-size: 20px;
+    line-height: 26px;
+}
+
+.code-show-delete {
+    margin: 10px auto;
+}
+
+
+
+
+
+
+.table-container {
+    width: 100%;
+    height: 500px;
+}
+
+.table-control {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: space-between;
+    margin: 20px auto;
+}
+
+.table-left, .table-right {
+    margin: 0px;
 }

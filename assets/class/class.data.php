@@ -1827,4 +1827,14 @@ class Data extends Connector
         }
         return false;
     }  
+
+
+    public function delete_code ($codeId) {
+        $query = "DELETE FROM codes WHERE codeId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $codeId);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
 }

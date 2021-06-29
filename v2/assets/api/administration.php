@@ -42,6 +42,10 @@ switch ($rargs["epnt"]) {
     case "getCodes":
         exit(json_encode(get_codes($data)));
         break;
+    case "deleteCode":
+        if (!isset($rargs["codeId"])) {exit();}
+        exit(delete_code($data, $rargs["codeId"]));
+        break;
     default:
         $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
         exit("Requesterror");
@@ -151,4 +155,9 @@ function create_code ($data) {
 
 function get_codes ($data) {
     return $data->get_codes();
+}
+
+
+function delete_code ($data, $codeId) {
+    return $data->delete_code($codeId);
 }

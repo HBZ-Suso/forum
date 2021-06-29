@@ -110,9 +110,13 @@ if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
 }
 if ($data->is_logged_in() && ($data->is_admin_by_id($_SESSION["userId"]))) {
     echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
+    echo '<link href="https://unpkg.com/tabulator-tables@4.9.3/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js"></script>';
     echo '<script src="/forum/v2/assets/script/show_administration.js"></script>'; 
     echo '<script src="/forum/v2/assets/script/administration/graph_functions.js"></script>'; 
     echo '<script src="/forum/v2/assets/script/administration/code_functions.js"></script>'; 
+    echo '<script src="/forum/v2/assets/script/administration/table_functions.js"></script>'; 
+    
 }
 
 if ($data->is_logged_in()) {

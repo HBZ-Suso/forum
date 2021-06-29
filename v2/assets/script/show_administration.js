@@ -64,6 +64,28 @@ async function show_administration () {
             </div>
         </div>
         <div class="code-new-list"></div>
+
+
+        <!--<h2>Datatables</h2>
+        <p>In the following tables you can find the data of all visitors of the page as well as countless other details.</p>
+        <div class="table-container">
+            <div class="table-0 table-table" id="table-0">
+
+            </div>
+            <div class="table-1 table-table" id="table-1" style="display: none;">
+        
+            </div>
+            <div class="table-2 table-table" id="table-2" style="display: none;">
+        
+            </div>
+        </div>
+        <div class="table-control">
+                <button class="table-left button-simple-clickable" onclick="table_left();">Left</button>
+                <button class="table-right button-simple-clickable" onclick="table_right();">Right</button>
+        </div>-->
+
+
+        
         `);
 
     document.querySelector(".chart-gallery-left").addEventListener("click", (e) => {
