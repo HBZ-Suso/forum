@@ -61,16 +61,7 @@ function s_check_changes (element) {
         
         switch (name) {
             case "language":
-                axios
-                .post("/forum/assets/api/language.php?language=" + value)
-                .then((response) => {
-                    if (response.data.indexOf("error") === -1) {
-                        axios.post("/forum/assets/api/get_language.php").then((resolve) => {language_data = resolve.data;}, (reject) => {throw new Error()}).catch(console.debug)
-                    }
-                })
-                .catch((error) => {
-                    throw new Error(error);
-                })
+                set_language(value);
                 break;
             case "public":
                 axios

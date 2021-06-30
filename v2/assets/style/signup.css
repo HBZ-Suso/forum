@@ -1,0 +1,72 @@
+.signup {
+    z-index: 4;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-innerContainer {
+    width: 400px;
+    height: 700px;
+    background-color: var(--side-user-color);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    position: relative;
+}
+
+
+.signup-innerContainer > input, .signup-innerContainer > textarea {
+    border-radius: 5px;
+    width: 350px;
+    height: 36px;
+    color: var(--dark-color);
+    border: 1px solid var(--dark-color);
+    padding: 5px;
+    background-color: var(--side-dark-color);
+    margin-bottom: 5px;
+    resize: none;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.signup-innerContainer > input[value=""], .signup-innerContainer > input[value=""] {
+    background-color: var(--accent-color-light);
+}
+
+.signup {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.signup-heading {
+    color: var(--dark-color);
+    font-size: 25px;
+    margin: 0px;
+}
+
+.signup-notice {
+    width: 225px;
+    color: var(--dark-color);
+}
+
+
+.signup-description {
+    height: 200px!important;
+}
+
+.signup-submit {
+    color: var(--dark-color);
+    cursor: pointer;
+}

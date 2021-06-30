@@ -65,6 +65,13 @@ function issue_commands_after_hash (hash) {
                 console.debug("Error whilst issuing internal Login command, Error: ", e)
             }
             break;
+        case "#Signup":
+            try {
+                show_signup();
+            } catch (e) {
+                console.debug("Error whilst issuing internal Login command, Error: ", e)
+            }
+            break;
         case "#Settings":
             try {
                 show_settings();

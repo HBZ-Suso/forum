@@ -20,15 +20,15 @@ if (!isset($_GET["form"])) {
 
         <form action="/forum/assets/site/signup.php?form=true" method="post" class="main-form">
             <a class="login" href="/forum/assets/site/login.php">' . $text->get("signup-login") . '</a><br>
-            <input type="text" name="username" placeholder="' . $text->get("signup-username") . '" class="username">
-            <input type="password" name="password" placeholder="' . $text->get("signup-pwd") . '" class="password">
-            <input type="password" name="password_2" placeholder="' . $text->get("signup-pwd-again") . '" class="password password_2">
-            <input type="number" min=1 max=114 name="age" placeholder="' . $text->get("signup-age") . '" class="age">
-            <input type="text" name="employment" placeholder="' . $text->get("signup-employment") . '" class="employment">
+            <input type="text" name="username" placeholder="' . $text->get("signup-username") . '" class="username" required>
+            <input type="password" name="password" placeholder="' . $text->get("signup-pwd") . '" class="password" required>
+            <input type="password" name="password_2" placeholder="' . $text->get("signup-pwd-again") . '" class="password password_2" required>
+            <input type="number" min=1 max=114 name="age" placeholder="' . $text->get("signup-age") . '" class="age" required>
+            <input type="text" name="employment" placeholder="' . $text->get("signup-employment") . '" class="employment" required>
             <textarea name="description" placeholder="' . $text->get("signup-description") . '" class="description"></textarea>
-            <input type="text" name="mail" placeholder="' . $text->get("signup-mail") . '" class="mail">
+            <input type="text" name="mail" placeholder="' . $text->get("signup-mail") . '" class="mail" required>
             <input type="text" name="phone" placeholder="' . $text->get("signup-phone") . '" class="phone">
-            <input type="text" name="code" placeholder="' . $text->get("signup-code") . '" class="code">
+            <input type="text" name="code" placeholder="' . $text->get("signup-code") . '" class="code" required>
             <input type="submit" name="submit" value="submit" class="submit">
         </form>
 
@@ -67,7 +67,6 @@ if (!isset($_GET["form"])) {
     }
 
     if ($data->create_user($filter->purify($_POST["username"], 25), $_POST["password"], $filter->purify($_POST["age"], 12), $filter->purify($_POST["employment"], 25), $filter->purify($_POST["description"], 50), $filter->purify($_POST["mail"], 25), $filter->purify($_POST["phone"], 15), array("public" => true), $code_query["type"], $code_query["intended"])) {
-        $mail->notify($data->get_user_id_by_name($filter->purify($_POST["username"], 25)), 13, "/forum/v2/#Profile?userId=" . $data->get_user_id_by_name($filter->purify($_POST["username"], 25)), '{{accountcreated}}');
         header("LOCATION:/forum/?success=true");
         exit("Successfully created account...");
     } else {

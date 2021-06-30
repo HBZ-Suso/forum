@@ -100,6 +100,7 @@ echo '<script src="/forum/v2/assets/script/translate.js"></script>';
 if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
     echo '<script src="/forum/v2/assets/script/hashmanagement.js"></script>';
     echo '<script src="/forum/v2/assets/script/login.js"></script>';
+    echo '<script src="/forum/v2/assets/script/signup.js"></script>';
     echo '<script src="/forum/v2/assets/script/settings.js"></script>';
     echo '<script src="/forum/v2/assets/script/settings_functions.js"></script>';
     echo '<script src="/forum/v2/assets/script/create_post.js"></script>';
@@ -163,8 +164,7 @@ echo '<div id="theme-box"><link rel="stylesheet" href="/forum/assets/theme/' . $
 include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/loading.html";
 include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/ask_question.html";
 if (!isset($_COOKIE["policy-agreed"]) || $_COOKIE["policy-agreed"] !== "true") {
-    include_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/include/policy_popup.php";
-    echo '<link rel="stylesheet" href="/forum/v2/assets/style/privacyinfo.css">';
+    echo "<script src='/forum/v2/assets/script/tutorial.js'></script>";
 }
 
 if (isset($_SESSION["user"]) || isset($_SESSION["userId"])) {

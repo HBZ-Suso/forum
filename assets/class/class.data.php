@@ -967,11 +967,11 @@ class Data extends Connector
         }
 
 
-        $query = "DELETE FROM codes WHERE codeName=?";
+        /*$query = "DELETE FROM codes WHERE codeName=?";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("s", $code);
         $stmt->execute();
-        $stmt->close();
+        $stmt->close();*/
         return $type;
     }
 

@@ -1,5 +1,6 @@
 {
     "english": {
+        "language_name": "english",
         "language-code": "en",
         "frame-pc-heading": "HBZ-Forum",
         "frame-pc-heading-search": "Search user or article",
@@ -64,6 +65,7 @@
         "signup-code": "Your code",
         "signup-phone": "Your phonenumber",
         "signup-mail": "Your mail",
+        "signup-mail-2": "Again",
         "signup-description": "Your description",
         "signup-employment": "Your employment",
         "signup-age": "Your Age",
@@ -126,7 +128,7 @@
         "v2-search-topic": "Search topic",
         "v2-user-login-promt": "Log in",
         "v2-user-login-effect": "In order to access all features",
-        "v2-user-login-effevt-2": "log in",
+        "v2-user-login-effect-2": "log in",
         "v2-open-article-first": "Please open an article...",
         "v2-comment-title": "Title",
         "v2-comment-text": "Your comment...",
@@ -142,7 +144,7 @@
         "v2-article-likes": " Likes",
         "v2-article-views": " Views",
         "v2-login-heading": "Login",
-        "v2-login-message": "Enter your username and password. They will be sent to the server and you will be logged in. If the login is successful, this page will be reloaded.",
+        "v2-login-message": "Enter your username and password. They will be sent to the server and you will be logged in. If the login is successful, this page will be reloaded.<br>To signup, click <a href='#Signup'>here</a>.",
         "v2-login-username": "Username",
         "v2-login-password": "Password",
         "v2-login-submit": "Login",
@@ -298,9 +300,12 @@
         "v2-settings-personaldatadownload-heading": "Personal Data",
         "v2-settings-personaldatadownload-notice": "If you want to know what data we excactly have of you you can use this to download all connected data to your account. Output is in JSON.",
         "v2-settings-personaldatadownload-collect": "Download",
-        "v2-settings-personaldatadownload-prepare": "Prepare Download"
+        "v2-settings-personaldatadownload-prepare": "Prepare Download",
+        "v2-signup-heading": "Signup",
+        "v2-signup-notice": "Use this form in order to signup."
     },
     "deutsch": {
+        "language_name": "deutsch",
         "language-code": "de",
         "frame-pc-heading": "HBZ-Forum",
         "frame-pc-heading-search": "Suche Nutzer oder Artikel",
@@ -365,6 +370,7 @@
         "signup-code": "Dein Code",
         "signup-phone": "Deine Telefonnummer",
         "signup-mail": "Deine Emailaddresse",
+        "signup-mail-2": "Nochmal",
         "signup-description": "Deine Beschreibung",
         "signup-employment": "Deine Anstellung",
         "signup-age": "Dein Alter",
@@ -443,7 +449,7 @@
         "v2-article-likes": " Likes",
         "v2-article-views": " Views",
         "v2-login-heading": "Anmeldung",
-        "v2-login-message": "Geben Sie Nutzername und Passwort an. Diese werden zu dem Server gesendet. Wenn sie korrekt sind, werden Sie angemeldet. Im folgenden wird die Seite automatisch neugeladen.",
+        "v2-login-message": "Geben Sie Nutzername und Passwort an. Diese werden zu dem Server gesendet. Wenn sie korrekt sind, werden Sie angemeldet. Im folgenden wird die Seite automatisch neugeladen.<br>To signup, click <a href='#Signup'>here</a>.",
         "v2-login-username": "Nutzername",
         "v2-login-password": "Passwort",
         "v2-login-submit": "Anmelden",
@@ -600,7 +606,9 @@
         "v2-settings-personaldatadownload-heading": "Persönliche Daten",
         "v2-settings-personaldatadownload-notice": "Falls Sie genau wissen wollen, welche Daten wir über Sie und ihren Account gesammelt haben, können Sie hier alle mit ihnen verbundenen Daten herunterladen. Je länger Sie diese Website verwendet haben desto grösser wird die Datei sein. Die Ausgabe findet dabei im JSON-Format statt. Dieses kann leicht von anderen Programmen eingelesen werden. Falls Sie irgendwelche frage haben, kontaktieren Sie uns gerne über das Meldungen Formular.",
         "v2-settings-personaldatadownload-collect": "Herunterladen",
-        "v2-settings-personaldatadownload-prepare": "Download vorbereiten"
+        "v2-settings-personaldatadownload-prepare": "Download vorbereiten",
+        "v2-signup-heading": "Registrierung",
+        "v2-signup-notice": "Verwende dieses Formular um dich zu registrieren."
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",

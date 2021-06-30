@@ -6,7 +6,6 @@ $data = new DataV2();
 
 $rargs = array_merge($_GET, $_POST);
 
-require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/include/CSRF.php";
 
 header("Content-Type: application/json");
-exit(json_encode($data->get_personal_data()));
+exit(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/forum/assets/data/policy.json")); // ALREADY JSON

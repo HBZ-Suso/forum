@@ -174,3 +174,22 @@ var language_data = {
 };
 
 axios.post("/forum/assets/api/get_language.php").then((resolve) => {language_data = resolve.data; language_loaded()}, (reject) => {throw new Error()}).catch(console.debug)
+
+
+function get_language_list () {
+    return {"deutsch": "Deutsch", "english": "English"}
+}
+
+
+function set_language (name) {
+    axios
+        .post("/forum/assets/api/language.php?language=" + name)
+        .then((response) => {
+            if (response.data.indexOf("error") === -1) {
+                axios.post("/forum/assets/api/get_language.php").then((resolve) => {language_data = resolve.data;}, (reject) => {throw new Error()}).catch(console.debug)
+            }
+        })
+        .catch((error) => {
+            throw new Error(error);
+        })
+}
