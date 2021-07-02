@@ -21,16 +21,23 @@ if (!isset($rargs["change_data"])) {
 $change = json_decode($rargs["change_data"], true);
 
 if (isset($change["userPassword"])) {
-    if (isset($_SESSION["linkLogged"])) {
+    /*if (isset($_SESSION["linkLogged"])) {
         exit("Not allowed");
+    }*/
+
+    if (!isset($change["passwordold"]) || !$data->check_password($_SESSION["userId"], $change["passwordold"])) {
+        $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
+        exit("Permissionerror");
     }
+
+    $data->add_settings_change("userPassword", "", "", $_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
+    $data->change_user_column_by_id_and_name($_SESSION["userId"], "userPassword", password_hash($change["userPassword"], PASSWORD_DEFAULT));
+    
     if (intval($data->get_user_notification_setting($_SESSION["userId"])) !== 0) {
         $mail->notify($_SESSION["userId"], 6, "/forum/v2/#Settings", '{{passwordchanged}}');
     } else {
         exit($data->get_user_notification_setting($_SESSION["userId"]));
     }
-    $data->add_settings_change("userPassword", "", "", $_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
-    $data->change_user_column_by_id_and_name($_SESSION["userId"], "userPassword", password_hash($change["userPassword"], PASSWORD_DEFAULT));
 }
 if (isset($change["userDescription"]) && $change["userDescription"] !== $data->get_user_by_id($_SESSION["userId"])["userDescription"]) {
     $data->add_settings_change("userDescription", $data->get_user_by_id($_SESSION["userId"])["userDescription"], $filter->purify($change["userDescription"], 25), $_SESSION["userId"], $_SERVER['REMOTE_ADDR']);

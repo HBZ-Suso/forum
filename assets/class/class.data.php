@@ -313,6 +313,35 @@ class Data extends Connector
     }
 
 
+
+
+    public function check_password ($userId, $password)
+    {
+        $query = "SELECT userPassword FROM users WHERE userId=?";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if (password_verify($password, $row["userPassword"])) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            return false;
+        }
+
+        return false;
+    }
+
+
+
+
+
     public function check_login_by_Id($userId, $password)
     {
         $query = "SELECT * FROM users WHERE userId=?";

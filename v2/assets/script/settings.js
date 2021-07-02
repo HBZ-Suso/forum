@@ -228,9 +228,22 @@ function show_settings () {
                                 <textarea class="settings-profile-element settings-profile-description" placeholder="${language_data["v2-settings-profile-description"]}" disabled elementName="userDescription"></textarea>
                             </div>
                         </form>
+
+
+
+                        <form class="setting" ${unlogged_hide}>
+                            <h1 class="setting-heading">${language_data["v2-settings-profile-password-heading"]}</h1>
+                            <p class="setting-notice">${language_data["v2-settings-profile-password-notice"]}</p>
+                            <div class="settings-profile-container">
+                            <input class="settings-profile-element settings-profile-passwordold" placeholder="${language_data["v2-settings-profile-passwordold"]}" type="password">
+                            <input class="settings-profile-element settings-profile-password1" placeholder="${language_data["v2-settings-profile-password1"]}" type="password">
+                            <input class="settings-profile-element settings-profile-password2" placeholder="${language_data["v2-settings-profile-password2"]}" type="password">
+                            <input type="submit" class="settings-profile-element settings-profile-passwordreset" value="${language_data["v2-settings-profile-passwordreset"]}">
+                            </div>
+                        </form>
                     </div>
                 </div>
-
+            
                 <link rel="stylesheet" href="/forum/v2/assets/style/settingsbox.css">
                 `);
 

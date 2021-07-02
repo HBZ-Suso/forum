@@ -581,6 +581,20 @@ input:checked+.slider:before {
 
 
 
+.settings-profile-passwordreset {
+    text-align: center;
+    line-height: 25px;
+    padding: 5px;
+    color: var(--dark-color);
+    background-color: white;
+    transition: 0.1s background-color linear;
+}
+
+.settings-profile-passwordreset:hover {
+    background-color: var(--side-border-color);
+    cursor: pointer;
+}
+
 
 
 

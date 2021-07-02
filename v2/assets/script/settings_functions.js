@@ -29,6 +29,28 @@ function set_settings_stuff () {
     })
 
 
+    document.querySelector(".settings-profile-passwordreset").addEventListener("click", (e) => {
+        let old_pwd = document.querySelector(".settings-profile-passwordold").value;
+        let pwd1 = document.querySelector(".settings-profile-password1").value;
+        let pwd2 = document.querySelector(".settings-profile-password2").value;
+
+        if (pwd1 !== pwd2) {
+            alert("Passwords to not match...");
+            return;
+        }
+
+        if (old_pwd.length > 0 && pwd1.length > 0 && pwd2.length > 0) {
+            let post_req = "change_data=" + JSON.stringify({"userPassword": pwd1, "passwordold": old_pwd});
+            axios
+                .post("/forum/assets/api/change_data.php", post_req)
+                .then((resolve) => {
+                    document.querySelector(".settings-profile-passwordold").value = '';
+                    document.querySelector(".settings-profile-password1").value = '';
+                    document.querySelector(".settings-profile-password2").value = '';
+                }, (reject) => {throw new Error(reject)})
+                .catch((e) => console.debug)
+        }
+    })
 }
 
 function select_settings_page (snb_element) {
