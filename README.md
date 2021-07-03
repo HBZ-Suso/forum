@@ -159,6 +159,7 @@ Database name: forum
     8. matchUserAgent (LONGTEXT, json)
     9. matchHttpLanguage (TEXT)
     10. matchFingerprint (TEXT, fingerprint)
+    11. matchLatestDate (u BIGINT, UNIX TIMESTAMP)
 
 
 Icons:
