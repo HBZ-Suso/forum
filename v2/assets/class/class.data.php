@@ -99,12 +99,12 @@ class DataV2 extends Data {
     }
 
 
-    public function add_log ($type, $text, $ip, $browser, $userId)
+    public function add_log ($type, $text)
     {
         $time = time();
-        $query = "INSERT INTO logs (logType, logContent, logDate, logIp, logBrowser, userId) VALUES (?, ?, ?, ?, ?, ?);";
+        $query = "INSERT INTO logs (matchKey, logType, logContent, logDate) VALUES (?, ?, ?, ?);";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ssisss", $type, $text, $time, $ip, $browser, $userId);
+        $stmt->bind_param("iisi", $this->matchKey, $type, $text, $time);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -118,6 +118,7 @@ class DataV2 extends Data {
 
 
     public function get_personal_data () {
+        /*
         $data = [];
 
         $limit = 100000;
@@ -412,5 +413,6 @@ class DataV2 extends Data {
 
         
         return $data;
+        */
     }
 }

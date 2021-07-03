@@ -5,6 +5,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/class/class.data.php"
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.filter.php";
 $data = new DataV2();
 $filter = new Filter();
+$data->do_match();
 
 $rargs = array_merge($_GET, $_POST);
 
