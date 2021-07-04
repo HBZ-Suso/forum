@@ -22,6 +22,7 @@ class Connector
     {
         $this->connect();
         $this->matchKey = 0;
+        $this->matchId = 0;
     }
 
     private function create_error($er)
@@ -1335,9 +1336,9 @@ class Data extends Connector
     {
         $current_page = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         $time = time();
-        $query = "INSERT INTO visits (matchKey, visitDate, visitPage, visitData) VALUES (?, ?, ?, ?);";
+        $query = "INSERT INTO visits (matchId, visitDate, visitPage, visitData) VALUES (?, ?, ?, ?);";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("iiss", $this->matchKey, $time, $current_page, $visitData);
+        $stmt->bind_param("iiss", $this->matchId, $time, $current_page, $visitData);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -1364,7 +1365,7 @@ class Data extends Connector
                 return false;
             }
         } else if ($column !== false && $to !== false) {
-            if (!in_array($column, array("visitId", "visitDate", "visitData", "visitPage", "matchKey"))) {
+            if (!in_array($column, array("visitId", "visitDate", "visitData", "visitPage", "matchId"))) {
                 return false;
             }
             $query = "SELECT * FROM visits WHERE " . $column . "=? ORDER BY visitDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
@@ -1430,7 +1431,7 @@ class Data extends Connector
 
 
     public function get_visit_dates_new ($min, $max) {
-        $query = "SELECT matchKey, visitDate FROM visits ORDER BY visitDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
+        $query = "SELECT matchId, visitDate FROM visits ORDER BY visitDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("");
         $stmt->execute();
@@ -1440,9 +1441,9 @@ class Data extends Connector
         $keys = [];
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                if (!in_array($row["matchKey"], $keys)) {
+                if (!in_array($row["matchId"], $keys)) {
                     array_push($return, $row);
-                    array_push($keys, $row["matchKey"]);
+                    array_push($keys, $row["matchId"]);
                 }
             }
             return $return;
@@ -1510,7 +1511,7 @@ class Data extends Connector
                 return false;
             }
         } else if ($column !== false && $to !== false) {
-            if (!in_array($column, array("reportId", "reportTitle", "reportDate", "matchKey"))) {
+            if (!in_array($column, array("reportId", "reportTitle", "reportDate", "matchId"))) {
                 return false;
             }
             $query = "SELECT * FROM reports WHERE " . $column . "=? ORDER BY reportDate LIMIT " . intval($min) . "," .  (intval($max) - intval($min));
@@ -1569,9 +1570,9 @@ class Data extends Connector
     public function create_report ($title, $text)
     {
         $date = time();
-        $query = "INSERT INTO reports (matchKey, reportTitle, reportText, reportDate) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO reports (matchId, reportTitle, reportText, reportDate) VALUES (?, ?, ?, ?)";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ssii", $this->matchKey, $title, $text, $date);
+        $stmt->bind_param("issi", $this->matchId, $title, $text, $date);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -1660,9 +1661,9 @@ class Data extends Connector
     public function create_error ($name, $file)
     {
         $date = time();
-        $query = "INSERT INTO errors (matchKey, errorName, errorDate, errorFile) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO errors (matchId, errorName, errorDate, errorFile) VALUES (?, ?, ?, ?)";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("isis", $this->matchKey, $name, $date, $file);
+        $stmt->bind_param("isis", $this->matchId, $name, $date, $file);
         $stmt->execute();
         $stmt->close();
 
@@ -1925,6 +1926,7 @@ class Data extends Connector
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $_SESSION["match"]["id"] = $row["matchId"];
+                    $this->matchId = $row["matchId"];
                 }
             }
         } else {
@@ -1962,6 +1964,7 @@ class Data extends Connector
     public function match_match () {
         $matchKey = $_SESSION["match"]["matchkey"];
         $matchType = $_SESSION["match"]["type"];
+        $matchFingerprint = false;
 
         /*
         TOO INSECURE AND PROBABLY NOT WORKING AS INTENDED
@@ -1979,7 +1982,7 @@ class Data extends Connector
             }
         }*/
 
-        $query = "SELECT matchKey FROM matches WHERE matchFingerprint=? AND matchId != ?;";
+        $query = "SELECT matchKey, matchId FROM matches WHERE matchFingerprint=? AND matchId != ?;";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("si", $_SESSION["match"]["fingerprint"], $_SESSION["match"]["id"]);
         $stmt->execute();
@@ -1989,6 +1992,7 @@ class Data extends Connector
             while ($row = $result->fetch_assoc()) {
                 $matchKey = $row["matchKey"];
                 $matchType = 3;
+                $matchFingerprint = true;
             }
         }
 
@@ -2006,6 +2010,20 @@ class Data extends Connector
                 }
             }
         }
+
+
+
+        // User case is found but also fingerprint 
+        if ($matchType === 2 && $matchFingerprint === true) {
+            $time = time();
+            $query = "UPDATE matches SET matchKey=?, matchType=? WHERE matchFingerprint=?;";
+            $stmt = $this->connId->prepare($query);
+            $fptype = 3;
+            $stmt->bind_param("sis", $matchKey, $fptype,  $_SESSION["match"]["fingerprint"]);
+            $stmt->execute();
+            $stmt->close();
+        }
+
         
         if ($matchKey !== $_SESSION["match"]["matchkey"]) {
             $_SESSION["match"]["matchkey"] = $matchKey;
