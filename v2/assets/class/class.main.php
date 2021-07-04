@@ -113,6 +113,9 @@ if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
     echo '<script src="/forum/v2/assets/script/notification.js"></script>';
     echo '<script src="/forum/v2/assets/script/science.js"></script>';
 }
+if ($data->is_logged_in()) {
+    echo '<script src="/forum/v2/assets/chat/chat.js"></script>'; 
+}
 if ($data->is_logged_in() && ($data->is_admin_by_id($_SESSION["userId"]))) {
     echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
     echo '<link href="https://unpkg.com/tabulator-tables@4.9.3/dist/css/tabulator.min.css" rel="stylesheet">
@@ -121,7 +124,6 @@ if ($data->is_logged_in() && ($data->is_admin_by_id($_SESSION["userId"]))) {
     echo '<script src="/forum/v2/assets/script/administration/graph_functions.js"></script>'; 
     echo '<script src="/forum/v2/assets/script/administration/code_functions.js"></script>'; 
     echo '<script src="/forum/v2/assets/script/administration/table_functions.js"></script>'; 
-    
 }
 
 if ($data->is_logged_in()) {
