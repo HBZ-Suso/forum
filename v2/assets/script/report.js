@@ -13,9 +13,19 @@ function report (additional_info="") {
     }
 
     document.querySelector(".report-submit").addEventListener("click", (e) => {
+        let fData = new FormData();
+        fData.append("title", document.querySelector(".report-title").value);
+        fData.append("text", additional_info + document.querySelector(".report-text").value);
+
         axios
-            .post("/forum/v2/assets/api/create_report.php?title=" + document.querySelector(".report-title").value + "&text=" + additional_info + document.querySelector(".report-text").value)
-            .then((resolve) => {if (window.innerWidth < 1500 || window.mobileCheck() == true){document.querySelector(".viewbar-close").click(); document.querySelector(".report-title").value = ""; document.querySelector(".report-title").value = "";} else {}}, (reject) => {throw new Error(reject)})
+            .post("/forum/v2/assets/api/create_report.php", fData)
+            .then((resolve) => {
+                if (window.innerWidth < 1500 || window.mobileCheck() == true){
+                    document.querySelector(".viewbar-close").click(); 
+                } else {
+                    document.querySelector(".report-title").value = ""; 
+                    document.querySelector(".report-text").value = "";
+                }}, (reject) => {throw new Error(reject)})
             .catch(console.debug)
     })
 }

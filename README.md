@@ -92,23 +92,19 @@ Database name: forum
     6. settingChangeIp (LONGTEXT)
     7. settingChangeDate (u BIGINT, UNIX TIMESTAMP)
 
-12. visitDetails:
+12. visits:
     1. visitId (BIGINT, UNSIGNED, ticking up)
-    2. userId (TEXT, "false" if not logged in)
-    3. visitIp (LONGTEXT)
-    4. visitDate (BIGINT, UNIX TIMESTAMP)
-    5. visitPage (LONGTEXT)
-    6. visitData (LONGTEXT, json of $rargs)
-    7. visitUserAgent (LONGTEXT, json)
-    8. visitBrowser (LONGTEXT, json, output of get_browser)
+    2. matchKey (MEDIUMINT)
+    3. visitDate (BIGINT, UNIX TIMESTAMP)
+    4. visitPage (LONGTEXT)
+    5. visitData (LONGTEXT, json of $rargs)
 
 13. reports:
     1. reportId (BIGINT, UNSIGNED, ticking up)
-    2. reportTitle (TEXT)
-    3. reportText (LONGTEXT)
-    4. reportDate (BIGINT, UNIX TIMESTAMP, unsigned)
-    5. reportIp (LONGTEXT)
-    6. userId (TEXT, "false" if not logged in)
+    2. matchKey (MEDIUMINT)
+    3. reportTitle (TEXT)
+    4. reportText (LONGTEXT)
+    5. reportDate (BIGINT, UNIX TIMESTAMP, unsigned)
 
 14. links:
     1. linkId (BIGINT, unsigned, ticking up)
@@ -119,11 +115,10 @@ Database name: forum
 
 15. errors:
     1. errorId (u BIGINT, ticking up)
-    2. errorName (TEXT)
-    3. errorDate (BIGINT, UNIX TIMESTAMP, unsigned)
-    4. errorIp (LONGTEXT)
-    5. userId (TEXT, "false" if not logged in)
-    6. errorFile (TEXT)
+    2. matchKey (MEDIUMINT)
+    3. errorName (TEXT)
+    4. errorDate (BIGINT, UNIX TIMESTAMP, unsigned)
+    5. errorFile (TEXT)
 
 16. archivedArticles:
     1. archivedArticleId (MEDIUMINT, unsigned, ticking up)
@@ -148,12 +143,24 @@ Database name: forum
 
 18. logs:
     1. logId (u BIGINT)
-    2. logType (TEXT, "logs")
-    3. logContent (LONGTEXT, JSON, depends on logType)
-    4. logDate (u BIGINT, UNIX TIMESTAMP)
-    5. logIp (Text)
-    6. logBrowser (LONGTEXT)
-    7. userId (TEXT, "false" if not logged in)
+    2. matchKey (MEDIUMINT)
+    3. logType (TEXT, "logs")
+    4. logContent (LONGTEXT, JSON, depends on logType)
+    5. logDate (u BIGINT, UNIX TIMESTAMP)
+
+19. matches:
+    1. matchId (u BIGINT, ticking up)
+    2. matchKey (u BIGINT)
+    3. matchIp (TEXT)
+    4. matchBrowser (LONGTEXT)
+    5. userId (TEXT, false if not logged in)
+    6. matchDate (u BIGINT, UNIX TIMESTAMP)
+    7. matchType (u TINYINT, 0 = none, 1 = Ip and Browser, 2 = userId, 3 = fingerprint)
+    8. matchUserAgent (LONGTEXT, json)
+    9. matchHttpLanguage (TEXT)
+    10. matchFingerprint (TEXT, fingerprint)
+    11. matchLatestDate (u BIGINT, UNIX TIMESTAMP)
+
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>

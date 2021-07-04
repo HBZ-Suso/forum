@@ -20,6 +20,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/class/class.data.php"
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.text.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.mail.php";
 $data = new DataV2();
+$data->do_match();
 if (isset($_SESSION["userId"])) {
     $user_v_v = $_SESSION["userId"];
 } else {
@@ -33,7 +34,7 @@ if (isset($save_reg["password"])) {
 if (isset($save_reg["password_2"])) {
     $save_reg["password_2"] = "blurred";
 }
-$data->add_visit($user_v_v, $_SERVER['REMOTE_ADDR'], json_encode($save_reg));
+$data->add_visit(json_encode($save_reg));
 
 $info = new Info();
 $text = new Text($_SESSION["language"]);
@@ -112,6 +113,8 @@ if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
     echo '<script src="/forum/v2/assets/script/setting_html.js"></script>';
     echo '<script src="/forum/v2/assets/script/notification.js"></script>';
     echo '<script src="/forum/v2/assets/script/science.js"></script>';
+    echo '<script async src="//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"onload="initFingerprintJS()"></script>';
+
 }
 if ($data->is_logged_in()) {
     echo '<script src="/forum/v2/assets/chat/chat.js"></script>'; 
@@ -124,6 +127,8 @@ if ($data->is_logged_in() && ($data->is_admin_by_id($_SESSION["userId"]))) {
     echo '<script src="/forum/v2/assets/script/administration/graph_functions.js"></script>'; 
     echo '<script src="/forum/v2/assets/script/administration/code_functions.js"></script>'; 
     echo '<script src="/forum/v2/assets/script/administration/table_functions.js"></script>'; 
+    
+    
 }
 
 if ($data->is_logged_in()) {

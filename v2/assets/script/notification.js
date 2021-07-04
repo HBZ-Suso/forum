@@ -9,12 +9,14 @@ window.onload = function () {
     }
 
     connection.functions.push(function () {
-        axios
+        if (logged_in) {
+            axios
             .post("/forum/v2/assets/api/get_notifications.php")
             .then((resolve) => {
                 update_notifications(resolve.data);
             }, (reject) => {throw new Error(e)})
             .catch((e) => console.debug)
+        }
     })
 }
 

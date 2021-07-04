@@ -38,6 +38,7 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.data.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.text.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.mail.php";
 $data = new Data();
+$data->do_match();
 if (isset($_SESSION["userId"])) {
     $user_v_v = $_SESSION["userId"];
 } else {
@@ -52,7 +53,7 @@ if (isset($save_reg["password_2"])) {
     $save_reg["password_2"] = "blurred";
 }
 
-$data->add_visit($user_v_v, $_SERVER['REMOTE_ADDR'], json_encode($save_reg));
+$data->add_visit(json_encode($save_reg));
 
 $info = new Info();
 $text = new Text($_SESSION["language"]);

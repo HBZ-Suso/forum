@@ -4,6 +4,7 @@ $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/class/class.data.php";
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.filter.php";
 $data = new DataV2();
+$data->do_match();
 $filter = new Filter();
 
 $rargs = array_merge($_GET, $_POST);
@@ -24,7 +25,7 @@ if (!isset($_SESSION["userId"])) {
 switch ($rargs["type"]) {
     case "logs":
         
-        $data->add_log("logs", $rargs["value"], $_SERVER["REMOTE_ADDR"], $_SERVER['HTTP_USER_AGENT'], $userId);
+        $data->add_log("logs", $rargs["value"]);
         break;
     default:
         $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
