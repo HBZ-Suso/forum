@@ -1982,19 +1982,22 @@ class Data extends Connector
             }
         }*/
 
-        $query = "SELECT matchKey, matchId FROM matches WHERE matchFingerprint=? AND matchId != ?;";
-        $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("si", $_SESSION["match"]["fingerprint"], $_SESSION["match"]["id"]);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $matchKey = $row["matchKey"];
-                $matchType = 3;
-                $matchFingerprint = true;
+        if (intval($_SESSION["match"]["fingerprint"]) !== -1) {
+            $query = "SELECT matchKey, matchId FROM matches WHERE matchFingerprint=? AND matchId != ?;";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("si", $_SESSION["match"]["fingerprint"], $_SESSION["match"]["id"]);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $matchKey = $row["matchKey"];
+                    $matchType = 3;
+                    $matchFingerprint = true;
+                }
             }
         }
+        
 
         if ($_SESSION["match"]["userId"] !== "false") {
             $query = "SELECT matchKey FROM matches WHERE userId=? AND matchId != ?;";
