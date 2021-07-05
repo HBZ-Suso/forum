@@ -20,6 +20,16 @@
     top: 25%;
     line-height: 0.9em;
     padding: 0px;
+    bottom: 2%;
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    scroll-behavior: smooth;
+}
+  
+.people::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* Chrome/Safari/Webkit */
 }
 .people .title {
     text-transform: uppercase;
@@ -41,10 +51,19 @@
     font-size: 0.7em;
 }
 
+.chatinfo {
+    width: 92%;
+    padding: 4%;
+    color: var(--dark-color);
+    font-size: 1em;
+    line-height: 1.4em;
+}
+
 .person {
     padding: 12px 0 12px 12px;
     border-bottom: 1px solid #79C7C5;
     cursor: pointer;
+    background: #f9fbffb4;
 }
 .person:hover {
     background: #F9FBFF;
@@ -78,7 +97,15 @@
     height: 100%;
 }
 
-.name2 {
+.chat-avatar {
+    top: 10px;
+    left: 10px;
+    height: 35px;
+    width: 35px;
+    position: absolute;
+}
+
+.user-name {
     height: 30px;
     text-transform: uppercase;
     color: #79C7C5;
@@ -103,19 +130,22 @@
 
 .chatbox {
     position: absolute;
-    left: 0px;
+    left: 35%;
     top: 0px;
     height: 100%;
-    width: 100%;
+    width: 65%;
     border-radius: 10px;
     box-shadow: 5px 5px 15px rgba(119, 119, 119, 0.5);
 }
 
 .top-bar {
-  width: 100%;
-  height: 60px;
-  background: #F9FBFF;
-  border-radius: 10px 10px 0 0;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 60px;
+    background: #F9FBFF;
+    border-radius: 10px 10px 0 0;
 }
 
 
@@ -123,17 +153,17 @@
 .container {
     position: absolute;
     margin: 0 auto;
-    width: 65%;
-    left: 35%;
+    width: 100%;
+    left: 0px;
     height: 100%;
 }
 
-.name {
+.chat-name {
   position: absolute;
-  top: 22px;
+  top: 15px;
   text-transform: uppercase;
   color: #777777;
-  font-size: 0.8em;
+  font-size: 1.2em;
   letter-spacing: 2px;
   font-weight: 500;
   left: 60px;
@@ -141,15 +171,24 @@
 
 .menu {
   position: absolute;
-  right: 10px;
+  right: 17px;
   top: 20px;
-  width: 10px;
+  width: 40px;
   height: 20px;
-  cursor: pointer;
 }
-.menu:hover {
-  transform: scale(1.1);
-  transition: all 0.3s ease-in;
+
+.menu > img {
+    width: 20px;
+    height: 20px;
+    float: right;
+    cursor: pointer;
+    filter: invert(82%) sepia(9%) saturate(1289%) hue-rotate(130deg) brightness(88%) contrast(91%);
+}
+.menu > div {
+    float: left;
+    cursor: pointer;
+    height: 100%;
+    width: 5px;
 }
 
 .icons {
@@ -157,8 +196,13 @@
   color: #A1E2D9;
   padding: 10px;
   top: 5px;
-  right: 21px;
+  right: 65px;
   cursor: pointer;
+}
+.icons > img {
+    height: 27px;
+    width: 27px;
+    filter: invert(82%) sepia(9%) saturate(1289%) hue-rotate(130deg) brightness(88%) contrast(91%);
 }
 .icons .fas {
   padding: 5px;
@@ -183,17 +227,37 @@
   width: 100%;
   opacity: 0.85;
   top: 60px;
-  height: 80%;
+    bottom: 55px;
+  padding-top: 20px;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+  scroll-behavior: smooth;
+}
+
+.tutorial-innerInnerContainer::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Chrome/Safari/Webkit */
+}
+
+.spacer {
+    position: relative;
+    height: 10px;
+    width: 100%;
 }
 
 .incoming {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  padding: 20px;
-}
-.incoming .bubble {
+    float: left;
   background: #b2b2b2;
+}
+
+.outgoing {
+    float: right;
+  background: #79C7C5;
+}
+
+.spaced {
+    margin-top: 15px;
 }
 
 .typing {
@@ -228,30 +292,35 @@
 }
 
 .bubble {
+    max-width: 70%;
+    width: auto;
   position: relative;
   display: inline-block;
   margin-bottom: 5px;
   color: #F9FBFF;
-  font-size: 0.7em;
+  font-size: 0.8em;
+  line-height: 1em;
   padding: 10px 10px 10px 12px;
   border-radius: 20px;
+  flex: 0 0  auto; 
+  overflow: auto;
 }
 
-.lower {
-  margin-top: 45px;
+.bubble-container {
+    position: relative;
+  width: 96%;
+  height: fit-content;
 }
 
-.outgoing {
-  position: absolute;
-  padding: 20px;
-  right: 0;
-  top: 15%;
-  width: 50%;
-  height: 100%;
+
+.bubble-container-incoming {
+    float: left;
+    margin-left: 4%;
 }
-.outgoing .bubble {
-  background: #79C7C5;
-  float: right;
+
+.bubble-container-outgoing {
+    float: right;
+    margin-right: 4%;
 }
 
 .bottom-bar {
@@ -267,7 +336,7 @@
   left: 0px;
 }
 
-input {
+.chat > input {
   padding: 7px;
   width: 76%;
   left: 2%;
@@ -278,51 +347,37 @@ input {
   color: #79C7C5;
 }
 
-input::placeholder {
+.chat > input::placeholder {
   color: #A1E2D9;
 }
 
-input:focus {
+.chat > input:focus {
   color: #777777;
   outline: 0;
 }
 
-button {
+.chat > button {
   position: absolute;
   border: 0;
   font-size: 1em;
-  color: #A1E2D9;
-  top: 19px;
+  top: 12px;
   opacity: 0.8;
-  right: 17px;
+  right: 8px;
   cursor: pointer;
   outline: 0;
-}
-button:hover {
-  transform: scale(1.1);
-  transition: all 0.3s ease-in-out;
-  color: #79C7C5;
+    background-color: #F9FBFF;
+    box-shadow: none;
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  text-align: center;
-  font-size: 0.7em;
-  padding: 10px;
+.chat > button:hover {
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
 }
-footer p {
-  color: #79C7C5;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-footer a {
-  color: #F9FBFF;
-  text-decoration: none;
-}
-footer a:hover {
-  color: #A1E2D9;
+
+.chat > button > img {
+    height: 30px;
+    width: 30px;
+    filter: invert(82%) sepia(9%) saturate(1289%) hue-rotate(130deg) brightness(88%) contrast(91%);
 }
 
 @keyframes bounce {

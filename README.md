@@ -161,6 +161,14 @@ Database name: forum
     10. matchFingerprint (TEXT, fingerprint)
     11. matchLatestDate (u BIGINT, UNIX TIMESTAMP)
 
+20. messages:
+    1. messageId (u BIGINT, autoincr)
+    2. messageFrom (u MEDIUMINT, userId)
+    3. messageTo (u MEDIUMINT, userId)
+    4. messageDate (u BIGINT, UNIX TIMESTAMP)
+    5. messageText (LONGTEXT, messageText)
+
+
 
 Icons:
     <a href="https://icons8.com/icon/83195/menu">Menu icon by Icons8</a>

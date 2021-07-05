@@ -352,6 +352,86 @@ class DataV2 extends Data {
 
         
         return $data;
-        
+    }
+
+
+
+
+
+    public function send_chat_message ($from, $to, $text) {
+        $date = time();
+        $query = "INSERT INTO messages (messageFrom, messageTo, messageDate, messageText) VALUES (?, ?, ?, ?);";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("iiis", $from, $to, $date, $text);
+        $stmt->execute();
+        $stmt->close();
+        return true;
+    }
+
+
+    public function get_chats_by_user_id ($userId) {
+        $query = "SELECT messageTo, messageFrom FROM messages WHERE messageFrom=? OR messageTo=? ORDER BY messageDate ASC;";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("ii", $userId, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $authors = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if (intval($row["messageFrom"]) === $userId){
+                    if (!in_array($row["messageTo"], $authors)) {
+                        array_push($authors, $row["messageTo"]);
+                    }
+                } else {
+                    if (!in_array($row["messageFrom"], $authors)) {
+                        array_push($authors, $row["messageFrom"]);
+                    }
+                }
+            }
+            return $authors;
+        }
+        return false;
+    }
+
+
+
+    public function get_chat_by_user_ids ($userId, $userTargetId) {
+        $query = "SELECT * FROM messages WHERE (messageFrom=? OR messageTo=?) AND (messageFrom=? OR messageTo=?);";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("iiii", $userId, $userId, $userTargetId, $userTargetId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $return = [];
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if (intval($row["messageFrom"]) === $userId){
+                    $row["messageType"] = "outgoing";
+                } else {
+                    $row["messageType"] = "incoming";
+                }
+                array_push($return, $row);
+            }
+        }
+        return $return;
+    }
+
+
+
+
+    public function get_last_message_by_user_id ($userId, $userTargetId) {
+        $query = "SELECT * FROM messages WHERE (messageFrom=? OR messageTo=?) AND (messageFrom=? OR messageTo=?) ORDER BY messageDate DESC;";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("iiii", $userId, $userId, $userTargetId, $userTargetId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $row;
+            }
+        }
+        return false;
     }
 }
