@@ -135,10 +135,10 @@ Database name: forum
 17. notifications:
     1. notificationId (u BIGINT, ticking up)
     2. userId (u MEDIUMINT, user the notification is for)
-    3. notificationType (u TINYINT, 0 = article Liked, 1 = Profile Liked, 2 = articleCommented, 3 = profileCommented, 4 = liked Profile has posted an Article, 5 = Settings changed, 6 = password changed, 7 = linked, 8 = verified, 9 = locked, 10 = resetpassword, 11 = published article, 12 = account unlocked, 13 = account created, 14 = Report sent, 15 = article Deleted, 16 = articlePinned)
+    3. notificationType (u TINYINT, 0 = article Liked, 1 = Profile Liked, 2 = articleCommented, 3 = profileCommented, 4 = liked Profile has posted an Article, 5 = Settings changed, 6 = password changed, 7 = linked, 8 = verified, 9 = locked, 10 = resetpassword, 11 = published article, 12 = account unlocked, 13 = account created, 14 = Report sent, 15 = article Deleted, 16 = articlePinned, 17. messaged)
     4. notificationDate (u BIGINT, UNIX TIMESTAMP)
     5. notificationRead (u TINYINT, 0 for false 1 for true)
-    6. notificationLink (LONGTEXT, url without hostname to notification target)
+    6. notificationLink (LONGTEXT, url without hostname to notification target, "-|-openchat**${userId}-|-")
     7. notificationDescription (LONGTEXT, descriptive Text)
 
 18. logs:
@@ -160,6 +160,15 @@ Database name: forum
     9. matchHttpLanguage (TEXT)
     10. matchFingerprint (TEXT, fingerprint)
     11. matchLatestDate (u BIGINT, UNIX TIMESTAMP)
+
+20. messages:
+    1. messageId (u BIGINT, autoincr)
+    2. messageFrom (u MEDIUMINT, userId)
+    3. messageTo (u MEDIUMINT, userId)
+    4. messageDate (u BIGINT, UNIX TIMESTAMP)
+    5. messageText (LONGTEXT, messageText)
+    6. messageRead (u TINYINT, 0 = false, 1 = true)
+
 
 
 Icons:
@@ -208,4 +217,5 @@ For notifications:
         16. {{notification}} = "Notification",
         17. {{public}} = "Public",
         18. {{pinned}} = " was pinned."
+        19. {{messaged}} = " messaged you."
     Use them in order for them to be replaced by translations.

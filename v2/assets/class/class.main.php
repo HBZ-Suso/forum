@@ -116,6 +116,9 @@ if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
     echo '<script async src="//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"onload="initFingerprintJS()"></script>';
 
 }
+if ($data->is_logged_in()) {
+    echo '<script src="/forum/v2/assets/chat/chat.js"></script>'; 
+}
 if ($data->is_logged_in() && ($data->is_admin_by_id($_SESSION["userId"]))) {
     echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
     echo '<link href="https://unpkg.com/tabulator-tables@4.9.3/dist/css/tabulator.min.css" rel="stylesheet">

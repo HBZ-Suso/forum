@@ -172,6 +172,9 @@ class Mail
             case 16:
                 $title = $this->text->get("v2-notification-title-article-pinned");
                 break;
+            case 17:
+                $title = $this->text->get("v2-notification-title-message-received");
+                break;
             default:
                 return;
         }
@@ -200,7 +203,8 @@ class Mail
             "articledeleted",
             "notification",
             "public",
-            "pinned"
+            "pinned",
+            "messaged"
         ] as $value) {
             $text = str_replace("{{" + $value + "}}", $this->text->get("v2-notification-placeholder-" + $value), $text);
         }

@@ -3,16 +3,19 @@ session_start();
 $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
-if (!isset($rargs["userId"]) && !isset($rargs["userName"])) {
+if (!isset($rargs["userId"]) && !isset($rargs["userName"]) && !$data->is_logged_in()) {
     $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
     exit("Requesterror");
+} else if (!isset($rargs["userId"]) && !isset($rargs["userName"])) {
+    $id = $_SESSION["userId"];
+} else {
+    if (isset($rargs["userName"]) && !isset($rargs["userId"])) {
+        $id = $data->get_user_id_by_name($rargs["userName"]);
+    } else {
+        $id = $rargs["userId"];
+    }
 }
 
-if (isset($rargs["userName"]) && !isset($rargs["userId"])) {
-    $id = $data->get_user_id_by_name();
-} else {
-    $id = $rargs["userId"];
-}
 
 if ($data->get_user_setting("public", $id) === false && !($data->is_logged_in() && (($_SESSION["userId"] === $user_data["userId"]) || $data->is_admin_by_id($_SESSION["userId"]) || $data->is_moderator_by_id($_SESSION["userId"])))) {
     $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);

@@ -1731,7 +1731,11 @@ class Data extends Connector
         $stmt->close();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                return json_decode($row["userSettings"], true)[$setting];
+                if (isset(json_decode($row["userSettings"], true)[$setting])) {
+                    return json_decode($row["userSettings"], true)[$setting];
+                } else {
+                    return false;
+                }
             }
         }
     }
