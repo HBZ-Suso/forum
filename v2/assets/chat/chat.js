@@ -270,21 +270,24 @@ class Chat {
                 resolve.data.messages = Object.values(resolve.data.messages);
                 document.querySelector(`.middle-userId-${userId}`).innerHTML = ``;
                 resolve.data.messages.sort((a, b) => {return a["messageDate"] - b["messageDate"];})
-                let last_type = "";
+                let last_message = 0;
                 let read = [];
                 resolve.data.messages.forEach((element, index) => {
-                    let messageSpace = "";
-                    if (last_type !== "" && last_type !== element["messageType"]) {
-                        last_type = element["messageType"];
-                        messageSpace = "spaced";
+                    if (element["messageDate"] - last_message > 60*5) {
+                        let time = new Date(element["messageDate"] * 1000);
+                        document.querySelector(`.middle-userId-${userId}`).innerHTML += `
+                            <div class="time-display">${time.getDate()}:${time.getMonth()} ${time.getFullYear()}, ${time.getHours()}:${time.getMinutes()}</div>
+                        `;
                     }
+                    last_message = element["messageDate"];
+
                     let lastMessage = "";
                     if (index === resolve.data.messages.length - 1) {
                         lastMessage = "style='margin-bottom: 15px;'";
                     }
 
                     document.querySelector(`.middle-userId-${userId}`).innerHTML += `
-                        <div class="bubble-container bubble-container-${element["messageType"]}" ${lastMessage}><div class="bubble ${element["messageType"]} ${messageSpace}">${element["messageText"]}</div></div>
+                        <div class="bubble-container bubble-container-${element["messageType"]}" ${lastMessage}><div class="bubble ${element["messageType"]}">${element["messageText"]}</div></div>
                     `;
 
                     if (element["messageType"] === "incoming") {

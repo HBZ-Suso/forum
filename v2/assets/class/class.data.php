@@ -401,7 +401,7 @@ class DataV2 extends Data {
         $return = [];
         
         if (intval($userId) !== intval($userTargetId)) {
-            $query = "SELECT * FROM messages WHERE messageFrom=? AND messageTo=?;";
+            $query = "SELECT * FROM messages WHERE messageFrom=? AND messageTo=? ORDER BY messageDate DESC LIMIT 0, 200;";
             $stmt = $this->connId->prepare($query);
             $stmt->bind_param("ii", $userId, $userTargetId);
             $stmt->execute();
@@ -444,7 +444,7 @@ class DataV2 extends Data {
 
 
     public function get_last_message_by_user_id ($userId, $userTargetId) {
-        $query = "SELECT * FROM messages WHERE (messageFrom=? OR messageTo=?) AND (messageFrom=? OR messageTo=?) ORDER BY messageDate DESC;";
+        $query = "SELECT * FROM messages WHERE (messageFrom=? OR messageTo=?) AND (messageFrom=? OR messageTo=?) ORDER BY messageDate DESC LIMIT 0, 1;";
         $stmt = $this->connId->prepare($query);
         $stmt->bind_param("iiii", $userId, $userId, $userTargetId, $userTargetId);
         $stmt->execute();

@@ -246,6 +246,19 @@
   background: transparent; /* Chrome/Safari/Webkit */
 }
 
+.time-display {
+  font-size: 0.8em;
+  line-height: 1em;
+  color: var(--dark-color);
+  text-align: center;
+  height: auto!important;
+  width: 100%;
+  margin: 0px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  padding: 0px;
+}
+
 .spacer {
     position: relative;
     height: 10px;

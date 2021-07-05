@@ -69,7 +69,7 @@ function toggle_notification_sidebar () {
 function update_notifications (data) { 
     if (parseInt(document.querySelector(".notification-container").getAttribute("dataLength")) !== parseInt(data.length)) {
         document.querySelector(".notification-container").innerHTML = '';
-        data.sort((a, b) => {return (a["notificationDate"] < b["notificationDate"]);})
+        data.sort((a, b) => {return (b["notificationDate"] - a["notificationDate"]);})
         while (data.length > 30) {
             data.pop();
         }
