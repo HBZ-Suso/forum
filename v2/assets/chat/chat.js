@@ -317,7 +317,18 @@ class Chat {
 
         axios
             .post("/forum/v2/assets/api/send_message.php", messageForm)
-            .then((resolve) => {this.update_messages(); setTimeout(() => {this.scroll_to_bottom()}, 400); document.querySelector(`.chat-message-send-text`).value = "";}, (reject) => {throw new Error(reject)})
+            .then((resolve) => {
+                if (resolve.data.indexOf("error") !== -1) {
+                    document.querySelector(".bottom-bar").classList.add("message-send-error");
+                    setTimeout(() => {
+                        document.querySelector(".bottom-bar").classList.remove("message-send-error");
+                    }, 1000)
+                    return;
+                }
+                this.update_messages(); 
+                setTimeout(() => {this.scroll_to_bottom()}, 400); 
+                document.querySelector(`.chat-message-send-text`).value = "";
+            }, (reject) => {throw new Error(reject)})
             .catch(console.debug)
     }
 }

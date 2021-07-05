@@ -308,7 +308,13 @@
         "v2-settings-profile-password2": "Again",
         "v2-settings-profile-passwordreset": "Change permanently",
         "v2-signup-heading": "Signup",
-        "v2-signup-notice": "Use this form in order to signup."
+        "v2-signup-notice": "Use this form in order to signup.",
+        "v2-messages-on": "From everyone",
+        "v2-messages-followed": "Only accounts I liked",
+        "v2-messages-contacted": "Only as a reply",
+        "v2-messages-off": "From Noone",
+        "v2-settings-messages-heading": "Chatting",
+        "v2-settings-messages-notice": "Decide who can contact you via the built-in messaging tool."
     },
     "deutsch": {
         "language_name": "deutsch",
@@ -620,7 +626,13 @@
         "v2-settings-profile-password2": "Und nochmal...",
         "v2-settings-profile-passwordreset": "Permanent aendern!",
         "v2-signup-heading": "Registrierung",
-        "v2-signup-notice": "Verwende dieses Formular um dich zu registrieren."
+        "v2-signup-notice": "Verwende dieses Formular um dich zu registrieren.",
+        "v2-messages-on": "Von Allen",
+        "v2-messages-followed": "Nur von Gefolgten Personen",
+        "v2-messages-contacted": "Nur als Antwort",
+        "v2-messages-off": "Von Niemandem",
+        "v2-settings-messages-heading": "Unterhaltungen & Nachrichten",
+        "v2-settings-messages-notice": "Diese Einstellung betrifft das interne Nachrichten System. Hier kannst du Einstellen, wer dir alles Nachrichten senden kann."
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",

@@ -3,7 +3,7 @@ var publicity = "";
 var notifications = "";
 var color = "";
 var wVersClickCount = 0;
-var setting_names = ["language", "autotranslate", "public", "notification", "user_color", "version", "science", "connectiontest", "constantrequest", "loadcomments", "loadauthors"];
+var setting_names = ["language", "autotranslate", "public", "notification", "user_color", "version", "science", "connectiontest", "constantrequest", "loadcomments", "loadauthors", "messages"];
 
 var settings_tab_loaded = false;
 
@@ -134,6 +134,16 @@ function s_check_changes (element) {
                 break;
             case "loadauthors":
                 document.cookie = "loadauthors=" + value + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                break;
+            case "messages":
+                axios
+                    .post("/forum/assets/api/set_messages.php?messages=" + value)
+                    .then((response) => {
+                        document.cookie = "messages=" + value + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+                    })
+                    .catch((error) => {
+                        throw new Error(error);
+                    })
                 break;
             case "version":
                 if (value === "old") {

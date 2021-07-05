@@ -106,6 +106,20 @@ function show_settings () {
                 settings.data.loadauthors = "on";
                 document.cookie = "loadauthors=on; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
             }
+            if (getCookie("messages").length > 0) {
+                if (getCookie("messages") === "off") {
+                    settings.data.messages = "off";
+                } else if (getCookie("messages") === "followed") {
+                    settings.data.messages = "followed";
+                } else if (getCookie("messages") === "contacted") {
+                    settings.data.messages = "contacted";
+                } else {
+                    settings.data.messages = "on";
+                }
+            } else {
+                settings.data.loadauthors = "on";
+                document.cookie = "messages=on; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 
+            }
 
 
 
@@ -168,6 +182,11 @@ function show_settings () {
                             <h1 class="setting-heading">${language_data["v2-settings-public-heading"]}</h1>
                             <p class="setting-notice">${language_data["v2-settings-public-notice"]}</p>
                             ${get_html("public", get_setting_values("public", settings.data))}
+                        </form>
+                        <form class="setting" ${unlogged_hide}>
+                            <h1 class="setting-heading">${language_data["v2-settings-messages-heading"]}</h1>
+                            <p class="setting-notice">${language_data["v2-settings-messages-notice"]}</p>
+                            ${get_html("messages", get_setting_values("messages", settings.data))}
                         </form>
                         <form class="setting">
                             <h1 class="setting-heading">${language_data["v2-settings-science-heading"]}</h1>
@@ -307,7 +326,8 @@ function get_setting_values (setting, sdata) {
         "connectiontest": ["on", "slow", "off"],
         "constantrequest": ["on", "off"],
         "loadcomments": ["on", "off"],
-        "loadauthors": ["on", "off"]
+        "loadauthors": ["on", "off"],
+        "messages": ["on", "followed", "contacted", "off"]
     };
 
     if (setting in settings_d) {
