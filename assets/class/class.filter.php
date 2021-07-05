@@ -16,10 +16,10 @@ class Filter
 	public function purify($text, $times)
 	{
 		$to_return = $text;
-		for ($i = 0; $i < $times; $i++) {
+		//for ($i = 0; $i < $times; $i++) {
 			$to_return = $this->purifier->purify($to_return);
-		}
-		return $to_return;
+		//}
+		return htmlspecialchars($to_return);
 	}
 }
 ?>

@@ -68,7 +68,7 @@ function close_createpost_window () {
 
 function send_createpost_ajax_request (title, text, tags, category) {
     axios
-        .post("/forum/v2/assets/api/create_article.php", "title=" + title + "&text=" +  text + "&tags=" + tags + "&category=" + category)
+        .post("/forum/v2/assets/api/create_article.php", "title=" + encodeURIComponent(title) + "&text=" +  encodeURIComponent(text) + "&tags=" + tags + "&category=" + category)
         .then((response) => {
             articleList[response.data.articleId] = response.data;
             update_articles(category);

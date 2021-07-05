@@ -39,12 +39,12 @@ if (strval($data->get_user_lock($_SESSION["userId"])) === "1") {
 }
 
 if (isset($rargs["articleId"])) {
-    $data->create_article_comment($_SESSION["userId"], intval($filter->purify($rargs["articleId"], 25)), $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
+    $data->create_article_comment($_SESSION["userId"], intval($rargs["articleId"], 25), $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
     if (intval($data->get_article_comment_number_by_id($rargs["articleId"])) < 4) {
         $mail->notify($data->get_article_by_id($rargs["articleId"])["userId"], 2, "/forum/v2/#Article?articleId=" . $rargs["articleId"], '<span class="notification-userLink" onclick="/forum/v2/#Profile?userId=' . $_SESSION["userId"] . '">"' . $data->get_user_by_id($_SESSION["userId"])["userName"] . '"</span>{{commented}}"' . $data->get_article_by_id($rargs["articleId"])["articleTitle"] . '"');
     }
 } else if (isset($rargs["userId"])) {
-    $data->create_user_comment($_SESSION["userId"], intval($filter->purify($rargs["userId"], 25)), $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
+    $data->create_user_comment($_SESSION["userId"], intval($rargs["userId"], 25), $filter->purify($rargs["title"], 25), $filter->purify($rargs["text"], 20));
     if (intval(count($data->get_user_comments_by_id($rargs["userId"]))) < 4) {
         $mail->notify($rargs["userId"], 3, "/forum/v2/#Profile?userId=" . $rargs["userId"], '<span class="notification-userLink" onclick="/forum/v2/#Profile?userId=' . $_SESSION["userId"] . '">"' . $data->get_user_by_id($_SESSION["userId"])["userName"] . '"</span>{{commentedProfile}}');
     }
