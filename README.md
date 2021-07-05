@@ -167,6 +167,7 @@ Database name: forum
     3. messageTo (u MEDIUMINT, userId)
     4. messageDate (u BIGINT, UNIX TIMESTAMP)
     5. messageText (LONGTEXT, messageText)
+    6. messageRead (u TINYINT, 0 = false, 1 = true)
 
 
 

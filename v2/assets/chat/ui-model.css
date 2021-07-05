@@ -70,7 +70,7 @@
     transition: all 0.3s ease-in-out;
 }
 
-.focus {
+.people > .focus {
     background: #F9FBFF;
     margin-left: 1px;
 }

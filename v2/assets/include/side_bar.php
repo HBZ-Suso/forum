@@ -45,7 +45,7 @@ if (isset($_SESSION["userId"])) {
             <div class="userview-login" <?php echo $logged_out_show; ?>>
                 <img src="/forum/assets/img/icon/login.svg" alt="L">
             </div>
-            <div class="userview-notifications" <?php echo $hide_l_bar; ?> onclick="chat.open_chat()">
+            <div class="userview-notifications" <?php echo $hide_l_bar; ?> onclick="chat.show_chat()">
                 <img src="/forum/assets/img/icon/chat.png" alt="S">
             </div>
             <div class="userview-notifications" <?php echo $hide_l_bar; ?> onclick="toggle_notification_sidebar()">

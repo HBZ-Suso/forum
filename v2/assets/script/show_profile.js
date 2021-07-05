@@ -25,6 +25,12 @@ function show_profile (userId) {
                 verified = `<img src="/forum/assets/img/icon/verified_black_24dp.svg" class="profilebox-verified">`;
             }
             
+            let chat_to = '';
+
+            if (window.mobileCheck() !== true && logged_in === true) {
+                chat_to = `<img class="profile-chat" src="/forum/assets/img/icon/chat.png" onclick="chat.open_chat(${resolve.data.userId})">`;
+            }
+
             show_article(custum_html=true, heading=language_data["v2-profilebox-heading"], content_html=`
                 <div class="profilebox">
 
@@ -34,6 +40,7 @@ function show_profile (userId) {
                             <img src="/forum/assets/img/icon/favorite_border_black_24dp.svg" class="profilebox-bar-like">
                             <h1>${resolve.data.userName}</h1>
                             ${verified}
+                            ${chat_to}
                         </div>
                     </div>
 

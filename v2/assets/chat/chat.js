@@ -98,6 +98,9 @@ class Chat {
             return;
         }
         
+        document.querySelectorAll(".person").forEach((element, index) => {element.classList.remove("focus");})
+        document.querySelector(".person-userId-" + this.currentChatUserId).classList.add("focus");
+
         document.querySelector(".chatbox").innerHTML = `
         <div class="top-bar">
         <div class="chat-avatar"><img src="/forum/assets/img/icon/user.svg" alt="U" class="user-profile-picture user-profile-picture-userId-${this.currentChatUserId}"></div>
@@ -106,7 +109,7 @@ class Chat {
             <img src="/forum/assets/img/icon/arrow_down.png" alt="D" class="chat-scroll-bottom">
         </div>
         <div class="menu">
-            <div class="dots"></div>
+        <div><div class="dots"></div></div>
             <img src="/forum/assets/img/icon/close.svg"  onclick='chat.chatContainer.style.display = "none";'>
         </div>
         </div>
@@ -150,10 +153,6 @@ class Chat {
         </div>
         `;
 
-        setTimeout(() => {
-            this.scroll_to_bottom()
-        }, 2000);
-
         document.querySelector(".chat-scroll-bottom").addEventListener("click", (e) => {this.scroll_to_bottom()});
         
         document.querySelector(".chat-message-send").addEventListener("click", () => {
@@ -171,6 +170,7 @@ class Chat {
         axios
             .post("/forum/v2/assets/api/get_chats.php")
             .then((resolve) => {
+                this.Contacts = resolve.data;
                 document.querySelector(".people").innerHTML = ``;
                 resolve.data.sort((a, b) => {return b["lastMessage"]["messageDate"] - a["lastMessage"]["messageDate"];})
                 resolve.data.forEach((element, index) => {
@@ -185,16 +185,12 @@ class Chat {
                 resolve.data.forEach((element, index) => {
                     document.querySelector(".person-userId-" + element["userId"]).addEventListener("click", (e) => {
                         if (!e.target.classList.contains("focus")) {
-                            document.querySelectorAll(".person").forEach((element, index) => {element.classList.remove("focus");})
-                            e.target.classList.add("focus");
                             this.currentChatUserId = element["userId"];
                             this.setChatbox();
                         }
                     })
                 })
                 if (this.currentChatUserId === -1 && resolve.data.length > 0) {
-                    document.querySelectorAll(".person").forEach((element, index) => {element.classList.remove("focus");})
-                    document.querySelector(".person-userId-" + resolve.data[0].userId).classList.add("focus");
                     this.currentChatUserId = resolve.data[0].userId;
                     this.setChatbox();
                 } else if (resolve.data.length < 1) {
@@ -216,12 +212,42 @@ class Chat {
     }
 
 
-    open_chat () {
-        if (this.userData === undefined) {setTimeout(() => {this.open_chat();}, 250); return;}
+    show_chat () {
+        if (this.userData === undefined) {setTimeout(() => {this.show_chat();}, 250); return;}
 
         this.chatContainer.style.display = "";
     }
 
+
+
+    open_chat (userId) {
+        let done = false;
+        if (this.Contacts !== undefined) {
+            this.Contacts.forEach((element, index) => {
+                if (parseInt(element["userId"]) === parseInt(userId)) {
+                    this.currentChatUserId = userId;
+                    this.setChatbox();
+                    this.show_chat();
+                    done = true;
+                }
+            })
+        }
+
+        if (done === true) {return;}
+
+        let messageForm = new FormData();
+        messageForm.append("userId", userId);
+        messageForm.append("text", "-|-OPEN CHAT-|-");
+
+        axios
+            .post("/forum/v2/assets/api/send_message.php", messageForm)
+            .then((resolve) => {
+                this.currentChatUserId = userId; 
+                this.setContacts(); 
+                this.show_chat();
+            }, (reject) => {throw new Error(reject)})
+            .catch(console.debug)
+    }
 
 
 
@@ -238,9 +264,12 @@ class Chat {
         axios 
             .post("/forum/v2/assets/api/get_chat.php?userId=" + userId)
             .then((resolve) => {
+                resolve.data.messages = Object.values(resolve.data.messages);
+                console.log(resolve.data.messages);
                 document.querySelector(`.middle-userId-${userId}`).innerHTML = ``;
                 resolve.data.messages.sort((a, b) => {return a["messageDate"] - b["messageDate"];})
                 let last_type = "";
+                let read = [];
                 resolve.data.messages.forEach((element, index) => {
                     let messageSpace = "";
                     if (last_type !== "" && last_type !== element["messageType"]) {
@@ -255,10 +284,26 @@ class Chat {
                     document.querySelector(`.middle-userId-${userId}`).innerHTML += `
                         <div class="bubble-container bubble-container-${element["messageType"]}" ${lastMessage}><div class="bubble ${element["messageType"]} ${messageSpace}">${element["messageText"]}</div></div>
                     `;
+
+                    if (element["messageType"] === "incoming") {
+                        read.push(element["messageId"]);
+                    }
                 })
 
                 document.querySelector(`.user-profile-picture-userId-${userId}`).classList.add(`user-profile-color-overlay-${resolve.data.userColor}`);
                 document.querySelector(`.chat-name-userId-${userId}`).innerHTML = resolve.data.userName;
+
+                this.scroll_to_bottom();
+
+                let readForm = new FormData();
+                readForm.append("messageIds", JSON.stringify(read));
+                
+                axios
+                    .post("/forum/v2/assets/api/read_messages.php", readForm)
+                    .then((resolve) => {
+
+                    }, (reject) => {throw new Error(reject)})
+                    .catch(console.debug)
             }, (reject) => {throw new Error(reject)})
             .catch(console.debug)
     }

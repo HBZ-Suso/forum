@@ -112,3 +112,15 @@
     padding-left: 1px;
     filter: invert(23%) sepia(93%) saturate(2067%) hue-rotate(96deg) brightness(98%) contrast(106%);
 }
+
+
+
+.profile-chat {
+    position: absolute;
+    right: 75px;
+    top: 10px;
+    height: 40px;
+    width: 40px;
+    padding-left: 1px;
+    cursor: pointer;
+}
