@@ -166,7 +166,7 @@ class Chat {
 
 
 
-    setContacts () {
+    setContacts (only=false) {
         axios
             .post("/forum/v2/assets/api/get_chats.php")
             .then((resolve) => {
@@ -190,11 +190,13 @@ class Chat {
                         }
                     })
                 })
-                if (this.currentChatUserId === -1 && resolve.data.length > 0) {
-                    this.currentChatUserId = resolve.data[0].userId;
-                    this.setChatbox();
-                } else if (resolve.data.length < 1) {
-                    this.setChatbox(true);
+                if (only === false) {
+                    if (this.currentChatUserId === -1 && resolve.data.length > 0) {
+                        this.currentChatUserId = resolve.data[0].userId;
+                        this.setChatbox();
+                    } else if (resolve.data.length < 1) {
+                        this.setChatbox(true);
+                    }
                 }
             }, (reject) => {throw new Error(reject)})
             .catch(console.debug)
@@ -215,6 +217,7 @@ class Chat {
     show_chat () {
         if (this.userData === undefined) {setTimeout(() => {this.show_chat();}, 250); return;}
 
+        this.update_messages();
         this.chatContainer.style.display = "";
     }
 
@@ -265,7 +268,6 @@ class Chat {
             .post("/forum/v2/assets/api/get_chat.php?userId=" + userId)
             .then((resolve) => {
                 resolve.data.messages = Object.values(resolve.data.messages);
-                console.log(resolve.data.messages);
                 document.querySelector(`.middle-userId-${userId}`).innerHTML = ``;
                 resolve.data.messages.sort((a, b) => {return a["messageDate"] - b["messageDate"];})
                 let last_type = "";
@@ -325,7 +327,8 @@ class Chat {
                     }, 1000)
                     return;
                 }
-                this.update_messages(); 
+                this.update_messages();
+                this.setContacts(true) 
                 setTimeout(() => {this.scroll_to_bottom()}, 400); 
                 document.querySelector(`.chat-message-send-text`).value = "";
             }, (reject) => {throw new Error(reject)})

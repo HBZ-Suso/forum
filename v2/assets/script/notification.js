@@ -94,7 +94,7 @@ function update_notifications (data) {
                     <p class="notification-element-heading">${title}</p>
                     <p class="notification-element-time">${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}, ${hours}:${minutes}</p>
                     <p class="notification-element-description">${convert_description_placeholder(element.notificationDescription)}</p>
-                    <div class="notification-element-side-id-${element.notificationId} notification-element-side ${read}" onclick="read_notification(${element.notificationId}); window.location = '${element.notificationLink}';"></div>
+                    <div class="notification-element-side-id-${element.notificationId} notification-element-side ${read}" onclick="read_notification(${element.notificationId}); notification_link('${element.notificationLink}');"></div>
                 </div>
                 `;
             }
@@ -137,7 +137,7 @@ function show_notification_popup (data) {
     document.querySelector(".notification-new").addEventListener("click", () => {
         document.querySelector(".notification-new").classList.remove("notification-new-show");
         read_notification(data.notificationId);
-        window.location = data.notificationLink;
+        notification_link(data.notificationLink);
     })
 
     add_log({"type": "notificationPopup", "data": {"time": Date.now(), "notificationId": data.notificationId}});
@@ -196,6 +196,9 @@ function get_notification_title (type) {
         case 16:
             title = language_data["v2-notification-title-article-pinned"];
             break;
+        case 17:
+            title = language_data["v2-notification-title-message-received"];
+            break;
         default:
             return;
     }
@@ -224,9 +227,22 @@ function convert_description_placeholder (text) {
         "articledeleted",
         "notification",
         "public",
-        "pinned"
+        "pinned",
+        "messaged"
     ].forEach((element, index) => {
         text = text.replace("{{" + element + "}}", language_data["v2-notification-placeholder-" + element])
     })
     return text;
+}
+
+
+
+
+function notification_link  (link) {
+    if (link.indexOf("-|-openchat") !== -1) {
+        link = link.replace("-|-openchat**", "").replace("-|-", "")
+        chat.open_chat(parseInt(link));
+    } else {
+        window.location = link;
+    }
 }

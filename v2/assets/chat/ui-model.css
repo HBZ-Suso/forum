@@ -241,7 +241,7 @@
   scroll-behavior: smooth;
 }
 
-.tutorial-innerInnerContainer::-webkit-scrollbar {
+.middle::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* Chrome/Safari/Webkit */
 }
