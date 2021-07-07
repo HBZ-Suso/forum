@@ -98,6 +98,55 @@ echo '<script src="/forum/assets/script/functions.js"></script>';
 echo '<script src="/forum/v2/assets/script/share.js"></script>';
 echo '<script src="/forum/v2/assets/script/report.js"></script>'; 
 echo '<script src="/forum/v2/assets/script/translate.js"></script>';
+
+if ($data->is_logged_in()) {
+        $id = $_SESSION["userId"];
+
+        $user_data = $data->get_user_by_id($id);
+
+        $user_data["userLikes"] = $data->get_user_likes_by_targetUserId($id);
+        $user_data["articleLikes"] = $data->get_article_likes_by_user_Id($id);
+        $user_data["userComments"] = $data->get_user_comments_by_targetUserId($id);
+        $user_data["articleComments"] = count($data->get_article_comments_by_user_id($id));
+        $user_data["userViews"] = $data->get_user_views_by_targetUserId($id);
+        $user_data["articleViews"] = $data->get_article_views_by_user_id($id);
+        $user_data["articles"] = count($data->get_articles_by_user_id($id));
+        $user_data["color"] = $data->get_user_setting("color", $id);
+        if (isset($_SESSION["userId"])) {
+            $user_data["liked"] = $data->check_if_user_liked_by_user($_SESSION["userId"], $id);
+        } else {
+            $user_data["liked"] = false;
+        }
+
+
+        unset($user_data["userPassword"]);
+
+        if (isset($rargs["transformVerified"]) || isset($rargs["transformBoolean"])) {
+            if ($user_data["userVerified"] == "1") {
+                $user_data["userVerified"] = true;
+            } else {
+                $user_data["userVerified"] = false;
+            }
+        }
+        if (isset($rargs["transformBoolean"])) {
+            if ($user_data["userLocked"] == "1") {
+                $user_data["userLocked"] = true;
+            } else {
+                $user_data["userLocked"] = false;
+            }
+        }
+        if (isset($_GET["transformNull"])) {
+            if ($user_data["userPhone"] == "") {
+                $user_data["userPhone"] = null;
+            }
+            if ($user_data["userMail"] == "") {
+                $user_data["userMail"] = null;
+            }
+        }
+
+    echo '<script>var startup_data_user_data_json = ' . json_encode($user_data) . ';</script>';
+    echo '<script src="/forum/v2/assets/script/user.js"></script>'; 
+}
 if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
     echo '<script src="/forum/v2/assets/script/hashmanagement.js"></script>';
     echo '<script src="/forum/v2/assets/script/login.js"></script>';
@@ -118,6 +167,7 @@ if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
 }
 if ($data->is_logged_in()) {
     echo '<script src="/forum/v2/assets/chat/chat.js"></script>'; 
+    echo '<script src="/forum/v2/assets/script/profilepicture.js"></script>'; 
 }
 if ($data->is_logged_in() && ($data->is_admin_by_id($_SESSION["userId"]))) {
     echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';

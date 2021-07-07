@@ -1,0 +1,9 @@
+#profilepicture-imagepreview {
+    width: 100px;
+    height: 100px;
+}
+
+#profilepicture-imageupload {
+  padding:10px;
+  background:#2d2d2d;
+}

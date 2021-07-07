@@ -12,20 +12,13 @@ class Chat {
         document.body.appendChild(this.chatContainer);
 
 
-        axios
-            .post("/forum/assets/api/get_user.php")
-            .then((resolve) => {
-                this.userData = resolve.data;
-            }, (reject) => {throw new Error(reject)})
-            .catch(console.debug)
-
         this.currentChatUserId = -1;
         this.create_chat();
     }
 
 
     create_chat () {
-        if (this.userData === undefined) {setTimeout(() => {this.create_chat();}, 250); return;}
+        if (user.userData === undefined) {setTimeout(() => {this.create_chat();}, 250); return;}
 
         this.chatContainer.querySelector(".chat-innerContainer").innerHTML = `
             <link rel="stylesheet" href="/forum/v2/assets/chat/ui-model.css">
@@ -37,10 +30,10 @@ class Chat {
             <div class="messages">
                 <div class="profile">
                     <div class="avatar">
-                        <img src="/forum/assets/img/icon/user.svg" alt="U" class="user-profile-picture user-profile-color-overlay-${this.userData.color}">
+                        <img src="/forum/assets/img/icon/user.svg" alt="U" class="user-profile-picture user-profile-color-overlay-${user.userData.color}">
                     </div>
-                    <div class="user-name">${this.userData.userName}</div>
-                    <p class="email">${this.userData.userMail}</p>
+                    <div class="user-name">${user.userData.userName}</div>
+                    <p class="email">${user.userData.userMail}</p>
                 </div>
                 <ul class="people">
                     <!--<li class="person">
@@ -215,7 +208,7 @@ class Chat {
 
 
     show_chat () {
-        if (this.userData === undefined) {setTimeout(() => {this.show_chat();}, 250); return;}
+        if (user.userData === undefined) {setTimeout(() => {this.show_chat();}, 250); return;}
 
         this.update_messages();
         this.chatContainer.style.display = "";
