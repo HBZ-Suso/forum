@@ -14,14 +14,14 @@
 
 
 .profilepicture-upload-container {
-    width: 250px;
-    height: 250px;
+    width: 750px;
+    height: 750px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    border-radius: 125px;
+    border-radius: 375px;
     overflow: hidden;
 
     position: relative;
@@ -34,9 +34,9 @@
 .profilepicture-imageupload {
     position: absolute;
     bottom: 00px;
-    height: 60px;
-    padding-top: 10px;
-    width: 250px;
+    height: 180px;
+    padding-top: 30px;
+    width: 750px;
     left: 0px;
     text-align: center;
 
@@ -50,5 +50,5 @@
 
 
 .profilepicture-imageupload > img {
-    width: 50px;
+    width: 150px;
 }

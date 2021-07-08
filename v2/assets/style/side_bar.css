@@ -92,6 +92,7 @@
     left: 25px;
     position: absolute;
     width: 60px;
+    object-fit: cover;
     height: 60px;
     margin-left: 20px;
     margin-top: 20px;

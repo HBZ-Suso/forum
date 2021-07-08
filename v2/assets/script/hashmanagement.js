@@ -63,6 +63,7 @@ function issue_commands_after_hash (hash) {
                 show_login_and_logout();
             } catch (e) {
                 console.debug("Error whilst issuing internal Login command, Error: ", e)
+                hashchange_error(e);
             }
             break;
         case "#Signup":
@@ -70,6 +71,7 @@ function issue_commands_after_hash (hash) {
                 show_signup();
             } catch (e) {
                 console.debug("Error whilst issuing internal Login command, Error: ", e)
+                hashchange_error(e);
             }
             break;
         case "#Settings":
@@ -77,6 +79,7 @@ function issue_commands_after_hash (hash) {
                 show_settings();
             } catch (e) {
                 console.debug("Error whilst issuing internal Settings command, Error: ", e)
+                hashchange_error(e);
             }
             break;
         case "#Article":
@@ -84,6 +87,7 @@ function issue_commands_after_hash (hash) {
                 show_article();
             } catch (e) {
                 console.debug("Error whilst issuing internal Article command, Error: ", e)
+                hashchange_error(e);
             }
             break;
         case "#Profile":
@@ -101,6 +105,7 @@ function issue_commands_after_hash (hash) {
                 }*/
             } catch (e) {
                 console.debug("Error whilst issuing internal Profile command, Error: ", e)
+                hashchange_error(e);
             }
             break;
         case "#CreatePost":
@@ -108,6 +113,7 @@ function issue_commands_after_hash (hash) {
                 show_create_post(find_last_category());
             } catch (e) {
                 console.debug("Error whilst issuing internal Createpost command, Error: ", e)
+                hashchange_error(e);
             }
             break;
         case "#Report":
@@ -115,6 +121,7 @@ function issue_commands_after_hash (hash) {
                 report(additional_info="-|-HASH-|-" + window.location.hash + "-|-HASH-|-")
             } catch (e) {
                 console.debug("Error whilst issuing internal Report command, Error: ", e)
+                hashchange_error(e);
             }
             break;
         case "#Information":
@@ -122,6 +129,7 @@ function issue_commands_after_hash (hash) {
                 show_webpage_info();
             } catch (e) {
                 console.debug("Error whilst issuing internal Information command, Error: ", e)
+                hashchange_error(e);
             }
             break;
         case "#Administration":
@@ -129,6 +137,7 @@ function issue_commands_after_hash (hash) {
                 show_administration();
             } catch (e) {
                 console.debug("Error whilst issuing internal Administration command, Error: ", e)
+                hashchange_error(e);
             }
             break;
         case "#ProfilePicture":
@@ -136,6 +145,7 @@ function issue_commands_after_hash (hash) {
                 profilepicture.show_profilepicture();
             } catch (e) {
                 console.debug("Error whilst issuing internal ProfilePicture command, Error: ", e)
+                hashchange_error(e);
             }
             break;
         default:
@@ -143,6 +153,7 @@ function issue_commands_after_hash (hash) {
             try {close_settings_window();} catch (e) {}
             try {close_article_if_not_side_by_side();} catch (e) {}
             try {close_createpost_window();} catch (e) {}
+            break;
     }
 }
 
@@ -161,3 +172,9 @@ window.addEventListener("hashchange", (e) => {
     add_hash_to_history();
     check_hash_usage();
 })
+
+
+
+function hashchange_error (error) {
+    window.location.hash = find_last_category();
+}

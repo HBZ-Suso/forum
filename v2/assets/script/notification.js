@@ -109,6 +109,35 @@ function update_notifications (data) {
 }
 
 
+function show_popup (title, time, text, link=false) {
+    if (time === "current") {
+        let creation_date = new Date();
+        let hours = creation_date.getHours().toString();
+        if (hours.length <= 1) {
+            hours = "0" + hours;
+        }
+        let minutes = creation_date.getMinutes().toString();
+        if (minutes.length <= 1) {
+            minutes = "0" + minutes;
+        }
+
+        time = `${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}, ${hours}:${minutes}`;
+    }
+
+    document.querySelector(".notification-new").innerHTML = `
+    <p class="notification-new-heading">${title}</p>
+    <p class="notification-new-time">${time}</p>
+    <p class="notification-new-description">${text}</p>
+    `;
+    document.querySelector(".notification-new").classList.add("notification-new-show");
+    setTimeout(() => {
+        document.querySelector(".notification-new").classList.remove("notification-new-show");
+    }, 5000);
+    if (link !== false) {
+        document.querySelector(".notification-new").addEventListener("click", link)
+    }
+}
+
 
 function show_notification_popup (data) {
     let title = get_notification_title(data.notificationType);
@@ -125,20 +154,17 @@ function show_notification_popup (data) {
     if (data.notificationRead !== 1) {
         read = "notification-element-side-new";
     }
-    document.querySelector(".notification-new").innerHTML = `
-        <p class="notification-new-heading">${title}</p>
-        <p class="notification-new-time">${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}, ${hours}:${minutes}</p>
-        <p class="notification-new-description">${convert_description_placeholder(data.notificationDescription)}</p>
-    `;
-    document.querySelector(".notification-new").classList.add("notification-new-show");
-    setTimeout(() => {
-        document.querySelector(".notification-new").classList.remove("notification-new-show");
-    }, 5000);
-    document.querySelector(".notification-new").addEventListener("click", () => {
-        document.querySelector(".notification-new").classList.remove("notification-new-show");
-        read_notification(data.notificationId);
-        notification_link(data.notificationLink);
-    })
+   
+    show_popup(
+        title, 
+        `${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}, ${hours}:${minutes}`,
+        convert_description_placeholder(data.notificationDescription),
+        function () {
+            document.querySelector(".notification-new").classList.remove("notification-new-show");
+            read_notification(data.notificationId);
+            notification_link(data.notificationLink);
+        }
+    );
 
     add_log({"type": "notificationPopup", "data": {"time": Date.now(), "notificationId": data.notificationId}});
 }

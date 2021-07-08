@@ -55,7 +55,7 @@ function convert_comment_data_to_html (data) {
         <div class="comment-header">
             <div class="comment-title comment-title-id-${data.commentId}">${data.commentTitle}</div>
             <div class="comment-author">
-                <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-${data.userColor}">
+                <img src="${profilePictureUrlByUserId(data.userId)}" class="">
                 <div class="comment-author-info">
                     ${language_data["v2-author-message-1"]}<a href="#Profile?userId=1">${data.userName}</a><br>
                     ${language_data["v2-author-message-2"]}<p>${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}</p>

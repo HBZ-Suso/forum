@@ -112,6 +112,7 @@ if ($data->is_logged_in()) {
         $user_data["articleViews"] = $data->get_article_views_by_user_id($id);
         $user_data["articles"] = count($data->get_articles_by_user_id($id));
         $user_data["color"] = $data->get_user_setting("color", $id);
+        $user_data["profilePictureExtension"] = $data->get_user_setting("pPE", $id);
         if (isset($_SESSION["userId"])) {
             $user_data["liked"] = $data->check_if_user_liked_by_user($_SESSION["userId"], $id);
         } else {

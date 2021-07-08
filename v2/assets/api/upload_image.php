@@ -40,6 +40,7 @@ if ($data->is_logged_in()) {
 
 
     if (copy($_FILES['profilePicture']['tmp_name'], $uploadfile)) {
+        $data->set_user_setting("pPE", $_SESSION["userId"], $ext);
         echo "Success";
     } else {
         echo "Failed.";

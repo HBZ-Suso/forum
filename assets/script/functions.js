@@ -355,3 +355,11 @@ function initFingerprintJS() {
                 .catch((e) => console.debug)
         })
 }
+
+
+
+
+
+function profilePictureUrlByUserId (userId) {
+    return "/forum/v2/assets/api/get_profilepicture.php?userId=" + userId;
+}

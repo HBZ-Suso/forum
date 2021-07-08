@@ -401,9 +401,9 @@ class DataV2 extends Data {
         $return = [];
         
         if (intval($userId) !== intval($userTargetId)) {
-            $query = "SELECT * FROM messages WHERE messageFrom=? AND messageTo=? ORDER BY messageDate DESC LIMIT 0, 200;";
+            $query = "SELECT * FROM messages WHERE (messageFrom=? AND messageTo=?) OR (messageTo=? AND messageFrom=?) ORDER BY messageDate DESC LIMIT 0, 200;";
             $stmt = $this->connId->prepare($query);
-            $stmt->bind_param("ii", $userId, $userTargetId);
+            $stmt->bind_param("iiii", $userId, $userTargetId, $userId, $userTargetId);
             $stmt->execute();
             $result = $stmt->get_result();
             $stmt->close();
@@ -418,25 +418,26 @@ class DataV2 extends Data {
                     array_push($return, $row);
                 }
             }
-        }
-
-
-        $query = "SELECT * FROM messages WHERE messageTo=? AND messageFrom=?;";
-        $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ii", $userId, $userTargetId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                if (intval($row["messageFrom"]) === $userId){
-                    $row["messageType"] = "outgoing";
-                } else {
-                    $row["messageType"] = "incoming";
+        } else {
+            $query = "SELECT * FROM messages WHERE messageTo=? AND messageFrom=? ORDER BY messageDate DESC LIMIT 0, 200;";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("ii", $userId, $userTargetId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    if (intval($row["messageFrom"]) === $userId){
+                        $row["messageType"] = "outgoing";
+                    } else {
+                        $row["messageType"] = "incoming";
+                    }
+                    array_push($return, $row);
                 }
-                array_push($return, $row);
             }
         }
+
+
         return $return;
     }
 

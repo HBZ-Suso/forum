@@ -22,11 +22,15 @@ class User {
 
 
     update_depending_variables () {
-        this.userData.userSettings = JSON.parse(this.userData.userSettings);
-        this.administrator = (this.userData.userType === "administrator" || this.userData.userType === "admin");
-        this.moderator = (this.userData.userType === "moderator" || this.userData.userType === "mod");
-        this.permissions = (this.administrator === true || this.moderator === true);
-        this.profilePictureUrl = this.userData.profilePictureUrl;
+        try {
+            this.userData.userSettings = JSON.parse(this.userData.userSettings);
+            this.administrator = (this.userData.userType === "administrator" || this.userData.userType === "admin");
+            this.moderator = (this.userData.userType === "moderator" || this.userData.userType === "mod");
+            this.permissions = (this.administrator === true || this.moderator === true);
+            this.profilePictureUrl = "/forum/v2/assets/api/get_profilepicture.php?userId=" + this.userData.userId;
+        } catch (e) {
+            console.debug
+        }
     }
 }
 

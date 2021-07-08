@@ -7,9 +7,19 @@ class Profilepicture {
         show_article(true, "Profile-Picture", `
             <link rel="stylesheet" href="/forum/v2/assets/style/profilepicture.css">
     
-            <input id="profilepicture-imageupload" type='file' onchange="profilepicture.readURL(this);" />
-            <img id="profilepicture-imagepreview" src="${user.userData.profilePictureUrl}" alt="your image" accept=".jpg, .jpeg, .png"/>
+            <div class="profilepicture-container">
+                <div class="profilepicture-upload-container">
+                    <img class="profilepicture-imagepreview" id="profilepicture-imagepreview" src="${user.profilePictureUrl}" alt="your image" accept=".jpg, .jpeg, .png"/>
+                    <div class="profilepicture-imageupload" onclick='document.getElementById("profilepicture-imageupload").click();'>
+                        <img src="/forum/assets/img/icon/image.png" onclick='document.getElementById("profilepicture-imageupload").click();'>
+                    </div>
+                    <input style="display: none;"  id="profilepicture-imageupload" type='file' onchange="profilepicture.readURL(this);" />
+                </div>    
+            
+                <button class="profilepicture-submit button-simple-clickable" onclick="profilepicture.send_image_clicked();">${language_data["v2-profilepicture-send"]}</button>
+            </div>
         `);
+
     
         if (window.mobileCheck() === true && document.body.innerHTML.indexOf("<link rel='stylesheet' href='/forum/v2/assets/style/mobile.profilepicture.css'></link>") === -1) {
             document.body.innerHTML += "<link rel='stylesheet' href='/forum/v2/assets/style/mobile.profilepicture.css'></link>"
@@ -59,11 +69,21 @@ class Profilepicture {
             }
         })
         .then((response) => {
-            //handle success
+            if (response.data.indexOf("error") === -1) {
+                show_popup(language_data["v2-profilepicture-send"], "current", "Image successfully uploaded...", false);
+            } else {
+                show_popup("Picture Upload", "current", "Error whilst uploading image: " + response.data, false);
+            }
         }).catch((error) => {
             //handle error
         });
-        
+    }
+
+
+    send_image_clicked () {
+        if (document.getElementById("profilepicture-imageupload").files[0] !== undefined) {
+            this.send_image();
+        }
     }
 }
 

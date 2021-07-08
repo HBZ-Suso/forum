@@ -19,7 +19,6 @@ Database name: forum
     14. userLastArticle (UNIX Timestamp, at first unix timestamp of creation, then last article time, UNSIGNED Double)
     15. userLastComment (UNIX Timestamp, at first unix timestamp of creation, then last comment time, UNSIGEND Double)
     16. userLocked (UNSIGNED TINYINT, 1 for true or 0 for false)
-    17. profilePictureUrl (LONGTEXT)
 
 2. articles:
     1. articleId (number, ticking up, MEDIUMINT, unsigned)

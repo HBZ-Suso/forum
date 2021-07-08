@@ -111,11 +111,11 @@ function s_check_changes (element) {
                     .catch((error) => {
                         throw new Error(error);
                     })
-                    document.querySelectorAll(".user-profile-picture").forEach((element, index) => {
+                    /*document.querySelectorAll(".user-profile-picture").forEach((element, index) => {
                         element.className = ""; 
                         element.classList.add("user-profile-picture");
-                        element.classList.add("user-profile-color-overlay-" + value);
-                    })
+                        //element.classList.add("user-profile-color-overlay-" + value);
+                    })*/
                 break;
             case "autotranslate":
                 document.cookie = "autle=" + value + "; sameSite=Lax; expires=Thu, 18 Dec 2024 12:00:00 UTC"; 

@@ -30,7 +30,7 @@ class Chat {
             <div class="messages">
                 <div class="profile">
                     <div class="avatar">
-                        <img src="/forum/assets/img/icon/user.svg" alt="U" class="user-profile-picture user-profile-color-overlay-${user.userData.color}">
+                        <img src="${profilePictureUrlByUserId(user.userData.userId)}" alt="U" class="user-profile-picture">
                     </div>
                     <div class="user-name">${user.userData.userName}</div>
                     <p class="email">${user.userData.userMail}</p>
@@ -96,7 +96,7 @@ class Chat {
 
         document.querySelector(".chatbox").innerHTML = `
         <div class="top-bar">
-        <div class="chat-avatar"><img src="/forum/assets/img/icon/user.svg" alt="U" class="user-profile-picture user-profile-picture-userId-${this.currentChatUserId}"></div>
+        <div class="chat-avatar"><img src="${profilePictureUrlByUserId(this.currentChatUserId)}" alt="U" class="user-profile-picture user-profile-picture-userId-${this.currentChatUserId}"></div>
         <div class="chat-name chat-name-userId-${this.currentChatUserId}"></div>
         <div class="icons">
             <img src="/forum/assets/img/icon/arrow_down.png" alt="D" class="chat-scroll-bottom">
@@ -148,6 +148,12 @@ class Chat {
 
         document.querySelector(".chat-scroll-bottom").addEventListener("click", (e) => {this.scroll_to_bottom()});
         
+        document.querySelector(".chat-message-send-text").addEventListener("keyup", (e) => {
+            if (document.querySelector(".chat-message-send-text").value.length > 0 && e.key === "Enter") {
+                this.send_message(document.querySelector(".chat-message-send-text").value, this.currentChatUserId);
+            }
+        })
+
         document.querySelector(".chat-message-send").addEventListener("click", () => {
             if (document.querySelector(".chat-message-send-text").value.length > 0) {
                 this.send_message(document.querySelector(".chat-message-send-text").value, this.currentChatUserId);
@@ -269,7 +275,7 @@ class Chat {
                     if (element["messageDate"] - last_message > 60*5) {
                         let time = new Date(element["messageDate"] * 1000);
                         document.querySelector(`.middle-userId-${userId}`).innerHTML += `
-                            <div class="time-display">${time.getDate()}:${time.getMonth()} ${time.getFullYear()}, ${time.getHours()}:${time.getMinutes()}</div>
+                            <div class="time-display">${time.getDate()}. ${time.getMonth()} ${time.getFullYear()}, ${time.getHours()}:${time.getMinutes()}</div>
                         `;
                     }
                     last_message = element["messageDate"];
@@ -288,7 +294,7 @@ class Chat {
                     }
                 })
 
-                document.querySelector(`.user-profile-picture-userId-${userId}`).classList.add(`user-profile-color-overlay-${resolve.data.userColor}`);
+                //document.querySelector(`.user-profile-picture-userId-${userId}`).classList.add(`user-profile-color-overlay-${resolve.data.userColor}`);
                 document.querySelector(`.chat-name-userId-${userId}`).innerHTML = resolve.data.userName;
 
                 this.scroll_to_bottom();

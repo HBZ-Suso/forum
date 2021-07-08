@@ -130,6 +130,8 @@
 
 .viewbar-content-author > img {
     height: 75px;
+    width: 75px;
+    object-fit: cover;
 }
 
 .viewbar-content-author-info {
@@ -226,6 +228,8 @@
 
 .comment-author > img {
     height: 50px;
+    width: 50px;
+    object-fit: cover;
 }
 
 .comment-author-info {
@@ -234,6 +238,7 @@
     font-size: 14px;
     font-weight: 500;
     min-width: 180px;
+    line-height: 18px;
 }
 
 .comment-author-info > a, .comment-author-info > p {

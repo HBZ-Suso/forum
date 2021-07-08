@@ -19,20 +19,13 @@ if ($data->get_user_by_id(intval($rargs["userId"])) === false) {
 
 
 $uploaddir = $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/data/profilePictures/";
-$name = $ragrs["userId"]; // Assuming the file name is in the URL for this example
-if (file_exists($uploaddir.$name.".png")) {
-    readfile($uploaddir.$name.".png");
-    header("Content-Type: image/png");
-    exit();
-} else if (file_exists($uploaddir.$name.".jpg")) {
-    readfile($uploaddir.$name.".jpg");
-    header("Content-Type: image/jpg");
-    exit();
-} else if (file_exists($uploaddir.$name.".jpeg")) {
-    readfile($uploaddir.$name.".jpeg");
-    header("Content-Type: image/jpeg");
-    exit();
+$name = $rargs["userId"]; // Assuming the file name is in the URL for this example
+
+
+header("Content-Type: image/png");
+if (readfile($uploaddir.$name.$data->get_user_setting("pPE", $rargs["userId"]))) {
 } else {
-    exit("");
+    readfile($_SERVER["DOCUMENT_ROOT"] . "/forum/assets/img/icon/user.png");
 }
 
+exit();

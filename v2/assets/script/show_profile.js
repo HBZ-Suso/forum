@@ -35,7 +35,7 @@ function show_profile (userId) {
                 <div class="profilebox">
 
                     <div class="profilebox-bar">
-                        <img src="/forum/assets/img/icon/user.svg" class=" author-profile-color-overlay-${resolve.data.color}">
+                        <img src="${profilePictureUrlByUserId(resolve.data.userId)}" class="">
                         <div class="profilebox-bar-bar">
                             <img src="/forum/assets/img/icon/favorite_border_black_24dp.svg" class="profilebox-bar-like">
                             <h1>${resolve.data.userName}</h1>

@@ -10,7 +10,7 @@ if ($info->mobile === true) {
 // Set display of elements when logged in
 if (isset($_SESSION["userId"])) {
     $user_data = $data->get_user_by_id($_SESSION["userId"]);
-    $user_image_element = '<img src="/forum/assets/img/icon/user.svg" alt="U" class="user-profile-picture user-profile-color-overlay-' . $data->get_user_setting("color", $_SESSION["userId"]) . '">';
+    $user_image_element = '<img src="/forum/v2/assets/api/get_profilepicture.php?userId=' . $_SESSION["userId"] . '" alt="U" class="user-profile-picture">';
     $logged_out_show = "style=\"display: none;\"";
 } else {
     $user_data = [

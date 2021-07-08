@@ -52,7 +52,7 @@ function show_article (custum_html=false, heading="", content_html="") {
                 document.querySelector(".viewbar-content").innerHTML = `
                     <div class="viewbar-content-heading">${resolve.data.articleTitle}</div>
                     <div class="viewbar-content-author">
-                        <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-${resolve.data.userColor}">
+                        <img src="${profilePictureUrlByUserId(resolve.data.userId)}" class="user-profile-picture">
                         <div class="viewbar-content-author-info">
                             ${language_data["v2-author-message-1"]}<a href="#Profile?userId=1">${resolve.data.userName}</a><br>
                             ${language_data["v2-author-message-2"]}<p>${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}</p>

@@ -19,7 +19,7 @@ $user_data = $data->get_user_by_id($_GET["userId"]);
 
         <div class="profile-middle-column">
             <div class="profile-image">
-                <img src="/forum/assets/img/icon/user.svg" class="author-profile-color-overlay-<?php echo $data->get_user_setting("color", $_GET["userId"]);?>">
+                <img src="/forum/v2/assets/api/get_profilepicture.php?userId=<?php echo $_GET["userId"];?>" class="">
             </div>
             <div class="profile-username profile-user-type-<?php echo $user_data["userType"];?>"><?php echo $user_data["userName"];?></div>
             <div class="profile-employment"><?php echo $user_data["userEmployment"];?></div>

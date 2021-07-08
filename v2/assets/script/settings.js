@@ -248,7 +248,11 @@ function show_settings () {
                             </div>
                         </form>
 
-
+                        <form class="setting">
+                            <h1 class="setting-heading">${language_data["v2-settings-profilepicture-heading"]}</h1>
+                            <p class="setting-notice">${language_data["v2-settings-profilepicture-notice"]}</p>
+                            <button class="button-simple-clickable" onclick="window.location.hash='ProfilePicture';">${language_data["v2-settings-profilepicture-visit"]}</button>
+                        </form>
 
                         <form class="setting" ${unlogged_hide}>
                             <h1 class="setting-heading">${language_data["v2-settings-profile-password-heading"]}</h1>

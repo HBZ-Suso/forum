@@ -25,6 +25,7 @@
     position: absolute;
     top: 20px;
     bottom: 20px;
+    object-fit: cover;
     height: 260px;
     width: 260px;
     left: 50%;
