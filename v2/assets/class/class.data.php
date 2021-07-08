@@ -102,9 +102,9 @@ class DataV2 extends Data {
     public function add_log ($type, $text)
     {
         $time = time();
-        $query = "INSERT INTO logs (matchKey, logType, logContent, logDate) VALUES (?, ?, ?, ?);";
+        $query = "INSERT INTO logs (matchId, logType, logContent, logDate) VALUES (?, ?, ?, ?);";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("iisi", $this->matchKey, $type, $text, $time);
+        $stmt->bind_param("iisi", $this->matchId, $type, $text, $time);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -122,28 +122,28 @@ class DataV2 extends Data {
 
         $limit = 100000;
 
-        $query = "SELECT * FROM logs WHERE matchKey=? ORDER BY logDate DESC LIMIT 0, ?;";
+        $query = "SELECT * FROM logs WHERE matchId=? ORDER BY logDate DESC LIMIT 0, ?;";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ii", $this->matchKey, $limit);
+        $stmt->bind_param("ii", $this->matchId, $limit);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                array_push($data, ["type" => "log", "match" => "matchKey", "data" => $row]);
+                array_push($data, ["type" => "log", "match" => "matchId", "data" => $row]);
             }
         }
         
 
-        $query = "SELECT * FROM errors WHERE matchKey=? ORDER BY errorDate DESC LIMIT 0, ?;";
+        $query = "SELECT * FROM errors WHERE matchId=? ORDER BY errorDate DESC LIMIT 0, ?;";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ii", $this->matchKey, $limit);
+        $stmt->bind_param("ii", $this->matchId, $limit);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                array_push($data, ["type" => "error", "match" => "matchKey", "data" => $row]);
+                array_push($data, ["type" => "error", "match" => "matchId", "data" => $row]);
             }
         }
 
@@ -151,15 +151,15 @@ class DataV2 extends Data {
 
 
 
-        $query = "SELECT * FROM visits WHERE matchKey=? ORDER BY visitDate DESC LIMIT 0, ?;";
+        $query = "SELECT * FROM visits WHERE matchId=? ORDER BY visitDate DESC LIMIT 0, ?;";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ii", $this->matchKey, $limit);
+        $stmt->bind_param("ii", $this->matchId, $limit);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                array_push($data, ["type" => "visit", "match" => "matchKey", "data" => $row]);
+                array_push($data, ["type" => "visit", "match" => "matchId", "data" => $row]);
             }
         }
 
@@ -167,15 +167,15 @@ class DataV2 extends Data {
 
 
         
-        $query = "SELECT * FROM reports WHERE matchKey=?";
+        $query = "SELECT * FROM reports WHERE matchId=?";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("i", $this->matchKey);
+        $stmt->bind_param("i", $this->matchId);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                array_push($data, ["type" => "report", "match" => "matchKey", "data" => $row]);
+                array_push($data, ["type" => "report", "match" => "matchId", "data" => $row]);
             }
         }
 
