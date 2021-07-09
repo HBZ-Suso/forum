@@ -13,7 +13,7 @@ class User {
 
     update_userdata () {
         axios
-            .post("/forum/assets/api/get_user.php")
+            .post("/forum/v2/assets/api/get_user.php")
             .then((resolve) => {
                 this.userData = resolve.data;
             }, (reject) => {throw new Error(reject)})

@@ -4,7 +4,7 @@ class Profilepicture {
 
 
     show_profilepicture (additional_info="") {
-        show_article(true, "Profile-Picture", `
+        show_article(custum_html=true, heading="Report", content_html=`
             <link rel="stylesheet" href="/forum/v2/assets/style/profilepicture.css">
     
             <div class="profilepicture-container">
@@ -20,7 +20,6 @@ class Profilepicture {
             </div>
         `);
 
-    
         if (window.mobileCheck() === true && document.body.innerHTML.indexOf("<link rel='stylesheet' href='/forum/v2/assets/style/mobile.profilepicture.css'></link>") === -1) {
             document.body.innerHTML += "<link rel='stylesheet' href='/forum/v2/assets/style/mobile.profilepicture.css'></link>"
         }

@@ -54,7 +54,7 @@ function show_article (custum_html=false, heading="", content_html="") {
                     <div class="viewbar-content-author">
                         <img src="${profilePictureUrlByUserId(resolve.data.userId)}" class="user-profile-picture">
                         <div class="viewbar-content-author-info">
-                            ${language_data["v2-author-message-1"]}<a href="#Profile?userId=1">${resolve.data.userName}</a><br>
+                            ${language_data["v2-author-message-1"]}<a href="#Profile?userId=${resolve.data.userId}">${resolve.data.userName}</a><br>
                             ${language_data["v2-author-message-2"]}<p>${ordinal_suffix_of(creation_date.getDate())} ${get_month_name(creation_date.getMonth() + 1)} ${creation_date.getFullYear()}</p>
                         </div>
                     </div>

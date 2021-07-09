@@ -1,7 +1,12 @@
 <?php
 session_start();
 $hide_frame = true;
-require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/class/class.data.php";
+$data = new DataV2();
+$data->do_match();
+
+$rargs = array_merge($_GET, $_POST);
+
 
 if (!isset($rargs["userId"]) && !isset($rargs["userName"]) && !$data->is_logged_in()) {
     $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
@@ -33,6 +38,33 @@ $user_data["userViews"] = $data->get_user_views_by_targetUserId($id);
 $user_data["articleViews"] = $data->get_article_views_by_user_id($id);
 $user_data["articles"] = count($data->get_articles_by_user_id($id));
 $user_data["color"] = $data->get_user_setting("color", $id);
+$user_data["profilePictureExtension"] = $data->get_user_setting("pPE", $id);
+
+if (isset($_SESSION["userId"])) {
+    $user_data["allow_messages"]  = true;
+    if ($_SESSION["userId"] !== $id) {
+        switch ($data->get_user_setting("messages", $id)) {
+            case "off":
+                $user_data["allow_messages"]  = false;
+                break;
+            case "followed";
+                if (!$data->check_if_user_liked_by_user($id, $_SESSION["userId"])) {
+                    $user_data["allow_messages"] = false;
+                    break;
+                }
+                break;
+            case "contacted":
+                if (count($data->get_chat_by_user_ids($id, $_SESSION["userId"])) < 1) {
+                    $user_data["allow_messages"] = false;
+                    break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+   
+}
 
 
 if (isset($_SESSION["userId"])) {

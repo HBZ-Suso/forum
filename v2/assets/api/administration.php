@@ -1,4 +1,7 @@
 <?php 
+/*
+Default class and init stuff
+*/
 session_start();
 $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/class/class.data.php";

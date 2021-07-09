@@ -1,6 +1,6 @@
 function show_profile (userId) {
     axios
-        .post("/forum/assets/api/get_user.php?userId=" + userId)
+        .post("/forum/v2/assets/api/get_user.php?userId=" + userId)
         .then((resolve) => {
             try {
                 if (resolve.data.indexOf("Permissionerror") !== -1) {
@@ -27,7 +27,7 @@ function show_profile (userId) {
             
             let chat_to = '';
 
-            if (window.mobileCheck() !== true && logged_in === true) {
+            if (window.mobileCheck() !== true && logged_in === true && resolve.data.allow_messages === true) {
                 chat_to = `<img class="profile-chat" src="/forum/assets/img/icon/chat.png" onclick="chat.open_chat(${resolve.data.userId})">`;
             }
 

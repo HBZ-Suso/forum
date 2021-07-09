@@ -14,7 +14,7 @@ function toggle_profile_view () {
 
 
 axios
-    .post("/forum/assets/api/get_user.php?transformBoolean=true&transformNull=true&userId=" + document.getElementById("profile-userId").innerText)
+    .post("/forum/v2/assets/api/get_user.php?transformBoolean=true&transformNull=true&userId=" + document.getElementById("profile-userId").innerText)
     .then((resolve) => {
         set_data_columns(resolve.data);
     }, (reject) => {throw new Error(reject)})

@@ -258,10 +258,10 @@ function show_settings () {
                             <h1 class="setting-heading">${language_data["v2-settings-profile-password-heading"]}</h1>
                             <p class="setting-notice">${language_data["v2-settings-profile-password-notice"]}</p>
                             <div class="settings-profile-container">
-                            <input class="settings-profile-element settings-profile-passwordold" placeholder="${language_data["v2-settings-profile-passwordold"]}" type="password">
-                            <input class="settings-profile-element settings-profile-password1" placeholder="${language_data["v2-settings-profile-password1"]}" type="password">
-                            <input class="settings-profile-element settings-profile-password2" placeholder="${language_data["v2-settings-profile-password2"]}" type="password">
-                            <input type="submit" class="settings-profile-element settings-profile-passwordreset" value="${language_data["v2-settings-profile-passwordreset"]}">
+                                <input class="settings-profile-element settings-profile-passwordold" placeholder="${language_data["v2-settings-profile-passwordold"]}" type="password">
+                                <input class="settings-profile-element settings-profile-password1" placeholder="${language_data["v2-settings-profile-password1"]}" type="password">
+                                <input class="settings-profile-element settings-profile-password2" placeholder="${language_data["v2-settings-profile-password2"]}" type="password">
+                                <input type="submit" class="settings-profile-element settings-profile-passwordreset" value="${language_data["v2-settings-profile-passwordreset"]}">
                             </div>
                         </form>
                     </div>
