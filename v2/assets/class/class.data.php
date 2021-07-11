@@ -104,7 +104,7 @@ class DataV2 extends Data {
         $time = time();
         $query = "INSERT INTO logs (matchId, logType, logContent, logDate) VALUES (?, ?, ?, ?);";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("iisi", $this->matchId, $type, $text, $time);
+        $stmt->bind_param("issi", $this->matchId, $type, $text, $time);
         $stmt->execute();
         $stmt->close();
         return true;

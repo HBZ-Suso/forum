@@ -12,7 +12,8 @@ function show_webpage_info () {
             <p>${language_data["v2-webpageinfo-impressum-text"]}</p>
         </div>
 
-        <button class="webpageinfo-contact">${language_data["v2-webpageinfo-contact"]}</button>
+        <button class="webpageinfo-contact button-simple-clickable">${language_data["v2-webpageinfo-contact"]}</button>
+        <button class="webpageinfo-documentation button-simple-clickable" onclick="window.location = '/forum/v2/assets/documentation/';">Documentation</button>
         `);
 
     if (window.mobileCheck() === true && document.body.innerHTML.indexOf("<link rel='stylesheet' href='/forum/v2/assets/style/mobile.webpageinfo.css'></link>") === -1) {

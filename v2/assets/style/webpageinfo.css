@@ -13,21 +13,13 @@
 
 
 .webpageinfo-contact {
-    height: 30px;
-    width: fit-content;
-    color: var(--article-icon-color);
-    font-size: 20px;
-    margin-left: 5%;
-    margin-right: 5%;
-    cursor: pointer;
-    border: none;
-    border-radius: 2px;
-    transition: background-color 0.2s linear;
-    padding: 0 5px;
-    margin: 0 5px;
-    margin-bottom: 5px;
-    text-align: center;
-    background-color: var(--share-button-default-background);
+    margin: 5px;
+    display: inline-block;
+}
+
+.webpageinfo-documentation {
+    margin: 5px;
+    display: inline-block;
 }
 
 .webpageinfo-contact:active {

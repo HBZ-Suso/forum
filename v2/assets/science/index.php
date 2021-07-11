@@ -24,8 +24,13 @@ if (!isset($_SESSION["userId"])) {
 
 switch ($rargs["type"]) {
     case "logs":
-        
         $data->add_log("logs", $rargs["value"]);
+        break;
+    case "details":
+        if (!isset($_SESSION["detailsSent"])) {
+            $_SESSION["detailsSent"] = true;
+            $data->add_log("details", $rargs["value"]);
+        }
         break;
     default:
         $data->create_error("Requesterror",  $_SERVER["SCRIPT_NAME"]);
@@ -34,3 +39,5 @@ switch ($rargs["type"]) {
 }
 
 
+var_dump($data->matchId);
+exit("Success");

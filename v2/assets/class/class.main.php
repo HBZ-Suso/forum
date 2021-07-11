@@ -164,6 +164,7 @@ if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
     echo '<script src="/forum/v2/assets/script/notification.js"></script>';
     echo '<script src="/forum/v2/assets/script/science.js"></script>';
     echo '<script async src="//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"onload="initFingerprintJS()"></script>';
+    echo '<script src="/forum/v2/assets/script/uaparser.min.js"></script>';
 
 }
 if ($data->is_logged_in()) {

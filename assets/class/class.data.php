@@ -1890,6 +1890,7 @@ class Data extends Connector
             } else {
                 $key = $this->get_new_match_key();
             }
+
             
             $_SESSION["match"] = [
                 "ip" => $_SERVER["REMOTE_ADDR"],
@@ -1942,6 +1943,7 @@ class Data extends Connector
             $stmt->close();
 
             $this->matchKey = $_SESSION["match"]["matchkey"];
+            $this->matchId = intval($_SESSION["match"]["id"]);
         }
 
         $this->match_match();
