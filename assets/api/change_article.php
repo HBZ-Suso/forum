@@ -24,3 +24,5 @@ if (isset(json_decode($rargs["articleData"], true)["articleText"])) {
 if (isset(json_decode($rargs["articleData"], true)["articleTitle"])) {
     $data->change_article_column_by_id_and_name($rargs["articleId"], "articleTitle", $filter->purify(json_decode($rargs["articleData"], true)["articleTitle"], 25));
 }
+
+exit("Success");

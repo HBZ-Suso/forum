@@ -11,6 +11,8 @@ if (!$data->is_logged_in()) {
 
 
 if (isset($rargs["userId"])) {
+    exit("Deprecatederror");
+
     if (!($data->is_admin_by_id($_SESSION["userId"]) && !$data->is_admin_by_id($rargs["userId"]))) {
         $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
         exit("Permissionerror");

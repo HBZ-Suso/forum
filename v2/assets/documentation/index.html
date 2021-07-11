@@ -1,0 +1,1261 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HBZ-Doc - A documentation for the communication site of the HBZ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="scribbler-global.css">
+    <link rel="stylesheet" href="scribbler-doc.css">
+  </head>
+  <body>
+    <div class="doc__bg"></div>
+    <nav class="header">
+      <h1 class="logo">HBZ-Forum <span class="logo__thin">Doc</span></h1>
+      <ul class="menu">
+        <div class="menu__item toggle"><span></span></div>
+        <li class="menu__item"><a href="https://github.com/HBZ-Suso/forum" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
+        <li class="menu__item"><a href="/forum/v2/" class="link link--dark"><i class="fa fa-home"></i> Home</a></li>
+      </ul>
+    </nav>
+    <div class="wrapper">
+      <aside class="doc__nav">
+        <ul>
+          <li class="js-btn selected">Overview</li>
+          <li class="js-btn">Normal API</li>
+          <li class="js-btn">V2 API</li>
+          <li class="js-btn">Issues & FAQ</li>
+        </ul>
+      </aside>
+      <article class="doc__content">
+        <section class="js-section">
+          <h3 class="section__title">Overview</h3>
+          <p>Learn how to use the HBZ-Forum API with all its potential! You can use it in order to acces users, articles, policies and much more. If you have an account you can also utilize it in order to do all of the account-onyl stuff like liking articles, writing articles, comments or automatically chatting / creating chatbots!</p>
+          <h3 class="section__title">Structure</h3>
+          <p>There are generally 2 API endpoints availible: /forum/assets/api/ and its subdirectories as well as /forum/v2/assets/api/. They both contain different endpoints with different abilities.</p>
+          <p>The whole system of this website is built upon Ids: every instance, be it users, articles, comments, views or likes are given ids. If you want to edit or remove something you will have to know its Id. To get it you can use the numerous data endpoints availible.</p>
+          <p>Most API endpoints will return JSON objects with the http data type application/json. Below you can see an example output:</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code>
+                  {
+                    “likeId“: 132, 
+                    “userId“: 32,
+                    “targetUserId”: 343,
+                    “likeCreated“: 9238263424
+                  }
+              </code>
+            </pre>
+          </div>
+          <p>Here are a few things to note:
+            <br>- Times are mostly returned as UNIX-Timestamps. You can then convert those into human readable formats. 
+            <br>- If the action requires a userId, it is returned as userId and then if it affects other users those are characterized by targetUserId. If it only affects a user, the user is given as userId.
+            <br>- This API is not ratelimited. Abuse will, however, be punished and the responsible addresses permanently blocked.
+          </p>
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">Normal API</h3>
+          <p>This API combines all basic functionalities. The address is given as a subdirectory of /forum/assets/api.</p>
+          <table id="customers">
+            <tr>
+              <th>Address</th>
+              <th>Information</th>
+              <th>Parameters</th>
+              <th>Requires</th>
+              <th>Returns</th>
+            </tr>
+            <tr>
+              <td>auth.php</td>
+              <td>Authenticates with browser fingerprint.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "fp": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>change_article.php</td>
+              <td>Changes article title and/or text.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "articleId": number, 
+                        "articleData": {
+                          "articleTitle": string, 
+                          "articleText": string
+                      }}
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>change_data.php</td>
+              <td>Changes user data.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "change_data": 
+                        {"userEmployment": string, 
+                        "userMail": string, 
+                        "userPhone": string, 
+                        "userAge": number, 
+                        "userDescription": string
+                      }}
+
+
+                      for 
+                      {
+                        "change_data": 
+                        {"userPassword": string
+                      }} 
+                      also "passwordold" with the old password.
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>comment.php</td>
+              <td>Submits comment on user or article.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "articleId": number,
+                        "userId": number,
+                        "text": string,
+                        "title": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>create_report.php</td>
+              <td>Creates a report for admins to read.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "title": number,
+                        "text": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>delete_comment.php</td>
+              <td>Deletes owned comment on article or user.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "articleId": number,
+                        "userId": number,
+                        "commentId": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>delete.php</td>
+              <td>Deletes article.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "articleId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>get_article_list.php</td>
+              <td>Gets all articles found.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "max": number < 1000,
+                        "phrase": string,
+                        "includeUserNames": boolean
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_article.php</td>
+              <td>Gets article by Id or title.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "articleId": number,
+                        "articleTitle": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_articleHTML.php</td>
+              <td>Gets html for article.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "articleId": number,
+                        "articleTitle": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>string</td>
+            </tr>
+            <tr>
+              <td>get_article_list.php</td>
+              <td>Gets all articles found.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "max": number < 1000,
+                        "phrase": string,
+                        "includeUserNames": boolean
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_articles.php</td>
+              <td>Alias for get_article_list.php, but also supports rsearch parameters and returns HTML.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "search": string,
+                        "rsearch": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>HTML</td>
+            </tr>
+            <tr>
+              <td>get_chosen_section.php</td>
+              <td>Returns current section.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>String (Section)</td>
+            </tr>
+            <tr>
+              <td>get_comments.php</td>
+              <td>Gets all comments on user or article.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userId": number,
+                        "articleId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_current_username.php</td>
+              <td>If logged in returns current userName, else false.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>string</td>
+            </tr>
+            <tr>
+              <td>get_error_argument.php</td>
+              <td>Returns info on error.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "error_argument": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_highlights.php</td>
+              <td>Returns highlights.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "search": string,
+                        "page": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_article_list.php</td>
+              <td>Gets all articles found.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "max": number < 1000,
+                        "phrase": string,
+                        "includeUserNames": boolean
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>HTML</td>
+            </tr>
+            <tr>
+              <td>get_language.php</td>
+              <td>Returns language translations.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "code": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_languages.php</td>
+              <td>Gets all languages.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_link_user.php</td>
+              <td>Gets data from linked user.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "linkauth": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Linklogged</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_search_preview.php</td>
+              <td>Gets data for search preview.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "max": number < 100000
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_settings.php</td>
+              <td>Gets settings.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_themes.php</td>
+              <td>Gets all available themes.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_user_list.php</td>
+              <td>Gets all users found.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "max": number < 1000,
+                        "search": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_userHTML.php</td>
+              <td>Gets HTML of user.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>HTML</td>
+            </tr>
+            <tr>
+              <td>get_users.php</td>
+              <td>Gets HTML for all found users</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "max": number < 1000,
+                        "phrase": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>HTML</td>
+            </tr>
+            <tr>
+              <td>language.php</td>
+              <td>Sets language.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "language": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>like.php</td>
+              <td>Likes user or article.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "articleId": number,
+                        "targetUserId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>link_valid.php</td>
+              <td>Tests if link is valid.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "linkauth": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Valid or Invalid or Error</td>
+            </tr>
+            <tr>
+              <td>lock.php</td>
+              <td>Locks user.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Moderator or Administrator</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>login.php</td>
+              <td>Logs user in.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userName": string,
+                        "password": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>logout.php</td>
+              <td>Logs the user out.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success</td>
+            </tr>
+            <tr>
+              <td>scheme.php</td>
+              <td>Sets colorscheme.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "scheme": "dark" | "white"
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>set_articlePage.php</td>
+              <td>Sets article page.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "articlePage": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>set_chosen_section.php</td>
+              <td>Sets chosen section.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "section": number < 1000
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Rrror</td>
+            </tr>
+            <tr>
+              <td>set_color.php</td>
+              <td>Sets user icon color.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "color": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>set_highlightPage.php</td>
+              <td>Sets highlightPage.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "highlightPage": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>set_messages.php</td>
+              <td>Sets messages setting.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "messages": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>messages setting</td>
+            </tr>
+            <tr>
+              <td>set_notifications.php</td>
+              <td>Sets notification setting.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "level": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>notification setting</td>
+            </tr>
+            <tr>
+              <td>set_public.php</td>
+              <td>Sets public setting.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "public": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>public setting</td>
+            </tr>
+            <tr>
+              <td>set_messages.php</td>
+              <td>Sets messages setting.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "messages": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>messages setting</td>
+            </tr>
+            <tr>
+              <td>set_resolution.php</td>
+              <td>Sends display resolution.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "res_x": number,
+                        "res_y": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>set_userPage.php</td>
+              <td>Sets userPage.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userPage": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>theme.php</td>
+              <td>Sets theme.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "theme": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>verify.php</td>
+              <td>Verifies user.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Moderator or Administrator</td>
+              <td>Success or Error</td>
+            </tr>
+          </table>
+          <p>Please note that any abuse will not be tolerated and actions will be taken.</p>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">V2 API</h3>
+          <p>The second version API can be found under forum/v2/assets/api and is used for more and newer functionalities.</p>
+          <table id="customers">
+            <tr>
+              <th>Address</th>
+              <th>Information</th>
+              <th>Parameters</th>
+              <th>Requires</th>
+              <th>Returns</th>
+            </tr>
+            <tr>
+              <td>administration.php</td>
+              <td>Allows administrators the management of the webserver.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        ?
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Administrator</td>
+              <td>Depends</td>
+            </tr>
+            <tr>
+              <td>create_article.php</td>
+              <td>Create an article.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "title": string,
+                        "text": string,
+                        "category": string,
+                        "tags": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Article Data or Error</td>
+            </tr>
+            <tr>
+              <td>create_report.php</td>
+              <td>Write a report.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "title": string,
+                        "text": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>get_articleIds_by_category.php</td>
+              <td>Gets all articleIds by category.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "category": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_chat.php</td>
+              <td>Returns chat to user.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_chats.php</td>
+              <td>Returns all chats.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_data.php</td>
+              <td>Returns personal data.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_notifications.php</td>
+              <td>Returns all notifications.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_profilepicture.php</td>
+              <td>Returns profilepicture of user.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Image</td>
+            </tr>
+            <tr>
+              <td>get_settings_profile.php</td>
+              <td>Returns general profile settings and data.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_user.php</td>
+              <td>Returns user data with some new information such as allow messages.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>get_usernames.php</td>
+              <td>Returns a list of all userIds and userNames.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>pin.php</td>
+              <td>Pins article.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "articleId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Moderator or Administrator</td>
+              <td>Pinned?</td>
+            </tr>
+            <tr>
+              <td>policy.php</td>
+              <td>Returns policies.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <td>read_messages.php</td>
+              <td>Sets messages to read.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "messageIds": [Array of messageIds]
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>read_notification.php</td>
+              <td>Sets notification as read.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "notificationId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>send_message.php</td>
+              <td>Sends chat message to user.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userId",
+                        "text"
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>signup.php</td>
+              <td>Signs up new user with code.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userName": string,
+                        "userPassword": string,
+                        "userMail": string,
+                        "userAge": number,
+                        "userPhone": string,
+                        "userDescription": string,
+                        "userEmployment": string,
+                        "code": string
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>-</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>upload_image.php</td>
+              <td>Allows upload of profilepictures.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "profilePicture": image, KB < 200
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+            <tr>
+              <td>view.php</td>
+              <td>Add a view to an article or an user.</td>
+              <td>
+                <div class="code__block code__block--notabs">
+                  <pre class="code code--block">
+                    <code>
+                      {
+                        "userId": number,
+                        "articleId": number
+                      }
+                    </code>
+                  </pre>
+                </div>
+              </td>
+              <td>Account</td>
+              <td>Success or Error</td>
+            </tr>
+          </table>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">Issues & FAQ</h3>
+          <p>This API was mainly made as a way to communicate between front- and backend. It is, therefore, not optimized for usability or ease-of-use. If you have any problems with using the endpoints you could first try to analyze the webtraffick when issuing the same action on the webpage. If it still doesnt work as expected/intended, you can contact us using a Report or by writing an Email. You can see how to contact us in the impressum of the webpage.</p>
+          <p>If you find any bugs/glitches/mistakes or have other remarks, please also dont be too shy to contact us as described on top.</p>
+        </section>
+      </article>
+    </div>
+
+    <footer class="footer">Scribbler is a free HTML template created exclusively for <a href="https://tympanus.net/codrops/" target="_blank" class="link link--light">Codrops</a>.</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="scribbler.js"></script>
+  </body>
+</html>

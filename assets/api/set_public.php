@@ -10,7 +10,7 @@ if (!isset($_SESSION["userId"])) {
 }
 
 
-$mail->notify($_SESSION["userId"], 0, "/forum/v2/#Settings", '{{public}}{{settingschanged}}');
+$mail->notify($_SESSION["userId"], 15, "/forum/v2/#Settings", '{{public}}{{settingschanged}}');
 
 
 if ($rargs["public"] == "hidden") {

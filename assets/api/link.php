@@ -4,7 +4,7 @@ $hide_frame = true;
 require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/assets/class/class.main.php";
 
 
-exit ("DEPRECATED");
+exit("DEPRECATED");
 
 
 if (!isset($rargs["username"]) || !isset($rargs["password"]) || !isset($rargs["linkinfo"])) {

@@ -15,6 +15,11 @@ if (!isset($rargs["profilePicture"])) {
 }
 
 if ($data->is_logged_in()) {
+    if (filesize($_FILES['profilePicture']['tmp_name']) > 200) {
+        $data->create_error("Imagesizeerror",  $_SERVER["SCRIPT_NAME"]);
+        exit("Imagesizeerror");
+    }
+
     $verifyimg = getimagesize($_FILES['profilePicture']['tmp_name']);
 
     $ext = "";
@@ -43,7 +48,8 @@ if ($data->is_logged_in()) {
         $data->set_user_setting("pPE", $_SESSION["userId"], $ext);
         echo "Success";
     } else {
-        echo "Failed.";
+        $data->create_error("Executionerror",  $_SERVER["SCRIPT_NAME"]);
+        exit("Executionerror");
     }
     exit();
 } else {

@@ -5,6 +5,12 @@ require_once $_SERVER["DOCUMENT_ROOT"] . "/forum/v2/assets/class/class.data.php"
 $data = new DataV2();
 $data->do_match();
 
+if (!$data->is_logged_in()) {
+    $data->create_error("Permissionerror",  $_SERVER["SCRIPT_NAME"]);
+    exit("Permissionerror");
+}
+
+
 $rargs = array_merge($_GET, $_POST);
 $user_data = $data->get_user_by_id($_SESSION["userId"]);
 
