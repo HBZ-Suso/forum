@@ -51,6 +51,10 @@ function set_settings_stuff () {
                 .catch((e) => console.debug)
         }
     })
+
+
+
+
 }
 
 function select_settings_page (snb_element) {
@@ -202,7 +206,25 @@ function on_settings_window_open () {
             }, (reject) => {throw new Error(reject)})
             .catch(console.debug)
 
-        
+        axios
+            .post("/forum/v2/assets/api/get_setting_changes.php")
+            .then((resolve) => {
+                document.querySelector(".tbl-content-space").innerHTML = ``;
+
+                let fwidth = document.querySelector(".tbl-header").clientWidth / 4 - 8;
+
+                resolve.data.forEach((element, index) => {
+                    document.querySelector(".tbl-content-space").innerHTML += `
+                        <tr>
+                            <td style="width: ${fwidth}; padding: 4px;">${element["settingChangeType"].slice(0, 15)}</td>
+                            <td style="width: ${fwidth}; padding: 4px;">${element["settingChangeDate"]}</td>
+                            <td style="width: ${fwidth}; padding: 4px;">${element["settingChangeFrom"].slice(0, 15)}</td>
+                            <td style="width: ${fwidth}; padding: 4px;">${element["settingChangeTo"].slice(0, 15)}</td>
+                        </tr>
+                    `;
+                });
+            }, (reject) => {throw new Error(reject)})
+            .catch((e) => console.debug)
     }
 }
 

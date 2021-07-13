@@ -269,6 +269,10 @@ function notification_link  (link) {
         link = link.replace("-|-openchat**", "").replace("-|-", "")
         chat.open_chat(parseInt(link));
     } else {
+        if (link.indexOf("#") !== -1) {
+            let ind = link.indexOf("#");
+            link = [link.slice(0, ind), "?", link.slice(ind)].join('');
+        }
         window.location = link;
     }
 }

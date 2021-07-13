@@ -16,7 +16,8 @@ window.addEventListener("load", (e) => {
             "engineVersion": result.engine.version,
             "cpuArchitecture": result.cpu.architecture,
             "gpuVendor": result.gpu.vendor,
-            "gpuModel": result.gpu.model
+            "gpuModel": result.gpu.model,
+            "screen": window.screen
         }); 
         axios
             .post("/forum/v2/assets/science/index.php", request)

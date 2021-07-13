@@ -120,65 +120,97 @@ class DataV2 extends Data {
     public function get_personal_data () {
         $data = [];
 
-        $limit = 100000;
+        $limit = 1000;
 
-        $query = "SELECT * FROM logs WHERE matchId=? ORDER BY logDate DESC LIMIT 0, ?;";
+        $matchIds = [];
+
+        $query = "SELECT matchId FROM matches WHERE matchKey=?;";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ii", $this->matchId, $limit);
+        $stmt->bind_param("i", $this->matchKey);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                array_push($data, ["type" => "log", "match" => "matchId", "data" => $row]);
-            }
-        }
-        
-
-        $query = "SELECT * FROM errors WHERE matchId=? ORDER BY errorDate DESC LIMIT 0, ?;";
-        $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ii", $this->matchId, $limit);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                array_push($data, ["type" => "error", "match" => "matchId", "data" => $row]);
+                array_push($matchIds, $row["matchId"]);
             }
         }
 
-
-
-
-
-        $query = "SELECT * FROM visits WHERE matchId=? ORDER BY visitDate DESC LIMIT 0, ?;";
-        $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("ii", $this->matchId, $limit);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                array_push($data, ["type" => "visit", "match" => "matchId", "data" => $row]);
+        foreach($matchIds as $value) {
+            $query = "SELECT * FROM logs WHERE matchId=? ORDER BY logDate DESC LIMIT 0, ?;";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("ii", $value, $limit);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    array_push($data, ["type" => "log", "match" => "matchId", "data" => $row]);
+                }
+            }
+            
+    
+            $query = "SELECT * FROM errors WHERE matchId=? ORDER BY errorDate DESC LIMIT 0, ?;";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("ii", $value, $limit);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    array_push($data, ["type" => "error", "match" => "matchId", "data" => $row]);
+                }
+            }
+    
+    
+    
+    
+    
+            $query = "SELECT * FROM visits WHERE matchId=? ORDER BY visitDate DESC LIMIT 0, ?;";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("ii", $value, $limit);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    array_push($data, ["type" => "visit", "match" => "matchId", "data" => $row]);
+                }
+            }
+    
+    
+    
+    
+            
+            $query = "SELECT * FROM reports WHERE matchId=?";
+            $stmt = $this->connId->prepare($query);
+            $stmt->bind_param("i", $value);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $stmt->close();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    array_push($data, ["type" => "report", "match" => "matchId", "data" => $row]);
+                }
+            }
+    
+    
+    
+            if ($this->is_logged_in()) {
+                $userId = $_SESSION["userId"];
+                $query = "SELECT * FROM settingChanges WHERE matchId=?";
+                $stmt = $this->connId->prepare($query);
+                $stmt->bind_param("i", $value);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $stmt->close();
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        array_push($data, ["type" => "settingChange", "match" => "userId", "data" => $row]);
+                    }
+                }
             }
         }
-
-
-
-
-        
-        $query = "SELECT * FROM reports WHERE matchId=?";
-        $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("i", $this->matchId);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $stmt->close();
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                array_push($data, ["type" => "report", "match" => "matchId", "data" => $row]);
-            }
-        }
-
 
 
 
@@ -330,22 +362,6 @@ class DataV2 extends Data {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     array_push($data, ["type" => "notification", "match" => "userId", "data" => $row]);
-                }
-            }
-        }
-
-
-        if ($this->is_logged_in()) {
-            $userId = $_SESSION["userId"];
-            $query = "SELECT * FROM settingChanges WHERE settingChangeUserId=?";
-            $stmt = $this->connId->prepare($query);
-            $stmt->bind_param("i", $userId);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $stmt->close();
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    array_push($data, ["type" => "settingChange", "match" => "userId", "data" => $row]);
                 }
             }
         }

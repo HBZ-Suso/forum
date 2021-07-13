@@ -320,7 +320,12 @@
         "v2-messages-off": "From Noone",
         "v2-settings-messages-heading": "Chatting",
         "v2-settings-messages-notice": "Decide who can contact you via the built-in messaging tool.",
-        "v2-profilepicture-send": "Upload"
+        "v2-profilepicture-send": "Upload",
+        "v2-settings-settingsChange-heading": "Setting-Changes",
+        "v2-settings-settingsChange-setting": "Setting",
+        "v2-settings-settingsChange-date": "Changed at",
+        "v2-settings-settingsChange-from": "Changed From",
+        "v2-settings-settingsChange-to": "Changed To"
     },
     "deutsch": {
         "language_name": "deutsch",
@@ -644,7 +649,12 @@
         "v2-messages-off": "Von Niemandem",
         "v2-settings-messages-heading": "Unterhaltungen & Nachrichten",
         "v2-settings-messages-notice": "Diese Einstellung betrifft das interne Nachrichten System. Hier kannst du Einstellen, wer dir alles Nachrichten senden kann.",
-        "v2-profilepicture-send": "Hochladen"
+        "v2-profilepicture-send": "Hochladen",
+        "v2-settings-settingsChange-heading": "Einstellungsaenderungen",
+        "v2-settings-settingsChange-setting": "Einstellung",
+        "v2-settings-settingsChange-date": "Geaendert am",
+        "v2-settings-settingsChange-from": "Geaendert von",
+        "v2-settings-settingsChange-to": "Geaendert zu"
     },
     "français": {
         "frame-pc-heading": "HBZ-Forum",

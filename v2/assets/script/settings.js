@@ -131,6 +131,7 @@ function show_settings () {
                     <img src="/forum/assets/img/icon/notification.png" class="snb-element snb-notification" open="settings-page-notification">
                     <img src="/forum/assets/img/icon/theme.png" class="snb-element snb-theme" open="settings-page-theme">
                     <img src="/forum/assets/img/icon/user.png" class="snb-element snb-profile" open="settings-page-profile">
+                    <img src="/forum/assets/img/icon/settingsChange.png" class="snb-element snb-settingsChange" open="settings-page-settingsChange">
                 `;
                 
 
@@ -262,6 +263,32 @@ function show_settings () {
                                 <input class="settings-profile-element settings-profile-password1" placeholder="${language_data["v2-settings-profile-password1"]}" type="password">
                                 <input class="settings-profile-element settings-profile-password2" placeholder="${language_data["v2-settings-profile-password2"]}" type="password">
                                 <input type="submit" class="settings-profile-element settings-profile-passwordreset" value="${language_data["v2-settings-profile-passwordreset"]}">
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="settings-page settings-page-settingsChange" style="display: none;">
+                        <form class="setting" ${unlogged_hide}>
+                            <h1 class="setting-heading">${language_data["v2-settings-settingsChange-heading"]}</h1>
+                            <div class="tbl-header">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <thead>
+                                    <tr>
+                                        <th>${language_data["v2-settings-settingsChange-setting"]}</th>
+                                        <th>${language_data["v2-settings-settingsChange-date"]}</th>
+                                        <th>${language_data["v2-settings-settingsChange-from"]}</th>
+                                        <th>${language_data["v2-settings-settingsChange-to"]}</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                                </div>
+                                <div class="tbl-content">
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <tbody class="tbl-content-space">
+                                    
+                                    </tbody>
+                                </table>
                             </div>
                         </form>
                     </div>

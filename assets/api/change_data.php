@@ -30,7 +30,12 @@ if (isset($change["userPassword"])) {
         exit("Permissionerror");
     }
 
-    $data->add_settings_change("userPassword", "", "", $_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
+    if ($data->get_last_setting_change($_SESSION["userId"], "userMail") > time() - 60*60*24) {
+        $data->create_error("Mailchangecooldownerror",  $_SERVER["SCRIPT_NAME"]);
+        exit("Mailchangecooldownerror");
+    }
+
+    $data->add_settings_change("userPassword", "", "", $_SESSION["userId"]);
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userPassword", password_hash($change["userPassword"], PASSWORD_DEFAULT));
     
     if (intval($data->get_user_notification_setting($_SESSION["userId"])) !== 0) {
@@ -40,7 +45,7 @@ if (isset($change["userPassword"])) {
     }
 }
 if (isset($change["userDescription"]) && $change["userDescription"] !== $data->get_user_by_id($_SESSION["userId"])["userDescription"]) {
-    $data->add_settings_change("userDescription", $data->get_user_by_id($_SESSION["userId"])["userDescription"], $filter->purify($change["userDescription"], 25), $_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
+    $data->add_settings_change("userDescription", $data->get_user_by_id($_SESSION["userId"])["userDescription"], $filter->purify($change["userDescription"], 25), $_SESSION["userId"]);
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userDescription", $filter->purify($change["userDescription"], 25));
 }
 if (isset($change["userAge"]) && intval($change["userAge"]) !== intval($data->get_user_by_id($_SESSION["userId"])["userAge"])) {
@@ -48,22 +53,28 @@ if (isset($change["userAge"]) && intval($change["userAge"]) !== intval($data->ge
         $data->create_error("Formerror",  $_SERVER["SCRIPT_NAME"]);
         exit("Formerror");
     }
-    $data->add_settings_change("userAge", $data->get_user_by_id($_SESSION["userId"])["userAge"], $filter->purify($change["userAge"], 25), $_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
+    $data->add_settings_change("userAge", $data->get_user_by_id($_SESSION["userId"])["userAge"], $filter->purify($change["userAge"], 25), $_SESSION["userId"]);
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userAge", $filter->purify($change["userAge"], 25));
 }
 if (isset($change["userEmployment"]) && $change["userEmployment"] !== $data->get_user_by_id($_SESSION["userId"])["userEmployment"]) {
-    $data->add_settings_change("userEmployment", $data->get_user_by_id($_SESSION["userId"])["userEmployment"], $filter->purify($change["userEmployment"], 25), $_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
+    $data->add_settings_change("userEmployment", $data->get_user_by_id($_SESSION["userId"])["userEmployment"], $filter->purify($change["userEmployment"], 25), $_SESSION["userId"]);
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userEmployment", $filter->purify($change["userEmployment"], 25));
 }
 if (isset($change["userMail"]) && $change["userMail"] !== $data->get_user_by_id($_SESSION["userId"])["userMail"]) {
     if (isset($_SESSION["linkLogged"])) {
         exit("Not allowed");
     }
-    $data->add_settings_change("userMail", $data->get_user_by_id($_SESSION["userId"])["userMail"], $filter->purify($change["userMail"], 25), $_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
+
+    if ($data->get_last_setting_change($_SESSION["userId"], "userPassword") > time() - 60*60*24) {
+        $data->create_error("Passwordchangecooldownerror",  $_SERVER["SCRIPT_NAME"]);
+        exit("Passwordchangecooldownerror");
+    }
+
+    $data->add_settings_change("userMail", $data->get_user_by_id($_SESSION["userId"])["userMail"], $filter->purify($change["userMail"], 25), $_SESSION["userId"]);
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userMail", $filter->purify($change["userMail"], 25));
 }
 if (isset($change["userPhone"]) && $change["userPhone"] !== $data->get_user_by_id($_SESSION["userId"])["userPhone"]) {
-    $data->add_settings_change("userPhone", $data->get_user_by_id($_SESSION["userId"])["userPhone"], $filter->purify($change["userPhone"], 25), $_SESSION["userId"], $_SERVER['REMOTE_ADDR']);
+    $data->add_settings_change("userPhone", $data->get_user_by_id($_SESSION["userId"])["userPhone"], $filter->purify($change["userPhone"], 25), $_SESSION["userId"]);
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userPhone", $filter->purify($change["userPhone"], 25));
 }
 

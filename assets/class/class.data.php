@@ -1308,12 +1308,12 @@ class Data extends Connector
     }
 
 
-    public function add_settings_change ($type, $from, $to, $userId, $ip)
+    public function add_settings_change ($type, $from, $to, $userId)
     {
         $time = time();
-        $query = "INSERT INTO settingChanges (settingChangeType, settingChangeFrom, settingChangeTo, settingChangeUserId, settingChangeIp, settingChangeDate) VALUES (?, ?, ?, ?, ?, ?);";
+        $query = "INSERT INTO settingChanges (matchId, settingChangeType, settingChangeFrom, settingChangeTo, userId, settingChangeDate) VALUES (?, ?, ?, ?, ?, ?);";
         $stmt = $this->connId->prepare($query);
-        $stmt->bind_param("sssisi", $type, $from, $to, $userId, $ip, $time);
+        $stmt->bind_param("isssii", $this->matchId, $type, $from, $to, $userId, $time);
         $stmt->execute();
         $stmt->close();
         return true;
@@ -2046,5 +2046,44 @@ class Data extends Connector
             $stmt->close();
             return;
         }
+    }
+
+
+
+
+    public function get_last_setting_change ($userId, $setting)
+    {
+        $time = time();
+        $query = "SELECT settingChangeDate FROM settingChanges WHERE userId=? AND settingChangeType=? ORDER BY settingChangeDate DESC;";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("is", $userId, $setting);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                return $row["settingChangeDate"];
+            }
+        }
+        return 0;
+    }
+
+
+    public function get_setting_changes ($userId)
+    {
+        $time = time();
+        $query = "SELECT * FROM settingChanges WHERE userId=? ORDER BY settingChangeDate DESC LIMIT 0, 2000;";
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $return = [];
+        $stmt->close();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($return, $row);
+            }
+        }
+        return $return;
     }
 }

@@ -85,12 +85,11 @@ Database name: forum
 
 11. settingChanges:
     1. settingChangeId (BIGINT, UNSIGNED, ticking up, unsigned)
-    2. settingChangeType (TEXT, Setting Name)
-    3. settingChangeFrom (LONGTEXT, Before)
-    4. settingChangeTo (LONGTEXT, After)
-    5. settingChangeUserId (MEDIUMINT, UNSIGNED)
-    6. settingChangeIp (LONGTEXT)
-    7. settingChangeDate (u BIGINT, UNIX TIMESTAMP)
+    2. matchId
+    3. settingChangeType (TEXT, Setting Name)
+    4. settingChangeFrom (LONGTEXT, Before)
+    5. settingChangeTo (LONGTEXT, After)
+    6. settingChangeDate (u BIGINT, UNIX TIMESTAMP)
 
 12. visits:
     1. visitId (BIGINT, UNSIGNED, ticking up)
@@ -101,7 +100,7 @@ Database name: forum
 
 13. reports:
     1. reportId (BIGINT, UNSIGNED, ticking up)
-    2. matchKey (MEDIUMINT)
+    2. matchId (MEDIUMINT)
     3. reportTitle (TEXT)
     4. reportText (LONGTEXT)
     5. reportDate (BIGINT, UNIX TIMESTAMP, unsigned)
@@ -115,7 +114,7 @@ Database name: forum
 
 15. errors:
     1. errorId (u BIGINT, ticking up)
-    2. matchKey (MEDIUMINT)
+    2. matchId (MEDIUMINT)
     3. errorName (TEXT)
     4. errorDate (BIGINT, UNIX TIMESTAMP, unsigned)
     5. errorFile (TEXT)
@@ -143,14 +142,14 @@ Database name: forum
 
 18. logs:
     1. logId (u BIGINT)
-    2. matchKey (MEDIUMINT)
+    2. matchId (MEDIUMINT)
     3. logType (TEXT, "logs")
     4. logContent (LONGTEXT, JSON, depends on logType)
     5. logDate (u BIGINT, UNIX TIMESTAMP)
 
 19. matches:
     1. matchId (u BIGINT, ticking up)
-    2. matchKey (u BIGINT)
+    2. matchId (u BIGINT)
     3. matchIp (TEXT)
     4. matchBrowser (LONGTEXT)
     5. userId (TEXT, false if not logged in)
@@ -180,7 +179,7 @@ Icons:
     <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
 Administrator:
-    Password: forum_admin
+    Password: !23forum_admin32!
 
 layers:
     frame: 2
