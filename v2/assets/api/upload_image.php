@@ -15,7 +15,7 @@ if (!isset($rargs["profilePicture"])) {
 }
 
 if ($data->is_logged_in()) {
-    if (filesize($_FILES['profilePicture']['tmp_name']) > 200) {
+    if (filesize($_FILES['profilePicture']['tmp_name']) > 200000) {
         $data->create_error("Imagesizeerror",  $_SERVER["SCRIPT_NAME"]);
         exit("Imagesizeerror");
     }

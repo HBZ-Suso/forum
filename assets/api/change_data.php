@@ -49,10 +49,6 @@ if (isset($change["userDescription"]) && $change["userDescription"] !== $data->g
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userDescription", $filter->purify($change["userDescription"], 25));
 }
 if (isset($change["userAge"]) && intval($change["userAge"]) !== intval($data->get_user_by_id($_SESSION["userId"])["userAge"])) {
-    if (!is_numeric($change["userAge"])) {
-        $data->create_error("Formerror",  $_SERVER["SCRIPT_NAME"]);
-        exit("Formerror");
-    }
     $data->add_settings_change("userAge", $data->get_user_by_id($_SESSION["userId"])["userAge"], $filter->purify($change["userAge"], 25), $_SESSION["userId"]);
     $data->change_user_column_by_id_and_name($_SESSION["userId"], "userAge", $filter->purify($change["userAge"], 25));
 }

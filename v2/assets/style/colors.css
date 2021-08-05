@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap');
 
 :root {
-    --side-main-color: #61B2AF;
+    --side-main-color: rgb(97, 178, 175);
     --side-dark-color: #5CA7A5;
     --side-user-color: #66B9B7;
     --side-border-color: #d2e9e9;

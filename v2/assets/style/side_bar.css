@@ -96,6 +96,7 @@
     height: 60px;
     margin-left: 20px;
     margin-top: 20px;
+    border-radius: 50%;
 }
 
 .userview-details > div > a {

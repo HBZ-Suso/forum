@@ -53,24 +53,6 @@ elements.forEach((element, index) => {
 
 
 
-document.getElementById("userAge").addEventListener("keyup", (e) => {
-    if (isNaN(e.target.value)) {
-        if (!isNaN(user_data["userAge"])) {
-            e.target.value = user_data["userAge"];
-        } else {
-            e.target.value = "20";
-        }
-    }
-})
-document.getElementById("userAge").addEventListener("change", (e) => {
-    if (isNaN(e.target.value)) {
-        if (!isNaN(user_data["userAge"])) {
-            e.target.value = user_data["userAge"];
-        } else {
-            e.target.value = "20";
-        }
-    }
-})
 
 
 

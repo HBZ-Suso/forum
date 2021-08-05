@@ -6,7 +6,7 @@ Database name: forum
     1. userId (number, ticking up, MEDIUMINT, unsigned)
     2. userName (TEXT)
     3. userPassword (hash, LONGTEXT)
-    4. userAge (TINYINT, unsigned)
+    4. userAge (BIGINT, unsigned)
     5. userEmployment (MEDIUMTEXT)
     6. userDescription (formatet text, LONGTEXT)
     7. userCreated (timestamp)

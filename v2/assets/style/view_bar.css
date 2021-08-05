@@ -132,6 +132,7 @@
     height: 75px;
     width: 75px;
     object-fit: cover;
+    border-radius: 50%;
 }
 
 .viewbar-content-author-info {
@@ -230,6 +231,7 @@
     height: 50px;
     width: 50px;
     object-fit: cover;
+    border-radius: 50%;
 }
 
 .comment-author-info {

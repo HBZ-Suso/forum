@@ -16,7 +16,7 @@ function show_signup () {
             <input type="text" placeholder="${language_data["signup-username"]}" class="signup-username"></input>
             <input type="password" placeholder="${language_data["signup-pwd"]}" class="signup-password signup-password1"></input>
             <input type="password" placeholder="${language_data["signup-pwd-again"]}" class="signup-password signup-password2"></input>
-            <input type="text" placeholder="${language_data["signup-age"]}" class="signup-age"></input>
+            <input type="text" placeholder="${language_data["signup-age"]}" class="signup-age" id="ageInput"></input>
             <input type="text" placeholder="${language_data["signup-phone"]}" class="signup-phone"></input>
             <input type="text" placeholder="${language_data["signup-employment"]}" class="signup-employment"></input>
             <input type="text" placeholder="${language_data["signup-mail"]}" class="signup-mail"></input>
@@ -33,6 +33,7 @@ function show_signup () {
         ${add_mobile_signup_stylesheet}
         </div>`);
 
+    /*
     document.querySelector(".signup-age").addEventListener("keyup", (e) => {
         try {
             if (isNaN(e.target.value)) {throw new Error("Nan")};
@@ -40,15 +41,22 @@ function show_signup () {
         } catch (l) {
             e.target.value = age_value;
         }
-    });
+    });*/
+
+    const ageDatePicker = MCDatepicker.create({ 
+        el: '#ageInput',
+        dateFormat: 'MMM-DD-YYYY',
+        bodyType: 'modal',
+        maxDate: new Date(new Date().getTime() - 1000*60*60*24*365*5) // Going onwards from 5 Years ago
+    })
 
     document.querySelector(".signup-submit").addEventListener("click", (e) => {
-        
-
         let username = document.querySelector(".signup-username").value;
         let password1 = document.querySelector(".signup-password1").value;
         let password2 = document.querySelector(".signup-password2").value;
-        let age = document.querySelector(".signup-age").value;
+
+        let age = ageDatePicker.getFullDate();
+
         let mail = document.querySelector(".signup-mail").value;
         let mail2 = document.querySelector(".signup-mail2").value;
         let employment = document.querySelector(".signup-employment").value;

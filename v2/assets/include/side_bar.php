@@ -37,7 +37,7 @@ if (isset($_SESSION["userId"])) {
                     <?php echo $user_data["userName"]; ?>
                 </div>
                 <div class="userview-employment">
-                    <?php echo $user_data["userAge"] . ", " . $user_data["userEmployment"];?>
+                    <?php echo $user_data["userEmployment"];?>
                 </div>
             </div>
         </div>

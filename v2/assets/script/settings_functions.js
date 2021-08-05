@@ -163,7 +163,7 @@ function s_check_changes (element) {
 
 
 
-
+var ageDatePicker = false;
 
 function on_settings_window_open () {
     if (localStorage.getItem("SettingsTab") !== null) {
@@ -193,7 +193,21 @@ function on_settings_window_open () {
                     document.querySelector(".settings-profile-employment").value = resolve.data.userEmployment;
                 }
                 if (resolve.data.userAge !== undefined) {
-                    document.querySelector(".settings-profile-age").value = resolve.data.userAge;
+                    document.querySelector(".settings-profile-age").value = '';
+                    ageDatePicker = new MCDatepicker.create({
+                        el: '#settings-profile-age',
+                        selectedDate: new Date(resolve.data.userAge),
+                        dateFormat: 'MMM-DD-YYYY',
+                        bodyType: 'modal'
+                    });
+
+
+                    ageDatePicker.onClose(() => {
+                        changed = true;
+                        let inverted_internet_speed = 20 - connection.speedmbps;
+                        inverted_internet_speed = Math.min(...[10, inverted_internet_speed]);
+                        setTimeout(send_profile_axios, inverted_internet_speed * 200);
+                    })
                 }
                 if (resolve.data.userDescription !== undefined) {
                     document.querySelector(".settings-profile-description").value = resolve.data.userDescription;
@@ -232,7 +246,11 @@ function on_settings_window_open () {
 function get_profile_json_string () {
     let json = {};
     document.querySelectorAll(".settings-profile-element").forEach((element, index) => {
-        json[element.getAttribute("elementName")] = element.value;
+        if (element.classList.contains("settings-profile-age")) {
+            json[element.getAttribute("elementName")] = ageDatePicker.getFullDate();
+        } else {
+            json[element.getAttribute("elementName")] = element.value;
+        }
     })
     return JSON.stringify(json);
 }

@@ -2,16 +2,16 @@ var t_stage = 0;
 var max_stage = 2;
 var text = {
     deutsch: {
-        "v2-tutorial-exit": "Bedingungen akzeptieren &  Schliessen",
-        "v2-tutorial-welcome": "Willkommen zum HBZ-Forum!",
-        "v2-tutorial-welcome-text": "Dieses Forum wurde erstellt um den Schuelern und Ehemaligen Schuelern des HBZ sowie den Lehrern und anderen Interessiertern eine Platform zum gegenseitigen Austausch zu geben. <br>Es kann ohne Account verwendet werden, um Artikel zu schreiben oder Kommentare zu verfassen muessen Sie jedoch registriert sein. Sie koennen sich registrieren indem Sie bei der HBZ-Leitung nach einem Account-Code fragen und diesen dann im Registrierungs-Formular eingeben. <br>Wenn Sie irgendwelche Fragen / Anmerkungen haben koennen Sie uns jederzeit per Mail oder Meldungen-Formular kontaktieren.",
+        "v2-tutorial-exit": "Bedingungen akzeptieren &  schlie­ßen",
+        "v2-tutorial-welcome": "Willkommen im HBZ-Forum!",
+        "v2-tutorial-welcome-text": "Dieses Forum wurde erstellt, um aktuellen und ehemaligen Schüler*innen des HBZ, Lehrpersonen sowie anderen Interessierten eine Plattform zum gegenseitigen Austausch zu geben. <br>Es kann ohne Account verwendet werden. Um Artikel zu schreiben oder Kommentare zu verfassen, müssen Sie jedoch registriert sein. Sie können sich registrieren, indem Sie bei der HBZ-Leitung nach einem <a href='mailto: HBZ@suso.schulen.konstanz.de'>Account-Code fragen</a> und diesen dann im Registrierungs-Formular eingeben. Bitte teilen Sie uns bei der Anfrage auch Ihren Bezug zum HBZ mit. <br>Wenn Sie irgendwelche Fragen / Anmerkungen haben, können Sie uns jederzeit per Mail oder Meldungen-Formular kontaktieren.",
         "v2-tutorial-policies": "Nutzungsbedingungen",
-        "v2-tutorial-policies-text": "Um die Website optimieren zu koennen verwenden wir auf dieser Seite mehrere Varianten von Tracking sowie Cookies. Durch das Verwenden dieser Website stimmen Sie unseren Nutzungsbedingungen sowie unserer Cookie-Policy zu. Im Folgenden koennen Sie einige Einstellungen im Bezug auf das Tracking / die Optimierung der Website setzen.",
+        "v2-tutorial-policies-text": "Um die Website optimieren zu können, verwenden wir auf dieser Seite mehrere Varianten von Tracking sowie Cookies. Durch das Verwenden dieser Website stimmen Sie unseren Nutzungsbedingungen sowie unserer Cookie-Policy zu. Im Folgenden können Sie einige Einstellungen im Bezug auf das Tracking / die Optimierung der Website setzen.",
         "v2-tutorial-policies-science-heading": "Optimierung",
-        "v2-tutorial-policies-science": "Erlauben Sie uns, Ihr Nutzungsverhalten zu analysieren und so die Website weiter zu verbessern. Dies sendet regelmaessig ihre Verwendungsdaten zu unseren Servern.",
+        "v2-tutorial-policies-science": "Erlauben Sie uns, Ihr Nutzungsverhalten zu analysieren und so die Website weiter zu verbessern. Dadurch würden regelmäßig ihre Verwendungsdaten zu unseren Servern gesendet werden.",
         "v2-tutorial-cookie-summary": "Cookie-Informationen",
         "v2-tutorial-policy-summary": "Nutzungsbedingungen",
-        "v2-tutorial-policy-summary": "Lizenz",
+        "v2-tutorial-licence-summary": "Lizenz",
     },
     english: {
         "v2-tutorial-exit": "Accept conditions & Exit",
@@ -80,7 +80,7 @@ function tutorial_show () {
     switch (t_stage) {
         case 0:
             document.querySelector(".tutorial-innerInnerContainer").innerHTML = `
-                <h1>Language / Sprache</h1>
+                <h1>Sprache / Language</h1>
 
                 <div class="wrapper">
                     <input type="radio" name="select" id="option-1" class="tutorial-language-deutsch">
@@ -102,7 +102,7 @@ function tutorial_show () {
                     -->
                 </div>
 
-                <p class="tutorial-tip">Use this to change the webpage to your preferred language / Verwende diese Einstellung, um die Website auf deine bevorzugte Sprache umzustellen.</p>
+                <p class="tutorial-tip">Verwenden Sie diese Einstellung, um die Website auf Ihre bevorzugte Sprache umzustellen / Use this to change the webpage to your preferred language</p>
             `;
 
             language_dropdown();
@@ -129,10 +129,10 @@ function tutorial_show () {
                 <summary>${selected_text["v2-tutorial-policy-summary"]}</summary>
                 </details>
 
-                <details class="tutorial-licence-summary">
+                <!--details class="tutorial-licence-summary">
                 <summary>${selected_text["v2-tutorial-licence-summary"]}</summary>
-                </details>
-                <div class="tutorial-space"></div>
+                </!--details>
+                <div class="tutorial-space"></div>-->
 
                 <h2>${selected_text["v2-tutorial-policies-science-heading"]}</h2>
                 <p class="tutorial-text">${selected_text["v2-tutorial-policies-science"]}</p>

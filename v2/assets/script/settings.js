@@ -157,11 +157,7 @@ function show_settings () {
                             <button class="settings-link" onclick="window.location = '/forum/?redirect=${window.location}';">${language_data["v2-settings-version-visit"]}</button>
                             ${get_html("version", get_setting_values("version", settings.data))}
                         </form>
-                        <form class="setting" ${unlogged_hide}>
-                            <h1 class="setting-heading">${language_data["v2-settings-theme-heading"]}</h1>
-                            <p class="setting-notice">${language_data["v2-settings-theme-notice"]}</p>
-                            ${get_html("user_color", get_setting_values("user_color", settings.data))}
-                        </form>
+                        
                     </div>
 
                     <div class="settings-page settings-page-language" style="">
@@ -241,7 +237,7 @@ function show_settings () {
                             <p class="setting-notice">${language_data["v2-settings-profile-notice"]}</p>
                             <div class="settings-profile-container">
                                 <input class="settings-profile-element settings-profile-employment" placeholder="${language_data["v2-settings-profile-employment"]}" type="text" disabled elementName="userEmployment">
-                                <input class="settings-profile-element settings-profile-age" placeholder="${language_data["v2-settings-profile-age"]}" type="number" disabled elementName="userAge">
+                                <input id="settings-profile-age" class="settings-profile-element settings-profile-age" placeholder="${language_data["v2-settings-profile-age"]}" disabled elementName="userAge">
                                 <input class="settings-profile-element settings-profile-mail" placeholder="${language_data["v2-settings-profile-mail"]}" type="text" disabled elementName="userMail">
                                 <input class="settings-profile-element settings-profile-phone" placeholder="${language_data["v2-settings-profile-phone"]}" type="text" disabled elementName="userPhone">
 

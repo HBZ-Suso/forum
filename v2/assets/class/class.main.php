@@ -99,6 +99,7 @@ echo '<script src="/forum/v2/assets/script/share.js"></script>';
 echo '<script src="/forum/v2/assets/script/report.js"></script>'; 
 echo '<script src="/forum/v2/assets/script/translate.js"></script>';
 
+
 if ($data->is_logged_in()) {
         $id = $_SESSION["userId"];
 
@@ -165,6 +166,7 @@ if (!isset($_GET["site"]) || $_GET["site"] !== "profile") {
     echo '<script src="/forum/v2/assets/script/science.js"></script>';
     echo '<script async src="//cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"onload="initFingerprintJS()"></script>';
     echo '<script src="/forum/v2/assets/script/uaparser.min.js"></script>';
+    echo '<script src="/forum/assets/script/mc-calendar.min.js"></script><link rel="stylesheet" href="/forum/assets/style/mc-calendar.min.css">';
 
 }
 if ($data->is_logged_in()) {
@@ -192,7 +194,7 @@ if ($data->is_logged_in()) {
     } else {
         echo "<script>var user_type = 'user';</script>";
     }
-    echo "<script>var logged_in_user_id = " . $_SESSION["userId"] . ";</script>"; 
+    echo "<script>var logged_in_user_id = " . $_SESSION["userId"] . ";</script>";
 } else {
     echo "<script>var logged_in = false;</script>";
     echo "<script>var user_type = 'notlogged';</script>";

@@ -156,7 +156,7 @@ class Chat {
         </div>
         <div class="bottom-bar">
         <div class="chat">
-            <input class="chat-message-send-text" type="text" placeholder="Type a message..." />
+            <input class="chat-message-send-text" type="text" placeholder="${language_data["v2-chat-type"]}" />
             <button class="chat-message-send" type="submit"><img src="/forum/assets/img/icon/send.png"></button>
         </div>
         </div>

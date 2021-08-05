@@ -101,7 +101,7 @@ class Data extends Connector
         $stmt = $this->connId->prepare($query);
         $verify = "0";
         $settings_encoded = json_encode($settings);
-        $stmt->bind_param("ssisssssssssis", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, $settings_encoded, $type, $intended, $verify, $time, $time, $verify); // SECOND VERIFY INSTEAD OF NEW VAR LOCKED
+        $stmt->bind_param("ssssssssssssis", $username, password_hash($password, PASSWORD_DEFAULT), $age, $employment, $description, $mail, $phone, $settings_encoded, $type, $intended, $verify, $time, $time, $verify); // SECOND VERIFY INSTEAD OF NEW VAR LOCKED
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
