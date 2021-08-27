@@ -60,13 +60,13 @@ function show_article (custum_html=false, heading="", content_html="") {
                         </div>
                     </div>
                     <div class="viewbar-content-text">${resolve.data.articleText}</div>
-                    <div class="viewbar-content-toolbar">
+                    <div class="viewbar-content-toolbar" style="${window.location.toString().indexOf("hidetools") !== -1 ? "display: none" : ""}">
                         ${logged_in_tools}
                         ${mobile_tools}
                         <button class="viewbar-content-toolbar-copy" onclick="article_copy_handler('Article?articleId=${resolve.data.articleId}')"/>${language_data["v2-share-link"]}</button>
                         <button class="viewbar-content-toolbar-report" onclick="window.location.hash='#Report?articleId=${resolve.data.articleId}';">${language_data["v2-share-report"]}</button>
                     </div>
-                    <div class="viewbar-content-comments comment-section-id-${resolve.data.articleId}">
+                    <div class="viewbar-content-comments comment-section-id-${resolve.data.articleId}" >
                 `);
 
                 if (getCookie("autle") !== "onlyprofiles" && getCookie("autle") !== "off") {
@@ -99,7 +99,7 @@ function show_article (custum_html=false, heading="", content_html="") {
 
                 axios.post("/forum/v2/assets/api/view.php?articleId=" + articleId).then((resolve) => {if (resolve.data.indexOf("error") === -1) {articleList[articleId].articleViews += 1; update_articles(resolve.data["articleCategory"]);}}, (reject) => {throw new Error(reject)}).catch((e) => console.debug)
 
-                if (getCookie("loadcomments") === "on") {set_comment_html(resolve.data.articleId)};
+                if (getCookie("loadcomments") === "on" && window.location.toString().indexOf("hidecomments") === -1) {set_comment_html(resolve.data.articleId)};
 
                 document.querySelector(".hashLoadedPage").innerText = "Article";
             }, (reject) => {
