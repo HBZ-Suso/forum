@@ -98,6 +98,7 @@ echo '<script src="/forum/assets/script/functions.js"></script>';
 echo '<script src="/forum/v2/assets/script/share.js"></script>';
 echo '<script src="/forum/v2/assets/script/report.js"></script>'; 
 echo '<script src="/forum/v2/assets/script/translate.js"></script>';
+echo '<div class="hashLoadedPage"></div>';
 
 
 if ($data->is_logged_in()) {

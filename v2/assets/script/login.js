@@ -58,6 +58,8 @@ function show_login_and_logout () {
                 }
                 login_window.remove();
             })*/
+
+            document.querySelector(".hashLoadedPage").innerText = "Login";
         }, (reject) => {
             console.debug("Error whilst trying to logout.")
         })

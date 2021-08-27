@@ -320,6 +320,8 @@ function show_settings () {
                 settings_window.remove();
             })
             */
+
+            document.querySelector(".hashLoadedPage").innerText = "Settings";
             })
 }
 

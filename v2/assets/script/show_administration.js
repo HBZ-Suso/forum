@@ -108,4 +108,7 @@ async function show_administration () {
 
     setup_graphs();
     setup_codes();
+
+
+    document.querySelector(".hashLoadedPage").innerText = "Administration";
 }

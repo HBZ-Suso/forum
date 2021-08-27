@@ -28,4 +28,6 @@ function report (additional_info="") {
                 }}, (reject) => {throw new Error(reject)})
             .catch(console.debug)
     })
+
+    document.querySelector(".hashLoadedPage").innerText = "Report";
 }

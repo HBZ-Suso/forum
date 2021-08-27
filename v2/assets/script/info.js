@@ -23,4 +23,6 @@ function show_webpage_info () {
     document.querySelector(".webpageinfo-contact").addEventListener("click", (e) => {
         window.location.hash = "Report?type=Overall"
     })
+
+    document.querySelector(".hashLoadedPage").innerText = "Login";
 }

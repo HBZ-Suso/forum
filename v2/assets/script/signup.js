@@ -93,4 +93,6 @@ function show_signup () {
             alert(language_data["v2-login-alert"])
         }
     })
+
+    document.querySelector(".hashLoadedPage").innerText = "Signup";
 }

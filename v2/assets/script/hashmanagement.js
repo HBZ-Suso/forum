@@ -30,7 +30,12 @@ function add_hash_to_history () {
 
 function check_hash_usage () {
     try {
-        if (hash_history[hash_history.length - 1]["state"] !== hash_history[hash_history.length - 2]["state"]) {
+        let lhash = hash_history[hash_history.length - 1]["state"];
+        if (lhash.indexOf("?") !== -1) {
+            lhash = lhash.slice(0, (lhash.indexOf("?")));
+        }
+        if (document.querySelector(".hashLoadedPage").innerText !== lhash.replace("#", "") || hash_history[hash_history.length - 1]["state"] !== hash_history[hash_history.length - 2]["state"]) {
+            // Both as with ?something=something it isnt saved in hashLoadedPage
             issue_commands_after_hash(hash_history[hash_history.length - 1]["state"])
         }
     } catch (e) {

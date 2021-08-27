@@ -59,6 +59,8 @@ function show_create_post (category) {
         
         create_post_window.remove();*/
     })
+
+    document.querySelector(".hashLoadedPage").innerText = "CreatePost";
 }
 
 function close_createpost_window () {

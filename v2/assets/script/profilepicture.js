@@ -23,6 +23,8 @@ class Profilepicture {
         if (window.mobileCheck() === true && document.body.innerHTML.indexOf("<link rel='stylesheet' href='/forum/v2/assets/style/mobile.profilepicture.css'></link>") === -1) {
             document.body.innerHTML += "<link rel='stylesheet' href='/forum/v2/assets/style/mobile.profilepicture.css'></link>"
         }
+
+        document.querySelector(".hashLoadedPage").innerText = "ProfilePicture";
     }
 
 

@@ -97,7 +97,8 @@ function show_profile (userId) {
                     .post("/forum/v2/assets/api/view.php?userId=" + userId)
                     .then((resolve) => {if (resolve.data.indexOf("error") === -1) {document.querySelector(".profilebox-info-column-userviews").innerText = parseInt(document.querySelector(".profilebox-info-column-userviews").innerText) + 1;}}, (reject) => {throw new Error(reject)})
                     .catch((e) => console.debug)
-
+            
+            document.querySelector(".hashLoadedPage").innerText = "Login";
         }, (reject) => {
             console.debug("Error whilst trying to logout.")
         })
