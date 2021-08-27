@@ -52,8 +52,15 @@ function show_code_fully (id) {
 
     document.querySelector(".viewbar-container ").appendChild(container);
 
+
+    container.addEventListener("click", (e) => {
+        if (e.target.classList.contains("code-show-container")) {
+            container.remove();
+        }
+    })
     window.addEventListener("keyup", (e) => {if (e.key == "Escape") {container.remove();}})
 }
+
 
 
 function delete_code (id) {

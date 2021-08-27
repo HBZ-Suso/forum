@@ -158,11 +158,12 @@ function set_chart_in_gallery () {
 function graph_settings_changed () {
     try {
         graph_days_back = parseInt(document.querySelector(".chart-gallery-stop").value);
+        console.log()
     } catch (e) {
         console.debug(e);
     }
     try {
-        graph_start_ago = parseInt(document.querySelector(".chart-gallery-start").value);
+        graph_start_ago = parseInt(document.querySelector(".chart-gallery-start").value) * -1;
     } catch (e) {
         console.debug(e);
     }
