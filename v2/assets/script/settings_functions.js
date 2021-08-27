@@ -51,10 +51,6 @@ function set_settings_stuff () {
                 .catch((e) => console.debug)
         }
     })
-
-
-
-
 }
 
 function select_settings_page (snb_element) {

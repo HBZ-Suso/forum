@@ -53,107 +53,35 @@ function find_last_category () {
 }
 
 
+var hashTree = {
+    Login: () => {show_login_and_logout()},
+    Signup: () => {show_signup()},
+    Settings: () => {show_settings()},
+    Article: () => {show_article()},
+    Profile: () => {show_profile(window.location.toString().slice(window.location.toString().indexOf("?userId=") + 8));},
+    CreatePost: () => {show_create_post(find_last_category());},
+    Report: () => {report(additional_info="-|-HASH-|-" + window.location.hash + "-|-HASH-|-")},
+    Administration: () => {show_administration()},
+    Information: () => {show_webpage_info()},
+    ProfilePicture: () => {profilepicture.show_profilepicture()}
+}
+
+
 function issue_commands_after_hash (hash) {
     if (hash.indexOf("?") !== -1) {
         hash = hash.slice(0, (hash.indexOf("?")));
     }
-    switch (hash) {
-        case "#Login":
-            try {
-                show_login_and_logout();
-            } catch (e) {
-                console.debug("Error whilst issuing internal Login command, Error: ", e)
-                hashchange_error(e);
-            }
-            break;
-        case "#Signup":
-            try {
-                show_signup();
-            } catch (e) {
-                console.debug("Error whilst issuing internal Login command, Error: ", e)
-                hashchange_error(e);
-            }
-            break;
-        case "#Settings":
-            try {
-                show_settings();
-            } catch (e) {
-                console.debug("Error whilst issuing internal Settings command, Error: ", e)
-                hashchange_error(e);
-            }
-            break;
-        case "#Article":
-            try {
-                show_article();
-            } catch (e) {
-                console.debug("Error whilst issuing internal Article command, Error: ", e)
-                hashchange_error(e);
-            }
-            break;
-        case "#Profile":
-            try {
-                show_profile(window.location.toString().slice(window.location.toString().indexOf("?userId=") + 8));
-                /*
-                window.open("/forum/v2/?site=profile&" + window.location.toString().slice(window.location.toString().indexOf("?userId=") + 1), "Profile", "width=800,height=800,fullscreen=false,location=false,menubar=false,resizable=false,status=false,titlebar=false,toolbar=false", false)
+    try {
+        //console.log(hashTree[hash.replace("#", "")],hash.replace("#", ""));
+        hashTree[hash.replace("#", "")]();
+    } catch (e) {
+        console.debug(`Error whilst issuing internal ${hash} command, Error: `, e)
+        hashchange_error(e);
 
-                // Sets hash back to last before article view 
-                for (let i=0; i < hash_history.length; i++) {
-                    if (hash_history[i]["state"].indexOf("Profile") === -1) {
-                        window.location.hash = hash_history[i]["state"];
-                        break;
-                    }
-                }*/
-            } catch (e) {
-                console.debug("Error whilst issuing internal Profile command, Error: ", e)
-                hashchange_error(e);
-            }
-            break;
-        case "#CreatePost":
-            try {
-                show_create_post(find_last_category());
-            } catch (e) {
-                console.debug("Error whilst issuing internal Createpost command, Error: ", e)
-                hashchange_error(e);
-            }
-            break;
-        case "#Report":
-            try {
-                report(additional_info="-|-HASH-|-" + window.location.hash + "-|-HASH-|-")
-            } catch (e) {
-                console.debug("Error whilst issuing internal Report command, Error: ", e)
-                hashchange_error(e);
-            }
-            break;
-        case "#Information":
-            try {
-                show_webpage_info();
-            } catch (e) {
-                console.debug("Error whilst issuing internal Information command, Error: ", e)
-                hashchange_error(e);
-            }
-            break;
-        case "#Administration":
-            try {
-                show_administration();
-            } catch (e) {
-                console.debug("Error whilst issuing internal Administration command, Error: ", e)
-                hashchange_error(e);
-            }
-            break;
-        case "#ProfilePicture":
-            try {
-                profilepicture.show_profilepicture();
-            } catch (e) {
-                console.debug("Error whilst issuing internal ProfilePicture command, Error: ", e)
-                hashchange_error(e);
-            }
-            break;
-        default:
-            try {close_login_window();} catch (e) {}
-            try {close_settings_window();} catch (e) {}
-            try {close_article_if_not_side_by_side();} catch (e) {}
-            try {close_createpost_window();} catch (e) {}
-            break;
+        try {close_login_window();} catch (e) {}
+        try {close_settings_window();} catch (e) {}
+        try {close_article_if_not_side_by_side();} catch (e) {}
+        try {close_createpost_window();} catch (e) {}
     }
 }
 

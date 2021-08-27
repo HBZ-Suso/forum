@@ -363,3 +363,13 @@ function initFingerprintJS() {
 function profilePictureUrlByUserId (userId) {
     return "/forum/v2/assets/api/get_profilepicture.php?userId=" + userId;
 }
+
+
+
+
+
+document.body.addEventListener("click", (e) => {
+    if (e.target.classList.contains("preventDefault")) {
+        e.preventDefault();
+    }
+})

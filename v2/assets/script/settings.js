@@ -154,7 +154,7 @@ function show_settings () {
                         <form class="setting" ${modadm}>
                             <h1 class="setting-heading">${language_data["v2-settings-version-heading"]}</h1>
                             <p class="setting-notice">${language_data["v2-settings-version-notice"]}</p>
-                            <button class="settings-link" onclick="window.location = '/forum/?redirect=${window.location}';">${language_data["v2-settings-version-visit"]}</button>
+                            <button class="settings-link preventDefault" onclick="window.location = '/forum/?redirect=${window.location}';">${language_data["v2-settings-version-visit"]}</button>
                             ${get_html("version", get_setting_values("version", settings.data))}
                         </form>
                         
@@ -193,8 +193,8 @@ function show_settings () {
                         <form class="setting">
                             <h1 class="setting-heading">${language_data["v2-settings-personaldatadownload-heading"]}</h1>
                             <p class="setting-notice">${language_data["v2-settings-personaldatadownload-notice"]}</p>
-                            <button class="button-simple-clickable settings-download-personal-data-prepare" onclick="this.innerHTML = '...'; download_personal_data()">${language_data["v2-settings-personaldatadownload-prepare"]}</button>
-                            <button class="button-simple-clickable settings-download-personal-data" style="display: none;">${language_data["v2-settings-personaldatadownload-collect"]}</button>
+                            <button class="button-simple-clickable preventDefault settings-download-personal-data-prepare" onclick="this.innerHTML = '...'; download_personal_data()">${language_data["v2-settings-personaldatadownload-prepare"]}</button>
+                            <button class="button-simple-clickable preventDefault settings-download-personal-data" style="display: none;">${language_data["v2-settings-personaldatadownload-collect"]}</button>
                         </form>
                         
                     </div>
@@ -248,7 +248,7 @@ function show_settings () {
                         <form class="setting">
                             <h1 class="setting-heading">${language_data["v2-settings-profilepicture-heading"]}</h1>
                             <p class="setting-notice">${language_data["v2-settings-profilepicture-notice"]}</p>
-                            <button class="button-simple-clickable" onclick="window.location.hash='ProfilePicture';">${language_data["v2-settings-profilepicture-visit"]}</button>
+                            <button class="button-simple-clickable preventDefault" onclick="window.location.hash='ProfilePicture';">${language_data["v2-settings-profilepicture-visit"]}</button>
                         </form>
 
                         <form class="setting" ${unlogged_hide}>
