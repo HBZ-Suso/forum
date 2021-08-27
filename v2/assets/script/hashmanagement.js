@@ -71,11 +71,18 @@ var hashTree = {
     ProfilePicture: () => {profilepicture.show_profilepicture()}
 }
 
-
+var embed = false;
 function issue_commands_after_hash (hash) {
     if (hash.indexOf("?") !== -1) {
         hash = hash.slice(0, (hash.indexOf("?")));
     }
+
+    if (window.location.toString().indexOf("?embed") !== -1) {
+        embed = true;
+    } else {
+        embed = false;
+    }
+ 
     try {
         //console.log(hashTree[hash.replace("#", "")],hash.replace("#", ""));
         hashTree[hash.replace("#", "")]();

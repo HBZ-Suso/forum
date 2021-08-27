@@ -47,10 +47,11 @@ function show_article (custum_html=false, heading="", content_html="") {
                 if (window.mobileCheck() == true) {
                     mobile_tools = `<button class="viewbar-content-toolbar-share" onclick="share('HBZ-Forum: ${resolve.data.articleTitle}', '${window.location.toString().replace(window.location.hash, "") + "#Article?articleId=" + resolve.data.articleId}')">${language_data["v2-share-share"]}</button>`;
                 }
-
                 document.querySelector(".viewbar-empty").style.display = "none";
                 document.querySelector(".viewbar-content").innerHTML = `
-                    <div class="viewbar-content-heading">${resolve.data.articleTitle}</div>
+                    
+                `;
+                show_article(true, resolve.data.articleTitle, `
                     <div class="viewbar-content-author">
                         <img src="${profilePictureUrlByUserId(resolve.data.userId)}" class="user-profile-picture">
                         <div class="viewbar-content-author-info">
@@ -66,8 +67,7 @@ function show_article (custum_html=false, heading="", content_html="") {
                         <button class="viewbar-content-toolbar-report" onclick="window.location.hash='#Report?articleId=${resolve.data.articleId}';">${language_data["v2-share-report"]}</button>
                     </div>
                     <div class="viewbar-content-comments comment-section-id-${resolve.data.articleId}">
-                    </div>
-                `;
+                `);
 
                 if (getCookie("autle") !== "onlyprofiles" && getCookie("autle") !== "off") {
                     try {translate(resolve.data.articleText).then((text) => {document.querySelector(".viewbar-content-text").innerHTML = text;})} catch (e) {console.debug(e)}
@@ -106,19 +106,57 @@ function show_article (custum_html=false, heading="", content_html="") {
                 console.debug("Error whilst trying to get article data from api.");
             })
     } else {
-        document.querySelector(".viewbar-empty").style.display = "none";
-        document.querySelector(".viewbar-content").innerHTML = `
-            <div class="viewbar-content-heading">${heading}</div>
-            ${content_html}
-            </div>
-        `;
-        if (window.innerWidth < 1500 || window.mobileCheck() == true) {
-            document.querySelector(".viewbar-container").style.display = "";
-            content_displayed = true;
-        }
-        if (window.innerWidth > 1500  && window.mobileCheck() == false) {
-            document.querySelector(".viewbar-container").style.display = "";
-            content_displayed = false;
+        if (embed !== undefined && embed !== null && embed === true) {
+            document.querySelectorAll(".embed-container").forEach((element, index) => {element.remove();})
+            document.querySelector(".mainpage-container").innerHTML += `
+            <span class="embed-container">
+                <div class="viewbar-content-heading">${heading}</div>
+                ${content_html}
+                </div>
+
+                <style>
+                    .embed-container {
+                        background-color: white;
+                        position: fixed;
+                        top: 0px;
+                        bottom: 0px;
+                        left: 0px;
+                        right: 0px;
+                        z-index: 1000;
+                        padding: 20px;
+                    }
+
+                    .embed-container > .viewbar-content-heading {
+                        padding-left: 10px!important;
+                        padding-top: 10px!important;
+                    }
+                </style>
+            </span>
+            `;
+            document.querySelector(".viewbar-content").innerHTML = '';
+            if (window.innerWidth < 1500 || window.mobileCheck() == true) {
+                document.querySelector(".viewbar-container").style.display = "";
+                content_displayed = true;
+            }
+            if (window.innerWidth > 1500  && window.mobileCheck() == false) {
+                document.querySelector(".viewbar-container").style.display = "";
+                content_displayed = false;
+            }
+        } else {
+            document.querySelector(".viewbar-empty").style.display = "none";
+            document.querySelector(".viewbar-content").innerHTML = `
+                <div class="viewbar-content-heading">${heading}</div>
+                ${content_html}
+                </div>
+            `;
+            if (window.innerWidth < 1500 || window.mobileCheck() == true) {
+                document.querySelector(".viewbar-container").style.display = "";
+                content_displayed = true;
+            }
+            if (window.innerWidth > 1500  && window.mobileCheck() == false) {
+                document.querySelector(".viewbar-container").style.display = "";
+                content_displayed = false;
+            }
         }
     }
 }
