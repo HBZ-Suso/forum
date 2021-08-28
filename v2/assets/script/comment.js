@@ -45,7 +45,7 @@ function set_comment_html (articleId) {
 
 
 function convert_comment_data_to_html (data) {
-    let creation_date = new Date(data.commentCreated);
+    let creation_date = new Date(data.commentCreated * 1000);
     let comment_delete = ``;
     if (logged_in && user_type == "administrator") {
         comment_delete = `<div class="comment-delete" onclick="delete_comment('${data.articleId}', '${data.commentId}')"><img src="/forum/assets/img/icon/delete.png"></div>`

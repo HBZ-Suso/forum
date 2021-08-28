@@ -18,7 +18,7 @@ class DataV2 extends Data {
         $query = '
         SELECT articleId, articleTitle, userId, articleCreated, articlePinned
         FROM articles
-        WHERE articleCategory=?
+        WHERE articleCategory=? AND articleArchived=0
         ORDER BY ' . $orderby . ' ' . $dir . '
         LIMIT ?, 
         ?;
@@ -498,5 +498,30 @@ class DataV2 extends Data {
             return true;
         }
         return false;
+    }
+
+
+
+
+
+
+    public function toggleArticleArchived ($articleId) {
+        $article = $this->get_article_by_id($articleId);
+        $t = false;
+        if (intval($article["articleArchived"]) === 0) {
+            $query = 'UPDATE articles SET articleArchived=1 WHERE articleId=?';
+            $t = true;
+        } else {
+            $query = 'UPDATE articles SET articleArchived=0 WHERE articleId=?';
+            $t = false;
+        }
+
+        $stmt = $this->connId->prepare($query);
+        $stmt->bind_param("i", $articleId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        return $t;
     }
 }

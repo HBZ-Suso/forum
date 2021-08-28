@@ -295,3 +295,29 @@
     transition: all 0.1s linear;
     box-shadow: inset 0px 0px 400px 110px rgba(255, 255, 255, 0.4);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.embedSnap {
+    width: 100%;
+    height: 480px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: block;
+}

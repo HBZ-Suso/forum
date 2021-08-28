@@ -18,7 +18,7 @@ if (!(isset($rargs["articleId"]) || isset($rargs["userId"])) || !isset($rargs["t
     exit("Formerror");
 }
 
-if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastComment"]) < 60) && !($data->is_admin_by_id($_SESSION["userId"])) && !($data->is_moderator_by_id($_SESSION["userId"]))) {
+if ((abs(time() - intval($data->get_last_comment_by_user_id($_SESSION["userId"]))) < 60) && !($data->is_admin_by_id($_SESSION["userId"])) && !($data->is_moderator_by_id($_SESSION["userId"]))) {
     $data->create_error("Timeouterror",  $_SERVER["SCRIPT_NAME"]);
     exit("Timeouterror");
 }
@@ -50,7 +50,6 @@ if (isset($rargs["articleId"])) {
     }
 }
 
-$data->set_comment_timeout_by_id($_SESSION["userId"]);
 
 if (isset($rargs["articleId"])) {
     exit($data->get_last_article_comment_id());

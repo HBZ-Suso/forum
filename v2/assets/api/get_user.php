@@ -39,6 +39,8 @@ $user_data["articleViews"] = $data->get_article_views_by_user_id($id);
 $user_data["articles"] = count($data->get_articles_by_user_id($id));
 $user_data["color"] = $data->get_user_setting("color", $id);
 $user_data["profilePictureExtension"] = $data->get_user_setting("pPE", $id);
+$user_data["userLastArticle"] = $data->get_last_article_by_user_id($id);
+$user_data["userLastComment"] = $data->get_last_comment_by_user_id($id);
 
 if (isset($_SESSION["userId"])) {
     $user_data["allow_messages"]  = true;

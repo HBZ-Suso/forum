@@ -19,7 +19,7 @@ if (!isset($_SESSION["user"]) || !$data->is_logged_in()) {
 }
 
 
-if ((abs(time() - $data->get_user_by_id($_SESSION["userId"])["userLastArticle"]) < 60*60*24) && !($data->is_admin_by_id($_SESSION["userId"])) && !($data->is_moderator_by_id($_SESSION["userId"]))) {
+if ((abs(time() - intval($data->get_last_article_by_user_id($_SESSION["userId"]))) < 60*60*24) && !($data->is_admin_by_id($_SESSION["userId"])) && !($data->is_moderator_by_id($_SESSION["userId"]))) {
     header("LOCATION: /forum/?error=timeouterror&errorId=" . $data->create_error("Timeouterror", $_SERVER["SCRIPT_NAME"]));
     exit("Timeouterror");
 }

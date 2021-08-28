@@ -28,7 +28,7 @@ function show_article (custum_html=false, heading="", content_html="") {
                     console.debug(e);
                 }
 
-                let creation_date = new Date(resolve.data.articleCreated);
+                let creation_date = new Date(resolve.data.articleCreated * 1000);
 
                 let logged_in_tools = "";
 
@@ -47,10 +47,14 @@ function show_article (custum_html=false, heading="", content_html="") {
                 if (window.mobileCheck() == true) {
                     mobile_tools = `<button class="viewbar-content-toolbar-share" onclick="share('HBZ-Forum: ${resolve.data.articleTitle}', '${window.location.toString().replace(window.location.hash, "") + "#Article?articleId=" + resolve.data.articleId}')">${language_data["v2-share-share"]}</button>`;
                 }
-                document.querySelector(".viewbar-empty").style.display = "none";
-                document.querySelector(".viewbar-content").innerHTML = `
-                    
-                `;
+
+
+                let embedStructure = [];
+                if (resolve.data.articleEmbeds.isJSON()) {
+                    embedStructure = JSON.parse(resolve.data.articleEmbeds);
+                }
+                resolve.data.articleText = new TextFormatter(resolve.data.articleText, embedStructure).convertedStructure;
+
                 show_article(true, resolve.data.articleTitle, `
                     <div class="viewbar-content-author">
                         <img src="${profilePictureUrlByUserId(resolve.data.userId)}" class="user-profile-picture">

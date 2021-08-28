@@ -16,9 +16,7 @@ Database name: forum
     11. userType (TEXT, administrator / user / moderator, comes from code)
     12. userIntended (TINYTEXT, from codeIntended)
     13. userVerified (TINYINT / BOOLEAN, 1 or 0)
-    14. userLastArticle (UNIX Timestamp, at first unix timestamp of creation, then last article time, UNSIGNED Double)
-    15. userLastComment (UNIX Timestamp, at first unix timestamp of creation, then last comment time, UNSIGEND Double)
-    16. userLocked (UNSIGNED TINYINT, 1 for true or 0 for false)
+    14. userLocked (UNSIGNED TINYINT, 1 for true or 0 for false)
 
 2. articles:
     1. articleId (number, ticking up, MEDIUMINT, unsigned)

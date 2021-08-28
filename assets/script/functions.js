@@ -310,7 +310,16 @@ Array.prototype.removeA = function (value) {
     return this.filter(function(e) { return e !== value; })
 }
 
+String.prototype.getIndicesOf = function (str) {
+    let startingIndices = [];
+    let indexOccurence = this.indexOf(str, 0);
+    while(indexOccurence >= 0) {
+        startingIndices.push(indexOccurence);
 
+        indexOccurence = this.indexOf(str, indexOccurence + 1);
+    }
+    return startingIndices;
+}
 
 
 
@@ -373,3 +382,14 @@ document.body.addEventListener("click", (e) => {
         e.preventDefault();
     }
 })
+
+
+
+String.prototype.isJSON  = function () {
+    try {
+        JSON.parse(this);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
